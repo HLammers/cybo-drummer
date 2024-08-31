@@ -1,4 +1,5 @@
-# Cybo-Drummer - Humenize those drum computers!
+# Cybo-Drummer
+Humenize those drum computers!
 ## Introduction
 ## What Is It?
 ## How to Build One?

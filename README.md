@@ -14,4 +14,6 @@ The idea for the hardware was inspired by the work of [diyelectromusic (Kevin)](
 ## Why in Micropython?
 ## Known Issues
 ## Ideas for Features to be Added
+* Velocity mapping (minimum velocity, maximum velocity, velocity curves)
+* MIDI CC mapping (doing crazy things with the hihat foot pedal)
 ## Licencing

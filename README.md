@@ -1,5 +1,5 @@
 # Cybo-Drummer
-Humenize those drum computers!
+**Humenize those drum computers!**
 
 (c) 2024 Harm Lammers
 ## Introduction

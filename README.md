@@ -12,6 +12,10 @@ The idea for the hardware was inspired by the work of [diyelectromusic (Kevin)](
 * 6 DIN MIDI input ports
 * 6 DIN MIDI output ports
 * Up to 255 user programmable routing programs
+* Unlimited number of input device definitions[^1]
+* Unlimited number of output device definitions[^1]
+* MIDI monitor
+[^1]: Only limited by memory constraints
 ## How to Build One?
 ## How to Use It?
 ## Why in Micropython?
@@ -22,4 +26,5 @@ The idea for the hardware was inspired by the work of [diyelectromusic (Kevin)](
 * Add MIDI clock distribution
 * Add MIDI CC mapping (doing crazy things with the hihat foot pedal)
 * Add USB MIDI input/output
+* Add filter options to MIDI monitor
 ## Licencing

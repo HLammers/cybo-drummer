@@ -11,12 +11,15 @@ The idea for the hardware was inspired by the work of [diyelectromusic (Kevin)](
 ### Features
 * 6 DIN MIDI input ports
 * 6 DIN MIDI output ports
+* Up to 255 user programmable routing programs
 ## How to Build One?
 ## How to Use It?
 ## Why in Micropython?
 ## Known Issues
+* Add program doesn't check if maximun number of programs (255) is reached
 ## Ideas for Features to be Added
-* Velocity mapping (minimum velocity, maximum velocity, velocity curves)
-* MIDI clock distribution
-* MIDI CC mapping (doing crazy things with the hihat foot pedal)
+* Add velocity mapping (minimum velocity, maximum velocity, velocity curves)
+* Add MIDI clock distribution
+* Add MIDI CC mapping (doing crazy things with the hihat foot pedal)
+* Add USB MIDI input/output
 ## Licencing

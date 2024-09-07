@@ -16,7 +16,7 @@ The idea for the hardware was inspired by the work of [diyelectromusic (Kevin)](
 * 2.2 inch colour display (220x176 pixels)
 * 2 rotary encoders and 2 push buttons for input and navigation (plus reset button)
 #### Software
-* Intuitive user interface in  pages, each with 2 to 4 sub-pages:
+* Intuitive user interface split into 5 pages, each with 2 to 4 sub-pages:
 * Up to 255 user programmable routing programs
 * Unlimited number of input device definitions[^1]
 * Unlimited number of output device definitions[^1]

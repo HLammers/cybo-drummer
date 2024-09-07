@@ -12,6 +12,10 @@ The idea for the hardware was inspired by the work of [diyelectromusic (Kevin)](
 ## Hardware
 * 6 5-pin DIN MIDI input ports, allowing to connect up to 6 MIDI devices, of which 1 can be assigned to be a MIDI thru port and 1 to be a MIDI learn port (those could be the same port)
 * 6 5-pin DIN MIDI output ports, allowing to connect up to 6 drum computers or other MIDI devices, of which 1 can be assigned to be a MIDI thru port
+* micro USB port for power and firmware update (MIDI over USB is not yet implemented; next prototype will include 5.5mm socket for 5V DC power supply)
+* 2.2 inch colour display (220x176 pixels)
+* 2 rotary encoders and 2 push buttons for input and navigation (plus reset button)
+
 * Up to 255 user programmable routing programs
 * Unlimited number of input device definitions[^1]
 * Unlimited number of output device definitions[^1]

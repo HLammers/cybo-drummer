@@ -11,11 +11,11 @@ The idea for the hardware was inspired by the work of [diyelectromusic (Kevin)](
 ### Features
 * 6 5-pin DIN MIDI input ports
 * 6 5-pin DIN MIDI output ports
-* Up to 255 user programmable routing programs
-* Unlimited number of input device definitions[^1]
-* Unlimited number of output device definitions[^1]
+* Up to 255 user programmable routing programs (of which 127 can be selected via MIDI program change message)
+* Up to 4,096 input device definitions[^1]
+* Up to 4,096 output device definitions[^1]
 * MIDI monitor
-[^1]: Only limited by memory constraints
+[^1]: Limited by available memory
 ## How to Build One?
 ## How to Use It?
 ## Why in Micropython?

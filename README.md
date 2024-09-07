@@ -9,8 +9,9 @@ Cybo-Drummer is a MIDI router/mapper specially designed for mapping drum trigger
 
 The idea for the hardware was inspired by the work of [diyelectromusic (Kevin)](https://diyelectromusic.com/), in particular his [Raspberry Pi Pico Multi MIDI Router](https://diyelectromusic.com/2022/09/19/raspberry-pi-pico-multi-midi-router-part-5/). The first prototype is an additional pcb on top of the Multi Midi Router.
 ### Features
-* 6 5-pin DIN MIDI input ports
-* 6 5-pin DIN MIDI output ports
+## Hardware
+* 6 5-pin DIN MIDI input ports, allowing to connect up to 6 MIDI devices, of which 1 can be assigned to be a MIDI thru port and 1 to be a MIDI learn port (those could be the same port)
+* 6 5-pin DIN MIDI output ports, allowing to connect up to 6 drum computers or other MIDI devices, of which 1 can be assigned to be a MIDI thru port
 * Up to 255 user programmable routing programs
 * Unlimited number of input device definitions[^1]
 * Unlimited number of output device definitions[^1]

@@ -24,7 +24,31 @@ The idea for the hardware was inspired by the work of [diyelectromusic (Kevin)](
 [^1]: Limited by available memory
 ## How to Build One?
 ## How to Use It?
-![screenshot of program page 1/1](/screenshots/prg_1.png)
+![screenshot of program page 1/2](/screenshots/prg_1.png)
+![screenshot of program page 2/2](/screenshots/prg_2.png)
+
+![screenshot of input page 1/3](/screenshots/in_1.png)
+![screenshot of input page 2/3](/screenshots/in_2.png)
+![screenshot of input page 3/3](/screenshots/in_3.png)
+
+![screenshot of input page 1/4](/screenshots/out_1.png)
+![screenshot of input page 2/4](/screenshots/out_2.png)
+![screenshot of input page 3/4](/screenshots/out_3.png)
+![screenshot of input page 4/4](/screenshots/out_4.png)
+
+![screenshot of monitor page 1/3](/screenshots/mon_1.png)
+![screenshot of monitor page 2/3](/screenshots/mon_2.png)
+![screenshot of monitor page 3/3](/screenshots/mon_3.png)
+
+![screenshot of settings page 1/2](/screenshots/set_1.png)
+![screenshot of settings page 1/2](/screenshots/set_1.png)
+
+![screenshot of delete pop-up](/screenshots/prg_1_delete.png)
+![screenshot of menu pop-up](/screenshots/prg_1_menu.png)
+![screenshot of rename pop-up](/screenshots/prg_1_rename.png)
+![screenshot of move pop-up](/screenshots/prg_1_move.png)
+![screenshot of trigger pop-up](/screenshots/prg_1_trigger.png)
+![screenshot of pages pop-up](/screenshots/prg_1_pages.png)
 ## Why in Micropython?
 A MIDI router/mapper is a time-sensitive application, so why not using the programming language which leads to the fastest possible code (that would be C++ on a Raspberry Pi Pico)? Well... I do am aware that MicroPython is much slower, but I decided to use it anyway, because besides solving my challenge to connect my electronic drum kit to my drum computers, I had a second goal: finally learning how to use Python. You see, I've used several programming languages over time (starting with BASIC when I was a child, then Turbo Pascal as a teenager in the 90s, later a bit or C/C++ at university, some JavaScript, a lot of VBA and more recently some Arduino code. But now, for my job, I'm managing analysts who are using Python as their go-to language, so I decided it was time to finally master that language as well. This project was a great learning journey!
 

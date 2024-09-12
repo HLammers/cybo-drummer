@@ -49,13 +49,13 @@ The idea for the hardware was inspired by the work of [diyelectromusic (Kevin)](
 ![screenshot of move pop-up](/screenshots/prg_1_move.png)
 ![screenshot of trigger pop-up](/screenshots/prg_1_trigger.png)
 ![screenshot of pages pop-up](/screenshots/prg_1_pages.png)
-![screenshot of pages pop-up](/screenshots/prg_1_changed.png)
-![screenshot of pages pop-up](/screenshots/prg_1_save.png)
-![screenshot of pages pop-up](/screenshots/set_2_unsaved.png)
+![screenshot of program changed](/screenshots/prg_1_changed.png)
+![screenshot of save changes confirmation pop-up](/screenshots/prg_1_save.png)
+![screenshot of not saved confirmation pop-up](/screenshots/set_2_unsaved.png)
 
-![screenshot of pages pop-up](/screenshots/set_2_back-up.png)
-![screenshot of pages pop-up](/screenshots/set_2_restore.png)
-![screenshot of pages pop-up](/screenshots/set_2_factory_reset.png)
+![screenshot of store back-up confirmation pop-up](/screenshots/set_2_back-up.png)
+![screenshot of restore back-up confirmation pop-up](/screenshots/set_2_restore.png)
+![screenshot of factory reset confirmation pop-up](/screenshots/set_2_factory_reset.png)
 ## Why in Micropython?
 A MIDI router/mapper is a time-sensitive application, so why not using the programming language which leads to the fastest possible code (that would be C++ on a Raspberry Pi Pico)? Well... I do am aware that MicroPython is much slower, but I decided to use it anyway, because besides solving my challenge to connect my electronic drum kit to my drum computers, I had a second goal: finally learning how to use Python. You see, I've used several programming languages over time (starting with BASIC when I was a child, then Turbo Pascal as a teenager in the 90s, later a bit or C/C++ at university, some JavaScript, a lot of VBA and more recently some Arduino code. But now, for my job, I'm managing analysts who are using Python as their go-to language, so I decided it was time to finally master that language as well. This project was a great learning journey!
 

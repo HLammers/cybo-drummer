@@ -24,8 +24,9 @@ The idea for the hardware was inspired by the work of [diyelectromusic (Kevin)](
 [^1]: Limited by available memory
 ## How to Build One?
 ## How to Use It?
-![screenshot of program page 1/2](/screenshots/prg_1.png)
-![screenshot of program page 2/2](/screenshots/prg_2.png)
+![screenshot of program page 1/3](/screenshots/prg_1.png)
+![screenshot of program page 2/3](/screenshots/prg_2.png)
+![screenshot of program page 3/3](/screenshots/prg_3.png)
 
 ![screenshot of input page 1/3](/screenshots/in_1.png)
 ![screenshot of input page 2/3](/screenshots/in_2.png)

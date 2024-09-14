@@ -16,12 +16,55 @@ The idea for the hardware was inspired by the work of [diyelectromusic (Kevin)](
 * 2.2 inch colour display (220x176 pixels)
 * 2 rotary encoders and 2 push buttons for input and navigation (plus reset button)
 #### Software
+* Program up to 255 programs (
+
 * Intuitive user interface split into 5 pages, each with 2 to 4 sub-pages:
 * Up to 255 user programmable routing programs
 * Unlimited number of input device definitions[^1]
 * Unlimited number of output device definitions[^1]
 * MIDI monitor
 [^1]: Limited by available memory
+```mermaid
+graph LR
+    SEL(["`**select**`"])-->PROG["`**program**
+    _includes:_
+    - program change
+    - bank select`"]
+    IPORT["`**input port**
+    _includes:_
+    - channel`"]-->|1 to 1|IDEV
+    IDEV-->|1 to many|ITRIG["`**input trigger**
+    _includes:_
+    - note
+    - pedal cc`"]
+    IDEV-->|1 to many|IPRES
+    ITRIG-->|many to 1|IPRES
+    IDEV["`**input device**`"]-->|many to 1|PROG
+    IPRES["`**input preset**
+    _includes:_
+    - pedal cc minimum value
+    - pedal cc maximum value`"]-->|many to 1|PROG
+    PROG-->|1 to many|ODEV["`**output device**
+    _includes:_
+    - channel
+    - 0 velocity as note off toggle
+    - running status toggle`"]
+    PROG-->|1 to many|OPRES["`**output preset**
+    _includes:_
+    - note`"]
+    OPRES-->|many to 1|ODEV
+    OPRES-->|many to 1|OTRIG
+    OTRIG["`**output trigger**
+    _includes:_
+    - channel
+    - note
+    - note off send toggle
+    - velocity threshold
+    - velocity curve
+    - minimum velocity
+    - maximum velocity`"]-->|many to 1|ODEV
+    ODEV-->|1 to 1|OPORT["`**output port**`"]
+```
 ## How to Build One?
 ## How to Use It?
 ![screenshot of program page 1/3](/screenshots/prg_1.png)

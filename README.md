@@ -16,12 +16,33 @@ The idea for the hardware was inspired by the work of [diyelectromusic (Kevin)](
 * 2.2 inch colour display (220x176 pixels)
 * 2 rotary encoders and 2 push buttons for input and navigation (plus reset button)
 #### Software
+* Program up to 255 programs (
+
 * Intuitive user interface split into 5 pages, each with 2 to 4 sub-pages:
 * Up to 255 user programmable routing programs
 * Unlimited number of input device definitions[^1]
 * Unlimited number of output device definitions[^1]
 * MIDI monitor
 [^1]: Limited by available memory
+```mermaid
+graph LR
+    SEL[select]-->PROG["`**program**
+    _includes:_
+    - program change
+    - bank select`"]
+    IPORT[input port]-->IDEV
+    IDEV-->ITRIG[input trigger]
+    IDEV-->IPRES
+    ITRIG-->IPRES
+    IDEV[input device]-->PROG
+    IPRES[input preset]-->PROG
+    PROG-->ODEV[output device]
+    PROG-->OPRES[output preset]
+    OPRES-->ODEV
+    OPRES-->OTRIG
+    OTRIG[output trigger]-->ODEV
+    ODEV-->OPORT[output port]
+```
 ## How to Build One?
 ## How to Use It?
 ![screenshot of program page 1/3](/screenshots/prg_1.png)

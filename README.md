@@ -30,18 +30,40 @@ graph LR
     _includes:_
     - program change
     - bank select`"]
-    IPORT[input port]-->IDEV
-    IDEV-->ITRIG[input trigger]
+    IPORT["`**input port**
+    _includes:_
+    - channel`"]-->IDEV
+    IDEV-->ITRIG["`**input trigger**
+    _includes:_
+    - note
+    - pedal cc`"]
     IDEV-->IPRES
     ITRIG-->IPRES
-    IDEV[input device]-->PROG
-    IPRES[input preset]-->PROG
-    PROG-->ODEV[output device]
-    PROG-->OPRES[output preset]
+    IDEV["`**input device**`"]-->PROG
+    IPRES["`**input preset**
+    _includes:_
+    - pedal cc minimum value
+    - pedal cc maximum value`"]-->PROG
+    PROG-->ODEV["`**output device**
+    _includes:_
+    - channel
+    - 0 velocity as note off toggle
+    - running status toggle`"]
+    PROG-->OPRES["`**output preset**
+    _includes:_
+    - note`"]
     OPRES-->ODEV
     OPRES-->OTRIG
-    OTRIG[output trigger]-->ODEV
-    ODEV-->OPORT[output port]
+    OTRIG["`**output trigger**
+    _includes:_
+    - channel
+    - note
+    - note off send toggle
+    - velocity threshold
+    - velocity curve
+    - minimum velocity
+    - maximum velocity`"]-->ODEV
+    ODEV-->OPORT["`**output port**`"]
 ```
 ## How to Build One?
 ## How to Use It?

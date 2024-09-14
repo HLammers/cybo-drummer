@@ -26,34 +26,34 @@ The idea for the hardware was inspired by the work of [diyelectromusic (Kevin)](
 [^1]: Limited by available memory
 ```mermaid
 graph LR
-    SEL[select]-->PROG["`**program**
+    SEL(["`**select**`"])-->PROG["`**program**
     _includes:_
     - program change
     - bank select`"]
     IPORT["`**input port**
     _includes:_
-    - channel`"]-->IDEV
-    IDEV-->ITRIG["`**input trigger**
+    - channel`"]-->|1 to 1|IDEV
+    IDEV-->|1 to many|ITRIG["`**input trigger**
     _includes:_
     - note
     - pedal cc`"]
-    IDEV-->IPRES
-    ITRIG-->IPRES
-    IDEV["`**input device**`"]-->PROG
+    IDEV-->|1 to many|IPRES
+    ITRIG-->|many to 1|IPRES
+    IDEV["`**input device**`"]-->|many to 1|PROG
     IPRES["`**input preset**
     _includes:_
     - pedal cc minimum value
-    - pedal cc maximum value`"]-->PROG
-    PROG-->ODEV["`**output device**
+    - pedal cc maximum value`"]-->|many to 1|PROG
+    PROG-->|1 to many|ODEV["`**output device**
     _includes:_
     - channel
     - 0 velocity as note off toggle
     - running status toggle`"]
-    PROG-->OPRES["`**output preset**
+    PROG-->|1 to many|OPRES["`**output preset**
     _includes:_
     - note`"]
-    OPRES-->ODEV
-    OPRES-->OTRIG
+    OPRES-->|many to 1|ODEV
+    OPRES-->|many to 1|OTRIG
     OTRIG["`**output trigger**
     _includes:_
     - channel
@@ -62,8 +62,8 @@ graph LR
     - velocity threshold
     - velocity curve
     - minimum velocity
-    - maximum velocity`"]-->ODEV
-    ODEV-->OPORT["`**output port**`"]
+    - maximum velocity`"]-->|many to 1|ODEV
+    ODEV-->|1 to 1|OPORT["`**output port**`"]
 ```
 ## How to Build One?
 ## How to Use It?

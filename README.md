@@ -53,7 +53,7 @@ graph LR
     _includes:_
     - note`"]
     OPRES-->|many to 1|ODEV
-    OPRES-->|many to 1|OTRIG
+    OPRES-->|1 to many|OTRIG
     OTRIG["`**output trigger**
     _includes:_
     - channel

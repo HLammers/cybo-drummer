@@ -69,16 +69,6 @@ graph LR
     PROG-->|1 to up to 6|ODEF
     ODEV-->|1 to 1|OPORT-->OMIDI(["`**MIDI out**`"])
 ```
-* Flexible layered approach to mapping:
-  * Define input and output devices and trigger definitions – a trigger is always associated to a specific device.
-  * Assign input and output triggers to presets – one preset can be linked to multiple triggers and the same trigger can be linked to multiple presets (mixing different devices).
-  * Assign multiple input and output presets to each other in programs to quickly switch between different configurations.
-  * The limits are:[^1] 255 programs, 4,096 devices, 4,096 presets – there’s no hard limit for the number of triggers.
-* A program change can also be set to send program change and/or bank select commands.
-* Input triggers can be made dependent on a foot pedal cc value (that is for example how to distinguish between open and closed hi-hat triggers from a 2Box drum module).
-* Output presets and triggers support both one note per sound on the same channel and one sound per channel, or combinations of both – even tonal mapping is possible.
-* The dynamics of how onput velocity is translated into output velocity can be adjusted (threshold, curve, minimum velocity, maximum velocity)
-[^1]: The available memory also limits the number of programs, devices presets and triggers
 > [!NOTE]
 > **Cybo-Drummer Mapping Terminology**
 > 
@@ -89,6 +79,16 @@ graph LR
 > ***Output trigger:*** The MIDI channel and/or note that triggers a sound in the output device.\
 > ***Output preset:*** A combination of output triggers and optional note that can be assigned to be triggered by an input preset.\
 > ***Program:*** A mapping of one or more input presets to one or more output presets plus optionally program change and/or bank select commands to be sent to output devices.
+* Flexible layered approach to mapping:
+  * Define input and output devices and trigger definitions – a trigger is always associated to a specific device.
+  * Assign input and output triggers to presets – one preset can be linked to multiple triggers and the same trigger can be linked to multiple presets (mixing different devices).
+  * Assign multiple input and output presets to each other in programs to quickly switch between different configurations.
+  * The limits are:[^1] 255 programs, 4,096 devices, 4,096 presets – there’s no hard limit for the number of triggers.
+* A program change can also be set to send program change and/or bank select commands.
+* Input triggers can be made dependent on a foot pedal cc value (that is for example how to distinguish between open and closed hi-hat triggers from a 2Box drum module).
+* Output presets and triggers support both one note per sound on the same channel and one sound per channel, or combinations of both – even tonal mapping is possible.
+* The dynamics of how onput velocity is translated into output velocity can be adjusted (threshold, curve, minimum velocity, maximum velocity)
+[^1]: The available memory also limits the number of programs, devices presets and triggers
 #### Other Features
 * MIDI monitor
 * MIDI thru

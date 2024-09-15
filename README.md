@@ -69,30 +69,30 @@ graph LR
     PROG-->|1 to up to 6|ODEF
     ODEV-->|1 to 1|OPORT-->OMIDI(["`**MIDI out**`"])
 ```
-> [!NOTE]
-> **Cybo-Drummer Mapping Terminology**
-> 
-> ***Input device:*** A drumkit, drumpads, keyboard or other device that outputs MIDI data.\
-> ***Input trigger:*** The MIDI note that is been sent by an input device when playing a drumpad, key, etc.\
-> ***Input preset:*** A combination of input triggers and optional foot pedal settings that can be assigned to trigger an output preset.\
-> ***Output device:*** A drum computer, sampler, synthesizer or other device that responds to MIDI data.\
-> ***Output trigger:*** The MIDI channel and/or note that triggers a sound in the output device.\
-> ***Output preset:*** A combination of output triggers and optional note that can be assigned to be triggered by an input preset.\
-> ***Program:*** A mapping of one or more input presets to one or more output presets plus optionally program change and/or bank select commands to be sent to output devices.
 * Flexible layered approach to mapping:
-  * Define input and output devices and trigger definitions – a trigger is always associated to a specific device.
-  * Assign input and output triggers to presets – one preset can be linked to multiple triggers and the same trigger can be linked to multiple presets (mixing different devices).
-  * Assign multiple input and output presets to each other in programs to quickly switch between different configurations.
-  * The limits are:[^1] 255 programs, 4,096 devices, 4,096 presets – there’s no hard limit for the number of triggers.
-* A program change can also be set to send program change and/or bank select commands.
-* Input triggers can be made dependent on a foot pedal cc value (that is for example how to distinguish between open and closed hi-hat triggers from a 2Box drum module).
-* Output presets and triggers support both one note per sound on the same channel and one sound per channel, or combinations of both – even tonal mapping is possible.
-* The dynamics of how onput velocity is translated into output velocity can be adjusted (threshold, curve, minimum velocity, maximum velocity)
+  * Define input and output devices and trigger definitions – a trigger is always associated to a specific device
+  * Assign input and output triggers to presets – one preset can be linked to multiple triggers and the same trigger can be linked to multiple presets (mixing different devices)
+  * Assign multiple input and output presets to each other in programs to quickly switch between different configurations
+  * Limits:[^1] 255 programs, 4,096 devices, 4,096 presets – there’s no hard limit to the number of triggers
+* Send program change and/or bank select commands on program change
+* Set trigger dependency to cc value (for example to distinguish between open and closed hi-hat from a 2Box drum module)
+* Supports both one note per sound on the same channel and one sound per channel, or a combinations of both – including tonal mapping
+* Adjust velocity dynamics (threshold, curve, minimum velocity, maximum velocity)
 [^1]: The available memory also limits the number of programs, devices presets and triggers
+> [!NOTE]
+> **<ins>Cybo-Drummer Mapping Terminology</ins>**\
+> ***Input device:*** A drumkit, drumpads, keyboard or other device that outputs MIDI data\
+> ***Input trigger:*** The MIDI note that is been sent by an input device when playing a drumpad, key, etc.\
+> ***Input preset:*** A combination of input triggers and optional foot pedal settings that can be assigned to trigger an output preset\
+> ***Output device:*** A drum computer, sampler, synthesizer or other device that responds to MIDI data\
+> ***Output trigger:*** The MIDI channel and/or note that triggers a sound in the output device\
+> ***Output preset:*** A combination of output triggers and optional note that can be assigned to be triggered by an input preset\
+> ***Program:*** A mapping of one or more input presets to one or more output presets plus optionally program change and/or bank select commands to be sent to output devices
 #### Other Features
-* MIDI monitor
-* MIDI thru
-* MIDI learn
+* MIDI learn: Set one of the input ports to receive midi learn data (note values, channel values, cc numbers, etc.)
+* MIDI thru: Set all data[^2] received on one of the input ports to be sent unaltered to one of the output ports 
+* MIDI monitor with three views: Show mapping flow (input preset > output preset), MIDI data coming in and MIDI data sent out
+[^2]: Except SysEx
 ## How to Build One?
 ## How to Use It?
 ![screenshot of program page 1/3](/screenshots/prg_1.png)

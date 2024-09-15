@@ -235,3 +235,4 @@ To keep latency to a minimum the second core is dedicated to MIDI handling, whil
 * Add USB MIDI input/output
 * Add filter options to MIDI monitor
 ## Licencing
+The font used for the logo is Soviet X-Expanded, (c) Dan Zadorozny, [Iconian Fonts](https://www.iconian.com), published as free for non-commercial use.

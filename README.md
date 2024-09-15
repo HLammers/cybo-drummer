@@ -3,7 +3,7 @@
 
 (c) 2024 Harm Lammers
 ## Introduction
-I own an electronic drum kit and a bunch of drum computers and my dream was to use the former to play the latter, so I went searching for a way to do just that - allowing me to easily switch between different configurations combining the sounds of one or more drum computers. I looked for hardware solutions, but couldn’t find any. I looked for software solutions, but I could only find MIDI mappers or other complex solutions that would never give me the easy to use experience I had it mind. It turns out that (as usual) I go against the current fashion of trying to make an electronic drum kit sound (and look) as acoustic as possible. So I decided to develop my own solution - and publish it as open source DIY project, hoping it finds like-minded drummers!
+I own an electronic drum kit and a bunch of drum computers and my dream was to use the former to play the latter, so I went searching for a way to do just that – allowing me to easily switch between different configurations combining the sounds of one or more drum computers. I looked for hardware solutions, but couldn’t find any. I looked for software solutions, but I could only find MIDI mappers or other complex solutions that would never give me the easy to use experience I had it mind. It turns out that (as usual) I go against the current fashion of trying to make an electronic drum kit sound (and look) as acoustic as possible. So I decided to develop my own solution – and publish it as open source DIY project, hoping it finds like-minded drummers!
 ## What Is It?
 Cybo-Drummer is a MIDI router/mapper specially designed for mapping drum triggers (electronic drum kits’ brains) to drum computers. Since there is no standard for the MIDI messages sent by drum kits, nor the messages received by drum computers, Cybo-Drummer offers a flexible way of mapping the one to the other.
 
@@ -15,47 +15,33 @@ The idea for the hardware was inspired by the work of [diyelectromusic (Kevin)](
 * micro USB port for power and firmware update (MIDI over USB is not yet implemented; next prototype will include 5.5mm socket for 5V DC power supply)
 * 2.2 inch colour display (220x176 pixels)
 * 2 rotary encoders and 2 push buttons for input and navigation (plus reset button)
-#### Software
-* Program up to 255 programs (
-
-* Intuitive user interface split into 5 pages, each with 2 to 4 sub-pages:
-* Up to 255 user programmable routing programs
-* Unlimited number of input device definitions[^1]
-* Unlimited number of output device definitions[^1]
-* MIDI monitor
-[^1]: Limited by available memory
+#### Mapping
 ```mermaid
 graph LR
-    SEL(["`**select**`"])-->PROG
-    subgraph input port assignment
+    subgraph IP["`input port assignment (6)`"]
         IPORT["`**input port**
         _includes:_
         - channel`"]
     end
-    IPORT-->|1 to 1|IDEV
-    subgraph input device-level presets/triggers
+    subgraph IDEF[input device-level presets/triggers]
         direction TB
         IDEV-->|1 to many|ITRIG["`**input trigger**
         _includes:_
         - note
         - pedal cc`"]
         IDEV["`**input device**`"]-->|1 to many|IPRES
-        ITRIG-->|many to 1|IPRES["`**input preset**
-    _includes:_
-    - pedal cc minimum value
-    - pedal cc maximum value`"]
+        ITRIG-->|up to 6 to 1|IPRES["`**input preset**
+        _includes:_
+        - pedal cc minimum value
+        - pedal cc maximum value`"]
     end
-    IDEV-->|many to 1|PROG
-    IPRES-->|many to 1|PROG
-    subgraph mapping program
+    subgraph PR["`mapping program (many)`"]
         PROG["`**program**
-    _includes:_
-    - program change
-    - bank select`"]
+        _includes:_
+        - program change
+        - bank select`"]
     end
-    PROG-->|1 to many|ODEV
-    PROG-->|1 to many|OPRES
-    subgraph output device-level presets/triggers
+    subgraph ODEF[output device-level presets/triggers]
         direction TB
         OPRES-->|many to 1|ODEV["`**output device**
         _includes:_
@@ -64,8 +50,7 @@ graph LR
         - running status toggle`"]
         OPRES["`**output preset**
         _includes:_
-        - note`"]-->|1 to many|OTRIG
-        OTRIG["`**output trigger**
+        - note`"]-->|1 to up to 5|OTRIG["`**output trigger**
         _includes:_
         - channel
         - note
@@ -75,11 +60,26 @@ graph LR
         - minimum velocity
         - maximum velocity`"]-->|many to 1|ODEV
     end
-    ODEV-->|1 to 1|OPORT
-    subgraph output port assignment
+    subgraph OP["`output port assignment (6)`"]
         OPORT["`**output port**`"]
     end
+    SEL(["`**select**`"])-->|1 of up to 255|PR
+    IMIDI(["`**MIDI in**`"])-->IPORT-->|1 to 1|IDEV
+    IDEF-->|many to 1|PROG
+    PROG-->|1 to up to 6|ODEF
+    ODEV-->|1 to 1|OPORT-->OMIDI(["`**MIDI out**`"])
 ```
+* Program up to 255 programs (
+
+* Intuitive user interface split into 5 pages, each with 2 to 4 sub-pages:
+* Up to 255 user programmable routing programs
+* Unlimited number of input device definitions[^1]
+* Unlimited number of output device definitions[^1]
+[^1]: Limited by available memory
+### Other Features
+* MIDI monitor
+* MIDI thru
+* MIDI learn
 ## How to Build One?
 ## How to Use It?
 ![screenshot of program page 1/3](/screenshots/prg_1.png)
@@ -122,9 +122,9 @@ graph LR
 ![screenshot of restore back-up confirmation pop-up](/screenshots/set_2_restore.png)
 ![screenshot of factory reset confirmation pop-up](/screenshots/set_2_factory_reset.png)
 ## Why in Micropython?
-A MIDI router/mapper is a time-sensitive application, so why not using the programming language which leads to the fastest possible code (that would be C++ on a Raspberry Pi Pico)? Well... I do am aware that MicroPython is much slower, but I decided to use it anyway, because besides solving my challenge to connect my electronic drum kit to my drum computers, I had a second goal: finally learning how to use Python. You see, I’ve used several programming languages over time (starting with BASIC when I was a child, then Turbo Pascal as a teenager in the 90s, later a bit or C/C++ at university, some JavaScript, a lot of VBA and more recently some Arduino code. But now, for my job, I’m managing analysts who are using Python as their go-to language, so I decided it was time to finally master that language as well. This project was a great learning journey!
+A MIDI router/mapper is a time-sensitive application, so why not using the programming language which leads to the fastest possible code (that would be C++ on a Raspberry Pi Pico)? Well… I do am aware that MicroPython is much slower, but I decided to use it anyway, because besides solving my challenge to connect my electronic drum kit to my drum computers, I had a second goal: finally learning how to use Python. You see, I’ve used several programming languages over time (starting with BASIC when I was a child, then Turbo Pascal as a teenager in the 90s, later a bit or C/C++ at university, some JavaScript, a lot of VBA and more recently some Arduino code. But now, for my job, I’m managing analysts who are using Python as their go-to language, so I decided it was time to finally master that language as well. This project was a great learning journey!
 
-I spent a lot of time optimising the code (for speed and memory usage) and it turns out Micropython on a Raspberry Pi Pico is fast enough after all. Keep in mind MIDI is a 40+ year old protocol, so it is pretty slow by today’s standards - enough time between two MIDI bytes to run a bit of Python code.
+I spent a lot of time optimising the code (for speed and memory usage) and it turns out Micropython on a Raspberry Pi Pico is fast enough after all. Keep in mind MIDI is a 40+ year old protocol, so it is pretty slow by today’s standards – enough time between two MIDI bytes to run a bit of Python code.
 
 To keep latency to a minimum the second core is dedicated to MIDI handling, while the primary core takes care of the graphic user interface and button and rotary encoder input. In that way the second core runs a light loop doing only time-sensitive MIDI routing, while the primary core does all the heavy stuff.
 ## Known Issues

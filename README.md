@@ -26,44 +26,59 @@ The idea for the hardware was inspired by the work of [diyelectromusic (Kevin)](
 [^1]: Limited by available memory
 ```mermaid
 graph LR
-    SEL(["`**select**`"])-->PROG["`**program**
+    SEL(["`**select**`"])-->PROG
+    subgraph input port assignment
+        IPORT["`**input port**
+        _includes:_
+        - channel`"]
+    end
+    IPORT-->|1 to 1|IDEV
+    subgraph input device-level presets/triggers
+        direction TB
+        IDEV-->|1 to many|ITRIG["`**input trigger**
+        _includes:_
+        - note
+        - pedal cc`"]
+        IDEV["`**input device**`"]-->|1 to many|IPRES
+        ITRIG-->|many to 1|IPRES["`**input preset**
+    _includes:_
+    - pedal cc minimum value
+    - pedal cc maximum value`"]
+    end
+    IDEV-->|many to 1|PROG
+    IPRES-->|many to 1|PROG
+    subgraph mapping program
+        PROG["`**program**
     _includes:_
     - program change
     - bank select`"]
-    IPORT["`**input port**
-    _includes:_
-    - channel`"]-->|1 to 1|IDEV
-    IDEV-->|1 to many|ITRIG["`**input trigger**
-    _includes:_
-    - note
-    - pedal cc`"]
-    IDEV-->|1 to many|IPRES
-    ITRIG-->|many to 1|IPRES
-    IDEV["`**input device**`"]-->|many to 1|PROG
-    IPRES["`**input preset**
-    _includes:_
-    - pedal cc minimum value
-    - pedal cc maximum value`"]-->|many to 1|PROG
-    PROG-->|1 to many|ODEV["`**output device**
-    _includes:_
-    - channel
-    - 0 velocity as note off toggle
-    - running status toggle`"]
-    PROG-->|1 to many|OPRES["`**output preset**
-    _includes:_
-    - note`"]
-    OPRES-->|many to 1|ODEV
-    OPRES-->|1 to many|OTRIG
-    OTRIG["`**output trigger**
-    _includes:_
-    - channel
-    - note
-    - note off send toggle
-    - velocity threshold
-    - velocity curve
-    - minimum velocity
-    - maximum velocity`"]-->|many to 1|ODEV
-    ODEV-->|1 to 1|OPORT["`**output port**`"]
+    end
+    PROG-->|1 to many|ODEV
+    PROG-->|1 to many|OPRES
+    subgraph output device-level presets/triggers
+        direction TB
+        OPRES-->|many to 1|ODEV["`**output device**
+        _includes:_
+        - channel
+        - 0 velocity as note off toggle
+        - running status toggle`"]
+        OPRES["`**output preset**
+        _includes:_
+        - note`"]-->|1 to many|OTRIG
+        OTRIG["`**output trigger**
+        _includes:_
+        - channel
+        - note
+        - note off send toggle
+        - velocity threshold
+        - velocity curve
+        - minimum velocity
+        - maximum velocity`"]-->|many to 1|ODEV
+    end
+    ODEV-->|1 to 1|OPORT
+    subgraph output port assignment
+        OPORT["`**output port**`"]
+    end
 ```
 ## How to Build One?
 ## How to Use It?

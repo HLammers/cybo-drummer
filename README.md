@@ -69,14 +69,17 @@ graph LR
     PROG-->|1 to up to 6|ODEF
     ODEV-->|1 to 1|OPORT-->OMIDI(["`**MIDI out**`"])
 ```
-* Program up to 255 programs (
+* Flexible layered approach to mapping:
+  * Define input and output devices and trigger definitions – a trigger is always associated to a specific device
+  * Assign input and output triggers to presets – one preset can be linked to multiple triggers and the same trigger can be linked to multiple presets
+  * 
 
 * Intuitive user interface split into 5 pages, each with 2 to 4 sub-pages:
 * Up to 255 user programmable routing programs
 * Unlimited number of input device definitions[^1]
 * Unlimited number of output device definitions[^1]
 [^1]: Limited by available memory
-### Other Features
+#### Other Features
 * MIDI monitor
 * MIDI thru
 * MIDI learn

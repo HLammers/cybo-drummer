@@ -1,4 +1,4 @@
-![logo](/logos/colour_logo.svg)
+![logo](/logos/colour_logo.svg|width=100%)
 # Cybo-Drummer
 **Humenize those drum computers!**
 

@@ -12,8 +12,8 @@ Cybo-Drummer is a MIDI router/mapper specially designed for mapping drum trigger
 The idea for the hardware was inspired by the work of [diyelectromusic (Kevin)](https://diyelectromusic.com/), in particular his [Raspberry Pi Pico Multi MIDI Router](https://diyelectromusic.com/2022/09/19/raspberry-pi-pico-multi-midi-router-part-5/). The first prototype is an additional pcb on top of the Multi Midi Router.
 ### Features
 #### Hardware
-* 6 5-pin DIN MIDI input ports, allowing to connect up to 6 MIDI devices, of which 1 can be assigned to be a MIDI thru port and 1 to be a MIDI learn port (those could be the same port)
-* 6 5-pin DIN MIDI output ports, allowing to connect up to 6 drum computers or other MIDI devices, of which 1 can be assigned to be a MIDI thru port
+* 6 times 5-pin DIN MIDI input port: connect up to 6 drumkits, drumpads, keyboards, etc.
+* 6 times 5-pin DIN MIDI output port: connect up to 6 drum computers, samplers, synthesizer, etc.
 * micro USB port for power and firmware update (MIDI over USB is not yet implemented; next prototype will include 5.5mm socket for 5V DC power supply)
 * 2.2 inch colour display (220x176 pixels)
 * 2 rotary encoders and 2 push buttons for input and navigation (plus reset button)
@@ -83,7 +83,7 @@ graph LR
 [^1]: The available memory also limits the number of programs, devices presets and triggers
 > [!NOTE]
 > **<ins>Cybo-Drummer Mapping Terminology</ins>**\
-> ***Input device:*** A drumkit, drumpads, keyboard or other device that outputs MIDI data\
+> ***Input device:*** A drumkit, drumpad, keyboard or other device that outputs MIDI data\
 > ***Input trigger:*** The MIDI note that is been sent by an input device when playing a drumpad, key, etc.\
 > ***Input preset:*** A combination of input triggers and optional foot pedal settings that can be assigned to trigger an output preset\
 > ***Output device:*** A drum computer, sampler, synthesizer or other device that responds to MIDI data\

@@ -1,3 +1,4 @@
+![logo](/logos/colour_logo.svg)
 # Cybo-Drummer
 **Humenize those drum computers!**
 
@@ -122,7 +123,7 @@ config:
             axisLineWidth: 1
     themeVariables:
         xyChart:
-            plotColorPalette: "#EFFF94, #84BA94, #737131, #000000, #523529, #31A2EF, #CEBACE"
+            plotColorPalette: "#94ffef, #94ba84, #317173, #000000, #293552, #efa231, #cebace"
 ---
 xychart-beta
 title "velocity curves (positive to negative)"
@@ -150,7 +151,7 @@ config:
             axisLineWidth: 1
     themeVariables:
         xyChart:
-            plotColorPalette: "#EFFF94, #84BA94, #737131, #000000, #523529, #31A2EF, #CEBACE"
+            plotColorPalette: "#94ffef, #94ba84, #317173, #000000, #293552, #efa231, #cebace"
 ---
 xychart-beta
 title "velocity curves: threshold = 16"
@@ -178,7 +179,7 @@ config:
             axisLineWidth: 1
     themeVariables:
         xyChart:
-            plotColorPalette: "#FFFFFF, #EFFF94, #84BA94, #737131, #000000, #523529, #31A2EF, #CEBACE"
+            plotColorPalette: "#ffffff, #94ffef, #94ba84, #317173, #000000, #293552, #efa231, #cebace"
 ---
 xychart-beta
 title "velocity curves: min = 32, max = 95"

@@ -99,7 +99,16 @@ graph LR
 ## How to Use It?
 ### Overview
 ![hardware overview](/images/hardware_overview.svg)
-* Cybo-drummer has six MIDI input ports at the front and six MIDI output ports at the back 
+Cybo-Drummer has six MIDI input ports at the front and six MIDI output ports at the back. It has a micro USB port on the left side currently only used for power supply and for updating the firmware.
+
+To control Cybo-Drummer’s user interface it has two buttons and two rotary encoders:
+* **PAGE/YES:**
+  * *Usually:* Keep pressed to select page or sub-page
+  * *When a pop-up window is shown:* Press to answer ‘yes’ or ‘confirm’
+* **TRIGGER/NO:**
+* **NAV/↕ | DEL:**
+* **VAL/↔ | SEL/OPT:**
+
 ![screenshot of program page 1/3](/screenshots/prg_1.png)
 ![screenshot of program page 2/3](/screenshots/prg_2.png)
 ![screenshot of program page 3/3](/screenshots/prg_3.png)

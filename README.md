@@ -97,6 +97,9 @@ graph LR
 [^2]: Except SysEx
 ## How to Build One?
 ## How to Use It?
+### Overview
+![hardware overview](/images/hardware_overview.svg)
+* Cybo-drummer has six MIDI input ports at the front and six MIDI output ports at the back 
 ![screenshot of program page 1/3](/screenshots/prg_1.png)
 ![screenshot of program page 2/3](/screenshots/prg_2.png)
 ![screenshot of program page 3/3](/screenshots/prg_3.png)

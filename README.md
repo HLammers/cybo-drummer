@@ -134,7 +134,7 @@ Cybo-Drummer’s user interface is organized in five pages:
 
 ![selecting pages and sub-pages](/images/hardware_pages.svg)
 
-To change the pages and sub-pages, keep the PAGE button pressed and turn the VAL/↔ knob (right knob) to change the page and the NAV/↕ know (left knob) to change the sub-page.
+To change the pages and sub-pages, keep the PAGE button pressed and turn the VAL/↔ knob (right knob) to change the page and the NAV/↕ know (left knob) to change the sub-page. While the PAGE button is pressed the page tabs and title bar are highlighted in dark and light sea green.
 ### Trigger presets
 ![trigger preset pop-up](/images/hardware_trigger.svg)
 

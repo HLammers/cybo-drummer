@@ -113,7 +113,9 @@ The user interface displayed on the 2.2 inch TFT screen is organized as follows:
 
 To control Cybo-Drummer’s user interface it has two buttons and two rotary encoders, which usually behave as follows:
 * **PAGE/YES:** Keep pressed to select page or sub-page
-* **TRIGGER/NO:** Keep pressed to select trigger preset
+* **TRIGGER/NO:**
+  * *Short press:* Trigger last selected output trigger preset (for testing purposes)
+  * *Keep pressed:* Show pop-up to select trigger preset
 * **NAV/↕ | DEL:**
   * *Turn:* Navigate / select active block
   * *Press (when a program, device, preset or trigger name block is selected):* Delete program, device, preset or trigger (a confirmation pop-up will show)
@@ -124,13 +126,19 @@ To control Cybo-Drummer’s user interface it has two buttons and two rotary enc
     * *When a button block is selected:* Press/execute button
 ### Pages and sub-pages
 Cybo-Drummer’s user interface is organized in five pages:
-* **PRG (Program):** 
-* **IN (Input):**
-* **OUT (Output):**
-* **MON (Monitor):**
-* **SET (Global Settings):**
+* **PRG (Program):** Select and edit routing programs
+* **IN (Input):** Edit input port assignments, input device setting, input trigger settings and input preset settings
+* **OUT (Output):** Edit output port assignments, output device setting, output trigger settings and output preset settings
+* **MON (Monitor):** Show router and MIDI monitors
+* **SET (Settings):** Adjust global settings
 
 ![selecting pages and sub-pages](/images/hardware_pages.svg)
+
+To change the pages and sub-pages, keep the PAGE button pressed and turn the VAL/↔ knob (right knob) to change the page and the NAV/↕ know (left knob) to change the sub-page.
+### Trigger presets
+![trigger preset pop-up](/images/hardware_trigger.svg)
+
+Short pressing the TRIGGER button triggers the last selected output trigger preset (for testing purposes). Long pres the TRIGGER button to show a trigger preset selection pop-up. Keep the TRIGGER button pressend and turn the VAL/↔ knob to change the selected output trigger preset.
 ### Confirmation Pop-Ups
 ![confirmation pop-up](/images/hardware_confirmation.svg)
 
@@ -244,7 +252,7 @@ line "negative 3" [32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 3
 ![screenshot of monitor page 3/3](/screenshots/mon_3.png)
 
 ![screenshot of settings page 1/2](/screenshots/set_1.png)
-![screenshot of settings page 1/2](/screenshots/set_1.png)
+![screenshot of settings page 2/2](/screenshots/set_2.png)
 
 ![screenshot of delete pop-up](/screenshots/prg_1_delete.png)
 ![screenshot of menu pop-up](/screenshots/prg_1_menu.png)

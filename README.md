@@ -141,9 +141,13 @@ To change the pages and sub-pages, keep the PAGE button pressed and turn the VAL
 Short pressing the TRIGGER button triggers the last selected output trigger preset (for testing purposes). Long pres the TRIGGER button to show a trigger preset selection pop-up. Keep the TRIGGER button pressend and turn the VAL/↔ knob to change the selected output trigger preset.
 ### Confirmation Pop-Ups
 ![confirmation pop-up](/images/hardware_confirmation.svg)
-
+### Description of All Pages and Sub-Pages
+#### PRG (Program)
+##### PRG 1/3 – Program: Triggers
 ![screenshot of program page 1/3](/screenshots/prg_1.png)
+##### PRG 2/3 – Program: Program Change
 ![screenshot of program page 2/3](/screenshots/prg_2.png)
+##### PRG 3/3 – Program: Bank Select
 ![screenshot of program page 3/3](/screenshots/prg_3.png)
 
 ![screenshot of input page 1/3](/screenshots/in_1.png)

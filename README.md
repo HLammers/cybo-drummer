@@ -274,7 +274,10 @@ To keep latency to a minimum the second core is dedicated to MIDI handling, whil
 * Add USB MIDI input/output
 * Add filter options to MIDI monitor
 ## Licencing
-The font used for the logo is Soviet X-Expanded, (c) 2003 Dan Zadorozny – [Iconian Fonts](https://www.iconian.com), published with the following copyright statement:
+The fonts used for the logo and the (future) front panel are Soviet Regular and Soviet X-Expanded, (c) 2003 Dan Zadorozny – [Iconian Fonts](https://www.iconian.com), published with the following copyright statement:
 > This font may be freely distributed and is free for all non-commercial uses.  This font is e-mailware; that is, if you like it, please e-mail the author at:
 >
 > iconian@aol.com
+
+The font used in the graphic user interface is 6x10, from the X11 Linux Window System, copyright [X.Org Fundation](https://x.org), published with the following copyright statement:
+> Public domain terminal emulator font. Share and enjoy.

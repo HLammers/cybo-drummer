@@ -99,15 +99,40 @@ graph LR
 ## How to Use It?
 ### Overview
 ![hardware overview](/images/hardware_overview.svg)
+
 Cybo-Drummer has six MIDI input ports at the front and six MIDI output ports at the back. It has a micro USB port on the left side currently only used for power supply and for updating the firmware.
 
-To control Cybo-Drummer’s user interface it has two buttons and two rotary encoders:
-* **PAGE/YES:**
-  * *Usually:* Keep pressed to select page or sub-page
-  * *When a pop-up window is shown:* Press to answer ‘yes’ or ‘confirm’
-* **TRIGGER/NO:**
+The user interface displayed on the 2.2 inch TFT screen is organized as follows:
+* **Page tabs:** The right edge of the screen shows which of the five pages is selected
+* **Title bar:** The top edge of screen shows a title bar, consisting of three elements:
+  * On the left the active program is always visible
+  * Centrally the title of the active sub-page is shown
+  * On the right the number of the active sub-page and how many sub-pages the active page has
+* **Sub-page:** The remainder of the screen is taken by the sub-page itself
+  * **Blocks:** all sub-pages except those on the monitor page are structured in locks which can be selected to enter input; the active block is highlighted using a dark and light sea green colour
+
+To control Cybo-Drummer’s user interface it has two buttons and two rotary encoders, which usually behave as follows:
+* **PAGE/YES:** Keep pressed to select page or sub-page
+* **TRIGGER/NO:** Keep pressed to select trigger preset
 * **NAV/↕ | DEL:**
+  * *Turn:* Navigate / select active block
+  * *Press (when a program, device, preset or trigger name block is selected):* Delete program, device, preset or trigger (a confirmation pop-up will show)
 * **VAL/↔ | SEL/OPT:**
+  * *Turn:* Change value of active block or pop-up
+  * *Press:*
+    * *When a program, device, preset or trigger name block is selected:* Rename or show options menu
+    * *When a button block is selected:* Press/execute button
+### Pages and sub-pages
+Cybo-Drummer’s user interface is organized in five pages:
+* **PRG (Program):** 
+* **IN (Input):**
+* **OUT (Output):**
+* **MON (Monitor):**
+* **SET (Global Settings):**
+
+![selecting pages and sub-pages](/images/hardware_pages.svg)
+### Confirmation Pop-Ups
+![confirmation pop-up](/images/hardware_confirmation.svg)
 
 ![screenshot of program page 1/3](/screenshots/prg_1.png)
 ![screenshot of program page 2/3](/screenshots/prg_2.png)

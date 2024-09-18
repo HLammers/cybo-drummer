@@ -152,12 +152,14 @@ Short pressing the TRIGGER button triggers the last selected output trigger pres
 ![screenshot of program page 2/3](/screenshots/prg_2.png)
 ##### PRG 3/3 – Program: Bank Select
 ![screenshot of program page 3/3](/screenshots/prg_3.png)
+#### IN (Input)
 ##### IN 1/3 – Input Ports
 ![screenshot of input page 1/3](/screenshots/in_1.png)
 ##### IN 2/3 – Input Devices/Triggers
 ![screenshot of input page 2/3](/screenshots/in_2.png)
 ##### IN 3/3 – Input Presets
 ![screenshot of input page 3/3](/screenshots/in_3.png)
+#### OUT (Output)
 ##### IN 1/4 – Output Ports
 ![screenshot of output page 1/4](/screenshots/out_1.png)
 ##### IN 2/4 – Output Devices
@@ -259,15 +261,17 @@ line "negative 3" [32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 3
 
 ##### IN 4/4 – Output Presets
 ![screenshot of output page 4/4](/screenshots/out_4.png)
-##### IN 1/3 – Monitor Routing
+#### MON (Monitor)
+##### MON 1/3 – Monitor Routing
 ![screenshot of monitor page 1/3](/screenshots/mon_1.png)
-##### IN 2/3 – Monitor MIDI In
+##### MON 2/3 – Monitor MIDI In
 ![screenshot of monitor page 2/3](/screenshots/mon_2.png)
-##### IN 3/3 – Monitor MIDI Out
+##### MON 3/3 – Monitor MIDI Out
 ![screenshot of monitor page 3/3](/screenshots/mon_3.png)
-##### IN 1/2 – Settings: MIDI Thru
+#### SET (Settings)
+##### SET 1/2 – Settings: MIDI Thru
 ![screenshot of settings page 1/2](/screenshots/set_1.png)
-##### IN 2/2 – Settings: Other
+##### SET 2/2 – Settings: Other
 ![screenshot of settings page 2/2](/screenshots/set_2.png)
 
 ![screenshot of delete pop-up](/screenshots/prg_1_delete.png)

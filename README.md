@@ -3,10 +3,10 @@
 # Cybo-Drummer
 **Humenize those drum computers!**
 
+(c) 2024 Harm Lammers
+
 > [!IMPORTANT]
 > Cybo-Drummer is not yet released. This readme file is work in progress in preparation of releasing Cybo-Drummer to the public. Feel free to come back here to see it grow for the next couple of weeks!
-
-(c) 2024 Harm Lammers
 ## Introduction
 I own an electronic drum kit and a bunch of drum computers and my dream was to use the former to play the latter, so I went searching for a way to do just that – allowing me to easily switch between different configurations combining the sounds of one or more drum computers. I looked for hardware solutions, but couldn’t find any. I looked for software solutions, but I could only find MIDI mappers or other complex solutions that would never give me the easy to use experience I had it mind. It turns out that (as usual) I go against the current fashion of trying to make an electronic drum kit sound (and look) as acoustic as possible. So I decided to develop my own solution – and publish it as open source DIY project, hoping it finds like-minded drummers!
 ## What Is It?
@@ -151,18 +151,42 @@ Cybo-Drummer doesn’t have an undo feature, so to avoid accidentially losing da
 The program page is the first page that shows when powering up Cybo-Drummer. Use this page to select or edit the active program.
 ##### PRG 1/3 – Program: Mapping
 ![screenshot of program page 1/3](/screenshots/prg_1.png)
+###### program
+###### input device
+###### input preset
+###### output device 1 to 4
+###### output preset 1 to 4
+> [!IMPORTANT]
+> Output device 1 to 4 and output preset 1 to 4 are the output mapping for the above selected input preset. So, to map an input preset to an output preset, first select the input device and input preset, then assign the output devices and output presets. This is indicated by the orange bar between input device/preset and and output devices/presets.
 ##### PRG 2/3 – Program: Program Change
 ![screenshot of program page 2/3](/screenshots/prg_2.png)
+###### p1 to p6
 ##### PRG 3/3 – Program: Bank Select
 ![screenshot of program page 3/3](/screenshots/prg_3.png)
+###### p1 to p6
 #### IN (Input)
 Use the input page to review or edit input port assignments, input device setting, input trigger settings and input preset settings
 ##### IN 1/3 – Input Ports
 ![screenshot of input page 1/3](/screenshots/in_1.png)
+###### p1 to p6 device
+###### p1 to p6 channel
 ##### IN 2/3 – Input Devices/Triggers
 ![screenshot of input page 2/3](/screenshots/in_2.png)
+###### input device
+###### input trigger
+###### note
+###### pedal cc
+> [!IMPORTANT]
+> Note and pedal cc relate to the above selected input trigger. This is indicated by the orange bar between input device/trigger and and note.
 ##### IN 3/3 – Input Presets
 ![screenshot of input page 3/3](/screenshots/in_3.png)
+###### input device
+###### input trigger
+###### pedal cc min
+###### pedal cc max
+###### trigger 1 to 6
+> [!IMPORTANT]
+> Pedal CC min/max and input trigger 1 to 6 are the input trigger mapping for the above selected input preset. So, to map a trigger to a preset, first select the input device and input preset, then assign the CC range and triggers. This is indicated by the orange bar between input device/preset and and pedal CC min/max.
 #### OUT (Output)
 Use the output page to review or edit output port assignments, output device setting, output trigger settings and output preset settings
 ##### OUT 1/4 – Output Ports

@@ -3,6 +3,9 @@
 # Cybo-Drummer
 **Humenize those drum computers!**
 
+> [!IMPORTANT]
+> Cybo-Drummer is not yet released. This readme file is work in progress in preparation of releasing Cybo-Drummer to the public. Feel free to come back here to see it grow for the next couple of weeks!
+
 (c) 2024 Harm Lammers
 ## Introduction
 I own an electronic drum kit and a bunch of drum computers and my dream was to use the former to play the latter, so I went searching for a way to do just that – allowing me to easily switch between different configurations combining the sounds of one or more drum computers. I looked for hardware solutions, but couldn’t find any. I looked for software solutions, but I could only find MIDI mappers or other complex solutions that would never give me the easy to use experience I had it mind. It turns out that (as usual) I go against the current fashion of trying to make an electronic drum kit sound (and look) as acoustic as possible. So I decided to develop my own solution – and publish it as open source DIY project, hoping it finds like-minded drummers!
@@ -99,28 +102,70 @@ graph LR
 ## How to Use It?
 ### Overview
 ![hardware overview](/images/hardware_overview.svg)
+
 Cybo-Drummer has six MIDI input ports at the front and six MIDI output ports at the back. It has a micro USB port on the left side currently only used for power supply and for updating the firmware.
 
-To control Cybo-Drummer’s user interface it has two buttons and two rotary encoders:
-* **PAGE/YES:**
-  * *Usually:* Keep pressed to select page or sub-page
-  * *When a pop-up window is shown:* Press to answer ‘yes’ or ‘confirm’
+The user interface displayed on the 2.2 inch TFT screen is organized as follows:
+* **Page tabs:** The right edge of the screen shows which of the five pages is selected
+* **Title bar:** The top edge of screen shows a title bar, consisting of three elements:
+  * On the left the active program is always visible
+  * Centrally the title of the active sub-page is shown
+  * On the right the number of the active sub-page and how many sub-pages the active page has
+* **Sub-page:** The remainder of the screen is taken by the sub-page itself
+  * **Blocks:** all sub-pages except those on the monitor page are structured in locks which can be selected to enter input; the active block is highlighted using a dark and light sea green colour
+
+To control Cybo-Drummer’s user interface it has two buttons and two rotary encoders, which usually behave as follows:
+* **PAGE/YES:** Keep pressed to select page or sub-page
 * **TRIGGER/NO:**
+  * *Short press:* Trigger last selected output trigger preset (for testing purposes)
+  * *Keep pressed:* Show pop-up to select trigger preset
 * **NAV/↕ | DEL:**
+  * *Turn:* Navigate / select active block
+  * *Press (when a program, device, preset or trigger name block is selected):* Delete program, device, preset or trigger (a confirmation pop-up will show)
 * **VAL/↔ | SEL/OPT:**
+  * *Turn:* Change value of active block or pop-up
+  * *Press:*
+    * *When a program, device, preset or trigger name block is selected:* Rename or show options menu
+    * *When a button block is selected:* Press/execute button
+### Pages and sub-pages
+Cybo-Drummer’s user interface is organized in five pages:
+* **PRG (Program):** Select and edit routing programs
+* **IN (Input):** Edit input port assignments, input device setting, input trigger settings and input preset settings
+* **OUT (Output):** Edit output port assignments, output device setting, output trigger settings and output preset settings
+* **MON (Monitor):** Show router and MIDI monitors
+* **SET (Settings):** Adjust global settings
 
+![selecting pages and sub-pages](/images/hardware_pages.svg)
+
+To change the pages and sub-pages, keep the PAGE button pressed and turn the VAL/↔ knob (right knob) to change the page and the NAV/↕ know (left knob) to change the sub-page. While the PAGE button is pressed the page tabs and title bar are highlighted in dark and light sea green.
+### Trigger presets
+![trigger preset pop-up](/images/hardware_trigger.svg)
+
+Short pressing the TRIGGER button triggers the last selected output trigger preset (for testing purposes). Long pres the TRIGGER button to show a trigger preset selection pop-up. Keep the TRIGGER button pressend and turn the VAL/↔ knob to change the selected output trigger preset.
+### Confirmation Pop-Ups
+![confirmation pop-up](/images/hardware_confirmation.svg)
+### Description of All Pages and Sub-Pages
+#### PRG (Program)
+##### PRG 1/3 – Program: Mapping
 ![screenshot of program page 1/3](/screenshots/prg_1.png)
+##### PRG 2/3 – Program: Program Change
 ![screenshot of program page 2/3](/screenshots/prg_2.png)
+##### PRG 3/3 – Program: Bank Select
 ![screenshot of program page 3/3](/screenshots/prg_3.png)
-
+#### IN (Input)
+##### IN 1/3 – Input Ports
 ![screenshot of input page 1/3](/screenshots/in_1.png)
+##### IN 2/3 – Input Devices/Triggers
 ![screenshot of input page 2/3](/screenshots/in_2.png)
+##### IN 3/3 – Input Presets
 ![screenshot of input page 3/3](/screenshots/in_3.png)
-
+#### OUT (Output)
+##### IN 1/4 – Output Ports
 ![screenshot of output page 1/4](/screenshots/out_1.png)
+##### IN 2/4 – Output Devices
 ![screenshot of output page 2/4](/screenshots/out_2.png)
+##### IN 3/4 – Output Triggers
 ![screenshot of output page 3/4](/screenshots/out_3.png)
-![screenshot of output page 4/4](/screenshots/out_4.png)
 
 ```mermaid
 ---
@@ -214,12 +259,20 @@ line "negative 3" [32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 3
 > [!TIP]
 > Output note values can be set at trigger level (OUT 3/4) and at preset level (OUT 4/4). The trigger-level setting is the default for each preset which maps to that trigger, while if a preset-level note is set, that overrules the note setting for that particular preset. This can be used to play tonally (for those drum computers or other MIDI instruments which support that), for example by assigning the same trigger to multiple toms on the input device, but set different notes to tune them differently. If neither trigger-level nor preset-level note is set, note number 60 (C4, middle C) is used.
 
+##### IN 4/4 – Output Presets
+![screenshot of output page 4/4](/screenshots/out_4.png)
+#### MON (Monitor)
+##### MON 1/3 – Monitor Routing
 ![screenshot of monitor page 1/3](/screenshots/mon_1.png)
+##### MON 2/3 – Monitor MIDI In
 ![screenshot of monitor page 2/3](/screenshots/mon_2.png)
+##### MON 3/3 – Monitor MIDI Out
 ![screenshot of monitor page 3/3](/screenshots/mon_3.png)
-
+#### SET (Settings)
+##### SET 1/2 – Settings: MIDI Thru
 ![screenshot of settings page 1/2](/screenshots/set_1.png)
-![screenshot of settings page 1/2](/screenshots/set_1.png)
+##### SET 2/2 – Settings: Other
+![screenshot of settings page 2/2](/screenshots/set_2.png)
 
 ![screenshot of delete pop-up](/screenshots/prg_1_delete.png)
 ![screenshot of menu pop-up](/screenshots/prg_1_menu.png)
@@ -243,13 +296,15 @@ To keep latency to a minimum the second core is dedicated to MIDI handling, whil
 ## Known Issues
 * Add program doesn’t check if maximun number of programs (255) is reached
 ## Ideas for Features to be Added
-* Add velocity mapping (minimum velocity, maximum velocity, velocity curves)
 * Add MIDI clock distribution
 * Add MIDI CC mapping (doing crazy things with the hihat foot pedal)
 * Add USB MIDI input/output
 * Add filter options to MIDI monitor
 ## Licencing
-The font used for the logo is Soviet X-Expanded, (c) 2003 Dan Zadorozny – [Iconian Fonts](https://www.iconian.com), published with the following copyright statement:
+The fonts used for the logo and the (future) front panel are Soviet Regular and Soviet X-Expanded, (c) 2003 Dan Zadorozny – [Iconian Fonts](https://www.iconian.com), published with the following copyright statement:
 > This font may be freely distributed and is free for all non-commercial uses.  This font is e-mailware; that is, if you like it, please e-mail the author at:
 >
 > iconian@aol.com
+
+The font used in the graphic user interface is 6x10, from the X11 Linux Window System, copyright [X.Org Fundation](https://x.org), published with the following copyright statement:
+> Public domain terminal emulator font. Share and enjoy.

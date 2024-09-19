@@ -144,8 +144,11 @@ To change the pages and sub-pages, keep the PAGE button pressed and turn the VAL
 Short pressing the TRIGGER button triggers the last selected output trigger preset (for testing purposes). Long pres the TRIGGER button to show a trigger preset selection pop-up. Keep the TRIGGER button pressend and turn the VAL/↔ knob to change the selected output trigger preset.
 ### Confirmation Pop-Ups
 ![confirmation pop-up](/images/hardware_confirmation.svg)
+
+Cybo-Drummer doesn’t have an undo feature, so to avoid accidentially losing data confirmation pop-ups will show up before deleting something, changing an unsaved program, restoring a back-up or doing a factory reset. Answer the question in the pop-up by pressing the left button for YES and the right button for NO.
 ### Description of All Pages and Sub-Pages
 #### PRG (Program)
+The program page is the first page that shows when powering up Cybo-Drummer. Use this page to select or edit the active program.
 ##### PRG 1/3 – Program: Mapping
 ![screenshot of program page 1/3](/screenshots/prg_1.png)
 ##### PRG 2/3 – Program: Program Change
@@ -153,6 +156,7 @@ Short pressing the TRIGGER button triggers the last selected output trigger pres
 ##### PRG 3/3 – Program: Bank Select
 ![screenshot of program page 3/3](/screenshots/prg_3.png)
 #### IN (Input)
+Use the input page to review or edit input port assignments, input device setting, input trigger settings and input preset settings
 ##### IN 1/3 – Input Ports
 ![screenshot of input page 1/3](/screenshots/in_1.png)
 ##### IN 2/3 – Input Devices/Triggers
@@ -160,11 +164,12 @@ Short pressing the TRIGGER button triggers the last selected output trigger pres
 ##### IN 3/3 – Input Presets
 ![screenshot of input page 3/3](/screenshots/in_3.png)
 #### OUT (Output)
-##### IN 1/4 – Output Ports
+Use the output page to review or edit output port assignments, output device setting, output trigger settings and output preset settings
+##### OUT 1/4 – Output Ports
 ![screenshot of output page 1/4](/screenshots/out_1.png)
-##### IN 2/4 – Output Devices
+##### OUT 2/4 – Output Devices
 ![screenshot of output page 2/4](/screenshots/out_2.png)
-##### IN 3/4 – Output Triggers
+##### OUT 3/4 – Output Triggers
 ![screenshot of output page 3/4](/screenshots/out_3.png)
 
 ```mermaid
@@ -259,9 +264,10 @@ line "negative 3" [32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 3
 > [!TIP]
 > Output note values can be set at trigger level (OUT 3/4) and at preset level (OUT 4/4). The trigger-level setting is the default for each preset which maps to that trigger, while if a preset-level note is set, that overrules the note setting for that particular preset. This can be used to play tonally (for those drum computers or other MIDI instruments which support that), for example by assigning the same trigger to multiple toms on the input device, but set different notes to tune them differently. If neither trigger-level nor preset-level note is set, note number 60 (C4, middle C) is used.
 
-##### IN 4/4 – Output Presets
+##### OUT 4/4 – Output Presets
 ![screenshot of output page 4/4](/screenshots/out_4.png)
 #### MON (Monitor)
+Use the monitor page to monitor the router, MIDI data coming in or MIDI data going out.
 ##### MON 1/3 – Monitor Routing
 ![screenshot of monitor page 1/3](/screenshots/mon_1.png)
 ##### MON 2/3 – Monitor MIDI In
@@ -269,6 +275,7 @@ line "negative 3" [32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 3
 ##### MON 3/3 – Monitor MIDI Out
 ![screenshot of monitor page 3/3](/screenshots/mon_3.png)
 #### SET (Settings)
+Use the settings page to adjust global settings, to backup or recover data or to find the firmware version number.
 ##### SET 1/2 – Settings: MIDI Thru
 ![screenshot of settings page 1/2](/screenshots/set_1.png)
 ##### SET 2/2 – Settings: Other

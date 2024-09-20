@@ -177,19 +177,25 @@ The program page is the first page that shows when powering up Cybo-Drummer. Use
 * Select up to 4 output device/preset combinations that will be triggered when the router receives the selected input trigger
 * Multiple output devices can be combined
 > [!IMPORTANT]
-> Output device 1 to 4 and output preset 1 to 4 are the output mapping for the above selected input preset. So, to map an input preset to an output preset, first select the input device and input preset, then assign the output devices and output presets. This is indicated by the orange bar between input device/preset and output devices/presets.<br clear="right"/><br/>
+> Output device 1 to 4 and output preset 1 to 4 are the output mapping for the above selected input preset. So, to map an input preset to an output preset, first select the input device and input preset, then assign the output devices and output presets. This is indicated by the orange bar between input device/preset and output devices/presets.<br clear="right"/>
 
 <img src="/screenshots/prg_2.png" align="right">
 
 ##### PRG 2/3 – Program: Program Change
 ###### p1 to p6
-<br clear="right"/><br/>
+* Optionally set a program change value (1 to 128) which will be sent to a device assigned to a particular port – select ‘___’ to not send a program change message
+* Program change messages are sent on router program change
+> [!NOTE]
+> Program change data is stored by device, so if a device is assigned to a different port, it will remain linked to that device, not the port.<br clear="right"/>
 
 <img src="/screenshots/prg_3.png" align="right">
 
 ##### PRG 3/3 – Program: Bank Select
 ###### p1 to p6
-<br clear="right"/>
+* Optionally set a bank select value (1 to 16,384) which will be sent to a device assigned to a particular port – select ‘_____’ to not send a bank select message
+* Bank select messages are sent on router program change
+> [!NOTE]
+> Bank select data is stored by device, so if a device is assigned to a different port, it will remain linked to that device, not the port.<br clear="right"/>
 
 #### IN (Input)
 Use the input page to review or edit input port assignments, input device setting, input trigger settings and input preset settings.

@@ -1,4 +1,4 @@
-<img src="/logos/colour_logo.svg" alt="logo" width="100%">
+<img src="/logos/colour_logo.svg" width="100%">
 
 # Cybo-Drummer
 **Humenize those drum computers!**
@@ -101,7 +101,7 @@ graph LR
 ## How to Build One?
 ## How to Use It?
 ### Overview
-![hardware overview](/images/hardware_overview.svg)
+<img src="/images/hardware_overview.svg" align="right">
 
 Cybo-Drummer has six MIDI input ports at the front and six MIDI output ports at the back. It has a micro USB port on the left side currently only used for power supply and for updating the firmware.
 
@@ -135,15 +135,15 @@ Cybo-Drummer’s user interface is organized in five pages:
 * **MON (Monitor):** Show router and MIDI monitors
 * **SET (Settings):** Adjust global settings
 
-![selecting pages and sub-pages](/images/hardware_pages.svg)
+<img src="/images/hardware_pages.svg" align="right">
 
 To change the pages and sub-pages, keep the PAGE button pressed and turn the VAL/↔ knob (right knob) to change the page and the NAV/↕ know (left knob) to change the sub-page. While the PAGE button is pressed the page tabs and title bar are highlighted in dark and light sea green.
 ### Trigger presets
-![trigger preset pop-up](/images/hardware_trigger.svg)
+<img src="/images/hardware_trigger.svg" align="right">
 
 Short pressing the TRIGGER button triggers the last selected output trigger preset (for testing purposes). Long pres the TRIGGER button to show a trigger preset selection pop-up. Keep the TRIGGER button pressend and turn the VAL/↔ knob to change the selected output trigger preset.
 ### Confirmation Pop-Ups
-![confirmation pop-up](/images/hardware_confirmation.svg)
+<img src="/images/hardware_confirmation.svg" align="right">
 
 Cybo-Drummer doesn’t have an undo feature, so to avoid accidentially losing data confirmation pop-ups will show up before deleting something, changing an unsaved program, restoring a back-up or doing a factory reset. Answer the question in the pop-up by pressing the left button for YES and the right button for NO.
 ### Description of All Pages and Sub-Pages
@@ -158,169 +158,105 @@ The program page is the first page that shows when powering up Cybo-Drummer. Use
 ###### output device 1 to 4
 ###### output preset 1 to 4
 > [!IMPORTANT]
-> Output device 1 to 4 and output preset 1 to 4 are the output mapping for the above selected input preset. So, to map an input preset to an output preset, first select the input device and input preset, then assign the output devices and output presets. This is indicated by the orange bar between input device/preset and and output devices/presets.
+> Output device 1 to 4 and output preset 1 to 4 are the output mapping for the above selected input preset. So, to map an input preset to an output preset, first select the input device and input preset, then assign the output devices and output presets. This is indicated by the orange bar between input device/preset and output devices/presets.
 ##### PRG 2/3 – Program: Program Change
-![screenshot of program page 2/3](/screenshots/prg_2.png)
+<img src="/screenshots/prg_2.png" align="right">
+
 ###### p1 to p6
 ##### PRG 3/3 – Program: Bank Select
-![screenshot of program page 3/3](/screenshots/prg_3.png)
+<img src="/screenshots/prg_3.png" align="right">
+
 ###### p1 to p6
 #### IN (Input)
 Use the input page to review or edit input port assignments, input device setting, input trigger settings and input preset settings
 ##### IN 1/3 – Input Ports
-![screenshot of input page 1/3](/screenshots/in_1.png)
+<img src="/screenshots/in_1.png" align="right">
+
 ###### p1 to p6 device
 ###### p1 to p6 channel
 ##### IN 2/3 – Input Devices/Triggers
-![screenshot of input page 2/3](/screenshots/in_2.png)
+<img src="/screenshots/in_2.png" align="right">
+
 ###### input device
 ###### input trigger
 ###### note
 ###### pedal cc
 > [!IMPORTANT]
-> Note and pedal cc relate to the above selected input trigger. This is indicated by the orange bar between input device/trigger and and note.
+> Note and pedal cc relate to the above selected input trigger. This is indicated by the orange bar between input device/trigger and note.
 ##### IN 3/3 – Input Presets
-![screenshot of input page 3/3](/screenshots/in_3.png)
+<img src="/screenshots/in_3.png" align="right">
+
 ###### input device
 ###### input trigger
 ###### pedal cc min
 ###### pedal cc max
 ###### trigger 1 to 6
 > [!IMPORTANT]
-> Pedal CC min/max and input trigger 1 to 6 are the input trigger mapping for the above selected input preset. So, to map a trigger to a preset, first select the input device and input preset, then assign the CC range and triggers. This is indicated by the orange bar between input device/preset and and pedal CC min/max.
+> Pedal CC min/max and input trigger 1 to 6 are the input trigger mapping for the above selected input preset. So, to map a trigger to a preset, first select the input device and input preset, then assign the CC range and triggers. This is indicated by the orange bar between input device/preset and pedal CC min/max.
 #### OUT (Output)
 Use the output page to review or edit output port assignments, output device setting, output trigger settings and output preset settings
-##### OUT 1/4 – Output Ports
-![screenshot of output page 1/4](/screenshots/out_1.png)
-##### OUT 2/4 – Output Devices
-![screenshot of output page 2/4](/screenshots/out_2.png)
-##### OUT 3/4 – Output Triggers
-![screenshot of output page 3/4](/screenshots/out_3.png)
-
-```mermaid
----
-config:
-    xyChart:
-        width: 300
-        height: 300
-        titleFontSize: 14
-        xAxis:
-            showTick: false
-            axisLineWidth: 1
-            titleFontSize: 12
-            labelFontSize: 10
-        yAxis:
-            showTick: false
-            axisLineWidth: 1
-            titleFontSize: 12
-            labelFontSize: 10
-    themeVariables:
-        xyChart:
-            plotColorPalette: "#94ffef, #94ba84, #317173, #000000, #293552, #efa231, #cebace"
----
-xychart-beta
-title "velocity curves (positive to negative)"
-x-axis input 0 --> 127
-y-axis output
-line "positive 3" [0, 36, 56, 69, 78, 85, 90, 94, 97, 100, 103, 105, 106, 108, 109, 110, 111, 112, 113, 114, 115, 115, 116, 116, 117, 117, 118, 118, 118, 119, 119, 119, 120, 120, 120, 121, 121, 121, 121, 121, 122, 122, 122, 122, 122, 122, 123, 123, 123, 123, 123, 123, 123, 123, 124, 124, 124, 124, 124, 124, 124, 124, 124, 124, 125, 125, 125, 125, 125, 125, 125, 125, 125, 125, 125, 125, 125, 125, 125, 125, 125, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127]
-line "positive 2" [0, 8, 16, 23, 29, 34, 39, 44, 48, 52, 55, 58, 62, 64, 67, 69, 72, 74, 76, 78, 80, 81, 83, 85, 86, 87, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 102, 103, 104, 104, 105, 106, 106, 107, 107, 108, 108, 109, 109, 110, 110, 111, 111, 112, 112, 113, 113, 113, 114, 114, 114, 115, 115, 116, 116, 116, 116, 117, 117, 117, 118, 118, 118, 118, 119, 119, 119, 119, 120, 120, 120, 120, 121, 121, 121, 121, 121, 122, 122, 122, 122, 122, 123, 123, 123, 123, 123, 123, 124, 124, 124, 124, 124, 124, 125, 125, 125, 125, 125, 125, 125, 126, 126, 126, 126, 126, 126, 126, 126, 127, 127, 127, 127, 127]
-line "positive 1" [0, 3, 6, 8, 11, 13, 16, 18, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 44, 46, 48, 49, 51, 52, 54, 55, 57, 58, 60, 61, 62, 64, 65, 66, 67, 69, 70, 71, 72, 73, 74, 76, 77, 78, 79, 80, 81, 82, 83, 84, 84, 85, 86, 87, 88, 89, 90, 91, 91, 92, 93, 94, 95, 95, 96, 97, 97, 98, 99, 100, 100, 101, 102, 102, 103, 104, 104, 105, 105, 106, 107, 107, 108, 108, 109, 109, 110, 111, 111, 112, 112, 113, 113, 114, 114, 115, 115, 116, 116, 117, 117, 117, 118, 118, 119, 119, 120, 120, 121, 121, 121, 122, 122, 123, 123, 123, 124, 124, 124, 125, 125, 126, 126, 126, 127, 127]
-line "linear" [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127]
-line "negative 1" [0, 0, 1, 1, 1, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 16, 16, 17, 18, 18, 19, 19, 20, 20, 21, 22, 22, 23, 23, 24, 25, 25, 26, 27, 27, 28, 29, 30, 30, 31, 32, 32, 33, 34, 35, 36, 36, 37, 38, 39, 40, 41, 42, 43, 43, 44, 45, 46, 47, 48, 49, 50, 51, 53, 54, 55, 56, 57, 58, 60, 61, 62, 63, 65, 66, 67, 69, 70, 72, 73, 75, 76, 78, 79, 81, 83, 84, 86, 88, 90, 92, 94, 96, 98, 100, 102, 104, 106, 109, 111, 114, 116, 119, 121, 124, 127]
-line "negative 2" [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 11, 11, 11, 11, 12, 12, 13, 13, 13, 14, 14, 14, 15, 15, 16, 16, 17, 17, 18, 18, 19, 19, 20, 20, 21, 21, 22, 23, 23, 24, 25, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 40, 41, 42, 44, 46, 47, 49, 51, 53, 55, 58, 60, 63, 65, 69, 72, 75, 79, 83, 88, 93, 98, 104, 111, 119, 127]
-line "negative 3" [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9, 9, 10, 10, 11, 11, 12, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 24, 27, 30, 33, 37, 42, 49, 58, 71, 91, 127]
-```
-```mermaid
----
-config:
-    xyChart:
-        width: 300
-        height: 300
-        titleFontSize: 14
-        xAxis:
-            showTick: false
-            axisLineWidth: 1
-            titleFontSize: 12
-            labelFontSize: 10
-        yAxis:
-            showTick: false
-            axisLineWidth: 1
-            titleFontSize: 12
-            labelFontSize: 10
-    themeVariables:
-        xyChart:
-            plotColorPalette: "#94ffef, #94ba84, #317173, #000000, #293552, #efa231, #cebace, #ffffff"
----
-xychart-beta
-title "velocity curves: threshold = 16"
-x-axis input 0 --> 127
-y-axis output
-line "positive 3" [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 110, 111, 112, 113, 114, 115, 115, 116, 116, 117, 117, 118, 118, 118, 119, 119, 119, 120, 120, 120, 121, 121, 121, 121, 121, 122, 122, 122, 122, 122, 122, 123, 123, 123, 123, 123, 123, 123, 123, 124, 124, 124, 124, 124, 124, 124, 124, 124, 124, 125, 125, 125, 125, 125, 125, 125, 125, 125, 125, 125, 125, 125, 125, 125, 125, 125, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127]
-line "positive 2" [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 69, 72, 74, 76, 78, 80, 81, 83, 85, 86, 87, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 102, 103, 104, 104, 105, 106, 106, 107, 107, 108, 108, 109, 109, 110, 110, 111, 111, 112, 112, 113, 113, 113, 114, 114, 114, 115, 115, 116, 116, 116, 116, 117, 117, 117, 118, 118, 118, 118, 119, 119, 119, 119, 120, 120, 120, 120, 121, 121, 121, 121, 121, 122, 122, 122, 122, 122, 123, 123, 123, 123, 123, 123, 124, 124, 124, 124, 124, 124, 125, 125, 125, 125, 125, 125, 125, 126, 126, 126, 126, 126, 126, 126, 126, 127, 127, 127, 127, 127]
-line "positive 1" [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 35, 37, 39, 41, 43, 44, 46, 48, 49, 51, 52, 54, 55, 57, 58, 60, 61, 62, 64, 65, 66, 67, 69, 70, 71, 72, 73, 74, 76, 77, 78, 79, 80, 81, 82, 83, 84, 84, 85, 86, 87, 88, 89, 90, 91, 91, 92, 93, 94, 95, 95, 96, 97, 97, 98, 99, 100, 100, 101, 102, 102, 103, 104, 104, 105, 105, 106, 107, 107, 108, 108, 109, 109, 110, 111, 111, 112, 112, 113, 113, 114, 114, 115, 115, 116, 116, 117, 117, 117, 118, 118, 119, 119, 120, 120, 121, 121, 121, 122, 122, 123, 123, 123, 124, 124, 124, 125, 125, 126, 126, 126, 127, 127]
-line "linear" [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127]
-line "negative 1" [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 16, 16, 17, 18, 18, 19, 19, 20, 20, 21, 22, 22, 23, 23, 24, 25, 25, 26, 27, 27, 28, 29, 30, 30, 31, 32, 32, 33, 34, 35, 36, 36, 37, 38, 39, 40, 41, 42, 43, 43, 44, 45, 46, 47, 48, 49, 50, 51, 53, 54, 55, 56, 57, 58, 60, 61, 62, 63, 65, 66, 67, 69, 70, 72, 73, 75, 76, 78, 79, 81, 83, 84, 86, 88, 90, 92, 94, 96, 98, 100, 102, 104, 106, 109, 111, 114, 116, 119, 121, 124, 127]
-line "negative 2" [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 11, 11, 11, 11, 12, 12, 13, 13, 13, 14, 14, 14, 15, 15, 16, 16, 17, 17, 18, 18, 19, 19, 20, 20, 21, 21, 22, 23, 23, 24, 25, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 40, 41, 42, 44, 46, 47, 49, 51, 53, 55, 58, 60, 63, 65, 69, 72, 75, 79, 83, 88, 93, 98, 104, 111, 119, 127]
-line "negative 3" [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9, 9, 10, 10, 11, 11, 12, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 24, 27, 30, 33, 37, 42, 49, 58, 71, 91, 127]
-bar "mask" [127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-```
-```mermaid
----
-config:
-    xyChart:
-        width: 300
-        height: 300
-        titleFontSize: 14
-        xAxis:
-            showTick: false
-            axisLineWidth: 1
-            titleFontSize: 12
-            labelFontSize: 10
-        yAxis:
-            showTick: false
-            axisLineWidth: 1
-            titleFontSize: 12
-            labelFontSize: 10
-    themeVariables:
-        xyChart:
-            plotColorPalette: "#ffffff, #94ffef, #94ba84, #317173, #000000, #293552, #efa231, #cebace"
----
-xychart-beta
-title "velocity curves: min = 32, max = 95"
-x-axis input 0 --> 127
-y-axis output
-line "reference" [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127]
-line "positive 3" [32, 50, 60, 66, 71, 74, 77, 79, 80, 82, 83, 84, 85, 85, 86, 87, 87, 88, 88, 88, 89, 89, 89, 90, 90, 90, 90, 91, 91, 91, 91, 91, 91, 92, 92, 92, 92, 92, 92, 92, 92, 92, 93, 93, 93, 93, 93, 93, 93, 93, 93, 93, 93, 93, 93, 93, 93, 93, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95]
-line "positive 2" [32, 36, 40, 43, 46, 49, 51, 54, 56, 58, 59, 61, 63, 64, 65, 66, 68, 69, 70, 71, 72, 72, 73, 74, 75, 75, 76, 77, 77, 78, 78, 79, 79, 80, 80, 81, 81, 82, 82, 82, 83, 83, 83, 84, 84, 84, 85, 85, 85, 86, 86, 86, 86, 87, 87, 87, 87, 87, 88, 88, 88, 88, 88, 89, 89, 89, 89, 89, 89, 90, 90, 90, 90, 90, 90, 90, 91, 91, 91, 91, 91, 91, 91, 91, 92, 92, 92, 92, 92, 92, 92, 92, 92, 93, 93, 93, 93, 93, 93, 93, 93, 93, 93, 93, 93, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 94, 95, 95, 95, 95, 95, 95, 95, 95, 95]
-line "positive 1" [32, 33, 35, 36, 37, 39, 40, 41, 42, 43, 44, 45, 47, 48, 49, 49, 50, 51, 52, 53, 54, 55, 56, 56, 57, 58, 59, 59, 60, 61, 62, 62, 63, 64, 64, 65, 65, 66, 67, 67, 68, 68, 69, 69, 70, 71, 71, 72, 72, 73, 73, 73, 74, 74, 75, 75, 76, 76, 77, 77, 77, 78, 78, 79, 79, 79, 80, 80, 80, 81, 81, 81, 82, 82, 82, 83, 83, 83, 84, 84, 84, 85, 85, 85, 85, 86, 86, 86, 87, 87, 87, 87, 88, 88, 88, 88, 89, 89, 89, 89, 90, 90, 90, 90, 90, 91, 91, 91, 91, 92, 92, 92, 92, 92, 93, 93, 93, 93, 93, 94, 94, 94, 94, 94, 94, 95, 95, 95]
-line "linear" [32, 32, 33, 33, 34, 34, 35, 35, 36, 36, 37, 37, 38, 38, 39, 39, 40, 40, 41, 41, 42, 42, 43, 43, 44, 44, 45, 45, 46, 46, 47, 47, 48, 48, 49, 49, 50, 50, 51, 51, 52, 52, 53, 53, 54, 54, 55, 55, 56, 56, 57, 57, 58, 58, 59, 59, 60, 60, 61, 61, 62, 62, 63, 63, 64, 64, 65, 65, 66, 66, 67, 67, 68, 68, 69, 69, 70, 70, 71, 71, 72, 72, 73, 73, 74, 74, 75, 75, 76, 76, 77, 77, 78, 78, 79, 79, 80, 80, 81, 81, 82, 82, 83, 83, 84, 84, 85, 85, 86, 86, 87, 87, 88, 88, 89, 89, 90, 90, 91, 91, 92, 92, 93, 93, 94, 94, 95, 95]
-line "negative 1" [32, 32, 32, 33, 33, 33, 33, 33, 33, 34, 34, 34, 34, 34, 35, 35, 35, 35, 35, 36, 36, 36, 36, 37, 37, 37, 37, 37, 38, 38, 38, 38, 39, 39, 39, 39, 40, 40, 40, 40, 41, 41, 41, 42, 42, 42, 42, 43, 43, 43, 44, 44, 44, 45, 45, 45, 46, 46, 46, 47, 47, 47, 48, 48, 48, 49, 49, 50, 50, 50, 51, 51, 52, 52, 53, 53, 54, 54, 54, 55, 55, 56, 56, 57, 58, 58, 59, 59, 60, 60, 61, 62, 62, 63, 63, 64, 65, 65, 66, 67, 68, 68, 69, 70, 71, 71, 72, 73, 74, 75, 76, 77, 78, 78, 79, 80, 82, 83, 84, 85, 86, 87, 88, 90, 91, 92, 94, 95]
-line "negative 2" [32, 32, 32, 32, 32, 32, 32, 32, 32, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 35, 35, 35, 35, 35, 35, 35, 35, 35, 36, 36, 36, 36, 36, 36, 36, 36, 37, 37, 37, 37, 37, 37, 37, 38, 38, 38, 38, 38, 38, 39, 39, 39, 39, 39, 40, 40, 40, 40, 40, 41, 41, 41, 41, 42, 42, 42, 43, 43, 43, 44, 44, 44, 45, 45, 45, 46, 46, 47, 47, 48, 48, 49, 49, 50, 50, 51, 52, 52, 53, 54, 55, 55, 56, 57, 58, 59, 61, 62, 63, 64, 66, 68, 69, 71, 73, 76, 78, 81, 84, 87, 91, 95]
-line "negative 3" [32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 35, 35, 35, 35, 35, 35, 35, 35, 35, 36, 36, 36, 36, 36, 36, 37, 37, 37, 37, 38, 38, 38, 39, 39, 39, 40, 40, 41, 42, 42, 43, 44, 45, 47, 48, 50, 53, 56, 61, 67, 77, 95]
-```
-
 > [!TIP]
 > Output channel can be set at device level (OUT 2/4) or at trigger level (OUT 3/4). Set the device-level channel setting if all a device’s triggers use the same channel (typically assigned to different notes on the same channel). Set the trigger-level channel setting if each trigger uses a different midi channel. If neither device-level, nor trigger-level channel is set, triggers are sent to channel 10.
-
 > [!TIP]
 > Output note values can be set at trigger level (OUT 3/4) and at preset level (OUT 4/4). The trigger-level setting is the default for each preset which maps to that trigger, while if a preset-level note is set, that overrules the note setting for that particular preset. This can be used to play tonally (for those drum computers or other MIDI instruments which support that), for example by assigning the same trigger to multiple toms on the input device, but set different notes to tune them differently. If neither trigger-level nor preset-level note is set, note number 60 (C4, middle C) is used.
+##### OUT 1/4 – Output Ports
+<img src="/screenshots/out_1.png" align="right">
 
+###### p1 to p6 device 
+##### OUT 2/4 – Output Devices
+<img src="/screenshots/out_2.png" align="right">
+
+###### output device
+###### channel
+###### 0 velocity as note off
+###### running status
+> [!IMPORTANT]
+> Channel and note off settings and running status settings relate to the above selected output device. This is indicated by the orange bar between output device and channel.
+##### OUT 3/4 – Output Triggers
+<img src="/screenshots/out_3.png" align="right">
+
+###### ouptut device
+###### channel
+###### note
+###### send note off
+###### vel threshold
+<img src="/images/velocity_curves_threshold.svg" align="right">
+
+###### velocity curve
+<img src="/images/velocity_curves.svg" align="right">
+
+###### min velocity / max velocity
+<img src="/images/velocity_curves_scaling.svg" align="right">
+
+> [!IMPORTANT]
+> Channel, note, note off settings and velocity dynamics settings cc relate to the above selected output trigger. This is indicated by the orange bar between output device/trigger and channel.
 ##### OUT 4/4 – Output Presets
-![screenshot of output page 4/4](/screenshots/out_4.png)
+<img src="/screenshots/out_4.png" align="right">
+
+###### output device
+###### output preset
+###### trigger 1 to 6
+###### note (1 to 6)
+> [!IMPORTANT]
+> Onput trigger 1 to 6 and note (1 to 6) are the output trigger mapping for the above selected output preset. So, to map a trigger to a preset, first select the output device and output preset, then assign the triggers. This is indicated by the orange bar between output device/preset and trigger 1 / note.
 #### MON (Monitor)
 Use the monitor page to monitor the router, MIDI data coming in or MIDI data going out.
 ##### MON 1/3 – Monitor Routing
-![screenshot of monitor page 1/3](/screenshots/mon_1.png)
+<img src="/screenshots/mon_1.png" align="right">
+
 ##### MON 2/3 – Monitor MIDI In
-![screenshot of monitor page 2/3](/screenshots/mon_2.png)
+<img src="/screenshots/mon_2.png" align="right">
+
 ##### MON 3/3 – Monitor MIDI Out
-![screenshot of monitor page 3/3](/screenshots/mon_3.png)
+<img src="/screenshots/mon_3.png" align="right">
+
 #### SET (Settings)
 Use the settings page to adjust global settings, to backup or recover data or to find the firmware version number.
 ##### SET 1/2 – Settings: MIDI Thru
-![screenshot of settings page 1/2](/screenshots/set_1.png)
+<img src="/screenshots/set_1.png" align="right">
+
 ##### SET 2/2 – Settings: Other
-![screenshot of settings page 2/2](/screenshots/set_2.png)
+<img src="/screenshots/set_2.png" align="right">
 
 ![screenshot of delete pop-up](/screenshots/prg_1_delete.png)
 ![screenshot of menu pop-up](/screenshots/prg_1_menu.png)

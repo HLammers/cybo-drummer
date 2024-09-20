@@ -273,7 +273,7 @@ Use the output page to review or edit output port assignments, output device set
 
 ##### OUT 1/4 – Output Ports
 ###### p1 to p6 device 
-<br clear="right"/><br/>
+* Assign outtut devices to each of the 6 MIDI out ports<br clear="right"/><br/>
 
 <img src="/screenshots/out_2.png" align="right">
 

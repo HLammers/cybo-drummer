@@ -168,11 +168,14 @@ The program page is the first page that shows when powering up Cybo-Drummer. Use
   * *move forward:* move the active program one place forward (if not the last program)
   * *move to…:* move the active program to a specific position – shows a pop-up to select the position (turn the VAL/↔ knob to select a number and press the SEL/OPT button or the YES button to confirm or the NO button to cancel)
  
-###### input device
+###### input device / input preset
+* Select the input device and input preset to to map one or more output presets to
+> [!TIP]
+> If [MIDI learn](#midi-learn) is turned on, input device and input preset can be set to an already mapped input device/preset by selecting the respective block and play the trigger/note on your input device (please note that this is an exception where MIDI learn is not listening to set MIDI learn port).
 
-###### input preset
-###### output device 1 to 4
-###### output preset 1 to 4
+###### output device 1 to 4 / output preset 1 to 4
+* Select up to 4 output device/preset combinations that will be triggered when the router receives the selected input trigger
+* Multiple output devices can be combined
 > [!IMPORTANT]
 > Output device 1 to 4 and output preset 1 to 4 are the output mapping for the above selected input preset. So, to map an input preset to an output preset, first select the input device and input preset, then assign the output devices and output presets. This is indicated by the orange bar between input device/preset and output devices/presets.<br clear="right"/><br/>
 

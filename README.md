@@ -203,9 +203,10 @@ Use the input page to review or edit input port assignments, input device settin
 <img src="/screenshots/in_1.png" align="right">
 
 ##### IN 1/3 – Input Ports
-###### p1 to p6 device
-###### p1 to p6 channel
-<br clear="right"/><br/>
+###### p1 to p6 device / p1 to p6 channel
+* Assign input devices to each of the 6 MIDI in ports and the channel (1 to 16) on which to receive MIDI data
+> [!CAUTION]
+> Cybo-Drummer does require an input channel to be specified to work<br clear="right"/>
 
 <img src="/screenshots/in_2.png" align="right">
 

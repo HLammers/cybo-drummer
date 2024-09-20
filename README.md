@@ -80,7 +80,7 @@ graph LR
   * Assign multiple input and output presets to each other in programs to quickly switch between different configurations
   * Limits:[^1] 255 programs, 4,096 devices, 4,096 presets – there’s no hard limit to the number of triggers
 * Send program change and/or bank select commands on program change
-* Set trigger dependency to cc value (for example to distinguish between open and closed hi-hat from a 2Box drum module)
+* Set trigger dependency to cc value (for example to distinguish between open and closed hi-hat from many drum modules)
 * Supports both one note per sound on the same channel and one sound per channel, or a combinations of both – including tonal mapping
 * Adjust velocity dynamics (threshold, curve, minimum velocity, maximum velocity)
 [^1]: The available memory also limits the number of programs, devices presets and triggers
@@ -156,7 +156,7 @@ The program page is the first page that shows when powering up Cybo-Drummer. Use
 
 ##### PRG 1/3 – Program: Mapping
 ###### program
-* Turn the VAL/↔ knob to select a program – select ‘[add new]’ (the value after the last existing program) to initiate a new program
+* Select ‘[add new]’ (the value after the last existing program) to add a new program
 * Press the SEL/OPT button to show an options menu, turn the VAL/↔ knob to select an option and press the SEL/OPT button or the YES button to execute (or press the NO button to leave the options menu)<br clear="right"/>
 * Press the DEL button to delete the active program
 <img src="/images/hardware_menu.svg" align="right" width="300px" height="300px">
@@ -171,7 +171,7 @@ The program page is the first page that shows when powering up Cybo-Drummer. Use
 ###### input device / input preset
 * Select the input device and input preset to to map one or more output presets to
 > [!TIP]
-> If [MIDI learn](#midi-learn) is turned on, input device and input preset can be set to an already mapped input device/preset by selecting the respective block and play the trigger/note on your input device (please note that this is an exception where MIDI learn is not listening to set MIDI learn port).
+> If [MIDI learn](#midi-learn) is turned on, input device and input preset can be set to an already mapped input device/preset by selecting the respective block and playing the trigger/note on your input device (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
 
 ###### output device 1 to 4 / output preset 1 to 4
 * Select up to 4 output device/preset combinations that will be triggered when the router receives the selected input trigger
@@ -212,20 +212,52 @@ Use the input page to review or edit input port assignments, input device settin
 
 ##### IN 2/3 – Input Devices/Triggers
 ###### input device
+* Select the input device to assign triggers to or edit triggers assigned to it
+* Select ‘[add new]’ (the value after the last existing device) to add a new device
+* Press the SEL/OPT button to show a [text edit pop-up](#text-edit-pop-up) to rename the device
+* Press the DEL button to delete the device
+> [!TIP]
+> If [MIDI learn](#midi-learn) is turned on, input device can be set to an already mapped input device by playing a trigger/note on your input device (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
+
 ###### input trigger
+* Select the input trigger (of the selected input device) you want to set up or edit
+* Select ‘[add new]’ (the value after the last existing trigger) to add a new trigger
+* Press the SEL/OPT button to show a [text edit pop-up](#text-edit-pop-up) to rename the trigger
+* Press the DEL button to delete the trigger
 ###### note
+* Select the note to which the trigger responds
 ###### pedal cc
+* Optionally set a CC number (1 to 128) on which the trigger can be made dependent
+* Many electronic drum kits send the openness of the hi-hat foot pedal using CC 5, which needs to be used to distinguish between open and closed hi-hat triggers
+* Set pedal CC to ‘--’ if not relevant for the selected trigger
 > [!IMPORTANT]
-> Note and pedal cc relate to the above selected input trigger. This is indicated by the orange bar between input device/trigger and note.<br clear="right"/><br/>
+> Note and pedal CC relate to the above selected input trigger. This is indicated by the orange bar between input device/trigger and note.
+
+> [!TIP]
+> If [MIDI learn](#midi-learn) is turned on, note and pedal CC can be set by paying a note or sending CC messages from a device connected to the set [MIDI learn port](#midi-learn-port).<br clear="right"/>
 
 <img src="/screenshots/in_3.png" align="right">
 
 ##### IN 3/3 – Input Presets
 ###### input device
-###### input trigger
-###### pedal cc min
-###### pedal cc max
+* Select the input device for which you want to add or edit an input trigger
+###### input preset
+* Select the input preset you want to set up or edit
+* Select ‘[add new]’ (the value after the last existing preset) to add a new preset
+* Press the SEL/OPT button to show a [text edit pop-up](#text-edit-pop-up) to rename the preset
+* Press the DEL button to delete the preset
+> [!TIP]
+> If [MIDI learn](#midi-learn) is turned on, input device and input preset can be set to an already mapped input device/preset by selecting the respective block and playing the trigger/note on your input device (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
+
+###### pedal cc min / pedal cc max
+* Optionally set a minimum and maximum [pedal CC](#pedal-cc) value (0 to 127) between which the preset will be triggered
+* Many electronic drum kits send the openness of the hi-hat foot pedal using CC 5, which needs to be used to distinguish between open and closed hi-hat triggers
+* Set pedal CC min/max ‘--’ if not relevant for the selected trigger (that sets the minimum to 0 and/or the maximum to 127)
+> [!TIP]
+> If [MIDI learn](#midi-learn) is turned on, pedal CC min/max can be set by sending CC messages from a device connected to the set [MIDI learn port](#midi-learn-port).
+
 ###### trigger 1 to 6
+* Select up to 6 input presets (belonging to the selected input device) which will trigger the selected input preset
 > [!IMPORTANT]
 > Pedal CC min/max and input trigger 1 to 6 are the input trigger mapping for the above selected input preset. So, to map a trigger to a preset, first select the input device and input preset, then assign the CC range and triggers. This is indicated by the orange bar between input device/preset and pedal CC min/max.<br clear="right"/>
 
@@ -233,6 +265,7 @@ Use the input page to review or edit input port assignments, input device settin
 Use the output page to review or edit output port assignments, output device setting, output trigger settings and output preset settings
 > [!TIP]
 > Output channel can be set at device level (OUT 2/4) or at trigger level (OUT 3/4). Set the device-level channel setting if all a device’s triggers use the same channel (typically assigned to different notes on the same channel). Set the trigger-level channel setting if each trigger uses a different midi channel. If neither device-level, nor trigger-level channel is set, triggers are sent to channel 10.
+
 > [!TIP]
 > Output note values can be set at trigger level (OUT 3/4) and at preset level (OUT 4/4). The trigger-level setting is the default for each preset which maps to that trigger, while if a preset-level note is set, that overrules the note setting for that particular preset. This can be used to play tonally (for those drum computers or other MIDI instruments which support that), for example by assigning the same trigger to multiple toms on the input device, but set different notes to tune them differently. If neither trigger-level nor preset-level note is set, note number 60 (C4, middle C) is used.
 

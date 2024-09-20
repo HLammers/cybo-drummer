@@ -100,9 +100,10 @@ graph LR
 [^2]: Except SysEx
 ## How to Build One?
 ## How to Use It?
-### Overview
+
 <img src="/images/hardware_overview.svg" align="right">
 
+### Overview
 Cybo-Drummer has six MIDI input ports at the front and six MIDI output ports at the back. It has a micro USB port on the left side currently only used for power supply and for updating the firmware.
 
 The user interface displayed on the 2.2 inch TFT screen is organized as follows:
@@ -135,128 +136,178 @@ Cybo-Drummer’s user interface is organized in five pages:
 * **MON (Monitor):** Show router and MIDI monitors
 * **SET (Settings):** Adjust global settings
 
-<img src="/images/hardware_pages.svg" align="right">
+<img src="/images/hardware_pages.svg" align="right" width="300px" height="300px">To change the pages and sub-pages, keep the PAGE button pressed and turn the VAL/↔ knob (right knob) to change the page and the NAV/↕ know (left knob) to change the sub-page. While the PAGE button is pressed the page tabs and title bar are highlighted in dark and light sea green.<br clear="right"/>
 
-To change the pages and sub-pages, keep the PAGE button pressed and turn the VAL/↔ knob (right knob) to change the page and the NAV/↕ know (left knob) to change the sub-page. While the PAGE button is pressed the page tabs and title bar are highlighted in dark and light sea green.
+<img src="/images/hardware_trigger.svg" align="right" width="300px" height="300px">
+
 ### Trigger presets
-<img src="/images/hardware_trigger.svg" align="right">
+Short pressing the TRIGGER button triggers the last selected output trigger preset (for testing purposes). Long pres the TRIGGER button to show a trigger preset selection pop-up. Keep the TRIGGER button pressend and turn the VAL/↔ knob to change the selected output trigger preset.<br clear="right"/>
 
-Short pressing the TRIGGER button triggers the last selected output trigger preset (for testing purposes). Long pres the TRIGGER button to show a trigger preset selection pop-up. Keep the TRIGGER button pressend and turn the VAL/↔ knob to change the selected output trigger preset.
+<img src="/images/hardware_confirmation.svg" align="right" width="300px" height="300px">
+
 ### Confirmation Pop-Ups
-<img src="/images/hardware_confirmation.svg" align="right">
+Cybo-Drummer doesn’t have an undo feature, so to avoid accidentially losing data confirmation pop-ups will show up before deleting something, changing an unsaved program, restoring a back-up or doing a factory reset. Answer the question in the pop-up by pressing the left button for YES and the right button for NO.<br clear="right"/>
 
-Cybo-Drummer doesn’t have an undo feature, so to avoid accidentially losing data confirmation pop-ups will show up before deleting something, changing an unsaved program, restoring a back-up or doing a factory reset. Answer the question in the pop-up by pressing the left button for YES and the right button for NO.
 ### Description of All Pages and Sub-Pages
 #### PRG (Program)
-The program page is the first page that shows when powering up Cybo-Drummer. Use this page to select or edit the active program.
-##### PRG 1/3 – Program: Mapping
+The program page is the first page that shows when powering up Cybo-Drummer. Use this page to select or edit the active program.<br clear="right"/>
+
 <img src="/screenshots/prg_1.png" align="right">
 
+##### PRG 1/3 – Program: Mapping
 ###### program
 ###### input device
 ###### input preset
 ###### output device 1 to 4
 ###### output preset 1 to 4
 > [!IMPORTANT]
-> Output device 1 to 4 and output preset 1 to 4 are the output mapping for the above selected input preset. So, to map an input preset to an output preset, first select the input device and input preset, then assign the output devices and output presets. This is indicated by the orange bar between input device/preset and output devices/presets.
-##### PRG 2/3 – Program: Program Change
+> Output device 1 to 4 and output preset 1 to 4 are the output mapping for the above selected input preset. So, to map an input preset to an output preset, first select the input device and input preset, then assign the output devices and output presets. This is indicated by the orange bar between input device/preset and output devices/presets.<br clear="right"/><br/>
+
 <img src="/screenshots/prg_2.png" align="right">
 
+##### PRG 2/3 – Program: Program Change
 ###### p1 to p6
-##### PRG 3/3 – Program: Bank Select
+<br clear="right"/><br/>
+
 <img src="/screenshots/prg_3.png" align="right">
 
+##### PRG 3/3 – Program: Bank Select
 ###### p1 to p6
+<br clear="right"/>
+
 #### IN (Input)
-Use the input page to review or edit input port assignments, input device setting, input trigger settings and input preset settings
-##### IN 1/3 – Input Ports
+Use the input page to review or edit input port assignments, input device setting, input trigger settings and input preset settings.
+
 <img src="/screenshots/in_1.png" align="right">
 
+##### IN 1/3 – Input Ports
 ###### p1 to p6 device
 ###### p1 to p6 channel
-##### IN 2/3 – Input Devices/Triggers
+<br clear="right"/><br/>
+
 <img src="/screenshots/in_2.png" align="right">
 
+##### IN 2/3 – Input Devices/Triggers
 ###### input device
 ###### input trigger
 ###### note
 ###### pedal cc
 > [!IMPORTANT]
-> Note and pedal cc relate to the above selected input trigger. This is indicated by the orange bar between input device/trigger and note.
-##### IN 3/3 – Input Presets
+> Note and pedal cc relate to the above selected input trigger. This is indicated by the orange bar between input device/trigger and note.<br clear="right"/><br/>
+
 <img src="/screenshots/in_3.png" align="right">
 
+##### IN 3/3 – Input Presets
 ###### input device
 ###### input trigger
 ###### pedal cc min
 ###### pedal cc max
 ###### trigger 1 to 6
 > [!IMPORTANT]
-> Pedal CC min/max and input trigger 1 to 6 are the input trigger mapping for the above selected input preset. So, to map a trigger to a preset, first select the input device and input preset, then assign the CC range and triggers. This is indicated by the orange bar between input device/preset and pedal CC min/max.
+> Pedal CC min/max and input trigger 1 to 6 are the input trigger mapping for the above selected input preset. So, to map a trigger to a preset, first select the input device and input preset, then assign the CC range and triggers. This is indicated by the orange bar between input device/preset and pedal CC min/max.<br clear="right"/>
+
 #### OUT (Output)
 Use the output page to review or edit output port assignments, output device setting, output trigger settings and output preset settings
 > [!TIP]
 > Output channel can be set at device level (OUT 2/4) or at trigger level (OUT 3/4). Set the device-level channel setting if all a device’s triggers use the same channel (typically assigned to different notes on the same channel). Set the trigger-level channel setting if each trigger uses a different midi channel. If neither device-level, nor trigger-level channel is set, triggers are sent to channel 10.
 > [!TIP]
 > Output note values can be set at trigger level (OUT 3/4) and at preset level (OUT 4/4). The trigger-level setting is the default for each preset which maps to that trigger, while if a preset-level note is set, that overrules the note setting for that particular preset. This can be used to play tonally (for those drum computers or other MIDI instruments which support that), for example by assigning the same trigger to multiple toms on the input device, but set different notes to tune them differently. If neither trigger-level nor preset-level note is set, note number 60 (C4, middle C) is used.
-##### OUT 1/4 – Output Ports
+
 <img src="/screenshots/out_1.png" align="right">
 
+##### OUT 1/4 – Output Ports
 ###### p1 to p6 device 
-##### OUT 2/4 – Output Devices
+<br clear="right"/><br/>
+
 <img src="/screenshots/out_2.png" align="right">
 
+##### OUT 2/4 – Output Devices
 ###### output device
 ###### channel
 ###### 0 velocity as note off
 ###### running status
 > [!IMPORTANT]
-> Channel and note off settings and running status settings relate to the above selected output device. This is indicated by the orange bar between output device and channel.
-##### OUT 3/4 – Output Triggers
+> Channel and note off settings and running status settings relate to the above selected output device. This is indicated by the orange bar between output device and channel.<br clear="right"/>
+
 <img src="/screenshots/out_3.png" align="right">
 
+##### OUT 3/4 – Output Triggers
 ###### ouptut device
 ###### channel
 ###### note
 ###### send note off
+<br clear="right"/>
+
+<img src="/images/velocity_curves_threshold.svg" align="right" width="300px" height="300px">
+
 ###### vel threshold
-<img src="/images/velocity_curves_threshold.svg" align="right">
+<br clear="right"/>
+
+<img src="/images/velocity_curves.svg" align="right" width="300px" height="300px">
 
 ###### velocity curve
-<img src="/images/velocity_curves.svg" align="right">
+<br clear="right"/>
+
+<img src="/images/velocity_curves_scaling.svg" align="right" width="300px" height="300px">
 
 ###### min velocity / max velocity
-<img src="/images/velocity_curves_scaling.svg" align="right">
+<br clear="right"/>
 
 > [!IMPORTANT]
-> Channel, note, note off settings and velocity dynamics settings cc relate to the above selected output trigger. This is indicated by the orange bar between output device/trigger and channel.
-##### OUT 4/4 – Output Presets
+> Channel, note, note off settings and velocity dynamics settings cc relate to the above selected output trigger. This is indicated by the orange bar between output device/trigger and channel.<br clear="right"/><br/>
+
 <img src="/screenshots/out_4.png" align="right">
 
+##### OUT 4/4 – Output Presets
 ###### output device
 ###### output preset
 ###### trigger 1 to 6
 ###### note (1 to 6)
 > [!IMPORTANT]
-> Onput trigger 1 to 6 and note (1 to 6) are the output trigger mapping for the above selected output preset. So, to map a trigger to a preset, first select the output device and output preset, then assign the triggers. This is indicated by the orange bar between output device/preset and trigger 1 / note.
+> Onput trigger 1 to 6 and note (1 to 6) are the output trigger mapping for the above selected output preset. So, to map a trigger to a preset, first select the output device and output preset, then assign the triggers. This is indicated by the orange bar between output device/preset and trigger 1 / note.<br clear="right"/>
+
 #### MON (Monitor)
 Use the monitor page to monitor the router, MIDI data coming in or MIDI data going out.
-##### MON 1/3 – Monitor Routing
+
 <img src="/screenshots/mon_1.png" align="right">
 
-##### MON 2/3 – Monitor MIDI In
+##### MON 1/3 – Monitor Routing
+<br clear="right"/><br/>
+
 <img src="/screenshots/mon_2.png" align="right">
 
-##### MON 3/3 – Monitor MIDI Out
+##### MON 2/3 – Monitor MIDI In
+<br clear="right"/><br/>
+
 <img src="/screenshots/mon_3.png" align="right">
+
+##### MON 3/3 – Monitor MIDI Out
+<br clear="right"/>
 
 #### SET (Settings)
 Use the settings page to adjust global settings, to backup or recover data or to find the firmware version number.
-##### SET 1/2 – Settings: MIDI Thru
+
 <img src="/screenshots/set_1.png" align="right">
 
-##### SET 2/2 – Settings: Other
+##### SET 1/2 – Settings: MIDI Thru
+###### midi thru
+###### input port
+###### input channel
+###### output port
+###### output channel
+<br clear="right"/></br>
+
 <img src="/screenshots/set_2.png" align="right">
+
+##### SET 2/2 – Settings: Other
+###### midi learn
+###### midi learn port
+###### default output volume
+###### store back-up
+###### restore back-up
+###### factory reset
+###### about
+<br clear="right"/>
 
 ![screenshot of delete pop-up](/screenshots/prg_1_delete.png)
 ![screenshot of menu pop-up](/screenshots/prg_1_menu.png)

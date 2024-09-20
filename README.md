@@ -156,7 +156,20 @@ The program page is the first page that shows when powering up Cybo-Drummer. Use
 
 ##### PRG 1/3 – Program: Mapping
 ###### program
+* Turn the VAL/↔ knob to select a program – select ‘[add new]’ (the value after the last existing program) to initiate a new program
+* Press the SEL/OPT button to show an options menu, turn the VAL/↔ knob to select an option and press the SEL/OPT button or the YES button to execute (or press the NO button to leave the options menu)<br clear="right"/>
+* Press the DEL button to delete the active program
+<img src="/images/hardware_menu.svg" align="right" width="300px" height="300px">
+
+* Menu options:
+  * *save:* save the active program (only if there are unsaved changed)
+  * *rename:* show a [text edit pop-up](#text-edit-pop-up) to rename the active program
+  * *move backward:* move the active program one place backward (if not the first program)
+  * *move forward:* move the active program one place forward (if not the last program)
+  * *move to…:* move the active program to a specific position – shows a pop-up to select the position (turn the VAL/↔ knob to select a number and press the SEL/OPT button or the YES button to confirm or the NO button to cancel)
+ 
 ###### input device
+
 ###### input preset
 ###### output device 1 to 4
 ###### output preset 1 to 4
@@ -322,6 +335,18 @@ Use the settings page to adjust global settings, to backup or recover data or to
 ![screenshot of store back-up confirmation pop-up](/screenshots/set_2_back-up.png)
 ![screenshot of restore back-up confirmation pop-up](/screenshots/set_2_restore.png)
 ![screenshot of factory reset confirmation pop-up](/screenshots/set_2_factory_reset.png)
+
+<img src="/images/hardware_text_edit.svg" align="right" width="300px" height="300px">
+
+### Text edit pop-up
+When renaming a program, device, trigger or setting a text edit pop-up is shown. It shows the text and a selection of characters plus a space bar.
+
+Turn the NAV/↕ knob to change navigate by row and the VAL/↔ knob to navigate by column and press the SEL/OPT button to add a character.
+
+Press the DEL button to remove the last character (backspace).
+
+Press the YES button to confirm the changes or the NO button to cancel renaming.<br clear="right"/>
+
 ## Why in Micropython?
 A MIDI router/mapper is a time-sensitive application, so why not using the programming language which leads to the fastest possible code (that would be C++ on a Raspberry Pi Pico)? Well… I do am aware that MicroPython is much slower, but I decided to use it anyway, because besides solving my challenge to connect my electronic drum kit to my drum computers, I had a second goal: finally learning how to use Python. You see, I’ve used several programming languages over time (starting with BASIC when I was a child, then Turbo Pascal as a teenager in the 90s, later a bit or C/C++ at university, some JavaScript, a lot of VBA and more recently some Arduino code. But now, for my job, I’m managing analysts who are using Python as their go-to language, so I decided it was time to finally master that language as well. This project was a great learning journey!
 
@@ -331,6 +356,7 @@ To keep latency to a minimum the second core is dedicated to MIDI handling, whil
 ## Known Issues
 * Add program doesn’t check if maximun number of programs (255) is reached
 ## Ideas for Features to be Added
+* Process program change over MIDI globally
 * Add MIDI clock distribution
 * Add MIDI CC mapping (doing crazy things with the hihat foot pedal)
 * Add USB MIDI input/output

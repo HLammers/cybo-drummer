@@ -267,7 +267,7 @@ Use the input page to review or edit input port assignments, input device settin
 #### OUT (Output)
 Use the output page to review or edit output port assignments, output device setting, output trigger settings and output preset settings
 > [!TIP]
-> Output channel can be set at device level (OUT 2/4) or at trigger level (OUT 3/4). Set the device-level channel setting if all a device’s triggers use the same channel (typically assigned to different notes on the same channel). Set the trigger-level channel setting if each trigger uses a different midi channel. If neither device-level, nor trigger-level channel is set, triggers are sent to channel 10.
+> Output channel can be set at device level (OUT 2/4) or at trigger level (OUT 3/4). Set the device-level channel setting if all a device’s triggers use the same channel (typically assigned to different notes on the same channel). Set the trigger-level channel setting if each trigger uses a different midi channel. Trigger-level channel overrides device-level channel. If neither device-level, nor trigger-level channel is set, triggers are sent to channel 10.
 
 > [!TIP]
 > Output note values can be set at trigger level (OUT 3/4) and at preset level (OUT 4/4). The trigger-level setting is the default for each preset which maps to that trigger, while if a preset-level note is set, that overrules the note setting for that particular preset. This can be used to play tonally (for those drum computers or other MIDI instruments which support that), for example by assigning the same trigger to multiple toms on the input device, but set different notes to tune them differently. If neither trigger-level nor preset-level note is set, note number 60 (C4, middle C) is used.
@@ -292,7 +292,7 @@ Use the output page to review or edit output port assignments, output device set
 ###### channel
 * Optionally set the channel (1 to 16) on which to send MIDI data to the selected output device
 * Set the channel for devices which receive all triggers on the same channel
-* Seet the channel to ‘__’ for devices which recieve different triggers on different channels
+* Seet the channel to ‘__’ for devices which receive different triggers on different channels
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, channel can be set sending anything from that channel from a device connected to the set [MIDI learn port](#midi-learn-port).<br clear="right"/>
 
@@ -325,6 +325,14 @@ Use the output page to review or edit output port assignments, output device set
 > If [MIDI learn](#midi-learn) is turned on, outut preset can be set to an already mapped preset by playing the trigger/note on your input device that is mapped to the output preset (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
 
 ###### channel
+* Optionally set the channel (1 to 16) on which to send MIDI data to the selected output device
+* Set the channel for devices which receive different triggers on different channels
+* Seet the channel to ‘__’ for devices which receive all triggers on the same channel
+> [!NOTE]
+> Trigger channel overrides device channel
+
+> [!TIP]
+> If [MIDI learn](#midi-learn) is turned on, channel can be set sending anything from that channel from a device connected to the set [MIDI learn port](#midi-learn-port).
 ###### note
 ###### send note off
 <br clear="right"/>
@@ -332,7 +340,9 @@ Use the output page to review or edit output port assignments, output device set
 <img src="/images/velocity_curves_threshold.svg" align="right" width="300px" height="300px">
 
 ###### vel threshold
-<br clear="right"/>
+*
+> [!NOTE]
+> The velocity threshold is independent of the [velocity curve](#velocity-curve) setting: it cuts it off without scaling.<br clear="right"/>
 
 <img src="/images/velocity_curves.svg" align="right" width="300px" height="300px">
 
@@ -346,10 +356,12 @@ Use the output page to review or edit output port assignments, output device set
 <img src="/images/velocity_curves_scaling.svg" align="right" width="300px" height="300px">
 
 ###### min velocity / max velocity
-<br clear="right"/>
+*
+> [!NOTE]
+> Minimum and maximum velocity are linked to the [velocity curve](#velocity-curve) setting: the velocity curve is scaled to the output range set by minimum and maximum velocity.<br clear="right"/>
 
 > [!IMPORTANT]
-> Channel, note, note off settings and velocity dynamics settings cc relate to the above selected output trigger. This is indicated by the orange bar between output device/trigger and channel.<br clear="right"/><br/>
+> Channel, note, note off settings and velocity dynamics settings cc relate to the above selected output trigger. This is indicated by the orange bar between output device/trigger and channel.<br clear="right"/>
 
 <img src="/screenshots/out_4.png" align="right">
 

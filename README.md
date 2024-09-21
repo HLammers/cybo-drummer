@@ -329,13 +329,22 @@ Use the output page to review or edit output port assignments, output device set
 * Set the channel for devices which receive different triggers on different channels
 * Seet the channel to ‘__’ for devices which receive all triggers on the same channel
 > [!NOTE]
-> Trigger channel overrides device channel
+> Preset channel overrides device channel
 
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, channel can be set sending anything from that channel from a device connected to the set [MIDI learn port](#midi-learn-port).
 ###### note
+* Optionally set the note to be sent out by the preset
+* Set to ‘___’ to use the trigger default notes
+* Preset note overrides trigger note
+
+> [!TIP]
+> If [MIDI learn](#midi-learn) is turned on, note can be set by paying a note from a device connected to the set [MIDI learn port](#midi-learn-port).
+
 ###### send note off
-<br clear="right"/>
+* Set to ‘off’ to disable sending note off / messages or to ‘on’ to force sending note off messages (default: off)
+> [!NOTE]
+> The MIDI specification prescribes to always send note off messages, however most drum computers ignore them, so it is more efficiently not to send them. Turn on if you experience problems or for example if you’re triggering a synth pad instead of a percussive sound.<br clear="right"/>
 
 <img src="/images/velocity_curves_threshold.svg" align="right" width="300px" height="300px">
 

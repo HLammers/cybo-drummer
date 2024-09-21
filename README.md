@@ -171,7 +171,7 @@ The program page is the first page that shows when powering up Cybo-Drummer. Use
 ###### input device / input preset
 * Select the input device and input preset to to map one or more output presets to
 > [!TIP]
-> If [MIDI learn](#midi-learn) is turned on, input device and input preset can be set to an already mapped input device/preset by selecting the respective block and playing the trigger/note on your input device (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
+> If [MIDI learn](#midi-learn) is turned on, input device and input preset can be set to an already mapped device/preset by selecting the respective block and playing the trigger/note on your input device (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
 
 ###### output device 1 to 4 / output preset 1 to 4
 * Select up to 4 output device/preset combinations that will be triggered when the router receives the selected input trigger
@@ -206,7 +206,10 @@ Use the input page to review or edit input port assignments, input device settin
 ###### p1 to p6 device / p1 to p6 channel
 * Assign input devices to each of the 6 MIDI in ports and the channel (1 to 16) on which to receive MIDI data
 > [!CAUTION]
-> Cybo-Drummer does require an input channel to be specified to work<br clear="right"/>
+> Cybo-Drummer does require an input channel to be specified to work
+
+> [!TIP]
+> If [MIDI learn](#midi-learn) is turned on, channel can be set sending anything from that channel from a device connected to the set [MIDI learn port](#midi-learn-port).<br clear="right"/>
 
 <img src="/screenshots/in_2.png" align="right">
 
@@ -217,7 +220,7 @@ Use the input page to review or edit input port assignments, input device settin
 * Press the SEL/OPT button to show a [text edit pop-up](#text-edit-pop-up) to rename the device
 * Press the DEL button to delete the device
 > [!TIP]
-> If [MIDI learn](#midi-learn) is turned on, input device can be set to an already mapped input device by playing a trigger/note on your input device (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
+> If [MIDI learn](#midi-learn) is turned on, input device can be set to an already mapped device by playing a trigger/note on your input device (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
 
 ###### input trigger
 * Select the input trigger (of the selected input device) you want to set up or edit
@@ -229,7 +232,7 @@ Use the input page to review or edit input port assignments, input device settin
 ###### pedal cc
 * Optionally set a CC number (1 to 128) on which the trigger can be made dependent
 * Many electronic drum kits send the openness of the hi-hat foot pedal using CC 5, which needs to be used to distinguish between open and closed hi-hat triggers
-* Set pedal CC to ‘--’ if not relevant for the selected trigger
+* Set pedal CC to ‘__’ if not relevant for the selected trigger
 > [!IMPORTANT]
 > Note and pedal CC relate to the above selected input trigger. This is indicated by the orange bar between input device/trigger and note.
 
@@ -247,12 +250,12 @@ Use the input page to review or edit input port assignments, input device settin
 * Press the SEL/OPT button to show a [text edit pop-up](#text-edit-pop-up) to rename the preset
 * Press the DEL button to delete the preset
 > [!TIP]
-> If [MIDI learn](#midi-learn) is turned on, input device and input preset can be set to an already mapped input device/preset by selecting the respective block and playing the trigger/note on your input device (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
+> If [MIDI learn](#midi-learn) is turned on, input device and input preset can be set to an already mapped device/preset by selecting the respective block and playing the trigger/note on your input device (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
 
 ###### pedal cc min / pedal cc max
 * Optionally set a minimum and maximum [pedal CC](#pedal-cc) value (0 to 127) between which the preset will be triggered
 * Many electronic drum kits send the openness of the hi-hat foot pedal using CC 5, which needs to be used to distinguish between open and closed hi-hat triggers
-* Set pedal CC min/max ‘--’ if not relevant for the selected trigger (that sets the minimum to 0 and/or the maximum to 127)
+* Set pedal CC min/max to ‘__’ if not relevant for the selected trigger (that sets the minimum to 0 and/or the maximum to 127)
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, pedal CC min/max can be set by sending CC messages from a device connected to the set [MIDI learn port](#midi-learn-port).
 
@@ -279,9 +282,29 @@ Use the output page to review or edit output port assignments, output device set
 
 ##### OUT 2/4 – Output Devices
 ###### output device
+* Select the output device to assign triggers to or edit triggers assigned to it
+* Select ‘[add new]’ (the value after the last existing device) to add a new device
+* Press the SEL/OPT button to show a [text edit pop-up](#text-edit-pop-up) to rename the device
+* Press the DEL button to delete the device
+> [!TIP]
+> If [MIDI learn](#midi-learn) is turned on, output device can be set to an already mapped device by playing the trigger/note on your input device that is mapped to that output device (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
+
 ###### channel
+* Optionally set the channel (1 to 16) on which to send MIDI data to the selected output device
+* Set the channel for devices which receive all triggers on the same channel
+* Seet the channel to ‘__’ for devices which recieve different triggers on different channels
+> [!TIP]
+> If [MIDI learn](#midi-learn) is turned on, channel can be set sending anything from that channel from a device connected to the set [MIDI learn port](#midi-learn-port).<br clear="right"/>
+
 ###### 0 velocity as note off
+* Set to ‘on’ to send note on messages with velocity 0 instead of note off messages or ‘off’ to force the use of note off messages (default: on)
+>[!NOTE]
+> 0 Velocity as note off requires less MIDI data if combined with [running status](#running-status). To be fully compliant to the MIDI specification a device should recognizing note on messages with 0 velocity as note off, so by far most devices do support this – only turn it off if you experience problems.
 ###### running status
+* Set to ‘on’ enable running status or ‘off’ to disable it (default: on)
+>[!NOTE]
+> Running status is a way to maximize MIDI data efficiency by leaving out the status byte if consecutive MIDI messages share the same status byte. This leads to even more efficiency if combined with sending [note on messages with 0 velocity instead of note off messages](#0-velocity-as-note-off). To be fully compliant to the MIDI specification a device should recognize running status, so by far most devices do support this – only turn it off if you experience problems.
+
 > [!IMPORTANT]
 > Channel and note off settings and running status settings relate to the above selected output device. This is indicated by the orange bar between output device and channel.<br clear="right"/>
 
@@ -289,6 +312,18 @@ Use the output page to review or edit output port assignments, output device set
 
 ##### OUT 3/4 – Output Triggers
 ###### ouptut device
+* Select the output device for which you want to add or edit an output trigger
+> [!TIP]
+> If [MIDI learn](#midi-learn) is turned on, output device can be set to an already mapped device by playing the trigger/note on your input device that is mapped to that output device (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
+> 
+###### output preset
+* Select the output preset you want to set up or edit
+* Select ‘[add new]’ (the value after the last existing preset) to add a new preset
+* Press the SEL/OPT button to show a [text edit pop-up](#text-edit-pop-up) to rename the preset
+* Press the DEL button to delete the preset
+> [!TIP]
+> If [MIDI learn](#midi-learn) is turned on, outut preset can be set to an already mapped preset by playing the trigger/note on your input device that is mapped to the output preset (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
+
 ###### channel
 ###### note
 ###### send note off
@@ -393,7 +428,7 @@ Press the YES button to confirm the changes or the NO button to cancel renaming.
 ## Why in Micropython?
 A MIDI router/mapper is a time-sensitive application, so why not using the programming language which leads to the fastest possible code (that would be C++ on a Raspberry Pi Pico)? Well… I do am aware that MicroPython is much slower, but I decided to use it anyway, because besides solving my challenge to connect my electronic drum kit to my drum computers, I had a second goal: finally learning how to use Python. You see, I’ve used several programming languages over time (starting with BASIC when I was a child, then Turbo Pascal as a teenager in the 90s, later a bit or C/C++ at university, some JavaScript, a lot of VBA and more recently some Arduino code. But now, for my job, I’m managing analysts who are using Python as their go-to language, so I decided it was time to finally master that language as well. This project was a great learning journey!
 
-I spent a lot of time optimising the code (for speed and memory usage) and it turns out Micropython on a Raspberry Pi Pico is fast enough after all. Keep in mind MIDI is a 40+ year old protocol, so it is pretty slow by today’s standards – enough time between two MIDI bytes to run a bit of Python code.
+I spent a lot of time optimizing the code (for speed and memory usage) and it turns out Micropython on a Raspberry Pi Pico is fast enough after all. Keep in mind MIDI is a 40+ year old protocol, so it is pretty slow by today’s standards – enough time between two MIDI bytes to run a bit of Python code.
 
 To keep latency to a minimum the second core is dedicated to MIDI handling, while the primary core takes care of the graphic user interface and button and rotary encoder input. In that way the second core runs a light loop doing only time-sensitive MIDI routing, while the primary core does all the heavy stuff.
 ## Known Issues

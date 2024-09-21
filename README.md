@@ -203,11 +203,13 @@ Use the input page to review or edit input port assignments, input device settin
 <img src="/screenshots/in_1.png" align="right">
 
 ##### IN 1/3 – Input Ports
-###### p1 to p6 device / p1 to p6 channel
-* Assign input devices to each of the 6 MIDI in ports and the channel (1 to 16) on which to receive MIDI data
+###### p1 to p6 device
+* Assign input devices to each of the 6 MIDI in ports
 > [!CAUTION]
-> Cybo-Drummer does require an input channel to be specified to work
+> Cybo-Drummer does require an input channel to be specified to work.
 
+###### p1 to p6 channel
+* Set the channel (1 to 16) on which to receive MIDI data from the selected input device
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, channel can be set sending anything from that channel from a device connected to the set [MIDI learn port](#midi-learn-port).<br clear="right"/>
 
@@ -456,22 +458,41 @@ Use the settings page to adjust global settings, to backup or recover data or to
 
 ##### SET 1/2 – Settings: MIDI Thru
 ###### midi thru
-###### input port
-###### input channel
-###### output port
-###### output channel
-<br clear="right"/></br>
+* Set to ‘on’ to enable MIDI thru from the set input port/channel to the set output port/channel or ‘off’ to disable MIDI thru
+> [!CAUTION]
+> MIDI thru needs input port, input channel, output port and output channel to be specified to work.
+
+> [!NOTE]
+> SysEx (system exclusive) data is filtered out by the router and will not be sent to the MIDI thru output port.
+
+###### input port / input channel
+* Set from which input port (1 to 6) and channel (1 to 16) to receive MIDI data to be sent to the MIDI thru output port
+###### output port / output channel
+* Set to which output port (1 to 6) and channel (1 to 16) to send MIDI data received from the MIDI thru input port<br clear="right"/></br>
 
 <img src="/screenshots/set_2.png" align="right">
 
 ##### SET 2/2 – Settings: Other
 ###### midi learn
+* Set to ‘on’ to enable MIDI learn or to ‘off’ to disable it
+> [!CAUTION]
+> MIDI learn needs midi learn port to be specified to work.
+
+> [!TIP]
+> Connect the MIDI out of a drum computer to MIDI learn port and press the trigger button on it for each sound to easily assign the drum triggers.
+
 ###### midi learn port
+* Set from which input port (1 to 6) to receive MIDI data to be used for MIDI learn
 ###### default output volume
+* Set the default volume used when pressing the TRIGGER button
 ###### store back-up
+* Store all programs, device/trigger/preset definitions and settings to the back-up file
 ###### restore back-up
+* Restore all programs, device/trigger/preset definitions and settings from the back-up file
 ###### factory reset
+* Restore all programs, device/trigger/preset definitions and settings to initial values
 ###### about
+* Show what version of Cybo-Drummer you’re using
 <br clear="right"/>
 
 ![screenshot of delete pop-up](/screenshots/prg_1_delete.png)

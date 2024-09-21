@@ -417,17 +417,37 @@ Use the monitor page to monitor the router, MIDI data coming in or MIDI data goi
 <img src="/screenshots/mon_1.png" align="right">
 
 ##### MON 1/3 – Monitor Routing
-<br clear="right"/><br/>
+* Shows what is going on in the router
+* Display format: ‘Input Device Input Preset > Output Device Output Preset’ (for example: ‘2Box Kick > Drumbrute Kick 1’)
+> [!NOTE]
+> If an input preset triggers more than one output presets the router will show as many lines as output pressets are triggers.<br clear="right"/>
 
 <img src="/screenshots/mon_2.png" align="right">
 
 ##### MON 2/3 – Monitor MIDI In
-<br clear="right"/><br/>
+* Shows the MIDI data coming in from any of the MIDI input ports
+* Display format: ‘P0 C00 MessageName data [HH HH HH]’, where
+  * *P0* is the input port (P1 to P6)
+  * *C00* is the input channel (C 1 to C16) – not shown for system common messages
+  * *MessageData* is the name of the MIDI message (for example ‘NoteOn’)
+  * *data* is one or two data values (for example for note on or note off: note and velocity)
+  * *[HH HH HH]* is the raw MIDI message in hexadecimal format
+> [!NOTE]
+> SysEx (system exclusive) data is filtered out by the router and won’t show, MIDI clock data is filtered out by the monitor and won’t show either.<br clear="right"/>
 
 <img src="/screenshots/mon_3.png" align="right">
 
 ##### MON 3/3 – Monitor MIDI Out
-<br clear="right"/>
+* Shows the MIDI data sent out to any of the MIDI input ports
+* Display format: ‘P0 C00 MessageName data [HH HH HH]’, where
+  * *P0* is the output port (P1 to P6)
+  * *C00* is the output channel (C 1 to C16) – not shown for system common messages
+  * *MessageData* is the name of the MIDI message (for example ‘NoteOn’)
+  * *data* is one or two data values (for example for note on or note off: note and velocity)
+  * *[HH HH HH]* is the raw MIDI message in hexadecimal format
+
+> [!NOTE]
+> MIDI clock data is filtered out by the monitor and won’t show.<br clear="right"/>
 
 #### SET (Settings)
 Use the settings page to adjust global settings, to backup or recover data or to find the firmware version number.

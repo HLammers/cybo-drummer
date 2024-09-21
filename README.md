@@ -260,7 +260,7 @@ Use the input page to review or edit input port assignments, input device settin
 > If [MIDI learn](#midi-learn) is turned on, pedal CC min/max can be set by sending CC messages from a device connected to the set [MIDI learn port](#midi-learn-port).
 
 ###### trigger 1 to 6
-* Select up to 6 input presets (belonging to the selected input device) which will trigger the selected input preset
+* Select up to 6 input triggers (belonging to the selected input device) which will trigger the selected input preset
 > [!IMPORTANT]
 > Pedal CC min/max and input trigger 1 to 6 are the input trigger mapping for the above selected input preset. So, to map a trigger to a preset, first select the input device and input preset, then assign the CC range and triggers. This is indicated by the orange bar between input device/preset and pedal CC min/max.<br clear="right"/>
 
@@ -315,29 +315,26 @@ Use the output page to review or edit output port assignments, output device set
 * Select the output device for which you want to add or edit an output trigger
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, output device can be set to an already mapped device by playing the trigger/note on your input device that is mapped to that output device (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
-> 
-###### output preset
-* Select the output preset you want to set up or edit
-* Select ‘[add new]’ (the value after the last existing preset) to add a new preset
-* Press the SEL/OPT button to show a [text edit pop-up](#text-edit-pop-up) to rename the preset
-* Press the DEL button to delete the preset
-> [!TIP]
-> If [MIDI learn](#midi-learn) is turned on, outut preset can be set to an already mapped preset by playing the trigger/note on your input device that is mapped to the output preset (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
+ 
+###### output trigger
+* Select the output trigger you want to set up or edit
+* Select ‘[add new]’ (the value after the last existing trigger) to add a new trigger
+* Press the SEL/OPT button to show a [text edit pop-up](#text-edit-pop-up) to rename the trigger
+* Press the DEL button to delete the trigger
 
 ###### channel
 * Optionally set the channel (1 to 16) on which to send MIDI data to the selected output device
 * Set the channel for devices which receive different triggers on different channels
 * Seet the channel to ‘__’ for devices which receive all triggers on the same channel
 > [!NOTE]
-> Preset channel overrides device channel
+> Trigger channel overrides device channel
 
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, channel can be set sending anything from that channel from a device connected to the set [MIDI learn port](#midi-learn-port).
 ###### note
-* Optionally set the note to be sent out by the preset
-* Set to ‘___’ to use the trigger default notes
+* Optionally set the note to be sent out by the trigger
+* Set to ‘___’ to use the trigger-level default notes
 * Preset note overrides trigger note
-
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, note can be set by paying a note from a device connected to the set [MIDI learn port](#midi-learn-port).
 
@@ -349,13 +346,21 @@ Use the output page to review or edit output port assignments, output device set
 <img src="/images/velocity_curves_threshold.svg" align="right" width="300px" height="300px">
 
 ###### vel threshold
-*
+* Set a velocity level (0 to 127) under which received triggers are filtered out
+> [!TIP]
+> Velocity threshold can be used to avoid loud double triggers on a drum computer with just one or two velocity levels when (accidently) playing soft ghost notes.
+
 > [!NOTE]
 > The velocity threshold is independent of the [velocity curve](#velocity-curve) setting: it cuts it off without scaling.<br clear="right"/>
 
 <img src="/images/velocity_curves.svg" align="right" width="300px" height="300px">
 
 ###### velocity curve
+* Adjust the velocity dynamics in three increasingly positive steps (‘positve 1’, ‘positive 2’, ‘positive 3’) and three increasingly negative steps (‘negative 1’, ‘negative 2’, ‘negative 3’) or select ‘linear’ (the default) not to change the velocity (velocity out level = velocity in level)
+* Positive curves make the output velocity louder (like a compressor), negative curves make it weaker
+> [!TIP]
+> For drum computers with just two velocity levels, you can adjust the threshold between the first and second level by adjusting the curve: a positive curve makes the second level come in earlier (at a lower input velocity), a negative curve makes it come in later (at a higher input velocity).
+
 > [!CAUTION]
 > MIDI velocity only has a resolution of 127 steps (1 to 127 – 0 is note off). Adjusting the velocity curve significantly reduces that resolution:
 > * *positive 1 / negative 1:* from 127 to 95 steps
@@ -365,9 +370,14 @@ Use the output page to review or edit output port assignments, output device set
 <img src="/images/velocity_curves_scaling.svg" align="right" width="300px" height="300px">
 
 ###### min velocity / max velocity
-*
+* Set a minimum or maximum velocity to adjust the range of velocity values set out to the output trigger
+* Minimum velocity sets the lowest value sent out (at the minimum input velocity of 1)
+* Maximum velocity sets the highest value sent out (at the maximim input velocity of 127)
 > [!NOTE]
-> Minimum and maximum velocity are linked to the [velocity curve](#velocity-curve) setting: the velocity curve is scaled to the output range set by minimum and maximum velocity.<br clear="right"/>
+> Minimum and maximum velocity are linked to the [velocity curve](#velocity-curve) setting: the velocity curve is scaled to the output range set by minimum and maximum velocity.
+
+> [!CAUTION]
+> MIDI velocity only has a resolution of 127 steps (1 to 127 – 0 is note off). Adjusting the velocity curve significantly reduces that resolution and adjusting minimum and/or maximum velocity reduces it even further.
 
 > [!IMPORTANT]
 > Channel, note, note off settings and velocity dynamics settings cc relate to the above selected output trigger. This is indicated by the orange bar between output device/trigger and channel.<br clear="right"/>
@@ -376,9 +386,28 @@ Use the output page to review or edit output port assignments, output device set
 
 ##### OUT 4/4 – Output Presets
 ###### output device
+* Select the output device for which you want to add or edit an output preset
+> [!TIP]
+> If [MIDI learn](#midi-learn) is turned on, output device can be set to an already mapped device by playing the trigger/note on your input device that is mapped to that output device (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
+ 
 ###### output preset
+* Select the output preset you want to set up or edit
+* Select ‘[add new]’ (the value after the last existing preset) to add a new preset
+* Press the SEL/OPT button to show a [text edit pop-up](#text-edit-pop-up) to rename the preset
+* Press the DEL button to delete the preset
+> [!TIP]
+> If [MIDI learn](#midi-learn) is turned on, outut preset can be set to an already mapped preset by playing the trigger/note on your input device that is mapped to the output preset (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
+
 ###### trigger 1 to 6
+* Select up to 6 output triggers (belonging to the selected output device) which will be triggered by the selected output preset
 ###### note (1 to 6)
+* Optionally set a note to be sent out to the preset
+* Set to ‘___’ to use the preset-level default notes
+* Preset note overrides trigger note
+
+> [!TIP]
+> If [MIDI learn](#midi-learn) is turned on, note can be set by paying a note from a device connected to the set [MIDI learn port](#midi-learn-port).
+
 > [!IMPORTANT]
 > Onput trigger 1 to 6 and note (1 to 6) are the output trigger mapping for the above selected output preset. So, to map a trigger to a preset, first select the output device and output preset, then assign the triggers. This is indicated by the orange bar between output device/preset and trigger 1 / note.<br clear="right"/>
 

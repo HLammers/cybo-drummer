@@ -492,22 +492,7 @@ Use the settings page to adjust global settings, to backup or recover data or to
 ###### factory reset
 * Restore all programs, device/trigger/preset definitions and settings to initial values
 ###### about
-* Show what version of Cybo-Drummer you’re using
-<br clear="right"/>
-
-![screenshot of delete pop-up](/screenshots/prg_1_delete.png)
-![screenshot of menu pop-up](/screenshots/prg_1_menu.png)
-![screenshot of rename pop-up](/screenshots/prg_1_rename.png)
-![screenshot of move pop-up](/screenshots/prg_1_move.png)
-![screenshot of trigger pop-up](/screenshots/prg_1_trigger.png)
-![screenshot of pages pop-up](/screenshots/prg_1_pages.png)
-![screenshot of program changed](/screenshots/prg_1_changed.png)
-![screenshot of save changes confirmation pop-up](/screenshots/prg_1_save.png)
-![screenshot of not saved confirmation pop-up](/screenshots/set_2_unsaved.png)
-
-![screenshot of store back-up confirmation pop-up](/screenshots/set_2_back-up.png)
-![screenshot of restore back-up confirmation pop-up](/screenshots/set_2_restore.png)
-![screenshot of factory reset confirmation pop-up](/screenshots/set_2_factory_reset.png)
+* Show what version of Cybo-Drummer you’re using<br clear="right"/>
 
 <img src="/images/hardware_text_edit.svg" align="right" width="300px" height="300px">
 
@@ -527,14 +512,25 @@ I spent a lot of time optimizing the code (for speed and memory usage) and it tu
 
 To keep latency to a minimum the second core is dedicated to MIDI handling, while the primary core takes care of the graphic user interface and button and rotary encoder input. In that way the second core runs a light loop doing only time-sensitive MIDI routing, while the primary core does all the heavy stuff.
 ## Known Issues
-* Add program doesn’t check if maximun number of programs (255) is reached
+- [ ] Add program doesn’t check if maximun number of programs (255) is reached
+- [ ] Add device doesn’t check if maximum number of devices (4,096) is reached
+- [ ] Add preset doesn’t check if maximum number of presets (4,096) is reached
+- [ ] Text input doesn’t limit the length of a program/device/trigger/preset name
 ## Ideas for Features to be Added
-* Process program change over MIDI globally
-* Add MIDI clock distribution
-* Add MIDI CC mapping (doing crazy things with the hihat foot pedal)
-* Add USB MIDI input/output
-* Add filter options to MIDI monitor
+- [ ] Process program change over MIDI globally
+- [ ] Add MIDI clock distribution
+- [ ] Add MIDI CC mapping (doing crazy things, for example with the hi-hat foot pedal or an express pedal)
+- [ ] Add USB MIDI input/output
+- [ ] Add filter options to MIDI monitor
 ## Licencing
+Copyright (c) 2024 Harm Lammers
+
+This project is free hardware/software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This project is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+See [LICENSE](./LICENSE) for the full license text.
+
 The fonts used for the logo and the (future) front panel are Soviet Regular and Soviet X-Expanded, (c) 2003 Dan Zadorozny – [Iconian Fonts](https://www.iconian.com), published with the following copyright statement:
 > This font may be freely distributed and is free for all non-commercial uses.  This font is e-mailware; that is, if you like it, please e-mail the author at:
 >

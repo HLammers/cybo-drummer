@@ -337,7 +337,11 @@ Use the output page to review or edit output port assignments, output device set
 <img src="/images/velocity_curves.svg" align="right" width="300px" height="300px">
 
 ###### velocity curve
-<br clear="right"/>
+> [!CAUTION]
+> MIDI velocity only has a resolution of 127 steps (1 to 127 – 0 is note off). Adjusting the velocity curve significantly reduces that resolution:
+> * *positive 1 / negative 1:* from 127 to 95 steps
+> * *positive 2 / negative 2:* from 127 to 64 steps
+> * *positive 3 / negative 3:* from 127 to 32 steps<br clear="right"/>
 
 <img src="/images/velocity_curves_scaling.svg" align="right" width="300px" height="300px">
 

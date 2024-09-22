@@ -512,6 +512,7 @@ I spent a lot of time optimizing the code (for speed and memory usage) and it tu
 
 To keep latency to a minimum the second core is dedicated to MIDI handling, while the primary core takes care of the graphic user interface and button and rotary encoder input. In that way the second core runs a light loop doing only time-sensitive MIDI routing, while the primary core does all the heavy stuff.
 ## Known Issues
+- [ ] Trigger doesn’t send note off, even if send note off is enabled
 - [ ] Add program doesn’t check if maximun number of programs (255) is reached
 - [ ] Add device doesn’t check if maximum number of devices (4,096) is reached
 - [ ] Add preset doesn’t check if maximum number of presets (4,096) is reached
@@ -522,6 +523,7 @@ To keep latency to a minimum the second core is dedicated to MIDI handling, whil
 - [ ] Add MIDI CC mapping (doing crazy things, for example with the hi-hat foot pedal or an express pedal)
 - [ ] Add USB MIDI input/output
 - [ ] Add filter options to MIDI monitor
+- [ ] Add note off delay setting to trigger pads that need longer time between note on and note off than what is received from the input trigger
 ## Licencing
 Copyright (c) 2024 Harm Lammers
 

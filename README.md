@@ -99,8 +99,9 @@ graph LR
 * MIDI monitor with three views: Show mapping flow (input preset > output preset), MIDI data coming in and MIDI data sent out
 [^2]: Except SysEx
 ## How to Build One?
+> mpy-cross -march=armv6m -O3 file_name.py
+Where file_name is the name of the file to be pre-compiled.
 ## How to Use It?
-
 <img src="/images/hardware_overview.svg" align="right">
 
 ### Overview
@@ -109,7 +110,7 @@ Cybo-Drummer has six MIDI input ports at the front and six MIDI output ports at 
 The user interface displayed on the 2.2 inch TFT screen is organized as follows:
 * **Page tabs:** The right edge of the screen shows which of the five pages is selected
 * **Title bar:** The top edge of screen shows a title bar, consisting of three elements:
-  * On the left the active program is always visible
+  * On the left the active program number is always visible (an asterisk is shown behind the number if the program has unsaved changes)
   * Centrally the title of the active sub-page is shown
   * On the right the number of the active sub-page and how many sub-pages the active page has
 * **Sub-page:** The remainder of the screen is taken by the sub-page itself
@@ -134,15 +135,15 @@ Cybo-Drummer’s user interface is organized in five pages:
 * **IN (Input):** Edit input port assignments, input device setting, input trigger settings and input preset settings
 * **OUT (Output):** Edit output port assignments, output device setting, output trigger settings and output preset settings
 * **MON (Monitor):** Show router and MIDI monitors
-* **SET (Settings):** Adjust global settings
+* **SET (Settings):** Adjust global settings<img src="/images/hardware_pages.svg" align="right" width="300px" height="300px">
 
-<img src="/images/hardware_pages.svg" align="right" width="300px" height="300px">To change the pages and sub-pages, keep the PAGE button pressed and turn the VAL/↔ knob (right knob) to change the page and the NAV/↕ know (left knob) to change the sub-page. While the PAGE button is pressed the page tabs and title bar are highlighted in dark and light sea green.<br clear="right"/>
-
+To change the pages and sub-pages, keep the PAGE button pressed and turn the VAL/↔ knob (right knob) to change the page and the NAV/↕ know (left knob) to change the sub-page. While the PAGE button is pressed the page tabs and title bar are highlighted in dark and light sea green.
+> [!CAUTION]
+> The PRG (program) page does not save automatically, all other pages do. If there are unsaved changes to a program an asterisk will show behind the active program number. To save changes, go to the first program page (program: mapping), select the [program block](#program), press the SEL/OPT button and choose ‘save’.<br clear="right"/>
 <img src="/images/hardware_trigger.svg" align="right" width="300px" height="300px">
 
 ### Trigger presets
 Short pressing the TRIGGER button triggers the last selected output trigger preset (for testing purposes). Long pres the TRIGGER button to show a trigger preset selection pop-up. Keep the TRIGGER button pressend and turn the VAL/↔ knob to change the selected output trigger preset.<br clear="right"/>
-
 <img src="/images/hardware_confirmation.svg" align="right" width="300px" height="300px">
 
 ### Confirmation Pop-Ups
@@ -158,9 +159,7 @@ The program page is the first page that shows when powering up Cybo-Drummer. Use
 ###### program
 * Select ‘[add new]’ (the value after the last existing program) to add a new program
 * Press the SEL/OPT button to show an options menu, turn the VAL/↔ knob to select an option and press the SEL/OPT button or the YES button to execute (or press the NO button to leave the options menu)<br clear="right"/>
-* Press the DEL button to delete the active program
-<img src="/images/hardware_menu.svg" align="right" width="300px" height="300px">
-
+* Press the DEL button to delete the active program<img src="/images/hardware_menu.svg" align="right" width="300px" height="300px">
 * Menu options:
   * *save:* save the active program (only if there are unsaved changed)
   * *rename:* show a [text edit pop-up](#text-edit-pop-up) to rename the active program

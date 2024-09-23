@@ -99,6 +99,27 @@ graph LR
 * MIDI monitor with three views: Show mapping flow (input preset > output preset), MIDI data coming in and MIDI data sent out
 [^2]: Except SysEx
 ## How to Build One?
+### Hardware
+#### BOM (Bill of Materials)
+##### First Board: [Raspberry Pi Pico Multi MIDI Router](https://diyelectromusic.com/2022/09/19/raspberry-pi-pico-multi-midi-router-part-5/)
+* The [Raspberry Pi Pico Multi MIDI Router PCB](https://github.com/diyelectromusic/sdemp_pcbs/tree/main/PicoMIDIRouter)
+* Raspberry Pi Pico
+* 6x H11L1 optocouplers
+* 6x 470Ω resistors
+* 6x 220Ω resistors
+* 6x 33Ω resistors
+* 6x 10Ω resistors
+* 6x 1N914 or 1N4148 diodes
+* 6x 100uF ceramic capacitors
+* 12x 5 pin DIN pcb mount sockets (check the footprint on the PCB!)
+* 2x 20-way header sockets (originally for the Pico, now for connecting to the second board)
+* Optional: 6x 6-way DIP sockets for the H11L1 optocouplers
+##### Second Board
+#### Build Instructions
+##### First Board: Raspberry Pi Pico Multi MIDI Router
+* For the 1st board, follow the excellent instructions by diyelectromusic (Kevin): [Raspberry Pi Pico Multi MIDI Router](https://diyelectromusic.com/2022/09/19/raspberry-pi-pico-multi-midi-router-part-5/)
+##### Second Board
+### Software
 > mpy-cross -march=armv6m -O3 file_name.py
 Where file_name is the name of the file to be pre-compiled.
 ## How to Use It?

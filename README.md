@@ -111,16 +111,24 @@ graph LR
 * 6x 10Ω resistors
 * 6x 1N914 or 1N4148 diodes
 * 6x 100uF ceramic capacitors
-* 12x 5 pin DIN pcb mount sockets (check the footprint on the PCB!)
-* 2x 20-way header sockets (originally for the Pico, now for connecting to the second board)
+* 12x 5-pin DIN pcb mount sockets (check the footprint on the PCB!)
+* 2x 20-pin header sockets (originally for the Pico, now for connecting to the second board)
 * Optional: 6x 6-way DIP sockets for the H11L1 optocouplers
 ##### Second Board
+* PCB: order from your favourite PCB service – a zip file with gerber files can be found in the ‘gerber files’ folder
+* 4x 10kΩ resistors
+* 2x EC11 rotary encoders
+* 3x 4-pin tactile momentary buttons 6x6mm
+* 1x 11-pin header
+* 2x 20-pin header sockets
+* 2x 20-pin headers
 #### Build Instructions
 ##### First Board: Raspberry Pi Pico Multi MIDI Router
 * For the 1st board, follow the excellent instructions by diyelectromusic (Kevin): [Raspberry Pi Pico Multi MIDI Router](https://diyelectromusic.com/2022/09/19/raspberry-pi-pico-multi-midi-router-part-5/)
+<img src="/images/top pcb bottom.png" width="25%" height="25%" align="right">
+<img src="/images/top pcb top.png" width="25%" height="25%" align="right">
+
 ##### Second Board
-<img src="/images/top pcb top.png" align="right">
-<img src="/images/top pcb bottom.png" align="right">
 
 ### Software
 > mpy-cross -march=armv6m -O3 file_name.py

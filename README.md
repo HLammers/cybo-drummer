@@ -119,6 +119,9 @@ graph LR
 ##### First Board: Raspberry Pi Pico Multi MIDI Router
 * For the 1st board, follow the excellent instructions by diyelectromusic (Kevin): [Raspberry Pi Pico Multi MIDI Router](https://diyelectromusic.com/2022/09/19/raspberry-pi-pico-multi-midi-router-part-5/)
 ##### Second Board
+<img src="/images/top pcb top.png" align="right">
+<img src="/images/top pcb bottom.png" align="right">
+
 ### Software
 > mpy-cross -march=armv6m -O3 file_name.py
 Where file_name is the name of the file to be pre-compiled.

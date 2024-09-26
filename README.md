@@ -122,6 +122,7 @@ graph LR
 * 1x 11-pin header
 * 2x 20-pin header sockets
 * 2x 20-pin headers
+* 7x xxxxx mm spacers plus bolts/nuts
 #### Build Instructions
 ##### First Board: Raspberry Pi Pico Multi MIDI Router
 * For the 1st board, follow the excellent instructions by diyelectromusic (Kevin): [Raspberry Pi Pico Multi MIDI Router](https://diyelectromusic.com/2022/09/19/raspberry-pi-pico-multi-midi-router-part-5/)

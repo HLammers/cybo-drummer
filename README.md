@@ -103,7 +103,6 @@ graph LR
 #### BOM (Bill of Materials)
 ##### First Board: [Raspberry Pi Pico Multi MIDI Router](https://diyelectromusic.com/2022/09/19/raspberry-pi-pico-multi-midi-router-part-5/)
 * The [Raspberry Pi Pico Multi MIDI Router PCB](https://github.com/diyelectromusic/sdemp_pcbs/tree/main/PicoMIDIRouter)
-* Raspberry Pi Pico
 * 6x H11L1 optocouplers
 * 6x 470Ω resistors
 * 6x 220Ω resistors
@@ -116,6 +115,8 @@ graph LR
 * Optional: 6x 6-way DIP sockets for the H11L1 optocouplers
 ##### Second Board
 * PCB: order from your favourite PCB service – a zip file with gerber files can be found in the ‘gerber files’ folder
+* Raspberry Pi Pico with headers[^3]
+* xxxxx display
 * 4x 10kΩ resistors
 * 2x EC11 rotary encoders
 * 3x 4-pin tactile momentary buttons 6x6mm
@@ -123,6 +124,7 @@ graph LR
 * 2x 20-pin header sockets
 * 2x 20-pin headers
 * 7x xxxxx mm spacers plus bolts/nuts
+[^3]: xxxxxx
 #### Build Instructions
 ##### First Board: Raspberry Pi Pico Multi MIDI Router
 * For the 1st board, follow the excellent instructions by diyelectromusic (Kevin): [Raspberry Pi Pico Multi MIDI Router](https://diyelectromusic.com/2022/09/19/raspberry-pi-pico-multi-midi-router-part-5/)

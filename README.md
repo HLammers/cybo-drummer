@@ -116,15 +116,15 @@ graph LR
 ##### Second Board
 * PCB: order from your favourite PCB service – a zip file with gerber files can be found in the ‘gerber files’ folder
 * Raspberry Pi Pico with headers[^3]
-* xxxxx display
+* [2.2" 176x220 TFT display board with ILI9225 driver](http://www.lcdwiki.com/2.2inch_Arduino_SPI_Module_ILI9225_SKU:MAR2201) – sold for example [here](https://www.tinytronics.nl/en/displays/tft/2.2-inch-tft-display-176*220-pixels)
 * 4x 10kΩ resistors
 * 2x EC11 rotary encoders
 * 3x 4-pin tactile momentary buttons 6x6mm
 * 1x 11-pin header
 * 2x 20-pin header sockets
 * 2x 20-pin headers
-* 7x xxxxx mm spacers plus bolts/nuts
-[^3]: xxxxxx
+* 7x 11mm spacers plus bolts/nuts
+[^3]: Use the Raspberry Pi Pico and solder headers onto it yourself or the Pico H, which comes with presoldered headers; the pre-compiled Cybo-Drummber firmware does not support the Pico W, Pico WH nor Pico 2 (I will add support for the Pico 2 at a later stage)
 #### Build Instructions
 ##### First Board: Raspberry Pi Pico Multi MIDI Router
 * For the 1st board, follow the excellent instructions by diyelectromusic (Kevin): [Raspberry Pi Pico Multi MIDI Router](https://diyelectromusic.com/2022/09/19/raspberry-pi-pico-multi-midi-router-part-5/)

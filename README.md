@@ -145,6 +145,10 @@ Building the Cybo-Drummer hardware only requires basic soldering skills (only th
 * Plug the second board to Pico header sockets of the first board and fix them together using four spacers
 * Plug the Raspberry Pi Pico into the 2x 20-pin header sockets on the second board
 ### Software
+The easiest way to install the software is by downloading the latest firmware as a single file and uploading it the Cybo-Drummer, but it can be run directly from source as well.
+#### Uploading Firmware
+#### Running From Source
+#### Building Firmware From Source
 Use `mpy-cross -march=armv6m -O3 file_name.py` (where file_name is the name of the file) to pre-compiled modules before – the `-O3` option (optimization level 3) makes sure `__debug__` is False and all debugging code is left out.
 ## How to Use It?
 <img src="/images/hardware_overview.svg" align="right">

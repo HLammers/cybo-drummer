@@ -553,12 +553,11 @@ To keep latency to a minimum the second core is dedicated to MIDI handling, whil
 - [ ] Add preset doesn’t check if maximum number of presets (4,096) is reached
 - [ ] Text input doesn’t limit the length of a program/device/trigger/preset name
 ## Ideas for Features to be Added
-- [ ] Process program change over MIDI globally
-- [ ] Add MIDI clock distribution
-- [ ] Add MIDI CC mapping (doing crazy things, for example with the hi-hat foot pedal or an express pedal)
 - [ ] Add USB MIDI input/output
+- [ ] Add MIDI clock distribution
 - [ ] Add filter options to MIDI monitor
 - [ ] Add note off delay setting to trigger pads that need longer time between note on and note off than what is received from the input trigger
+- [ ] Add MIDI CC mapping (doing crazy things, for example with the hi-hat foot pedal or an express pedal)
 ## Licencing
 Copyright (c) 2024 Harm Lammers
 

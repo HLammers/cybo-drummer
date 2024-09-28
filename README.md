@@ -100,6 +100,9 @@ graph LR
 [^2]: Except SysEx
 ## How to Build One?
 ### Hardware
+Building the Cybo-Drummer hardware only requires basic soldering skills (only though-hole components). The PCBs can be ordered cheaply from Chineese PCB services like [JLCPCB](https://jlcpcb.com/) (no affiliate).
+> [!NOTE]
+> The initial hardware is a crude, though functional prototype, without casing. I’m planning to design improved hardware including front panel and 3d printable case.
 #### BOM (Bill of Materials)
 ##### First Board: [Raspberry Pi Pico Multi MIDI Router](https://diyelectromusic.com/2022/09/19/raspberry-pi-pico-multi-midi-router-part-5/)
 * The [Raspberry Pi Pico Multi MIDI Router PCB](https://github.com/diyelectromusic/sdemp_pcbs/tree/main/PicoMIDIRouter)
@@ -114,7 +117,7 @@ graph LR
 * 2x 20-pin header sockets (originally for the Pico, now for connecting to the second board)
 * Optional: 6x 6-way DIP sockets for the H11L1 optocouplers
 ##### Second Board
-* PCB: order from your favourite PCB service – a zip file with gerber files can be found in the ‘gerber files’ folder
+* PCB: order from your favourite PCB service – a zip file with gerber files can be found in the [gerber files](gerber%20files/) folder
 * Raspberry Pi Pico with headers[^3]
 * [2.2" 176x220 TFT display board with ILI9225 driver](http://www.lcdwiki.com/2.2inch_Arduino_SPI_Module_ILI9225_SKU:MAR2201) – sold for example [here](https://www.tinytronics.nl/en/displays/tft/2.2-inch-tft-display-176*220-pixels)
 * 4x 10kΩ resistors
@@ -132,7 +135,15 @@ graph LR
 <img src="/images/top pcb top.png" width="25%" height="25%" align="right">
 
 ##### Second Board
-
+* Solder all components in the following order:
+  * Resistors
+  * Buttons (SW3, SW4, SW5)
+  * Male headers (J1, J2) **on the back side** of the the PCB
+  * Female header sockets (J3, Pico)
+  * Rotary encoders (SW1, SW2)
+* Plug the display board into header socket J3 and fix it to the second board using four spacers (the top-right spacer will screw into the spacer that connects the first board to the second board)
+* Plug the second board to Pico header sockets of the first board and fix them together using four spacers
+* Plug the Raspberry Pi Pico into the 2x 20-pin header sockets on the second board
 ### Software
 Use `mpy-cross -march=armv6m -O3 file_name.py` (where file_name is the name of the file) to pre-compiled modules before – the `-O3` option (optimization level 3) makes sure `__debug__` is False and all debugging code is left out.
 ## How to Use It?
@@ -551,7 +562,9 @@ To keep latency to a minimum the second core is dedicated to MIDI handling, whil
 - [ ] Add device doesn’t check if maximum number of devices (4,096) is reached
 - [ ] Add preset doesn’t check if maximum number of presets (4,096) is reached
 - [ ] Text input doesn’t limit the length of a program/device/trigger/preset name
-## Ideas for Features to be Added
+- [ ] There is currently no easy way to download and upload user settings (including user-defined programs) when updating the firmware for users who are not accustomed to using Python
+## Ideas for Features and Improvements to be Added
+- [ ] Improved hardware, including proper front panel and 3d printable case
 - [ ] Add USB MIDI input/output
 - [ ] Add MIDI clock distribution
 - [ ] Add filter options to MIDI monitor
@@ -566,7 +579,7 @@ This project is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 See [LICENSE](./LICENSE) for the full license text.
 
-The fonts used for the logo and the (future) front panel are Soviet Regular and Soviet X-Expanded, (c) 2003 Dan Zadorozny – [Iconian Fonts](https://www.iconian.com), published with the following copyright statement:
+The fonts used for the logo and the front panel are Soviet Regular and Soviet X-Expanded, (c) 2003 Dan Zadorozny – [Iconian Fonts](https://www.iconian.com), published with the following copyright statement:
 > This font may be freely distributed and is free for all non-commercial uses.  This font is e-mailware; that is, if you like it, please e-mail the author at:
 >
 > iconian@aol.com

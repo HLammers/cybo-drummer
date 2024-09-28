@@ -134,8 +134,7 @@ graph LR
 ##### Second Board
 
 ### Software
-> mpy-cross -march=armv6m -O3 file_name.py
-Where file_name is the name of the file to be pre-compiled.
+Use `mpy-cross -march=armv6m -O3 file_name.py` (where file_name is the name of the file) to pre-compiled modules before – the `-O3` option (optimization level 3) makes sure `__debug__` is False and all debugging code is left out.
 ## How to Use It?
 <img src="/images/hardware_overview.svg" align="right">
 

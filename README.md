@@ -546,6 +546,7 @@ I spent a lot of time optimizing the code (for speed and memory usage) and it tu
 
 To keep latency to a minimum the second core is dedicated to MIDI handling, while the primary core takes care of the graphic user interface and button and rotary encoder input. In that way the second core runs a light loop doing only time-sensitive MIDI routing, while the primary core does all the heavy stuff.
 ## Known Issues
+- [ ] Cybo-Drummer only responds to MIDI program change message if the program block on the program page is active – it should always respond to program change events
 - [ ] Trigger doesn’t send note off, even if send note off is enabled
 - [ ] Add program doesn’t check if maximun number of programs (255) is reached
 - [ ] Add device doesn’t check if maximum number of devices (4,096) is reached

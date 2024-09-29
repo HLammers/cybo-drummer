@@ -146,8 +146,43 @@ Building the Cybo-Drummer hardware only requires basic soldering skills (only th
 * Plug the Raspberry Pi Pico into the 2x 20-pin header sockets on the second board
 ### Software
 The easiest way to install the software is by downloading the latest firmware as a single file and uploading it the Cybo-Drummer, but it can be run directly from source as well.
+> [!NOTE]
+> Cybo-Drummer offers a couple of key combinations specifically for debugging and firmware upload purposes:
+> **RESET**: resets Cybo-Drummer
+> **TRIGGER + RESET**: avoids starting Cybo-Drummer’s main loops (the user interface and the router) and allow a PC to interact over USB while keeping the TRIGGER button pressed; if no connection is made Cybo-Drummer will start as usual once you release the TRIGGER button
+> **TRIGGER + PAGE + RESET**: (alternative to BOOTSEL + RESET) start bootloader (show Cybo-Drummer as drive called RPI-RP2 on your PC for uploading firmware) – keep TRIGGER and PAGE buttons pressed until the RPI-RP2 drive appears on your PC
 #### Uploading Firmware
+* Back up your user settings (see warning box below)
+* Download the latest [firmware release](releases/) (.uf2 file)
+* Connect Cybo-Drummer with a USB cable to your PC of choice (Windows/Linux/MacOS)
+* Do one of the following to make the Cybo-Drummer appear as a drive called RPI-RP2 on your PC:
+  * Keep the Raspberry Pi Pico’s BOOTSEL button pressed and press the RESET button
+  * Keep both TRIGGER and PAGE button pressed and press the RESET button (and keep TRIGGER and PAGE buttons pressed until the RPI-RP2 drive appears on your PC)
+* Copy the firmware file to the PRI-RP2 drive – Cybo-Drummer will automatically restart with the new firmware
+* Restore your user settings (see warning box below)
+> [!WARNING]
+> ***Uploading new firmware deletes your user settings (including user-defined programs) and reinstates default values!***
+> User settings are stored internally in a file called mapping.json. Currently the easiest way To back-up (download) or restore (upload) the file is by following these steps (assuming you’re using a Windows PC):
+> * If you haven’t before: Install [Python](https://www.python.org/downloads/) – follow the instructions provided [here](https://docs.python.org/3/using/windows.html#windows-full) and **make sure to select ‘Add Python 3.x to PATH’**
+> * If you haven’t before: Download the latest [MicroPython source](https://github.com/micropython/micropython/tree/master) (press the green ‘<> Code’ button and select ‘Download ZIP’) and unzip it somewhere on your PC
+> * In File Explorer go to the micropython-master\tools\mpremote folder (in the location where you unzipped MicroPython)
+> * Right click somewhere in the folder (not on a file) and frome the context menu select ‘Open in Terminal’
+> * If you do it for the first time: type the following to install required Python modules:
+>   ```
+>   pip install pyserial
+>   pip instal importlib_metadata
+>   ```
+> * *To back up user settings:*
+>   * On your PC type `py mpremote.py fs cp :mapping.json mapping.json` **without pressing ENTER** (so not executing it yet)
+> * *To restore user settings:*
+>   * Copy your mapping.json file to the micropython-master\tools\mpremote folder
+>   * On your PC type `py mpremote.py fs cp mapping.json :mapping.json` **without pressing ENTER** (so not executing it yet)
+> * While you keep Cybo-Drummer’s TRIGGER button pressed:
+>   * Press RESET button on Cybo-Drummer
+>   * Press ENTER on your PC to start downloading (backing up) or uploading (restoring)
 #### Running From Source
+It is possible to run Cybo-Drummer from source by uploading the content from the [src folder](src/) to the Raspberry Pi Pico running [stock MicroPython](https://micropython.org/download/RPI_PICO/).
+Keep in mind that it will start up slower and also that screen updating will be much slower (because running from source code means running from RAM, which leaves too little RAM left for buffering the entire screen). To resolve this it is also possible to freeze only part of the source code (in particular display.py), following the instructions under [building firmware from source](#building-firmware-from-source).
 #### Building Firmware From Source
 Use `mpy-cross -march=armv6m -O3 file_name.py` (where file_name is the name of the file) to pre-compiled modules before – the `-O3` option (optimization level 3) makes sure `__debug__` is False and all debugging code is left out.
 ## How to Use It?
@@ -553,10 +588,10 @@ Press the DEL button to remove the last character (backspace).
 
 Press the YES button to confirm the changes or the NO button to cancel renaming.<br clear="right"/>
 
-## Why in Micropython?
+## Why in MicroPython?
 A MIDI router/mapper is a time-sensitive application, so why not using the programming language which leads to the fastest possible code (that would be C++ on a Raspberry Pi Pico)? Well… I do am aware that MicroPython is much slower, but I decided to use it anyway, because besides solving my challenge to connect my electronic drum kit to my drum computers, I had a second goal: finally learning how to use Python. You see, I’ve used several programming languages over time (starting with BASIC when I was a child, then Turbo Pascal as a teenager in the 90s, later a bit or C/C++ at university, some JavaScript, a lot of VBA and more recently some Arduino code. But now, for my job, I’m managing analysts who are using Python as their go-to language, so I decided it was time to finally master that language as well. This project was a great learning journey!
 
-I spent a lot of time optimizing the code (for speed and memory usage) and it turns out Micropython on a Raspberry Pi Pico is fast enough after all. Keep in mind MIDI is a 40+ year old protocol, so it is pretty slow by today’s standards – enough time between two MIDI bytes to run a bit of Python code.
+I spent a lot of time optimizing the code (for speed and memory usage) and it turns out MicroPython on a Raspberry Pi Pico is fast enough after all. Keep in mind MIDI is a 40+ year old protocol, so it is pretty slow by today’s standards – enough time between two MIDI bytes to run a bit of Python code.
 
 To keep latency to a minimum the second core is dedicated to MIDI handling, while the primary core takes care of the graphic user interface and button and rotary encoder input. In that way the second core runs a light loop doing only time-sensitive MIDI routing, while the primary core does all the heavy stuff.
 ## Known Issues

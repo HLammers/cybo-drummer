@@ -10,7 +10,7 @@
 
 > [!NOTE]
 > This is my very first [Python/MicroPython](#why-in-micropython) project, my first PCB design (learning still!) and generally the first microcontroller-based project I developed from scratch and I actually brought to the finish line. It has been a learning experience, but by no way I'd say it's perfect, so I'm happy to receive your feedback on the hardware, the software, the feature set, or anything you'd like to share.
-> 
+> Are you an experienced drummer (I've only been drumming for about 1.5 year - too much of which I've spent on this project instead of practicing...)? I'd like
 ## Introduction
 I own an electronic drum kit and a bunch of drum computers and my dream was to use the former to play the latter, so I went searching for a way to do just that – allowing me to easily switch between different configurations combining the sounds of one or more drum computers. I looked for hardware solutions, but couldn’t find any. I looked for software solutions, but I could only find MIDI mappers or other complex solutions that would never give me the easy to use experience I had it mind. It turns out that (as usual) I go against the current fashion of trying to make an electronic drum kit sound (and look) as acoustic as possible. So I decided to develop my own solution – and publish it as open source DIY project, hoping it finds like-minded drummers!
 ## What Is It?

@@ -193,7 +193,7 @@ The easiest way to install the software is by downloading the latest firmware as
 #### Running From Source
 It is possible to run Cybo-Drummer from source by uploading the content from the [src folder](src/) to the Raspberry Pi Pico running [stock MicroPython](https://micropython.org/download/RPI_PICO/).
 
-Keep in mind that it will start up slower and also that screen updating will be much slower (because running from source code means running from RAM, which leaves too little RAM left for buffering the entire screen). To resolve this it is also possible to freeze only part of the source code (in particular display.py), following the instructions under [building firmware from source](#building-firmware-from-source).
+Keep in mind that when running from source (instead of frozen into firmware), Cybo-Drummer takes more time to start up and screen refreshing . To resolve this while playing around with the code it is also possible to freeze only part of the source code, following the instructions under [building firmware from source](#building-firmware-from-source).
 #### Building Firmware From Source
 So far I haven’t found any way to build MicroPython on a Windows PC, only on a device running Debian Linux, so I’m using a Raspberry Pi 400 for this purpose, but any Raspberry Pi 4 or 5 running Raspberry OS will do.
 
@@ -209,7 +209,7 @@ sudo apt update
 sudo apt install cmake gcc-arm-none-eabi libnewlib-arm-none-eabi build-essential
 make -C mpy-cross
 ```
-* Copy all files from the [src folder](src/) except screen_log.py to the /home/pi/pico/micropython/ports/rp2/modules folder (keep the existing _boot.py, _boot_fat.py and rp2.py files)
+* Copy all files from the [src folder](src/) except screen_log.py to the /home/pi/pico/micropython/ports/rp2/modules folder (keep the existing _boot.py, _boot_fat.py and rp2.py files) – this will freeze them into the firmware
 * Pre-compile each .py file you just copied by going to the modules folder (type `cd ~/pico/micropython/ports/rp2/modules` in the Raspberry Pi console) and type in the Raspberry Pi console for each file in the folder, except main.py (and the pre-existing _boot.py, _boot_fat.py and rp2.py files) `mpy-cross -march=armv6m -O3 <file_name.py>`, where <file_name.py> is the name of the file – the `-O3` option (optimization level 3) makes sure `__debug__` is False and all debugging code is left out
 * Remove all .py files from the modules folder, except except main.py, _boot.py, _boot_fat.py and rp2.py
 * Now to build the firmware type in the Raspberry Pi console:

@@ -1,7 +1,7 @@
 <img src="/logos/colour_logo.svg" width="100%">
 
 # Cybo-Drummer
-**Humenize those drum computers!**
+**Humanize those drum computers!**
 
 (c) 2024 Harm Lammers
 
@@ -12,13 +12,13 @@ I own an electronic drum kit and a bunch of drum computers and my dream was to u
 ## What Is It?
 Cybo-Drummer is a MIDI router/mapper specially designed for mapping drum triggers (electronic drum kits’ brains) to drum computers. Since there is no standard for the MIDI messages sent by drum kits, nor the messages received by drum computers, Cybo-Drummer offers a flexible way of mapping the one to the other.
 
-The idea for the hardware was inspired by the work of [diyelectromusic (Kevin)](https://diyelectromusic.com/), in particular his [Raspberry Pi Pico Multi MIDI Router](https://diyelectromusic.com/2022/09/19/raspberry-pi-pico-multi-midi-router-part-5/). The first prototype is an additional pcb on top of the Multi Midi Router.
+The idea for the hardware was inspired by the work of [diyelectromusic (Kevin)](https://diyelectromusic.com/), in particular his [Raspberry Pi Pico Multi MIDI Router](https://diyelectromusic.com/2022/09/19/raspberry-pi-pico-multi-midi-router-part-5/). The first prototype is an additional PCB on top of the Multi Midi Router.
 ### Features
 #### Hardware
-* 6 times 5-pin DIN MIDI input port: connect up to 6 drumkits, drumpads, keyboards, etc.
+* 6 times 5-pin DIN MIDI input port: connect up to 6 drum kits, drum pads, keyboards, etc.
 * 6 times 5-pin DIN MIDI output port: connect up to 6 drum computers, samplers, synthesizer, etc.
 * micro USB port for power and firmware update (MIDI over USB is not yet implemented; next prototype will include 5.5mm socket for 5V DC power supply)
-* 2.2 inch colour display (220x176 pixels)
+* 2.2 inch colour display (220×176 pixels)
 * 2 rotary encoders and 2 push buttons for input and navigation (plus reset button)
 #### Mapping
 ```mermaid
@@ -86,8 +86,8 @@ graph LR
 [^1]: The available memory also limits the number of programs, devices presets and triggers
 > [!NOTE]
 > **<ins>Cybo-Drummer Mapping Terminology</ins>**\
-> ***Input device:*** A drumkit, drumpad, keyboard or other device that outputs MIDI data\
-> ***Input trigger:*** The MIDI note that is been sent by an input device when playing a drumpad, key, etc.\
+> ***Input device:*** A drum kit, drum pad, keyboard or other device that outputs MIDI data\
+> ***Input trigger:*** The MIDI note that is been sent by an input device when playing a drum pad, key, etc.\
 > ***Input preset:*** A combination of input triggers and optional foot pedal settings that can be assigned to trigger an output preset\
 > ***Output device:*** A drum computer, sampler, synthesizer or other device that responds to MIDI data\
 > ***Output trigger:*** The MIDI channel and/or note that triggers a sound in the output device\
@@ -100,34 +100,34 @@ graph LR
 [^2]: Except SysEx
 ## How to Build One?
 ### Hardware
-Building the Cybo-Drummer hardware only requires basic soldering skills (only though-hole components). The PCBs can be ordered cheaply from Chineese PCB services like [JLCPCB](https://jlcpcb.com/) (no affiliate).
+Building the Cybo-Drummer hardware only requires basic soldering skills (only though-hole components). The PCBs can be ordered cheaply from Chinese PCB services like [JLCPCB](https://jlcpcb.com/) (no affiliate).
 > [!NOTE]
 > The initial hardware is a crude, though functional prototype, without casing. I’m planning to design improved hardware including front panel and 3d printable case.
 #### BOM (Bill of Materials)
 ##### First Board: [Raspberry Pi Pico Multi MIDI Router](https://diyelectromusic.com/2022/09/19/raspberry-pi-pico-multi-midi-router-part-5/)
 * The [Raspberry Pi Pico Multi MIDI Router PCB](https://github.com/diyelectromusic/sdemp_pcbs/tree/main/PicoMIDIRouter)
-* 6x H11L1 optocouplers
-* 6x 470Ω resistors
-* 6x 220Ω resistors
-* 6x 33Ω resistors
-* 6x 10Ω resistors
-* 6x 1N914 or 1N4148 diodes
-* 6x 100uF ceramic capacitors
-* 12x 5-pin DIN pcb mount sockets (check the footprint on the PCB!)
-* 2x 20-pin header sockets (originally for the Pico, now for connecting to the second board)
-* Optional: 6x 6-way DIP sockets for the H11L1 optocouplers
+* 6× H11L1 optocouplers
+* 6× 470Ω resistors
+* 6× 220Ω resistors
+* 6× 33Ω resistors
+* 6× 10Ω resistors
+* 6× 1N914 or 1N4148 diodes
+* 6× 100uF ceramic capacitors
+* 12× 5-pin DIN PCB mount sockets (check the footprint on the PCB!)
+* 2× 20-pin header sockets (originally for the Pico, now for connecting to the second board)
+* Optional: 6× 6-way DIP sockets for the H11L1 optocouplers
 ##### Second Board
-* PCB: order from your favourite PCB service – a zip file with gerber files can be found in the [gerber files](gerber%20files/) folder
+* PCB: order from your favourite PCB service – a zip file with Gerber files can be found in the [Gerber files](gerber%20files/) folder
 * Raspberry Pi Pico with headers[^3]
-* [2.2" 176x220 TFT display board with ILI9225 driver](http://www.lcdwiki.com/2.2inch_Arduino_SPI_Module_ILI9225_SKU:MAR2201) – sold for example [here](https://www.tinytronics.nl/en/displays/tft/2.2-inch-tft-display-176*220-pixels)
-* 4x 10kΩ resistors
-* 2x EC11 rotary encoders
-* 3x 4-pin tactile momentary buttons 6x6mm
-* 1x 11-pin header
-* 2x 20-pin header sockets
-* 2x 20-pin headers
-* 7x 11mm spacers plus bolts/nuts
-[^3]: Use the Raspberry Pi Pico and solder headers onto it yourself or the Pico H, which comes with presoldered headers; the pre-compiled Cybo-Drummber firmware does not support the Pico W, Pico WH nor Pico 2 (I will add support for the Pico 2 at a later stage)
+* [2.2" 176×220 TFT display board with ILI9225 driver](http://www.lcdwiki.com/2.2inch_Arduino_SPI_Module_ILI9225_SKU:MAR2201) – sold for example [here](https://www.tinytronics.nl/en/displays/tft/2.2-inch-tft-display-176*220-pixels)
+* 4× 10kΩ resistors
+* 2× EC11 rotary encoders
+* 3× 4-pin tactile momentary buttons 6×6mm
+* 1× 11-pin header
+* 2× 20-pin header sockets
+* 2× 20-pin headers
+* 7× 11mm spacers plus bolts/nuts
+[^3]: Use the Raspberry Pi Pico and solder headers onto it yourself or the Pico H, which comes with pre-soldered headers; the pre-compiled Cybo-Drummber firmware does not support the Pico W, Pico WH nor Pico 2 (I will add support for the Pico 2 at a later stage)
 #### Build Instructions
 ##### First Board: Raspberry Pi Pico Multi MIDI Router
 * For the 1st board, follow the excellent instructions by diyelectromusic (Kevin): [Raspberry Pi Pico Multi MIDI Router](https://diyelectromusic.com/2022/09/19/raspberry-pi-pico-multi-midi-router-part-5/)
@@ -138,7 +138,7 @@ Building the Cybo-Drummer hardware only requires basic soldering skills (only th
 * Solder all components in the following order:
   * Resistors
   * Buttons (SW3, SW4, SW5)
-  * Male headers (J1, J2) **on the back side** of the the PCB
+  * Male headers (J1, J2) **on the back side** of the PCB
   * Female header sockets (J3, Pico)
   * Rotary encoders (SW1, SW2)
 * Plug the display board into header socket J3 and fix it to the second board using four spacers (the top-right spacer will screw into the spacer that connects the first board to the second board)
@@ -147,9 +147,9 @@ Building the Cybo-Drummer hardware only requires basic soldering skills (only th
 ### Software
 The easiest way to install the software is by downloading the latest firmware as a single file and uploading it the Cybo-Drummer, but it can be run directly from source as well.
 > [!NOTE]
-> Cybo-Drummer offers a couple of key combinations specifically for debugging and firmware upload purposes:
-> **RESET**: resets Cybo-Drummer
-> **TRIGGER + RESET**: avoids starting Cybo-Drummer’s main loops (the user interface and the router) and allow a PC to interact over USB while keeping the TRIGGER button pressed; if no connection is made Cybo-Drummer will start as usual once you release the TRIGGER button
+> Cybo-Drummer offers a couple of key combinations specifically for debugging and firmware upload purposes:\
+> **RESET**: resets Cybo-Drummer\
+> **TRIGGER + RESET**: avoids starting Cybo-Drummer’s main loops (the user interface and the router) and allow a PC to interact over USB while keeping the TRIGGER button pressed; if no connection is made Cybo-Drummer will start as usual once you release the TRIGGER button\
 > **TRIGGER + PAGE + RESET**: (alternative to BOOTSEL + RESET) start bootloader (show Cybo-Drummer as drive called RPI-RP2 on your PC for uploading firmware) – keep TRIGGER and PAGE buttons pressed until the RPI-RP2 drive appears on your PC
 #### Uploading Firmware
 * Back up your user settings (see warning box below)
@@ -166,7 +166,7 @@ The easiest way to install the software is by downloading the latest firmware as
 > * If you haven’t before: Install [Python](https://www.python.org/downloads/) – follow the instructions provided [here](https://docs.python.org/3/using/windows.html#windows-full) and **make sure to select ‘Add Python 3.x to PATH’**
 > * If you haven’t before: Download the latest [MicroPython source](https://github.com/micropython/micropython/tree/master) (press the green ‘<> Code’ button and select ‘Download ZIP’) and unzip it somewhere on your PC
 > * In File Explorer go to the micropython-master\tools\mpremote folder (in the location where you unzipped MicroPython)
-> * Right click somewhere in the folder (not on a file) and frome the context menu select ‘Open in Terminal’
+> * Right click somewhere in the folder (not on a file) and from the context menu select ‘Open in Terminal’
 > * If you do it for the first time: type the following to install required Python modules:
 >   ```
 >   pip install pyserial
@@ -182,8 +182,14 @@ The easiest way to install the software is by downloading the latest firmware as
 >   * Press ENTER on your PC to start downloading (backing up) or uploading (restoring)
 #### Running From Source
 It is possible to run Cybo-Drummer from source by uploading the content from the [src folder](src/) to the Raspberry Pi Pico running [stock MicroPython](https://micropython.org/download/RPI_PICO/).
+
 Keep in mind that it will start up slower and also that screen updating will be much slower (because running from source code means running from RAM, which leaves too little RAM left for buffering the entire screen). To resolve this it is also possible to freeze only part of the source code (in particular display.py), following the instructions under [building firmware from source](#building-firmware-from-source).
 #### Building Firmware From Source
+So far I haven’t found any way to build MicroPython on a Windows PC, only on a device running Debian Linux, so I’m using a Raspberry Pi 400 for this purpose, but any Raspberry Pi 4 or 5 running Raspberry OS will do.
+
+To build Cybo-Drummer follow these steps:
+* In the Raspberry Pi console:
+* 
 Use `mpy-cross -march=armv6m -O3 file_name.py` (where file_name is the name of the file) to pre-compiled modules before – the `-O3` option (optimization level 3) makes sure `__debug__` is False and all debugging code is left out.
 ## How to Use It?
 <img src="/images/hardware_overview.svg" align="right">
@@ -227,11 +233,11 @@ To change the pages and sub-pages, keep the PAGE button pressed and turn the VAL
 <img src="/images/hardware_trigger.svg" align="right" width="300px" height="300px">
 
 ### Trigger presets
-Short pressing the TRIGGER button triggers the last selected output trigger preset (for testing purposes). Long pres the TRIGGER button to show a trigger preset selection pop-up. Keep the TRIGGER button pressend and turn the VAL/↔ knob to change the selected output trigger preset.<br clear="right"/>
+Short pressing the TRIGGER button triggers the last selected output trigger preset (for testing purposes). Long press the TRIGGER button to show a trigger preset selection pop-up. Keep the TRIGGER button pressed and turn the VAL/↔ knob to change the selected output trigger preset.<br clear="right"/>
 <img src="/images/hardware_confirmation.svg" align="right" width="300px" height="300px">
 
 ### Confirmation Pop-Ups
-Cybo-Drummer doesn’t have an undo feature, so to avoid accidentially losing data confirmation pop-ups will show up before deleting something, changing an unsaved program, restoring a back-up or doing a factory reset. Answer the question in the pop-up by pressing the left button for YES and the right button for NO.<br clear="right"/>
+Cybo-Drummer doesn’t have an undo feature, so to avoid accidentally losing data confirmation pop-ups will show up before deleting something, changing an unsaved program, restoring a back-up or doing a factory reset. Answer the question in the pop-up by pressing the left button for YES and the right button for NO.<br clear="right"/>
 
 ### Description of All Pages and Sub-Pages
 #### PRG (Program)
@@ -361,7 +367,7 @@ Use the output page to review or edit output port assignments, output device set
 
 ##### OUT 1/4 – Output Ports
 ###### p1 to p6 device 
-* Assign outtut devices to each of the 6 MIDI out ports<br clear="right"/><br/>
+* Assign output devices to each of the 6 MIDI out ports<br clear="right"/><br/>
 
 <img src="/screenshots/out_2.png" align="right">
 
@@ -377,7 +383,7 @@ Use the output page to review or edit output port assignments, output device set
 ###### channel
 * Optionally set the channel (1 to 16) on which to send MIDI data to the selected output device
 * Set the channel for devices which receive all triggers on the same channel
-* Seet the channel to ‘__’ for devices which receive different triggers on different channels
+* Set the channel to ‘__’ for devices which receive different triggers on different channels
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, channel can be set sending anything from that channel from a device connected to the set [MIDI learn port](#midi-learn-port).<br clear="right"/>
 
@@ -396,7 +402,7 @@ Use the output page to review or edit output port assignments, output device set
 <img src="/screenshots/out_3.png" align="right">
 
 ##### OUT 3/4 – Output Triggers
-###### ouptut device
+###### output device
 * Select the output device for which you want to add or edit an output trigger
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, output device can be set to an already mapped device by playing the trigger/note on your input device that is mapped to that output device (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
@@ -410,7 +416,7 @@ Use the output page to review or edit output port assignments, output device set
 ###### channel
 * Optionally set the channel (1 to 16) on which to send MIDI data to the selected output device
 * Set the channel for devices which receive different triggers on different channels
-* Seet the channel to ‘__’ for devices which receive all triggers on the same channel
+* Set the channel to ‘__’ for devices which receive all triggers on the same channel
 > [!NOTE]
 > Trigger channel overrides device channel
 
@@ -433,7 +439,7 @@ Use the output page to review or edit output port assignments, output device set
 ###### vel threshold
 * Set a velocity level (0 to 127) under which received triggers are filtered out
 > [!TIP]
-> Velocity threshold can be used to avoid loud double triggers on a drum computer with just one or two velocity levels when (accidently) playing soft ghost notes.
+> Velocity threshold can be used to avoid loud double triggers on a drum computer with just one or two velocity levels when (accidentally) playing soft ghost notes.
 
 > [!NOTE]
 > The velocity threshold is independent of the [velocity curve](#velocity-curve) setting: it cuts it off without scaling.<br clear="right"/>
@@ -441,7 +447,7 @@ Use the output page to review or edit output port assignments, output device set
 <img src="/images/velocity_curves.svg" align="right" width="300px" height="300px">
 
 ###### velocity curve
-* Adjust the velocity dynamics in three increasingly positive steps (‘positve 1’, ‘positive 2’, ‘positive 3’) and three increasingly negative steps (‘negative 1’, ‘negative 2’, ‘negative 3’) or select ‘linear’ (the default) not to change the velocity (velocity out level = velocity in level)
+* Adjust the velocity dynamics in three increasingly positive steps (‘positive 1’, ‘positive 2’, ‘positive 3’) and three increasingly negative steps (‘negative 1’, ‘negative 2’, ‘negative 3’) or select ‘linear’ (the default) not to change the velocity (velocity out level = velocity in level)
 * Positive curves make the output velocity louder (like a compressor), negative curves make it weaker
 > [!TIP]
 > For drum computers with just two velocity levels, you can adjust the threshold between the first and second level by adjusting the curve: a positive curve makes the second level come in earlier (at a lower input velocity), a negative curve makes it come in later (at a higher input velocity).
@@ -457,7 +463,7 @@ Use the output page to review or edit output port assignments, output device set
 ###### min velocity / max velocity
 * Set a minimum or maximum velocity to adjust the range of velocity values set out to the output trigger
 * Minimum velocity sets the lowest value sent out (at the minimum input velocity of 1)
-* Maximum velocity sets the highest value sent out (at the maximim input velocity of 127)
+* Maximum velocity sets the highest value sent out (at the maximum input velocity of 127)
 > [!NOTE]
 > Minimum and maximum velocity are linked to the [velocity curve](#velocity-curve) setting: the velocity curve is scaled to the output range set by minimum and maximum velocity.
 
@@ -481,7 +487,7 @@ Use the output page to review or edit output port assignments, output device set
 * Press the SEL/OPT button to show a [text edit pop-up](#text-edit-pop-up) to rename the preset
 * Press the DEL button to delete the preset
 > [!TIP]
-> If [MIDI learn](#midi-learn) is turned on, outut preset can be set to an already mapped preset by playing the trigger/note on your input device that is mapped to the output preset (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
+> If [MIDI learn](#midi-learn) is turned on, output preset can be set to an already mapped preset by playing the trigger/note on your input device that is mapped to the output preset (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
 
 ###### trigger 1 to 6
 * Select up to 6 output triggers (belonging to the selected output device) which will be triggered by the selected output preset
@@ -494,7 +500,7 @@ Use the output page to review or edit output port assignments, output device set
 > If [MIDI learn](#midi-learn) is turned on, note can be set by paying a note from a device connected to the set [MIDI learn port](#midi-learn-port).
 
 > [!IMPORTANT]
-> Onput trigger 1 to 6 and note (1 to 6) are the output trigger mapping for the above selected output preset. So, to map a trigger to a preset, first select the output device and output preset, then assign the triggers. This is indicated by the orange bar between output device/preset and trigger 1 / note.<br clear="right"/>
+> Output trigger 1 to 6 and note (1 to 6) are the output trigger mapping for the above selected output preset. So, to map a trigger to a preset, first select the output device and output preset, then assign the triggers. This is indicated by the orange bar between output device/preset and trigger 1 / note.<br clear="right"/>
 
 #### MON (Monitor)
 Use the monitor page to monitor the router, MIDI data coming in or MIDI data going out.
@@ -505,7 +511,7 @@ Use the monitor page to monitor the router, MIDI data coming in or MIDI data goi
 * Shows what is going on in the router
 * Display format: ‘Input Device Input Preset > Output Device Output Preset’ (for example: ‘2Box Kick > Drumbrute Kick 1’)
 > [!NOTE]
-> If an input preset triggers more than one output presets the router will show as many lines as output pressets are triggers.<br clear="right"/>
+> If an input preset triggers more than one output presets the router will show as many lines as output presets are triggers.<br clear="right"/>
 
 <img src="/screenshots/mon_2.png" align="right">
 
@@ -597,7 +603,7 @@ To keep latency to a minimum the second core is dedicated to MIDI handling, whil
 ## Known Issues
 - [ ] Cybo-Drummer only responds to MIDI program change message if the program block on the program page is active – it should always respond to program change events
 - [ ] Trigger doesn’t send note off, even if send note off is enabled
-- [ ] Add program doesn’t check if maximun number of programs (255) is reached
+- [ ] Add program doesn’t check if maximum number of programs (255) is reached
 - [ ] Add device doesn’t check if maximum number of devices (4,096) is reached
 - [ ] Add preset doesn’t check if maximum number of presets (4,096) is reached
 - [ ] Text input doesn’t limit the length of a program/device/trigger/preset name

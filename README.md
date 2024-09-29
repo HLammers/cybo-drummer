@@ -9,11 +9,13 @@
 > Cybo-Drummer is not yet released. This readme file is work in progress in preparation of releasing Cybo-Drummer to the public. Feel free to come back here to see it grow for the next couple of weeks!
 
 > [!NOTE]
-> This is my very first [Python/MicroPython](#why-in-micropython) project, my first PCB design (learning still!) and generally the first microcontroller-based project I developed from scratch and I actually brought to the finish line. It has been a learning experience, but by no way I'd say it's perfect, so I'm happy to receive your feedback on the hardware, the software, the feature set, a bug you found or anything you'd like to share.
+> This is my very first [Python/MicroPython](#why-in-micropython) project, my first PCB design (learning still!) and generally the first microcontroller-based project I developed from scratch and I actually brought to the finish line. It has been a learning experience, but by no way I’d say it's perfect, so I'm happy to receive your feedback on the hardware, the software, the feature set, a bug you found or anything you’d like to share.
 >
-> Are you an experienced drummer (I've only been drumming for about 1.5 year - too much of which I've spent on this project instead of practicing...) with a fascination for synthesized drum sounds? I'd love to hear how you experience using Cybo-Drummer. What would you change? What features are you missing?
+> Are you an experienced drummer (I’ve only been drumming for about 1.5 year – too much of which I’ve spent on this project instead of practicing…) with a fascination for synthesized drum sounds? I’d love to hear how you experience using Cybo-Drummer. What would you change? What features are you missing?
 >
-> Ofcourse I'm open for collaboration. Just let me know how you think you can contribute!
+> Ofcourse I’m open for collaboration. Just let me know how you think you can contribute!
+>
+> Please use the [issues tab](issues/) to report bug and other issues, or the [discussion tab](discussions/) to discuss anything else.
 ## Introduction
 I own an electronic drum kit and a bunch of drum computers and my dream was to use the former to play the latter, so I went searching for a way to do just that – allowing me to easily switch between different configurations combining the sounds of one or more drum computers. I looked for hardware solutions, but couldn’t find any. I looked for software solutions, but I could only find MIDI mappers or other complex solutions that would never give me the easy to use experience I had it mind. It turns out that (as usual) I go against the current fashion of trying to make an electronic drum kit sound (and look) as acoustic as possible. So I decided to develop my own solution – and publish it as open source DIY project, hoping it finds like-minded drummers!
 ## What Is It?
@@ -195,10 +197,31 @@ Keep in mind that it will start up slower and also that screen updating will be 
 So far I haven’t found any way to build MicroPython on a Windows PC, only on a device running Debian Linux, so I’m using a Raspberry Pi 400 for this purpose, but any Raspberry Pi 4 or 5 running Raspberry OS will do.
 
 To build Cybo-Drummer follow these steps:
-* In the Raspberry Pi console:
-* 
-Use `mpy-cross -march=armv6m -O3 file_name.py` (where file_name is the name of the file) to pre-compiled modules before – the `-O3` option (optimization level 3) makes sure `__debug__` is False and all debugging code is left out.
-## How to Use It?
+* *First time you build Cybo-Drummer*: In the Raspberry Pi console type (this creates a /home/pi/pico folder to with the MicroPython source code):
+```
+cd ~/
+mkdir pico
+cd pico
+git clone https://github.com/micropython/micropython.git --branch master
+cd micropython
+sudo apt update
+sudo apt install cmake gcc-arm-none-eabi libnewlib-arm-none-eabi build-essential
+make -C mpy-cross
+```
+* Copy all files from the [src folder](src/) except screen_log.py to the /home/pi/pico/micropython/ports/rp2/modules folder (keep the existing _boot.py, _boot_fat.py and rp2.py files)
+* Pre-compile each .py file you just copied by going to the modules folder (type `cd ~/pico/micropython/ports/rp2/modules` in the Raspberry Pi console) and type in the Raspberry Pi console for each file in the folder, except main.py (and the pre-existing _boot.py, _boot_fat.py and rp2.py files) `mpy-cross -march=armv6m -O3 <file_name.py>`, where <file_name.py> is the name of the file – the `-O3` option (optimization level 3) makes sure `__debug__` is False and all debugging code is left out
+* Remove all .py files from the modules folder, except except main.py, _boot.py, _boot_fat.py and rp2.py
+* Now to build the firmware type in the Raspberry Pi console:
+```
+cd ~/pico/micropython/ports/rp2
+make submodules
+make clean
+make
+```
+* The freshly built firmware is stored as /home/pi/pico/micropython/ports/rp2/build-RPI_PICO/firmware.uf2
+> [!TIP]
+> An easy way to copy the Cybo-Drummer source code from a PC to the modules folder on a Raspberry Pi is by [setting up Samba on the Raspberry Pi](https://fernandezvictor.medium.com/raspberry-pi-as-samba-server-to-create-shared-folder-between-computers-cdea979092b8) and turn the home/pi/pico folder into a shared folder.
+## How to Use Cybo-Drummer?
 <img src="/images/hardware_overview.svg" align="right">
 
 ### Overview

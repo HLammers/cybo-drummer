@@ -639,6 +639,7 @@ To keep latency to a minimum the second core is dedicated to MIDI handling, whil
 - [ ] Add preset doesn’t check if maximum number of presets (4,096) is reached
 - [ ] Text input doesn’t limit the length of a program/device/trigger/preset name
 - [ ] There is currently no easy way to download and upload user settings (including user-defined programs) when updating the firmware for users who are not accustomed to using Python
+- [ ] Program change and bank select assume the output device interprets value 0 as 1, but that’s not always the case (resulting in the value on Cybo-Drummer’s screen to be 1 off compared to what the output device shows – to solve this a device-level setting needs to be added to set the device’s behaviour
 ## Ideas for Features and Improvements to be Added
 - [ ] Improved hardware, including proper front panel and 3d printable case
 - [ ] Add USB MIDI input/output

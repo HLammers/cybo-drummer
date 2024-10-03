@@ -159,7 +159,7 @@ The easiest way to install the software is by downloading the latest firmware as
 > [!NOTE]
 > Cybo-Drummer offers a couple of key combinations specifically for debugging and firmware upload purposes:\
 > **RESET**: resets Cybo-Drummer\
-> **TRIGGER + RESET**: avoids starting Cybo-Drummer’s main loops (the user interface and the router) and allow a PC to interact over USB while keeping the TRIGGER button pressed; if no connection is made Cybo-Drummer will start as usual once you release the TRIGGER button\
+> **TRIGGER + RESET**: avoids starting Cybo-Drummer’s main loops (the user interface and the router) and allow a PC to interact over USB while keeping the TRIGGER button pressed; if no connection is made Cybo-Drummer will start as usual once you release the TRIGGER button – if it doesn’t work, try pressing RESET first and start keeping TRIGGER about half a second later\
 > **TRIGGER + PAGE + RESET**: (alternative to BOOTSEL + RESET) start bootloader (show Cybo-Drummer as drive called RPI-RP2 on your PC for uploading firmware) – keep TRIGGER and PAGE buttons pressed until the RPI-RP2 drive appears on your PC
 #### Uploading Firmware
 * Back up your user settings (see warning box below)
@@ -555,7 +555,7 @@ Use the monitor page to monitor the router, MIDI data coming in or MIDI data goi
   * *data* is one or two data values (for example for note on or note off: note and velocity)
   * *[HH HH HH]* is the raw MIDI message in hexadecimal format
 > [!NOTE]
-> SysEx (system exclusive) data is filtered out by the router and won’t show, MIDI clock data is filtered out by the monitor and won’t show either.<br clear="right"/>
+> SysEx (system exclusive) data is filtered out by the router and won’t show, MIDI clock data and active sensing are filtered out by the monitor and won’t show either.<br clear="right"/>
 
 <img src="/screenshots/mon_3.png" align="right">
 
@@ -569,7 +569,7 @@ Use the monitor page to monitor the router, MIDI data coming in or MIDI data goi
   * *[HH HH HH]* is the raw MIDI message in hexadecimal format
 
 > [!NOTE]
-> MIDI clock data is filtered out by the monitor and won’t show.<br clear="right"/>
+> MIDI clock data and active sensing are filtered out by the monitor and won’t show.<br clear="right"/>
 
 #### SET (Settings)
 Use the settings page to adjust global settings, to backup or recover data or to find the firmware version number.

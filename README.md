@@ -159,14 +159,14 @@ The easiest way to install the software is by downloading the latest firmware as
 > [!NOTE]
 > Cybo-Drummer offers a couple of key combinations specifically for debugging and firmware upload purposes:\
 > **RESET**: resets Cybo-Drummer\
-> **RESET &rarr; TRIGGER**: avoids starting Cybo-Drummer’s main loops (the user interface and the router) and allow a PC to interact over USB – press the RESET button and wait for the LED to turn on; in the 1 second the LED is on, press and keep the TRIGGER button until the PC made a connection\
-> **RESET &rarr; TRIGGER + PAGE**: (alternative to BOOTSEL + RESET) start bootloader (show Cybo-Drummer as drive called RPI-RP2 on your PC for uploading firmware) – press the RESET button and wait for the LED to turn on; in the 1 second the LED is on, press and keep the TRIGGER and PAGE buttons pressed until the RPI-RP2 drive appears on your PC
+> **RESET &rarr; TRIGGER**: avoids starting Cybo-Drummer’s main loops (the user interface and the router) and allow a PC to interact over USB – press the RESET button and wait for the LED on the Raspberry Pi Pico to turn on; in the 1 second the LED is on, press and keep the TRIGGER button until the PC made a connection\
+> **RESET &rarr; TRIGGER + PAGE**: (alternative to BOOTSEL + RESET) start bootloader (show Cybo-Drummer as drive called RPI-RP2 on your PC for uploading firmware) – press the RESET button and wait for the LED on the Raspberry Pi Pico to turn on; in the 1 second the LED is on, press and keep the TRIGGER and PAGE buttons pressed until the RPI-RP2 drive appears on your PC
 #### Uploading Firmware
 * Back up your user settings (see warning box below)
 * Download the latest [firmware release](releases/) (.uf2 file)
 * Connect Cybo-Drummer with a USB cable to your PC of choice (Windows/Linux/MacOS)
 * Do one of the following to make the Cybo-Drummer appear as a drive called RPI-RP2 on your PC:
-  * Press the RESET button and wait for the LED to turn on; in the 1 second the LED is on, press and keep the TRIGGER and PAGE buttons pressed until the RPI-RP2 drive appears on your PC
+  * Press the RESET button and wait for the LED on the Raspberry Pi Pico to turn on; in the 1 second the LED is on, press and keep the TRIGGER and PAGE buttons pressed until the RPI-RP2 drive appears on your PC
   * Keep the Raspberry Pi Pico’s BOOTSEL button pressed and keep the RESET button pressed until the RPI-RP2 drive appears on your PC
 * Copy the firmware file to the PRI-RP2 drive – Cybo-Drummer will automatically restart with the new firmware
 * Restore your user settings (see warning box below)

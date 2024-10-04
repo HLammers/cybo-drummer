@@ -260,7 +260,10 @@ Cybo-Drummer’s user interface is organized in five pages:
 
 To change the pages and sub-pages, keep the PAGE button pressed and turn the VAL/↔ knob (right knob) to change the page and the NAV/↕ know (left knob) to change the sub-page. While the PAGE button is pressed the page tabs and title bar are highlighted in dark and light sea green.
 > [!CAUTION]
-> The PRG (program) page does not save automatically, all other pages do. If there are unsaved changes to a program an asterisk will show behind the active program number. To save changes, go to the first program page (program: mapping), select the [program block](#program), press the SEL/OPT button and choose ‘save’.<br clear="right"/>
+> The PRG (program) page does not save automatically, all other pages do. If there are unsaved changes to a program an asterisk will show behind the active program number. To save changes, go to the first program page (program: mapping), select the [program block](#program), press the SEL/OPT button and choose ‘save’. This will show a pop-up to ask for confirmation and another pop-up to ask if you want to replace the active program – select ‘yes’ to save changes to the active program or select ‘no’ to save the changes to a new program directly after the active program.
+
+> [!TIP]
+> To ducplicate the active program, make a change and save without replacing, this creates a new program directly after the active program.<br clear="right"/>
 <img src="/images/hardware_trigger.svg" align="right" width="300px" height="300px">
 
 ### Trigger presets
@@ -282,7 +285,7 @@ The program page is the first page that shows when powering up Cybo-Drummer. Use
 * Press the SEL/OPT button to show an options menu, turn the VAL/↔ knob to select an option and press the SEL/OPT button or the YES button to execute (or press the NO button to leave the options menu)<br clear="right"/>
 * Press the DEL button to delete the active program<img src="/images/hardware_menu.svg" align="right" width="300px" height="300px">
 * Menu options:
-  * *save:* save the active program (only if there are unsaved changed)
+  * *save:* save the active program (only if there are unsaved changed) – shows a pop-up to ask for confirmation and another pop-up to ask if you want to replace the active program (select ‘yes’ to save changes to the active program or select ‘no’ to save the changes to a new program directly after the active program)
   * *rename:* show a [text edit pop-up](#text-edit-pop-up) to rename the active program
   * *move backward:* move the active program one place backward (if not the first program)
   * *move forward:* move the active program one place forward (if not the last program)
@@ -642,7 +645,7 @@ To keep latency to a minimum the second core is dedicated to MIDI handling, whil
 - [ ] Program change and bank select assume the output device interprets value 0 as 1, but that’s not always the case (resulting in the value on Cybo-Drummer’s screen to be 1 off compared to what the output device shows – to solve this a device-level setting needs to be added to set the device’s behaviour
 ## Ideas for Features and Improvements to be Added
 - [ ] Improved hardware, including proper front panel and 3d printable case
-- [ ] Add USB MIDI input/output
+- [ ] Add USB MIDI input/output (USB MIDI support only became available in MicroPython 1.23, which was released at end of May 2024, which is after I developed the MIDI handling side of Cybo-Drummer)
 - [ ] Add MIDI clock distribution
 - [ ] Add filter options to MIDI monitor
 - [ ] Add note off delay setting to trigger pads that need longer time between note on and note off than what is received from the input trigger

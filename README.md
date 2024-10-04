@@ -159,19 +159,19 @@ The easiest way to install the software is by downloading the latest firmware as
 > [!NOTE]
 > Cybo-Drummer offers a couple of key combinations specifically for debugging and firmware upload purposes:\
 > **RESET**: resets Cybo-Drummer\
-> **TRIGGER + RESET**: avoids starting Cybo-Drummer’s main loops (the user interface and the router) and allow a PC to interact over USB while keeping the TRIGGER button pressed; if no connection is made Cybo-Drummer will start as usual once you release the TRIGGER button – if it doesn’t work, try pressing RESET first and start keeping TRIGGER about half a second later\
-> **TRIGGER + PAGE + RESET**: (alternative to BOOTSEL + RESET) start bootloader (show Cybo-Drummer as drive called RPI-RP2 on your PC for uploading firmware) – keep TRIGGER and PAGE buttons pressed until the RPI-RP2 drive appears on your PC
+> **RESET &rarr; TRIGGER**: avoids starting Cybo-Drummer’s main loops (the user interface and the router) and allow a PC to interact over USB – press the RESET button and wait for the LED to turn on; in the 1 second the LED is on, press and keep the TRIGGER button until the PC made a connection\
+> **RESET &rarr; TRIGGER + PAGE**: (alternative to BOOTSEL + RESET) start bootloader (show Cybo-Drummer as drive called RPI-RP2 on your PC for uploading firmware) – press the RESET button and wait for the LED to turn on; in the 1 second the LED is on, press and keep the TRIGGER and PAGE buttons pressed until the RPI-RP2 drive appears on your PC
 #### Uploading Firmware
 * Back up your user settings (see warning box below)
 * Download the latest [firmware release](releases/) (.uf2 file)
 * Connect Cybo-Drummer with a USB cable to your PC of choice (Windows/Linux/MacOS)
 * Do one of the following to make the Cybo-Drummer appear as a drive called RPI-RP2 on your PC:
-  * Keep the Raspberry Pi Pico’s BOOTSEL button pressed and press the RESET button
-  * Keep both TRIGGER and PAGE button pressed and press the RESET button (and keep TRIGGER and PAGE buttons pressed until the RPI-RP2 drive appears on your PC)
+  * Press the RESET button and wait for the LED to turn on; in the 1 second the LED is on, press and keep the TRIGGER and PAGE buttons pressed until the RPI-RP2 drive appears on your PC
+  * Keep the Raspberry Pi Pico’s BOOTSEL button pressed and keep the RESET button pressed until the RPI-RP2 drive appears on your PC
 * Copy the firmware file to the PRI-RP2 drive – Cybo-Drummer will automatically restart with the new firmware
 * Restore your user settings (see warning box below)
 > [!WARNING]
-> ***Uploading new firmware deletes your user settings (including user-defined programs) and reinstates default values!***
+> ***Uploading new firmware might delete your user settings (including user-defined programs) and reinstate default values!***
 > User settings are stored internally in a file called mapping.json. Currently the easiest way To back-up (download) or restore (upload) the file is by following these steps (assuming you’re using a Windows PC):
 > * If you haven’t before: Install [Python](https://www.python.org/downloads/) – follow the instructions provided [here](https://docs.python.org/3/using/windows.html#windows-full) and **make sure to select ‘Add Python 3.x to PATH’**
 > * If you haven’t before: Download the latest [MicroPython source](https://github.com/micropython/micropython/tree/master) (press the green ‘<> Code’ button and select ‘Download ZIP’) and unzip it somewhere on your PC

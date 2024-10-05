@@ -641,6 +641,7 @@ Press the YES button to confirm the changes or the NO button to cancel renaming.
 ### Input Device: 2Box
 ### Output Device: Drumbrute
 ### Output Device: Drumlogue
+SHIFT + GLOBAL &rarr; 7 &rarr; set CH to 7-2
 ### Output Device: LXR-02
 ### Output Device: Volca Drum
 ## Why in MicroPython?

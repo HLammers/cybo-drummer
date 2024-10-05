@@ -638,12 +638,17 @@ Press the DEL button to remove the last character (backspace).
 Press the YES button to confirm the changes or the NO button to cancel renaming.<br clear="right"/>
 
 ## About the Factory Presets
+Since Cybo-Drummer doesn’t make any sound on its own, but merely routes signals from one device to another, it isn’t possible to make meaningfull factory presets. The presets which are included reflect a baseline for my personal set-up, but can be usefull as examples.
 ### Input Device: 2Box
+My drum kit is a Fame Hybrid Pro, which is produced by 2Box and technically is a derivative of 2Box’ DrumIt series (it uses the same firmware). The default 2Box input triggers are based on 2Box’ default MIDI mapping, with one addition specific to the Fame module: 2Box calls numbers the three cymbals 1, 2 and 3, but which of those are the ride, 1<sup>st</sup> crash and 2<sup>nd</sup> crash seems to be different depending on which type of module. 
 ### Output Device: Drumbrute
+This device is set up for the factory settings of the Arturia Drumbrute, but since the Drumbrute can’t store presets, that only means the default MIDI channel and default note mapping. There is only one factory preset for the Drumbrute.
 ### Output Device: Drumlogue
-SHIFT + GLOBAL &rarr; 7 &rarr; set CH to 7-2
+This devise is set up for the factory settings of the Korg Drumlogue, with only one adjustment: the MIDI mode is set to multi-channel 7-2 (on the Drumlogue: SHIFT + GLOBAL &rarr; 7 &rarr; set CH to 7-2), so the Multi Engine can be played tonally. There are 64 Drumlogue presets, linked to the Drumlogue’s 64 factory kits.
 ### Output Device: LXR-02
+Sonic Portions × Erica Synths LXR-02
 ### Output Device: Volca Drum
+Korg Volca Drum
 ## Why in MicroPython?
 A MIDI router/mapper is a time-sensitive application, so why not using the programming language which leads to the fastest possible code (that would be C++ on a Raspberry Pi Pico)? Well… I do am aware that MicroPython is much slower, but I decided to use it anyway, because besides solving my challenge to connect my electronic drum kit to my drum computers, I had a second goal: finally learning how to use Python. You see, I’ve used several programming languages over time (starting with BASIC when I was a child, then Turbo Pascal as a teenager in the 90s, later a bit or C/C++ at university, some JavaScript, a lot of VBA and more recently some Arduino code. But now, for my job, I’m managing analysts who are using Python as their go-to language, so I decided it was time to finally master that language as well. This project was a great learning journey!
 

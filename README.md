@@ -19,7 +19,7 @@
 > Please use the [issues tab](issues/) to report bug and other issues, or the [discussion tab](discussions/) to discuss anything else.
 ## Introduction
 I own an electronic drum kit and a bunch of drum computers and my dream was to use the former to play the latter, so I went searching for a way to do just that – allowing me to easily switch between different configurations combining the sounds of one or more drum computers. I looked for hardware solutions, but couldn’t find any. I looked for software solutions, but I could only find MIDI mappers or other complex solutions that would never give me the easy to use experience I had it mind. It turns out that (as usual) I go against the current fashion of trying to make an electronic drum kit sound (and look) as acoustic as possible. So I decided to develop my own solution – and publish it as open source DIY project, hoping it finds like-minded drummers!
-## What Is It?
+## Overview
 Cybo-Drummer is a MIDI router/mapper with 6 input ports and 6 output ports, specially designed for mapping drum triggers (electronic drum kits’ brains) to drum computers. Since there is no standard for the MIDI messages sent by drum kits, nor the messages received by drum computers, Cybo-Drummer offers a flexible way of mapping the one to the other.
 
 The idea for the hardware was inspired by the work of [diyelectromusic (Kevin)](https://diyelectromusic.com/), in particular his [Raspberry Pi Pico Multi MIDI Router](https://diyelectromusic.com/2022/09/19/raspberry-pi-pico-multi-midi-router-part-5/). The first prototype is an additional PCB on top of the Multi Midi Router.
@@ -108,7 +108,16 @@ graph LR
 * MIDI thru: Set all data[^2] received on one of the input ports to be sent unaltered to one of the output ports 
 * MIDI monitor with three views: Show mapping flow (input preset > output preset), MIDI data coming in and MIDI data sent out
 [^2]: Except SysEx
-## How to Build One?
+## Building Instructions
+Cybo-Drummer is a DIY project which is currently in a prototype stage. The hardware design is a pragmatic solution, building upon an existing design by [diyelectromusic (Kevin)](https://diyelectromusic.com/), who designed the bottom PCB with the MIDI ports. As a next step I want to design new hardware (including 3d printable enclosure) and now I have a working prototype I’m considering what to improve in the next iteration. These are a few of my considerations:
+* Where to place the MIDI ports? The current prototype has input ports at the front and output ports at the back. The disadvantage is that the MIDI cables take a lot of space at two sides of the device. Perhaps MIDI ports at the top of the device is a better solution? In two rows above the display, buttons and knobs?
+* Should I add more buttons? All GPIO pins of the Raspberry Pi Pico are in use, so that would require adding IO ports, for example using one ore more PCF8574 I2C IO expander ICs. Having more IO ports would allow improvements like:
+  * Splitting the TRIGGER button into a TRIGGER and a TRIGGER SELECT button
+  * Adding a SAVE button
+  * Adding quick buttons for pages
+  * Adding status LEDS
+
+***I have no intention to sell Cybo-Drummer as a fully assembled product, nor as DIY package*** – I might change my mind in the future, but for now that doesn’t seem like a realistic idea, next to a full-time job and a family.
 ### Hardware
 Building the Cybo-Drummer hardware only requires basic soldering skills (only though-hole components). The PCBs can be ordered cheaply from Chinese PCB services like [JLCPCB](https://jlcpcb.com/) (no affiliate).
 > [!NOTE]
@@ -635,7 +644,6 @@ I spent a lot of time optimizing the code (for speed and memory usage) and it tu
 
 To keep latency to a minimum the second core is dedicated to MIDI handling, while the primary core takes care of the graphic user interface and button and rotary encoder input. In that way the second core runs a light loop doing only time-sensitive MIDI routing, while the primary core does all the heavy stuff.
 ## Known Issues
-- [ ] Cybo-Drummer only responds to MIDI program change message if the program block on the program page is active – it should always respond to program change events
 - [ ] Trigger doesn’t send note off, even if send note off is enabled
 - [ ] Add program doesn’t check if maximum number of programs (255) is reached
 - [ ] Add device doesn’t check if maximum number of devices (4,096) is reached
@@ -644,6 +652,7 @@ To keep latency to a minimum the second core is dedicated to MIDI handling, whil
 - [ ] There is currently no easy way to download and upload user settings (including user-defined programs) when updating the firmware for users who are not accustomed to using Python
 - [ ] Program change and bank select assume the output device interprets value 0 as 1, but that’s not always the case (resulting in the value on Cybo-Drummer’s screen to be 1 off compared to what the output device shows – to solve this a device-level setting needs to be added to set the device’s behaviour
 ## Ideas for Features and Improvements to be Added
+- [ ] Change behaviour of TRIGGER and PAGE buttons from keeping pressed to toggle on/off, so it is easier to use with one hand
 - [ ] Improved hardware, including proper front panel and 3d printable case
 - [ ] Add USB MIDI input/output (USB MIDI support only became available in MicroPython 1.23, which was released at end of May 2024, which is after I developed the MIDI handling side of Cybo-Drummer)
 - [ ] Add MIDI clock distribution

@@ -181,7 +181,7 @@ The easiest way to install the software is by downloading the latest firmware as
 * Restore your user settings (see warning box below)
 > [!WARNING]
 > ***Uploading new firmware might delete your user settings (including user-defined programs) and reinstate default values!***
-> User settings are stored internally in a file called mapping.json. Currently the easiest way To back-up (download) or restore (upload) the file is by following these steps (assuming you’re using a Windows PC):
+> User settings are stored internally in a file called data.json. Currently the easiest way To back-up (download) or restore (upload) the file is by following these steps (assuming you’re using a Windows PC):
 > * If you haven’t before: Install [Python](https://www.python.org/downloads/) – follow the instructions provided [here](https://docs.python.org/3/using/windows.html#windows-full) and **make sure to select ‘Add Python 3.x to PATH’**
 > * If you haven’t before: Download the latest [MicroPython source](https://github.com/micropython/micropython/tree/master) (press the green ‘<> Code’ button and select ‘Download ZIP’) and unzip it somewhere on your PC
 > * In File Explorer go to the micropython-master\tools\mpremote folder (in the location where you unzipped MicroPython)
@@ -192,10 +192,10 @@ The easiest way to install the software is by downloading the latest firmware as
 >   pip instal importlib_metadata
 >   ```
 > * *To back up user settings:*
->   * On your PC type `py mpremote.py fs cp :mapping.json mapping.json` **without pressing ENTER** (so not executing it yet)
+>   * On your PC type `py mpremote.py fs cp :data.json data.json` **without pressing ENTER** (so not executing it yet)
 > * *To restore user settings:*
->   * Copy your mapping.json file to the micropython-master\tools\mpremote folder
->   * On your PC type `py mpremote.py fs cp mapping.json :mapping.json` **without pressing ENTER** (so not executing it yet)
+>   * Copy your data.json file to the micropython-master\tools\mpremote folder
+>   * On your PC type `py mpremote.py fs cp data.json :data.json` **without pressing ENTER** (so not executing it yet)
 > * While you keep Cybo-Drummer’s TRIGGER button pressed:
 >   * Press RESET button on Cybo-Drummer
 >   * Press ENTER on your PC to start downloading (backing up) or uploading (restoring)

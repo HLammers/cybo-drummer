@@ -401,7 +401,7 @@ Use the input page to review or edit input port assignments, input device settin
 #### OUT (Output)
 Use the output page to review or edit output port assignments, output device setting, output trigger settings and output preset settings
 > [!TIP]
-> Output channel can be set at device level (OUT 2/4) or at trigger level (OUT 3/4). Set the device-level channel setting if all a device’s triggers use the same channel (typically assigned to different notes on the same channel). Set the trigger-level channel setting if each trigger uses a different midi channel. Trigger-level channel overrides device-level channel. If neither device-level, nor trigger-level channel is set, triggers are sent to channel 10.
+> Output channel can be set at device level (OUT 2/4) or at trigger level (OUT 3/4). Set the device-level channel setting if all a device’s triggers use the same channel (typically assigned to different notes on the same channel). Set the trigger-level channel setting if each trigger uses a different midi channel. Trigger-level channel overrides device-level channel. If neither device-level, nor trigger-level channel is set, triggers are sent to channel 10. The channel number set at device-level is used to send control data (program change, bank select).
 
 > [!TIP]
 > Output note values can be set at trigger level (OUT 3/4) and at preset level (OUT 4/4). The trigger-level setting is the default for each preset which maps to that trigger, while if a preset-level note is set, that overrules the note setting for that particular preset. This can be used to play tonally (for those drum computers or other MIDI instruments which support that), for example by assigning the same trigger to multiple toms on the input device, but set different notes to tune them differently. If neither trigger-level nor preset-level note is set, note number 60 (C4, middle C) is used.
@@ -427,6 +427,7 @@ Use the output page to review or edit output port assignments, output device set
 * Optionally set the channel (1 to 16) on which to send MIDI data to the selected output device
 * Set the channel for devices which receive all triggers on the same channel
 * Set the channel to ‘__’ for devices which receive different triggers on different channels
+* This is the channel at which control data (program change, bank select) is sent (if not specified it will be sent to channel 10)
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, channel can be set sending anything from that channel from a device connected to the set [MIDI learn port](#midi-learn-port).<br clear="right"/>
 

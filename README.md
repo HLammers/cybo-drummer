@@ -665,8 +665,8 @@ Use the settings page to adjust global settings, to backup or recover data or to
 
 ###### midi learn port
 * Set from which input port (1 to 6) to receive MIDI data to be used for MIDI learn
-###### default output volume
-* Set the default volume used when pressing the TRIGGER button
+###### default output velocity
+* Set the default velocity used when pressing the TRIGGER button
 ###### store back-up
 * Store all programs, device/trigger/preset definitions and settings to the back-up file
 ###### restore back-up

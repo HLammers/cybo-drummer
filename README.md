@@ -345,12 +345,14 @@ The program page is the first page that shows when powering up Cybo-Drummer. Use
 > If [MIDI learn](#midi-learn) is turned on, input device and input preset can be set to an already mapped device/preset by selecting the respective block and playing the trigger/note on your input device (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
 
 ###### device: trigger 1 to 4 - note off
-* Optionally set a note to be sent out to the preset, overwriting any preset or trigger level note settings
-* Set to ‘___’ to use the preset or trigger’s default note
-* Preset note overrides trigger note, [program note](#device-trigger-1-to-4--note) overrides both
-
-> [!TIP]
-> If [MIDI learn](#midi-learn) is turned on, note can be set by paying a note from a device connected to the set [MIDI learn port](#midi-learn-port).<br clear="right"/>
+* Optionally set whether and when to send note off messages (overwriting trigger-level note off settings):
+  * *____:* use trigger’s default setting
+  * *off:* disable sending note off messages (default)
+  * *pulse:* send a note off message immediately after sending a note on message
+  * *toggle:* send a note off message if triggered again (first trigger received sends a note on message, second trigger a note off message)
+  * *80 ms – 1000 ms:* send a note off message with a delay of 80 to 1000 miliseconds
+> [!NOTE]
+> The MIDI specification prescribes to always send note off messages, however most drum computers ignore them, so it is more efficiently not to send them. Turn on if you experience problems or for example if you’re triggering a synth pad instead of a percussive sound.<br clear="right"/>
 
 <img src="/screenshots/prg_4.png" align="right">
 
@@ -363,7 +365,7 @@ The program page is the first page that shows when powering up Cybo-Drummer. Use
 
 <img src="/screenshots/prg_5.png" align="right">
 
-##### PRG 4/5 – Program: Bank Select
+##### PRG 5/5 – Program: Bank Select
 ###### p1 to p6
 * Optionally set a bank select value (1 to 16,384) which will be sent to a device assigned to a particular port – select ‘_____’ to not send a bank select message
 * Bank select messages are sent on router program change
@@ -516,8 +518,12 @@ Use the output page to review or edit output port assignments, output device set
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, note can be set by paying a note from a device connected to the set [MIDI learn port](#midi-learn-port).
 
-###### send note off
-* Set to ‘off’ to disable sending note off / messages or to ‘on’ to force sending note off messages (default: off)
+###### note off
+* Set whether and when to send note off messages:
+  * *off:* disable sending note off messages (default)
+  * *pulse:* send a note off message immediately after sending a note on message
+  * *toggle:* send a note off message if triggered again (first trigger received sends a note on message, second trigger a note off message)
+  * *80 ms – 1000 ms:* send a note off message with a delay of 80 to 1000 miliseconds
 > [!NOTE]
 > The MIDI specification prescribes to always send note off messages, however most drum computers ignore them, so it is more efficiently not to send them. Turn on if you experience problems or for example if you’re triggering a synth pad instead of a percussive sound.<br clear="right"/>
 

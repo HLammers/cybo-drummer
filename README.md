@@ -694,9 +694,12 @@ My drum kit is a Fame Hybrid Pro, which is produced by 2Box and technically is a
 ### Output Device: Drumbrute
 This device is set up for the factory settings of the Arturia Drumbrute, but since the Drumbrute can’t store presets, that only means the default MIDI channel and default note mapping. There is only one factory preset for the Drumbrute.
 ### Output Device: Drumlogue
-This devise is set up for the factory settings of the Korg Drumlogue, with only one adjustment: the MIDI mode is set to multi-channel 7-2 (on the Drumlogue: SHIFT + GLOBAL &rarr; 7 &rarr; set CH to 7-2), so the Multi Engine can be played tonally. There are 64 Drumlogue presets, linked to the Drumlogue’s 64 factory kits.
+This device is set up for the factory settings of the Korg Drumlogue, with only one adjustment: the MIDI mode is set to multi-channel 7-2 (on the Drumlogue: SHIFT + GLOBAL &rarr; 7 &rarr; set CH to 7-2), so the Multi Engine can be played tonally. There are 64 Drumlogue presets, linked to the Drumlogue’s 64 factory kits.
+> [!CAUTION]
+> The Korg Drumlogue has a bug in the latest version of the firmware (version 1.2.0 – I haven’t tested earlier versions): it doesn’t respond to MIDI program change values 16, 32, 48, 64, etc., which should select the Drumlogue’s kits A16, B16, C16, D16, etc. (weirdly the Drumlogue starts program change values from 1, not 0). This means that the last position of each of the Drumlogue’s banks is not usable if it needs to be selectable by program change. Hopefully this gets fixed if Korg ever releases another update for the Drumlogue…
 ### Output Device: LXR-02
-Sonic Portions × Erica Synths LXR-02
+This device is set up for the first factory project of the Sonic Portions × Erica Synths LXR-02 (HrtlKits).
+The LXR-02 responds both to program change and bank select messages: Program change messages change patterns, bank select messages (MSB only, not mentioned in the user manual) change kits.
 ### Output Device: Volca Drum
 Korg Volca Drum
 ## Why in MicroPython?

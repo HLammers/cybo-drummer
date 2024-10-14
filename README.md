@@ -290,6 +290,7 @@ The program page is the first page that shows when powering up Cybo-Drummer. Use
 
 ##### PRG 1/5 – Program: Mapping
 ###### program
+* Select the active program
 * Select ‘[add new]’ (the value after the last existing program) to add a new program
 * Press the SEL/OPT button to show an options menu, turn the VAL/↔ knob to select an option and press the SEL/OPT button or the YES button to execute (or press the NO button to leave the options menu)<br clear="right"/>
 * Press the DEL button to delete the active program<img src="/images/hardware_menu.svg" align="right" width="300px" height="300px">
@@ -310,6 +311,46 @@ The program page is the first page that shows when powering up Cybo-Drummer. Use
 * Multiple output devices can be combined
 > [!IMPORTANT]
 > Output device 1 to 4 and output preset 1 to 4 are the output mapping for the above selected input preset. So, to map an input preset to an output preset, first select the input device and input preset, then assign the output devices and output presets. This is indicated by the orange bar between input device/preset and output devices/presets.<br clear="right"/>
+
+<img src="/screenshots/prg_2.png" align="right">
+
+##### PRG 2/5 – Program: Mapping Note
+###### program
+* Select the active program
+* See [program in PRG 1/5 – Program: Mapping](#program) for more details
+ 
+###### input device / input preset
+* Select the input device and input preset to to map one or more output presets to
+> [!TIP]
+> If [MIDI learn](#midi-learn) is turned on, input device and input preset can be set to an already mapped device/preset by selecting the respective block and playing the trigger/note on your input device (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
+
+###### device: trigger 1 to 4 - note
+* Optionally set a note to be sent out to the preset, overwriting any preset or trigger level note settings
+* Set to ‘___’ to use the preset or trigger’s default note
+* Preset note overrides trigger note, [program note](#device-trigger-1-to-4--note) overrides both
+
+> [!TIP]
+> If [MIDI learn](#midi-learn) is turned on, note can be set by paying a note from a device connected to the set [MIDI learn port](#midi-learn-port).<br clear="right"/>
+
+<img src="/screenshots/prg_3.png" align="right">
+
+##### PRG 3/5 – Program: Mapping Note Off
+###### program
+* Select the active program
+* See [program in PRG 1/5 – Program: Mapping](#program) for more details
+ 
+###### input device / input preset
+* Select the input device and input preset to to map one or more output presets to
+> [!TIP]
+> If [MIDI learn](#midi-learn) is turned on, input device and input preset can be set to an already mapped device/preset by selecting the respective block and playing the trigger/note on your input device (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
+
+###### device: trigger 1 to 4 - note off
+* Optionally set a note to be sent out to the preset, overwriting any preset or trigger level note settings
+* Set to ‘___’ to use the preset or trigger’s default note
+* Preset note overrides trigger note, [program note](#device-trigger-1-to-4--note) overrides both
+
+> [!TIP]
+> If [MIDI learn](#midi-learn) is turned on, note can be set by paying a note from a device connected to the set [MIDI learn port](#midi-learn-port).<br clear="right"/>
 
 <img src="/screenshots/prg_4.png" align="right">
 
@@ -405,6 +446,7 @@ Use the output page to review or edit output port assignments, output device set
 
 > [!TIP]
 > Output note values can be set at trigger level (OUT 3/4) and at preset level (OUT 4/4). The trigger-level setting is the default for each preset which maps to that trigger, while if a preset-level note is set, that overrules the note setting for that particular preset. This can be used to play tonally (for those drum computers or other MIDI instruments which support that), for example by assigning the same trigger to multiple toms on the input device, but set different notes to tune them differently. If neither trigger-level nor preset-level note is set, note number 60 (C4, middle C) is used.
+> Output note values [can be overwritten in a program definitions](#device-trigger-1-to-4--note).
 
 <img src="/screenshots/out_1.png" align="right">
 
@@ -468,8 +510,9 @@ Use the output page to review or edit output port assignments, output device set
 > If [MIDI learn](#midi-learn) is turned on, channel can be set sending anything from that channel from a device connected to the set [MIDI learn port](#midi-learn-port).
 ###### note
 * Optionally set the note to be sent out by the trigger
-* Set to ‘___’ to use the trigger-level default notes
-* Preset note overrides trigger note
+* Set to ‘___’ to use the trigger-level default note
+* Preset note overrides trigger note, [program note](#device-trigger-1-to-4--note) overrides both
+
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, note can be set by paying a note from a device connected to the set [MIDI learn port](#midi-learn-port).
 
@@ -537,8 +580,8 @@ Use the output page to review or edit output port assignments, output device set
 * Select up to 6 output triggers (belonging to the selected output device) which will be triggered by the selected output preset
 ###### note (1 to 6)
 * Optionally set a note to be sent out to the preset
-* Set to ‘___’ to use the preset-level default notes
-* Preset note overrides trigger note
+* Set to ‘___’ to use the preset-level default note
+* Preset note overrides trigger note, [program note](#device-trigger-1-to-4--note) overrides both
 
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, note can be set by paying a note from a device connected to the set [MIDI learn port](#midi-learn-port).

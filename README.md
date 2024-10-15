@@ -681,10 +681,10 @@ This device is set up for the factory settings of the Korg Drumlogue, with only 
 > The Korg Drumlogue has a bug in the latest version of the firmware (version 1.2.0 – I haven’t tested earlier versions): it doesn’t respond to MIDI program change values 16, 32, 48, 64, etc., which should select the Drumlogue’s kits A16, B16, C16, D16, etc. (weirdly the Drumlogue starts program change values from 1, not 0). This means that the last position of each of the Drumlogue’s banks is not usable if it needs to be selectable by program change. Hopefully this gets fixed if Korg ever releases another update for the Drumlogue…
 ### Output Device: LXR-02
 This device is set up for the first factory project of the Sonic Portions × Erica Synths LXR-02 (HrtlKits). It assumes the global MIDI channel to be set to the default 0 (on the LXR-02: SHIFT + CONFIG &rarr; set CH to 0) and the LXR-02 is set to receive program change, control change and note messages (on the LXR-02: SHIFT + CONFIG &rarr; turn DATA knob to scroll to second page &rarr; set MRX to ‘all’ or ‘PCN’).
-> [NOTE!]
+> [!NOTE]
 > The LXR-02 responds both to program change and bank select messages: program change messages change patterns, bank select messages (MSB only, not mentioned in the user manual) change kits. Kits are saved per project and it isn’t possible to change the project via MIDI.
 
-> [TIP!]
+> [!TIP]
 > Best is to prepare a special project to use LXR-02 effectively with Cybo-Drummer:
 > * Initiate a new project: press LOAD + PROJECT &rarr; select an EMPTY project &rarr; press DATA knob
 > * Set kit change mode to ‘off’ to separate kits from patterns: press SHIFT + CONFIG &rarr; turn DATA knob to scroll to third page &rarr; set KCM to ‘off’

@@ -680,8 +680,28 @@ This device is set up for the factory settings of the Korg Drumlogue, with only 
 > [!CAUTION]
 > The Korg Drumlogue has a bug in the latest version of the firmware (version 1.2.0 – I haven’t tested earlier versions): it doesn’t respond to MIDI program change values 16, 32, 48, 64, etc., which should select the Drumlogue’s kits A16, B16, C16, D16, etc. (weirdly the Drumlogue starts program change values from 1, not 0). This means that the last position of each of the Drumlogue’s banks is not usable if it needs to be selectable by program change. Hopefully this gets fixed if Korg ever releases another update for the Drumlogue…
 ### Output Device: LXR-02
-This device is set up for the first factory project of the Sonic Portions × Erica Synths LXR-02 (HrtlKits).
-The LXR-02 responds both to program change and bank select messages: Program change messages change patterns, bank select messages (MSB only, not mentioned in the user manual) change kits.
+This device is set up for the first factory project of the Sonic Portions × Erica Synths LXR-02 (HrtlKits). It assumes the global MIDI channel to be set to the default 0 (on the LXR-02: SHIFT + CONFIG &rarr; set CH to 0) and the LXR-02 is set to receive program change, control change and note messages (on the LXR-02: SHIFT + CONFIG &rarr; turn DATA knob to scroll to second page &rarr; set MRX to ‘all’ or ‘PCN’).
+> [NOTE!]
+> The LXR-02 responds both to program change and bank select messages: program change messages change patterns, bank select messages (MSB only, not mentioned in the user manual) change kits. Kits are saved per project and it isn’t possible to change the project via MIDI.
+
+> [TIP!]
+> Best is to prepare a special project to use LXR-02 effectively with Cybo-Drummer:
+> * Initiate a new project: press LOAD + PROJECT &rarr; select an EMPTY project &rarr; press DATA knob
+> * Set kit change mode to ‘off’ to separate kits from patterns: press SHIFT + CONFIG &rarr; turn DATA knob to scroll to third page &rarr; set KCM to ‘off’
+> * Set Voices to MIDI channels 1 to 7 in pattern 1 (the default pattern after initiating a new project):
+>   * Press VOICE &rarr; press MIX &rarr; turn DATA knob to scroll to second page
+>   * Press DRUM1 button (below sliders) &rarr; set CH to 1
+>   * Press DRUM2 button (below sliders) &rarr; set CH to 2
+>   * Press DRUM3 button (below sliders) &rarr; set CH to 3
+>   * Press SNARE button (below sliders) &rarr; set CH to 4
+>   * Press CLP/CYM button (below sliders) &rarr; set CH to 5
+>   * Press CL HH button (below sliders) &rarr; set CH to 6
+>   * Press OP HH button (below sliders) &rarr; set CH to 7
+> * Save project:
+>   * Press SAVE + PROJECT &rarr; press DATA knob
+>   * Turn DATA knob to select ‘Y’ &rarr; press DATA knob
+>   * Change name: Turn DATA knob to select character to change &rarr; press DATA knob &rarr; turn DATA knob to select character &rarr; press DATA knob to confirm; &rarr; finish editing by selecting ‘ok’ (turn DATA knob clockwise until it is selected) and pressing DATA knob
+> * Turn off the LXR-02, take out the SD card and use a PC to copy the kits you’d like to use into the newly created project folder
 ### Output Device: Volca Drum
 Korg Volca Drum
 ## Why in MicroPython?

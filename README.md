@@ -273,10 +273,12 @@ To change the pages and sub-pages, keep the PAGE button pressed and turn the VAL
 
 > [!TIP]
 > To ducplicate the active program, make a change and save without replacing, this creates a new program directly after the active program.<br clear="right"/>
+
 <img src="/images/hardware_trigger.svg" align="right" width="300px" height="300px">
 
 ### Trigger presets
 Short pressing the TRIGGER button triggers the last selected output trigger preset (for testing purposes). Long press the TRIGGER button to show a trigger preset selection pop-up. Keep the TRIGGER button pressed and turn the VAL/↔ knob to change the selected output trigger preset.<br clear="right"/>
+
 <img src="/images/hardware_confirmation.svg" align="right" width="300px" height="300px">
 
 ### Confirmation Pop-Ups
@@ -318,17 +320,14 @@ The program page is the first page that shows when powering up Cybo-Drummer. Use
 ###### program
 * Select the active program
 * See [program in PRG 1/5 – Program: Mapping](#program) for more details
- 
 ###### input device / input preset
 * Select the input device and input preset to to map one or more output presets to
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, input device and input preset can be set to an already mapped device/preset by selecting the respective block and playing the trigger/note on your input device (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
-
 ###### device: trigger 1 to 4 - note
 * Optionally set a note to be sent out to the preset, overwriting any preset or trigger level note settings
 * Set to ‘___’ to use the preset or trigger’s default note
 * Preset note overrides trigger note, [program note](#device-trigger-1-to-4--note) overrides both
-
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, note can be set by paying a note from a device connected to the set [MIDI learn port](#midi-learn-port).<br clear="right"/>
 
@@ -338,12 +337,10 @@ The program page is the first page that shows when powering up Cybo-Drummer. Use
 ###### program
 * Select the active program
 * See [program in PRG 1/5 – Program: Mapping](#program) for more details
- 
 ###### input device / input preset
 * Select the input device and input preset to to map one or more output presets to
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, input device and input preset can be set to an already mapped device/preset by selecting the respective block and playing the trigger/note on your input device (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
-
 ###### device: trigger 1 to 4 - note off
 * Optionally set whether and when to send note off messages (overwriting trigger-level note off settings):
   * *____:* use trigger’s default setting
@@ -358,20 +355,25 @@ The program page is the first page that shows when powering up Cybo-Drummer. Use
 
 ##### PRG 4/5 – Program: Program Change
 ###### p1 to p6
-* Optionally set a program change value (1 to 128) which will be sent to a device assigned to a particular port – select ‘___’ to not send a program change message
-* Program change messages are sent on router program change
+* Optionally set a program change value (1 to 128) which will be sent to a device assigned to a particular port
+* Select ‘___’ to not send a program change message
+* Program change messages are sent on router program change (after sending bank select, if assigned)
 > [!NOTE]
 > Program change data is stored by device, so if a device is assigned to a different port, it will remain linked to that device, not the port.<br clear="right"/>
 
 <img src="/screenshots/prg_5.png" align="right">
 
 ##### PRG 5/5 – Program: Bank Select
-###### p1 to p6
-* Optionally set a bank select value (1 to 16,384) which will be sent to a device assigned to a particular port – select ‘_____’ to not send a bank select message
-* Bank select messages are sent on router program change
+###### p1 to p6 msb / lsb
+* Optionally set a bank select value (1 to 16,384) which will be sent to a device assigned to a particular port
+* Bank select uses two MIDI CC messages (MSB on CC 0 and LSB on CC 32, both allowing values 0 to 127) to allow more than 128 values: a ‘most significant byte’ (msb) or coarse select and a ‘least significant byte’ or fine select
+* Select ‘___’ to not send a bank select message – if LSB is set to a value and MSB is not, only LSB is sent (and vice versa)
+* Bank select messages are sent on router program change (before sending program change, if assigned)
 > [!NOTE]
-> Bank select data is stored by device, so if a device is assigned to a different port, it will remain linked to that device, not the port.<br clear="right"/>
+> Bank select data is stored by device, so if a device is assigned to a different port, it will remain linked to that device, not the port.
 
+> [!TIP]
+> Cybo-Drummer uses raw 0 to 127 MSB and LSB values for bank select, because MIDI devices implement bank select in many different ways, including in cases using only one of the two MIDI CC messages. Refer to your device’s manual and MIDI specifications for details on how to set bank select (and if it is used). If bank select is used to set a single number in the range 0 to 16,383 or 1 to 16,384, that number would typically be calculated as MSB × 128 + LSB or MSB × 128 + LSB + 1.<br clear="right"/>
 #### IN (Input)
 Use the input page to review or edit input port assignments, input device setting, input trigger settings and input preset settings.
 
@@ -382,7 +384,6 @@ Use the input page to review or edit input port assignments, input device settin
 * Assign input devices to each of the 6 MIDI in ports
 > [!CAUTION]
 > Cybo-Drummer does require an input channel to be specified to work.
-
 ###### p1 to p6 channel
 * Set the channel (1 to 16) on which to receive MIDI data from the selected input device
 > [!TIP]
@@ -398,7 +399,6 @@ Use the input page to review or edit input port assignments, input device settin
 * Press the DEL button to delete the device
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, input device can be set to an already mapped device by playing a trigger/note on your input device (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
-
 ###### input trigger
 * Select the input trigger (of the selected input device) you want to set up or edit
 * Select ‘[add new]’ (the value after the last existing trigger) to add a new trigger
@@ -428,19 +428,16 @@ Use the input page to review or edit input port assignments, input device settin
 * Press the DEL button to delete the preset
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, input device and input preset can be set to an already mapped device/preset by selecting the respective block and playing the trigger/note on your input device (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
-
 ###### pedal cc min / pedal cc max
 * Optionally set a minimum and maximum [pedal CC](#pedal-cc) value (0 to 127) between which the preset will be triggered
 * Many electronic drum kits send the openness of the hi-hat foot pedal using CC 5, which needs to be used to distinguish between open and closed hi-hat triggers
 * Set pedal CC min/max to ‘__’ if not relevant for the selected trigger (that sets the minimum to 0 and/or the maximum to 127)
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, pedal CC min/max can be set by sending CC messages from a device connected to the set [MIDI learn port](#midi-learn-port).
-
 ###### trigger 1 to 6
 * Select up to 6 input triggers (belonging to the selected input device) which will trigger the selected input preset
 > [!IMPORTANT]
 > Pedal CC min/max and input trigger 1 to 6 are the input trigger mapping for the above selected input preset. So, to map a trigger to a preset, first select the input device and input preset, then assign the CC range and triggers. This is indicated by the orange bar between input device/preset and pedal CC min/max.<br clear="right"/>
-
 #### OUT (Output)
 Use the output page to review or edit output port assignments, output device setting, output trigger settings and output preset settings
 > [!TIP]
@@ -466,15 +463,13 @@ Use the output page to review or edit output port assignments, output device set
 * Press the DEL button to delete the device
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, output device can be set to an already mapped device by playing the trigger/note on your input device that is mapped to that output device (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
-
 ###### channel
 * Optionally set the channel (1 to 16) on which to send MIDI data to the selected output device
 * Set the channel for devices which receive all triggers on the same channel
 * Set the channel to ‘__’ for devices which receive different triggers on different channels
 * This is the channel at which control data (program change, bank select) is sent (if not specified it will be sent to channel 10)
 > [!TIP]
-> If [MIDI learn](#midi-learn) is turned on, channel can be set sending anything from that channel from a device connected to the set [MIDI learn port](#midi-learn-port).<br clear="right"/>
-
+> If [MIDI learn](#midi-learn) is turned on, channel can be set sending anything from that channel from a device connected to the set [MIDI learn port](#midi-learn-port).
 ###### 0 velocity as note off
 * Set to ‘on’ to send note on messages with velocity 0 instead of note off messages or ‘off’ to force the use of note off messages (default: on)
 >[!NOTE]
@@ -494,13 +489,11 @@ Use the output page to review or edit output port assignments, output device set
 * Select the output device for which you want to add or edit an output trigger
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, output device can be set to an already mapped device by playing the trigger/note on your input device that is mapped to that output device (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
- 
 ###### output trigger
 * Select the output trigger you want to set up or edit
 * Select ‘[add new]’ (the value after the last existing trigger) to add a new trigger
 * Press the SEL/OPT button to show a [text edit pop-up](#text-edit-pop-up) to rename the trigger
 * Press the DEL button to delete the trigger
-
 ###### channel
 * Optionally set the channel (1 to 16) on which to send MIDI data to the selected output device
 * Set the channel for devices which receive different triggers on different channels
@@ -514,10 +507,8 @@ Use the output page to review or edit output port assignments, output device set
 * Optionally set the note to be sent out by the trigger
 * Set to ‘___’ to use the trigger-level default note
 * Preset note overrides trigger note, [program note](#device-trigger-1-to-4--note) overrides both
-
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, note can be set by paying a note from a device connected to the set [MIDI learn port](#midi-learn-port).
-
 ###### note off
 * Set whether and when to send note off messages:
   * *off:* disable sending note off messages (default)
@@ -573,7 +564,6 @@ Use the output page to review or edit output port assignments, output device set
 * Select the output device for which you want to add or edit an output preset
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, output device can be set to an already mapped device by playing the trigger/note on your input device that is mapped to that output device (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
- 
 ###### output preset
 * Select the output preset you want to set up or edit
 * Select ‘[add new]’ (the value after the last existing preset) to add a new preset
@@ -581,20 +571,17 @@ Use the output page to review or edit output port assignments, output device set
 * Press the DEL button to delete the preset
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, output preset can be set to an already mapped preset by playing the trigger/note on your input device that is mapped to the output preset (please note that this is an exception where MIDI learn is not listening to the set MIDI learn port).
-
 ###### trigger 1 to 6
 * Select up to 6 output triggers (belonging to the selected output device) which will be triggered by the selected output preset
 ###### note (1 to 6)
 * Optionally set a note to be sent out to the preset
 * Set to ‘___’ to use the preset-level default note
 * Preset note overrides trigger note, [program note](#device-trigger-1-to-4--note) overrides both
-
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, note can be set by paying a note from a device connected to the set [MIDI learn port](#midi-learn-port).
 
 > [!IMPORTANT]
 > Output trigger 1 to 6 and note (1 to 6) are the output trigger mapping for the above selected output preset. So, to map a trigger to a preset, first select the output device and output preset, then assign the triggers. This is indicated by the orange bar between output device/preset and trigger 1 / note.<br clear="right"/>
-
 #### MON (Monitor)
 Use the monitor page to monitor the router, MIDI data coming in or MIDI data going out.
 
@@ -629,10 +616,8 @@ Use the monitor page to monitor the router, MIDI data coming in or MIDI data goi
   * *MessageData* is the name of the MIDI message (for example ‘NoteOn’)
   * *data* is one or two data values (for example for note on or note off: note and velocity)
   * *[HH HH HH]* is the raw MIDI message in hexadecimal format
-
 > [!NOTE]
 > MIDI clock data and active sensing are filtered out by the monitor and won’t show.<br clear="right"/>
-
 #### SET (Settings)
 Use the settings page to adjust global settings, to backup or recover data or to find the firmware version number.
 
@@ -646,7 +631,6 @@ Use the settings page to adjust global settings, to backup or recover data or to
 
 > [!NOTE]
 > SysEx (system exclusive) data is filtered out by the router and will not be sent to the MIDI thru output port.
-
 ###### input port / input channel
 * Set from which input port (1 to 6) and channel (1 to 16) to receive MIDI data to be sent to the MIDI thru output port
 ###### output port / output channel
@@ -662,7 +646,6 @@ Use the settings page to adjust global settings, to backup or recover data or to
 
 > [!TIP]
 > Connect the MIDI out of a drum computer to MIDI learn port and press the trigger button on it for each sound to easily assign the drum triggers.
-
 ###### midi learn port
 * Set from which input port (1 to 6) to receive MIDI data to be used for MIDI learn
 ###### default output velocity
@@ -686,7 +669,6 @@ Turn the NAV/↕ knob to change navigate by row and the VAL/↔ knob to navigate
 Press the DEL button to remove the last character (backspace).
 
 Press the YES button to confirm the changes or the NO button to cancel renaming.<br clear="right"/>
-
 ## About the Factory Presets
 Since Cybo-Drummer doesn’t make any sound on its own, but merely routes signals from one device to another, it isn’t possible to make meaningfull factory presets. The presets which are included reflect a baseline for my personal set-up, but can be usefull as examples.
 ### Input Device: 2Box
@@ -709,7 +691,6 @@ I spent a lot of time optimizing the code (for speed and memory usage) and it tu
 
 To keep latency to a minimum the second core is dedicated to MIDI handling, while the primary core takes care of the graphic user interface and button and rotary encoder input. In that way the second core runs a light loop doing only time-sensitive MIDI routing, while the primary core does all the heavy stuff.
 ## Known Issues
-- [ ] Trigger doesn’t send note off, even if send note off is enabled
 - [ ] Add program doesn’t check if maximum number of programs (255) is reached
 - [ ] Add device doesn’t check if maximum number of devices (4,096) is reached
 - [ ] Add preset doesn’t check if maximum number of presets (4,096) is reached

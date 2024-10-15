@@ -701,7 +701,8 @@ This device is set up for the first factory project of the Sonic Portions × Eri
 >   * Press SAVE + PROJECT &rarr; press DATA knob
 >   * Turn DATA knob to select ‘Y’ &rarr; press DATA knob
 >   * Change name: Turn DATA knob to select character to change &rarr; press DATA knob &rarr; turn DATA knob to select character &rarr; press DATA knob to confirm; &rarr; finish editing by selecting ‘ok’ (turn DATA knob clockwise until it is selected) and pressing DATA knob
-> * Turn off the LXR-02, take out the SD card and use a PC to copy the kits you’d like to use into the newly created project folder
+> * Turn off the LXR-02, take out the SD card and use a PC to copy the kits (files with .SND extension) you’d like to use into the newly created project folder (called PROJ##, where ## is the project number) and rename them so they start with ‘01-’ to ‘63-’
+> * Put the SD card back into the LXR-02 and load the project: press LOAD + PROJECT &rarr; select the project &rarr; press DATA knob
 ### Output Device: Volca Drum
 Korg Volca Drum
 ## Why in MicroPython?

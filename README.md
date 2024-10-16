@@ -329,6 +329,9 @@ The program page is the first page that shows when powering up Cybo-Drummer. Use
 * Set to ‘___’ to use the preset or trigger’s default note
 * Preset note overrides trigger note, [program note](#device-trigger-1-to-4--note) overrides both
 > [!TIP]
+> If a device doesn’t respond to the notes your assigned, try one ocatve lower or one ocatve higher. There is no official MIDI standard for octave numbers. Cybo-Drummer follows the Scientific Pitch Notiation standard, which defines the middle C as C4, so in Cybo-Drummer MIDI note 60 is C4, but some manufacturers define MIDI note as C3 and some as C5.
+
+> [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, note can be set by paying a note from a device connected to the set [MIDI learn port](#midi-learn-port).<br clear="right"/>
 
 <img src="/screenshots/prg_3.png" align="right">
@@ -382,6 +385,9 @@ Use the input page to review or edit input port assignments, input device settin
 ##### IN 1/3 – Input Ports
 ###### p1 to p6 device
 * Assign input devices to each of the 6 MIDI in ports
+> [!NOTE]
+> If you assign a device which is already assigned to a different port, that assignment will not be stored until you unassign it from the other port.
+
 > [!CAUTION]
 > Cybo-Drummer does require an input channel to be specified to work.
 ###### p1 to p6 channel
@@ -406,6 +412,8 @@ Use the input page to review or edit input port assignments, input device settin
 * Press the DEL button to delete the trigger
 ###### note
 * Select the note to which the trigger responds
+> [!TIP]
+> If a device doesn’t respond to the notes your assigned, try one ocatve lower or one ocatve higher. There is no official MIDI standard for octave numbers. Cybo-Drummer follows the Scientific Pitch Notiation standard, which defines the middle C as C4, so in Cybo-Drummer MIDI note 60 is C4, but some manufacturers define MIDI note as C3 and some as C5.
 ###### pedal cc
 * Optionally set a CC number (1 to 128) on which the trigger can be made dependent
 * Many electronic drum kits send the openness of the hi-hat foot pedal using CC 5, which needs to be used to distinguish between open and closed hi-hat triggers
@@ -452,6 +460,8 @@ Use the output page to review or edit output port assignments, output device set
 ##### OUT 1/4 – Output Ports
 ###### p1 to p6 device 
 * Assign output devices to each of the 6 MIDI out ports<br clear="right"/><br/>
+> [!NOTE]
+> If you assign a device which is already assigned to a different port, that assignment will not be stored until you unassign it from the other port.
 
 <img src="/screenshots/out_2.png" align="right">
 
@@ -507,6 +517,9 @@ Use the output page to review or edit output port assignments, output device set
 * Optionally set the note to be sent out by the trigger
 * Set to ‘___’ to use the trigger-level default note
 * Preset note overrides trigger note, [program note](#device-trigger-1-to-4--note) overrides both
+> [!TIP]
+> If a device doesn’t respond to the notes your assigned, try one ocatve lower or one ocatve higher. There is no official MIDI standard for octave numbers. Cybo-Drummer follows the Scientific Pitch Notiation standard, which defines the middle C as C4, so in Cybo-Drummer MIDI note 60 is C4, but some manufacturers define MIDI note as C3 and some as C5.
+
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, note can be set by paying a note from a device connected to the set [MIDI learn port](#midi-learn-port).
 ###### note off
@@ -577,6 +590,9 @@ Use the output page to review or edit output port assignments, output device set
 * Optionally set a note to be sent out to the preset
 * Set to ‘___’ to use the preset-level default note
 * Preset note overrides trigger note, [program note](#device-trigger-1-to-4--note) overrides both
+> [!TIP]
+> If a device doesn’t respond to the notes your assigned, try one ocatve lower or one ocatve higher. There is no official MIDI standard for octave numbers. Cybo-Drummer follows the Scientific Pitch Notiation standard, which defines the middle C as C4, so in Cybo-Drummer MIDI note 60 is C4, but some manufacturers define MIDI note as C3 and some as C5.
+
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, note can be set by paying a note from a device connected to the set [MIDI learn port](#midi-learn-port).
 

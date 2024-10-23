@@ -735,7 +735,8 @@ To keep latency to a minimum the second core is dedicated to MIDI handling, whil
 - [ ] There is currently no easy way to download and upload user settings (including user-defined programs) when updating the firmware for users who are not accustomed to using Python
 - [ ] Program change and bank select assume the output device interprets value 0 as 1, but that’s not always the case (resulting in the value on Cybo-Drummer’s screen to be 1 off compared to what the output device shows – to solve this a device-level setting needs to be added to set the device’s behaviour
 ## Ideas for Features and Improvements to be Added
-- [ ] Change behaviour of TRIGGER and PAGE buttons from keeping pressed to toggle on/off, so it is easier to use with one hand
+- [ ] Change behaviour of the PAGE button from keeping pressed to toggle on/off, so it is easier to use with one hand – the keep pressed and turn knop event could be reused for program change, to make that available from everywhere
+- [ ] Change the value editing and storing behaviour from processing every change immediately to having to confirm a change with a click – that would make the user interface much more responsive, especially if many rotary encoder steps are involved (the way I imagine it: the moment you turn the VALUE knob the text colour changes to indicate the value has not changed yet; once you press the VALUE knob or you navigate away to another input field, the value gets saved and takes effect and the text colour changes back)
 - [ ] Improved hardware, including proper front panel and 3d printable case
 - [ ] Add USB MIDI input/output (USB MIDI support only became available in MicroPython 1.23, which was released at end of May 2024, which is after I developed the MIDI handling side of Cybo-Drummer)
 - [ ] Add MIDI clock distribution

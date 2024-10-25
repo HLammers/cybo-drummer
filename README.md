@@ -704,15 +704,15 @@ This device is set up for the first factory project of the Sonic Portions × Eri
 > Best is to prepare a special project to use LXR-02 effectively with Cybo-Drummer:
 > * Initiate a new project: press LOAD + PROJECT &rarr; select an EMPTY project &rarr; press DATA knob
 > * Set kit change mode to ‘off’ to separate kits from patterns: press SHIFT + CONFIG &rarr; turn DATA knob to scroll to third page &rarr; set KCM to ‘off’
-> * Set Voices to MIDI channels 1 to 7 in pattern 1 (the default pattern after initiating a new project):
+> * In pattern 1 (the default pattern after initiating a new project), assign voices to MIDI channels 1 to 7 and set each voice to respond any note (allowing to tune it from Cybo-Drummer or to play it tonalically):
 >   * Press VOICE &rarr; press MIX &rarr; turn DATA knob to scroll to second page
->   * Press DRUM1 button (below sliders) &rarr; set CH to 1
->   * Press DRUM2 button (below sliders) &rarr; set CH to 2
->   * Press DRUM3 button (below sliders) &rarr; set CH to 3
->   * Press SNARE button (below sliders) &rarr; set CH to 4
->   * Press CLP/CYM button (below sliders) &rarr; set CH to 5
->   * Press CL HH button (below sliders) &rarr; set CH to 6
->   * Press OP HH button (below sliders) &rarr; set CH to 7
+>   * Press DRUM1 button (below sliders) &rarr; set CH to 1 and set NTE to ‘any’
+>   * Press DRUM2 button (below sliders) &rarr; set CH to 2 and set NTE to ‘any’
+>   * Press DRUM3 button (below sliders) &rarr; set CH to 3 and set NTE to ‘any’
+>   * Press SNARE button (below sliders) &rarr; set CH to 4 and set NTE to ‘any’
+>   * Press CLP/CYM button (below sliders) &rarr; set CH to 5 and set NTE to ‘any’
+>   * Press CL HH button (below sliders) &rarr; set CH to 6 and set NTE to ‘any’
+>   * Press OP HH button (below sliders) &rarr; set CH to 7 and set NTE to ‘any’
 > * Save project:
 >   * Press SAVE + PROJECT &rarr; press DATA knob
 >   * Turn DATA knob to select ‘Y’ &rarr; press DATA knob

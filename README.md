@@ -168,8 +168,8 @@ The easiest way to install the software is by downloading the latest firmware as
 > [!NOTE]
 > Cybo-Drummer offers a couple of key combinations specifically for debugging and firmware upload purposes:\
 > **RESET**: resets Cybo-Drummer\
-> **RESET &rarr; TRIGGER**: avoids starting Cybo-Drummer’s main loops (the user interface and the router) and allow a PC to interact over USB – press the RESET button and wait for the LED on the Raspberry Pi Pico to turn on; in the 1 second the LED is on, press and keep the TRIGGER button until the PC made a connection\
-> **RESET &rarr; TRIGGER + PAGE**: (alternative to BOOTSEL + RESET) start bootloader (show Cybo-Drummer as drive called RPI-RP2 on your PC for uploading firmware) – press the RESET button and wait for the LED on the Raspberry Pi Pico to turn on; in the 1 second the LED is on, press and keep the TRIGGER and PAGE buttons pressed until the RPI-RP2 drive appears on your PC
+> **RESET + TRIGGER**: avoids starting Cybo-Drummer’s main loops (the user interface and the router) and allows a PC to interact over USB – press the RESET button while keeping the TRIGGER button pressed until the PC made a connection (after the Raspberry Pi Pico’s LED flashed)\
+> **RESET + TRIGGER + PAGE**: (alternative to BOOTSEL + RESET) start bootloader (show Cybo-Drummer as drive called RPI-RP2 on your PC for uploading firmware) – press the RESET while keeping the TRIGGER and PAGE buttons pressed until the RPI-RP2 drive appears on your PC (after the Raspberry Pi Pico’s LED flashed)
 #### Uploading Firmware
 * Back up your user settings (see warning box below)
 * Download the latest [firmware release](releases/) (.uf2 file)

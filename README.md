@@ -181,10 +181,10 @@ The easiest way to install the software is by downloading the latest firmware as
 * Restore your user settings (see warning box below)
 > [!WARNING]
 > ***Uploading new firmware might delete your user settings (including user-defined programs) and reinstate default values!***
-> User settings are stored internally in a file called data.json. Currently the easiest way To back-up (download) or restore (upload) the file is by following these steps (assuming you’re using a Windows PC):
+> User settings are stored internally in a file folder called data_files. Currently the easiest way To back-up (download) or restore (upload) the file is by following these steps (assuming you’re using a Windows PC):
 > * If you haven’t before: Install [Python](https://www.python.org/downloads/) – follow the instructions provided [here](https://docs.python.org/3/using/windows.html#windows-full) and **make sure to select ‘Add Python 3.x to PATH’**
-> * If you haven’t before: Download the latest [MicroPython source](https://github.com/micropython/micropython/tree/master) (press the green ‘<> Code’ button and select ‘Download ZIP’) and unzip it somewhere on your PC
-> * In File Explorer go to the micropython-master\tools\mpremote folder (in the location where you unzipped MicroPython)
+> * If you haven’t before: Download the source code of the latest [MicroPython release]([https://github.com/micropython/micropython/tree/master](https://github.com/micropython/micropython/releases). (typically the zip version – currently I’m using version 1.24.0) and unzip it somewhere on your PC
+> * In File Explorer go to the micropython-1.24.0\tools\mpremote folder (in the location where you unzipped MicroPython)
 > * Right click somewhere in the folder (not on a file) and from the context menu select ‘Open in Terminal’
 > * If you do it for the first time: type the following to install required Python modules:
 >   ```
@@ -192,17 +192,17 @@ The easiest way to install the software is by downloading the latest firmware as
 >   pip instal importlib_metadata
 >   ```
 > * *To back up user settings:*
->   * On your PC type `py mpremote.py fs cp :data.json data.json` **without pressing ENTER** (so not executing it yet)
+>   * On your PC type `py mpremote.py fs cp -r :data_files/ .` **without pressing ENTER** (so not executing it yet)
 > * *To restore user settings:*
->   * Copy your data.json file to the micropython-master\tools\mpremote folder
->   * On your PC type `py mpremote.py fs cp data.json :data.json` **without pressing ENTER** (so not executing it yet)
+>   * Copy your data_files to the micropython-1.24.0\tools\mpremote folder
+>   * On your PC type `py mpremote.py fs cp -r data_files/ :` **without pressing ENTER** (so not executing it yet)
 > * While you keep Cybo-Drummer’s TRIGGER button pressed:
 >   * Press RESET button on Cybo-Drummer
 >   * Press ENTER on your PC to start downloading (backing up) or uploading (restoring)
 #### Running From Source
 It is possible to run Cybo-Drummer from source by uploading the content from the [src folder](src/) to the Raspberry Pi Pico running [stock MicroPython](https://micropython.org/download/RPI_PICO/).
 
-Keep in mind that when running from source (instead of frozen into firmware), Cybo-Drummer takes more time to start up and screen refreshing . To resolve this while playing around with the code it is also possible to freeze only part of the source code, following the instructions under [building firmware from source](#building-firmware-from-source).
+Keep in mind that when running from source (instead of frozen into firmware), Cybo-Drummer takes more time to start up and screen refreshing. To resolve this while playing around with the code it is also possible to freeze only part of the source code, following the instructions under [building firmware from source](#building-firmware-from-source).
 #### Building Firmware From Source
 So far I haven’t found any way to build MicroPython on a Windows PC, only on a device running Debian Linux, so I’m using a Raspberry Pi 400 for this purpose, but any Raspberry Pi 4 or 5 running Raspberry OS will do.
 

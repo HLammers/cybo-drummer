@@ -172,7 +172,7 @@ The easiest way to install the software is by downloading the latest firmware as
 > **RESET + TRIGGER + PAGE**: (alternative to BOOTSEL + RESET) start bootloader (show Cybo-Drummer as drive called RPI-RP2 on your PC for uploading firmware) – press the RESET while keeping the TRIGGER and PAGE buttons pressed until the RPI-RP2 drive appears on your PC (after the Raspberry Pi Pico’s LED flashed)
 #### Uploading Firmware
 * Back up your user settings (see warning box below)
-* Download the latest [firmware release](releases/) (.uf2 file)
+* Download the [latest firmware release](releases/) (.uf2 file)
 * Connect Cybo-Drummer with a USB cable to your PC of choice (Windows/Linux/MacOS)
 * Do one of the following to make the Cybo-Drummer appear as a drive called RPI-RP2 on your PC:
   * Press the RESET button and wait for the LED on the Raspberry Pi Pico to turn on; in the 1 second the LED is on, press and keep the TRIGGER and PAGE buttons pressed until the RPI-RP2 drive appears on your PC
@@ -183,7 +183,7 @@ The easiest way to install the software is by downloading the latest firmware as
 > ***Uploading new firmware might delete your user settings (including user-defined programs) and reinstate default values!***
 > User settings are stored internally in a file folder called data_files. Currently the easiest way To back-up (download) or restore (upload) the file is by following these steps (assuming you’re using a Windows PC):
 > * If you haven’t before: Install [Python](https://www.python.org/downloads/) – follow the instructions provided [here](https://docs.python.org/3/using/windows.html#windows-full) and **make sure to select ‘Add Python 3.x to PATH’**
-> * If you haven’t before: Download the source code of the latest [MicroPython release]([https://github.com/micropython/micropython/tree/master](https://github.com/micropython/micropython/releases). (typically the zip version – currently I’m using version 1.24.0) and unzip it somewhere on your PC
+> * If you haven’t before: Download the source code of [MicroPython release v1.24.0](https://github.com/micropython/micropython/releases). (typically the zip version) and unzip it somewhere on your PC
 > * In File Explorer go to the micropython-1.24.0\tools\mpremote folder (in the location where you unzipped MicroPython)
 > * Right click somewhere in the folder (not on a file) and from the context menu select ‘Open in Terminal’
 > * If you do it for the first time: type the following to install required Python modules:

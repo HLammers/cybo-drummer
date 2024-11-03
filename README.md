@@ -226,13 +226,11 @@ mkdir cybo-drummer_src
 * Copy all files from the [src folder](src/) except screen_log.py and the data_files folder to the /home/pi/pico/micropython/mpy-cross/cybo-drummer_src folder
 * In the Raspberry Pi console type the following to pre-compile each .py file you just copied (except main.py, which needs to be frozen as a .py file) and delete them afterwards (the `-O3` option, which stands for optimization level 3, makes sure `__debug__` is False and all debugging code is left out):
 ```
-cd ~/pico/micropython/mpy-cross/cybo-drummer_src
-for f in *.py; do [ "$f" != "main.py" ] && python3 -m ../mpy_cross -march=armv6m -O3 $f; [ "$f" != "main.py" ] && rm $f; done
+cd ~/pico/micropython/mpy-cross
+for f in cybo-drummer_src/*.py; do [ "$f" != "cybo-drummer_src/main.py" ] && python3 -m mpy_cross -march=armv6m -O3 $f; [ "$f" != "cybo-drummer_src/main.py" ] && rm $f; done
 ```
-
-* Copy all files from the [src folder](src/) except screen_log.py to the /home/pi/pico/micropython/ports/rp2/modules folder (keep the existing _boot.py, _boot_fat.py and rp2.py files) – this will freeze them into the firmware
-* Pre-compile each .py file you just copied by going to the modules folder (type `cd ~/pico/micropython/ports/rp2/modules` in the Raspberry Pi console) and type in the Raspberry Pi console for each file in the folder, except main.py (and the pre-existing _boot.py, _boot_fat.py and rp2.py files) `for f in *.py; do [ "$f" != "main.py" ] && python3 -m mpy_cross -march=armv6m -O3 $f; [ "$f" != "main.py" ] && rm $f; done` `mpy-cross -march=armv6m -O3 <file_name.py>`, where <file_name.py> is the name of the file – the `-O3` option (optimization level 3) makes sure `__debug__` is False and all debugging code is left out
-* Remove all .py files from the modules folder, except except main.py, _boot.py, _boot_fat.py and rp2.py
+* Remove all files (from previous Cybo-Drummer builds) from the /home/pi/pico/micropython/ports/rp2/modules folder, except except the default files main.py, _boot.py, _boot_fat.py and rp2.py
+* Move all files from the /home/pi/pico/micropython/mpy-cross/cybo-drummer_src folder to the /home/pi/pico/micropython/ports/rp2/modules folder (keep the existing _boot.py, _boot_fat.py and rp2.py files) – this will freeze them into the firmware
 * Now to build the firmware type in the Raspberry Pi console:
 ```
 cd ~/pico/micropython/ports/rp2

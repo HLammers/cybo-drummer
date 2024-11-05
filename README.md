@@ -695,16 +695,24 @@ Turn the NAV/↕ knob to change navigate by row and the VAL/↔ knob to navigate
 Press the DEL button to remove the last character (backspace).
 
 Press the YES button to confirm the changes or the NO button to cancel renaming.<br clear="right"/>
-## About the Factory Presets
-Since Cybo-Drummer doesn’t make any sound on its own, but merely routes signals from one device to another, it isn’t possible to make meaningfull factory presets. The presets which are included reflect a baseline for my personal set-up, but can be usefull as examples.
+## Example Presets
+Since Cybo-Drummer doesn’t make any sound on its own, but merely routes signals from one device to another, it isn’t possible to make meaningfull factory presets. The presets shared in the [example presets folder](example%20presets/) are based on my personal set-up, but can be usefull as examples. Currently they reflect a baseline for equipment I own, but that will probably evolve over time.
+
+Below I share some details on the different devices in the example presets, including what I learned so far about setting them up for Cybo-Drummer.
 ### Input Device: 2Box
-My drum kit is a Fame Hybrid Pro, which is produced by 2Box and technically is a derivative of 2Box’ DrumIt series (it uses the same firmware). The default 2Box input triggers are based on 2Box’ default MIDI mapping, with one addition specific to the Fame module: 2Box calls numbers the three cymbals 1, 2 and 3, but which of those are the ride, 1<sup>st</sup> crash and 2<sup>nd</sup> crash seems to be different depending on which type of module. 
+My drum kit is a Fame Hybrid Pro, which is produced by 2Box and which is in fact a derivative of 2Box’ DrumIt series (it uses the same firmware). The default 2Box input triggers are based on 2Box’ default MIDI mapping, with one addition specific to the Fame module: 2Box calls numbers the three cymbals 1, 2 and 3, but which of those are the ride, 1<sup>st</sup> crash and 2<sup>nd</sup> crash seems to be different depending on which type of module.
+
+By default 2Box modules use MIDI CC 4 to send the position of the hi-hat foot pedal (default setting: 0 = fully open, 127 = fully closed). The hi-hat sends the same MIDI note when open or closed, so the CC 4 value needs to be checked to distinguish between both.
 ### Output Device: Drumbrute
-This device is set up for the factory settings of the Arturia Drumbrute, but since the Drumbrute can’t store presets, that only means the default MIDI channel and default note mapping. There is only one factory preset for the Drumbrute.
+This device is set up for the factory settings of the Arturia Drumbrute, but since the Drumbrute can’t store presets, that only means the default MIDI channel and default note mapping.
+
+The Drumbrute doesn’t respond to MIDI program change nor bank select messages.
 ### Output Device: Drumlogue
 This device is set up for the factory settings of the Korg Drumlogue, with only one adjustment: the MIDI mode is set to multi-channel 7-2 (on the Drumlogue: SHIFT + GLOBAL &rarr; 7 &rarr; set CH to 7-2), so the Multi Engine can be played tonally. There are 64 Drumlogue presets, linked to the Drumlogue’s 64 factory kits.
+
+The Drumlogue does not repond to MIDI bank select messages, only to program change, with a twist: MIDI program change value 2 (counting from 1) is kit A1, 3 is kit A2, 18 is B1, etc.
 > [!CAUTION]
-> The Korg Drumlogue has a bug in the latest version of the firmware (version 1.2.0 – I haven’t tested earlier versions): it doesn’t respond to MIDI program change values 16, 32, 48, 64, etc., which should select the Drumlogue’s kits A16, B16, C16, D16, etc. (weirdly the Drumlogue starts program change values from 1, not 0). This means that the last position of each of the Drumlogue’s banks is not usable if it needs to be selectable by program change. Hopefully this gets fixed if Korg ever releases another update for the Drumlogue…
+> The Korg Drumlogue has a bug in the latest version of the firmware (version 1.2.0 – I haven’t tested earlier versions): it doesn’t respond to MIDI program change values 16, 32, 48, 64, etc. (counting from 0), which should select the Drumlogue’s kits A16, B16, C16, D16, etc. (weirdly the Drumlogue starts program change values from 1, not 0). This means that the last position of each of the Drumlogue’s banks is not usable if it needs to be selectable by program change. Hopefully this gets fixed if Korg ever releases another update for the Drumlogue…
 ### Output Device: LXR-02
 This device is set up for the first factory project of the Sonic Portions × Erica Synths LXR-02 (HrtlKits). It assumes the global MIDI channel to be set to the default 1, which the LXR-02 calls 0 (on the LXR-02: SHIFT + CONFIG &rarr; set CH to 0) and the LXR-02 is set to receive program change, control change and note messages (on the LXR-02: SHIFT + CONFIG &rarr; turn DATA knob to scroll to second page &rarr; set MRX to ‘all’ or ‘PCN’).
 > [!NOTE]

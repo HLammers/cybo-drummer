@@ -136,7 +136,7 @@ Building the Cybo-Drummer hardware only requires basic soldering skills (only th
 * 2× 20-pin header sockets (originally for the Pico, now for connecting to the second board)
 * Optional: 6× 6-way DIP sockets for the H11L1 optocouplers
 ##### Second Board
-* PCB: order from your favourite PCB service – a zip file with Gerber files can be found in the [Gerber files](gerber%20files/) folder
+* PCB: order from your favourite PCB service – a zip file with Gerber files can be found in the [Gerber files folder](gerber%20files/)
 * Raspberry Pi Pico with headers[^3]
 * [2.2" 176×220 TFT display board with ILI9225 driver](http://www.lcdwiki.com/2.2inch_Arduino_SPI_Module_ILI9225_SKU:MAR2201) – sold for example [here](https://www.tinytronics.nl/en/displays/tft/2.2-inch-tft-display-176*220-pixels)
 * 4× 10kΩ resistors
@@ -147,6 +147,8 @@ Building the Cybo-Drummer hardware only requires basic soldering skills (only th
 * 2× 20-pin headers
 * 7× 11mm spacers plus bolts/nuts
 [^3]: Use the Raspberry Pi Pico and solder headers onto it yourself or the Pico H, which comes with pre-soldered headers; the pre-compiled Cybo-Drummber firmware does not support the Pico W, Pico WH nor Pico 2 (I will add support for the Pico 2 at a later stage)
+> [!NOTE]
+> The schematics for the second board can be found in the [schematics folder](scematics/).
 #### Build Instructions
 ##### First Board: Raspberry Pi Pico Multi MIDI Router
 * For the 1st board, follow the excellent instructions by diyelectromusic (Kevin): [Raspberry Pi Pico Multi MIDI Router](https://diyelectromusic.com/2022/09/19/raspberry-pi-pico-multi-midi-router-part-5/)
@@ -673,11 +675,13 @@ Use the settings page to adjust global settings, to backup or recover data or to
 ###### default output velocity
 * Set the default velocity used when pressing the TRIGGER button
 ###### store back-up
-* Store all programs, device/trigger/preset definitions and settings to the back-up file
+* Store all programs, device/trigger/preset definitions and settings to back-up files
+* Device/trigger/preset definitions and settings from /data_files/data.json are copied to /data_files/back_up.json and program files from the /data_files/programs/ folder are copied to /data_files/programs_bak/
 ###### restore back-up
-* Restore all programs, device/trigger/preset definitions and settings from the back-up file
+* Restore all programs, device/trigger/preset definitions and settings from previously stored back-up files (if any)
 ###### factory reset
 * Restore all programs, device/trigger/preset definitions and settings to initial values
+* Initial values consist of default settings and empty lists of programs, devices, triggers and presets
 ###### about
 * Show what version of Cybo-Drummer you’re using<br clear="right"/>
 

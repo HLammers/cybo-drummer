@@ -214,23 +214,19 @@ mkdir pico
 cd pico
 git clone https://github.com/micropython/micropython.git --branch master
 cd micropython
+git checkout v1.24.0
 sudo apt update
 sudo apt install cmake gcc-arm-none-eabi libnewlib-arm-none-eabi build-essential
 make -C mpy-cross
 ```
-* *First time you build Cybo-Drummer*: In the Raspberry Pi console type, assuming you’re in the /home/pi/pico folder (this creates a /home/pi/pico/micropython/mpy-cross/cybo-drummer_src folder used to pre-compile the Cybo-Drummer source code):
-```
-cd micropython/mpy-cross
-mkdir cybo-drummer_src
-```
-* Copy all files from the [src folder](src/) except screen_log.py and the data_files folder to the /home/pi/pico/micropython/mpy-cross/cybo-drummer_src folder
-* In the Raspberry Pi console type the following to pre-compile each .py file you just copied (except main.py, which needs to be frozen as a .py file) and delete them afterwards (the `-O3` option, which stands for optimization level 3, makes sure `__debug__` is False and all debugging code is left out):
+* Copy all files from the [src folder](src/) except screen_log.py and the data_files folder to the /home/pi/pico/micropython/mpy-cross/ folder
+* Remove all files (from previous Cybo-Drummer builds) from the /home/pi/pico/micropython/ports/rp2/modules folder, except except the default files main.py, _boot.py, _boot_fat.py and rp2.py
+* In the Raspberry Pi console type the following to pre-compile each .py file you just copied (except main.py, which needs to be frozen as a .py file), delete them afterwards (the `-O3` option, which stands for optimization level 3, makes sure `__debug__` is False and all debugging code is left out) and move results to the /home/pi/pico/micropython/ports/rp2/modules folder (to freeze them into the firmware):
 ```
 cd ~/pico/micropython/mpy-cross
-for f in cybo-drummer_src/*.py; do [ "$f" != "cybo-drummer_src/main.py" ] && python3 -m mpy_cross -march=armv6m -O3 $f; [ "$f" != "cybo-drummer_src/main.py" ] && rm $f; done
+for f in *.py; do [ "$f" != "main.py" ] && python3 -m mpy_cross -march=armv6m -O3 $f; [ "$f" != "main.py" ] && rm $f; done
+mv {*.mpy,*.py} ../ports/rp2/modules/
 ```
-* Remove all files (from previous Cybo-Drummer builds) from the /home/pi/pico/micropython/ports/rp2/modules folder, except except the default files main.py, _boot.py, _boot_fat.py and rp2.py
-* Move all files from the /home/pi/pico/micropython/mpy-cross/cybo-drummer_src folder to the /home/pi/pico/micropython/ports/rp2/modules folder (keep the existing _boot.py, _boot_fat.py and rp2.py files) – this will freeze them into the firmware
 * Now to build the firmware type in the Raspberry Pi console:
 ```
 cd ~/pico/micropython/ports/rp2

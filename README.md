@@ -701,22 +701,26 @@ Since Cybo-Drummer doesn’t make any sound on its own, but merely routes signal
 Below I share some details on the different devices in the example presets, including what I learned so far about setting them up for Cybo-Drummer.
 ### Input Device: 2Box
 My drum kit is a Fame Hybrid Pro, which is produced by 2Box and which is in fact a derivative of 2Box’ DrumIt series (it uses the same firmware). The default 2Box input triggers are based on 2Box’ default MIDI mapping, with one addition specific to the Fame module: 2Box calls numbers the three cymbals 1, 2 and 3, but which of those are the ride, 1<sup>st</sup> crash and 2<sup>nd</sup> crash seems to be different depending on which type of module.
-
-By default 2Box modules use MIDI CC 4 to send the position of the hi-hat foot pedal (default setting: 0 = fully open, 127 = fully closed). The hi-hat sends the same MIDI note when open or closed, so the CC 4 value needs to be checked to distinguish between both.
+> [!NOTE]
+> By default 2Box modules use MIDI CC 4 to send the position of the hi-hat foot pedal (default setting: 0 = fully open, 127 = fully closed). The hi-hat sends the same MIDI note when open or closed, so the CC 4 value needs to be checked to distinguish between both.
 ### Output Device: Drumbrute
 This device is set up for the factory settings of the Arturia Drumbrute, but since the Drumbrute can’t store presets, that only means the default MIDI channel and default note mapping.
-
-The Drumbrute doesn’t respond to MIDI program change nor bank select messages.
+> [!NOTE]
+> The Arturia Drumbrute doesn’t respond to MIDI program change nor bank select messages.
 ### Output Device: Drumlogue
 This device is set up for the factory settings of the Korg Drumlogue, with only one adjustment: the MIDI mode is set to multi-channel 7-2 (on the Drumlogue: SHIFT + GLOBAL &rarr; 7 &rarr; set CH to 7-2), so the Multi Engine can be played tonally. There are 64 Drumlogue presets, linked to the Drumlogue’s 64 factory kits.
+> [!NOTE]
+> The Korg Drumlogue does not repond to MIDI bank select messages, only to program change, but with a twist: MIDI program change value 2 (counting from 1) is kit A1, 3 is kit A2, 18 is B1, etc.
 
-The Drumlogue does not repond to MIDI bank select messages, only to program change, with a twist: MIDI program change value 2 (counting from 1) is kit A1, 3 is kit A2, 18 is B1, etc.
 > [!CAUTION]
 > The Korg Drumlogue has a bug in the latest version of the firmware (version 1.2.0 – I haven’t tested earlier versions): it doesn’t respond to MIDI program change values 16, 32, 48, 64, etc. (counting from 0), which should select the Drumlogue’s kits A16, B16, C16, D16, etc. (weirdly the Drumlogue starts program change values from 1, not 0). This means that the last position of each of the Drumlogue’s banks is not usable if it needs to be selectable by program change. Hopefully this gets fixed if Korg ever releases another update for the Drumlogue…
 ### Output Device: LXR-02
 This device is set up for the first factory project of the Sonic Portions × Erica Synths LXR-02 (HrtlKits). It assumes the global MIDI channel to be set to the default 1, which the LXR-02 calls 0 (on the LXR-02: SHIFT + CONFIG &rarr; set CH to 0) and the LXR-02 is set to receive program change, control change and note messages (on the LXR-02: SHIFT + CONFIG &rarr; turn DATA knob to scroll to second page &rarr; set MRX to ‘all’ or ‘PCN’).
 > [!NOTE]
-> The LXR-02 responds both to program change and bank select messages: program change messages change patterns, bank select messages (MSB only, not mentioned in the user manual) change kits. Kits are saved per project and it isn’t possible to change the project via MIDI.
+> The Sonic Portions × Erica Synths LXR-02 responds both to program change and bank select messages: program change messages change patterns, bank select messages (MSB only, not mentioned in the user manual) change kits. Kits are saved per project and it isn’t possible to change the project via MIDI.
+
+> [!CAUTION]
+> Make sure not to assign one of the LXR-02’s voices to same MIDI channel which is asssigned to the LXR-02’s global channel, because triggering that channel will trigger the selected voice on the LXR-02.
 
 > [!TIP]
 > Best is to prepare a special project to use LXR-02 effectively with Cybo-Drummer:
@@ -738,7 +742,9 @@ This device is set up for the first factory project of the Sonic Portions × Eri
 > * Turn off the LXR-02, take out the SD card and use a PC to copy the kits (files with .SND extension) you’d like to use into the newly created project folder (called PROJ##, where ## is the project number) and rename them so they start with ‘01-’ to ‘63-’
 > * Put the SD card back into the LXR-02 and load the project: press LOAD + PROJECT &rarr; select the project &rarr; press DATA knob
 ### Output Device: Volca Drum
-Korg Volca Drum
+This device is set up for a Korg Volca Drum in default split channel mode (in which parts 1 to 6 are assigned to MIDI channels 1 to 6 respectively). There are 16 Volca Drum programs, linked to program 1 to 16 of the Volca Drum.
+> [!NOTE]
+> The Volca drum does not repond to MIDI bank select messages, only to program change. Program changes messages 1 to 16 (counting from 1) select Volca Drum programs 1 to 16, each of which has a sequence and a kit assigned, so to make best use of the Volca Drum with Cybo-Drummer, assign each kit to a separate program.
 ## Why in MicroPython?
 A MIDI router/mapper is a time-sensitive application, so why not using the programming language which leads to the fastest possible code (that would be C++ on a Raspberry Pi Pico)? Well… I do am aware that MicroPython is much slower, but I decided to use it anyway, because besides solving my challenge to connect my electronic drum kit to my drum computers, I had a second goal: finally learning how to use Python. You see, I’ve used several programming languages over time (starting with BASIC when I was a child, then Turbo Pascal as a teenager in the 90s, later a bit or C/C++ at university, some JavaScript, a lot of VBA and more recently some Arduino code. But now, for my job, I’m managing analysts who are using Python as their go-to language, so I decided it was time to finally master that language as well. This project was a great learning journey!
 

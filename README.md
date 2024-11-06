@@ -110,7 +110,7 @@ graph LR
 [^2]: Except SysEx
 ## Building Instructions
 Cybo-Drummer is a DIY project which is currently in a prototype stage. The hardware design is a pragmatic solution, building upon an existing design by [diyelectromusic (Kevin)](https://diyelectromusic.com/), who designed the bottom PCB with the MIDI ports. As a next step I want to design new hardware (including 3d printable enclosure) and now I have a working prototype I’m considering what to improve in the next iteration. These are a few of my considerations:
-* Where to place the MIDI ports? The current prototype has input ports at the front and output ports at the back. The disadvantage is that the MIDI cables take a lot of space at two sides of the device. Perhaps MIDI ports at the top of the device is a better solution? In two rows above the display, buttons and knobs? Alternatively I could leave the ports at the top and the bottom (angled PCB-mounted 5-pin DIN ports are much easier available than straigt ones) and design a drum rack mounted casing.
+* Where to place the MIDI ports? The current prototype has input ports at the front and output ports at the back. The disadvantage is that the MIDI cables take a lot of space at two sides of the device. Perhaps MIDI ports at the top of the device is a better solution? In two rows above the display, buttons and knobs? Alternatively I could leave the ports at the top and the bottom (angled PCB-mounted 5-pin DIN ports are much easier available than straigt ones) and design a drum rack mounted casing (or a casing with 70mm × 10mm spaced holes to connect a standard size mounting plate for drum modules and multi-pads).
 * Should I add more buttons? All GPIO pins of the Raspberry Pi Pico are in use, so that would require adding IO ports, for example using one ore more PCF8574 I2C IO expander ICs. Having more IO ports would allow improvements like:
   * Splitting the TRIGGER button into a TRIGGER and a TRIGGER SELECT button
   * Adding a SAVE button
@@ -767,6 +767,11 @@ To keep latency to a minimum the second core is dedicated to MIDI handling, whil
 - [ ] Add filter options to MIDI monitor
 - [ ] Add note off delay setting to trigger pads that need longer time between note on and note off than what is received from the input trigger
 - [ ] Add MIDI CC mapping (doing crazy things, for example with the hi-hat foot pedal or an express pedal)
+- [ ] Add velocity mapping (triggering something different when hitting softly or hitting hard)
+- [ ] Add option to send MIDI start, stop or continue messages on trigger
+- [ ] Rethinking how to deal with choke events, which for some drum modules lead to MIDI note events (2Box, Alesis?) and for others to poly aftertouch/pressure MIDI CC messages (Roland, Yamaha)
+- [ ] Thinking through how the specific possibilities and needs when using Cybo-Drummer with a multi-pad controller (I recently bought and old Roland SPD-11 for that purpose)
+- [ ] Building an editor for program and device/trigger/preset definitions and settings files on a pc
 ## Licencing
 Copyright (c) 2024 Harm Lammers
 

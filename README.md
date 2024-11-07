@@ -763,6 +763,7 @@ To keep latency to a minimum the second core is dedicated to MIDI handling, whil
 - [ ] Change the value editing and storing behaviour from processing every change immediately to having to confirm a change with a click – that would make the user interface much more responsive, especially if many rotary encoder steps are involved (the way I imagine it: the moment you turn the VALUE knob the text colour changes to indicate the value has not changed yet; once you press the VALUE knob or you navigate away to another input field, the value gets saved and takes effect and the text colour changes back)
 - [ ] Improved hardware, including proper front panel and 3d printable case
 - [ ] Add USB MIDI input/output (USB MIDI support only became available in MicroPython 1.23, which was released at end of May 2024, which is after I developed the MIDI handling side of Cybo-Drummer)
+- [ ] Migrate to Raspberry Pi Pico 2, which has about twice as much memory, allowing larger display buffer and thus snappier GUI performance (also worth trying: using one of the additional PIO processors for SPI, which some people suggest to be faster due to hardware SPI adding a short delay between data bytes, which for most devices isn’t necessary)
 - [ ] Add MIDI clock distribution
 - [ ] Add filter options to MIDI monitor
 - [ ] Add note off delay setting to trigger pads that need longer time between note on and note off than what is received from the input trigger

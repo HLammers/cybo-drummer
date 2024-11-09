@@ -5,16 +5,14 @@
 
 (c) 2024 Harm Lammers
 
-> [!IMPORTANT]
-> Cybo-Drummer is not yet released. This readme file is work in progress in preparation of releasing Cybo-Drummer to the public. Feel free to come back here to see it grow for the next couple of weeks!
 <img src="/images/cybo-drummer_v0.1.jpg" width="100%">
 
 > [!NOTE]
-> This is my very first [Python/MicroPython](#why-in-micropython) project, my first PCB design (learning still!) and generally the first microcontroller-based project I developed from scratch and I actually brought to the finish line. It has been a learning experience, but by no way I’d say it's perfect, so I'm happy to receive your feedback on the hardware, the software, the feature set, a bug you found or anything you’d like to share.
+> Cybo-Drummer’s hardware design is currently in it’s first prototype stage and the firmware in it’s first public beta (version 0.1.0) stage. It is my very first [Python/MicroPython](#why-in-micropython) project, my first PCB design (learning still!) and generally the first microcontroller-based project I developed from scratch and I actually brought to the finish line. It has been a learning experience, but by no way I’d say it's perfect, so I'm happy to receive your feedback on the hardware, the software, the feature set, a bug you found or anything you’d like to share.
 >
-> Are you an experienced drummer (I’ve only been drumming for about 1.5 year – too much of which I’ve spent on this project instead of practicing…) with a fascination for synthesized drum sounds? I’d love to hear how you experience using Cybo-Drummer. What would you change? What features are you missing?
+> Are you an experienced drummer (I’ve only been drumming for about 1.5 year – too much of which I’ve spent on this project instead of practising…) with a fascination for synthesized drum sounds? I’d love to hear how you experience using Cybo-Drummer. What would you change? What features are you missing?
 >
-> Ofcourse I’m open for collaboration. Just let me know how you think you can contribute!
+> Of course I’m open for collaboration. Just let me know how you think you can contribute!
 >
 > Please use the [issues tab](issues/) to report bug and other issues, or the [discussion tab](discussions/) to discuss anything else.
 ## Introduction
@@ -110,7 +108,7 @@ graph LR
 [^2]: Except SysEx
 ## Building Instructions
 Cybo-Drummer is a DIY project which is currently in a prototype stage. The hardware design is a pragmatic solution, building upon an existing design by [diyelectromusic (Kevin)](https://diyelectromusic.com/), who designed the bottom PCB with the MIDI ports. As a next step I want to design new hardware (including 3d printable enclosure) and now I have a working prototype I’m considering what to improve in the next iteration. These are a few of my considerations:
-* Where to place the MIDI ports? The current prototype has input ports at the front and output ports at the back. The disadvantage is that the MIDI cables take a lot of space at two sides of the device. Perhaps MIDI ports at the top of the device is a better solution? In two rows above the display, buttons and knobs? Alternatively I could leave the ports at the top and the bottom (angled PCB-mounted 5-pin DIN ports are much easier available than straigt ones) and design a drum rack mounted casing (or a casing with 70mm × 10mm spaced holes to connect a standard size mounting plate for drum modules and multi-pads).
+* Where to place the MIDI ports? The current prototype has input ports at the front and output ports at the back. The disadvantage is that the MIDI cables take a lot of space at two sides of the device. Perhaps MIDI ports at the top of the device is a better solution? In two rows above the display, buttons and knobs? Alternatively I could leave the ports at the top and the bottom (angled PCB-mounted 5-pin DIN ports are much easier available than straight ones) and design a drum rack mounted casing (or a casing with 70mm × 10mm spaced holes to connect a standard size mounting plate for drum modules and multi-pads).
 * Should I add more buttons? All GPIO pins of the Raspberry Pi Pico are in use, so that would require adding IO ports, for example using one ore more PCF8574 I2C IO expander ICs. Having more IO ports would allow improvements like:
   * Splitting the TRIGGER button into a TRIGGER and a TRIGGER SELECT button
   * Adding a SAVE button
@@ -146,7 +144,7 @@ Building the Cybo-Drummer hardware only requires basic soldering skills (only th
 * 2× 20-pin header sockets
 * 2× 20-pin headers
 * 7× 11mm spacers plus bolts/nuts
-[^3]: Use the Raspberry Pi Pico and solder headers onto it yourself or the Pico H, which comes with pre-soldered headers; the pre-compiled Cybo-Drummber firmware does not support the Pico W, Pico WH nor Pico 2 (I will add support for the Pico 2 at a later stage)
+[^3]: Use the Raspberry Pi Pico and solder headers onto it yourself or the Pico H, which comes with pre-soldered headers; the pre-compiled Cybo-Drummer firmware does not support the Pico W, Pico WH nor Pico 2 (I will add support for the Pico 2 at a later stage)
 > [!NOTE]
 > The schematics for the second board can be found in the [schematics folder](scematics/).
 #### Build Instructions
@@ -280,7 +278,7 @@ To change the pages and sub-pages, keep the PAGE button pressed and turn the VAL
 > The PRG (program) page does not save automatically, all other pages do. If there are unsaved changes to a program an asterisk will show behind the active program number. To save changes, go to the first program page (program: mapping), select the [program block](#program), press the SEL/OPT button and choose ‘save’. This will show a pop-up to ask for confirmation and another pop-up to ask if you want to replace the active program – select ‘yes’ to save changes to the active program or select ‘no’ to save the changes to a new program directly after the active program.
 
 > [!TIP]
-> To ducplicate the active program, make a change and save without replacing, this creates a new program directly after the active program.<br clear="right"/>
+> To duplicate the active program, make a change and save without replacing, this creates a new program directly after the active program.<br clear="right"/>
 
 <img src="/images/hardware_trigger.svg" align="right" width="300px" height="300px">
 
@@ -337,7 +335,7 @@ The program page is the first page that shows when powering up Cybo-Drummer. Use
 * Set to ‘___’ to use the preset or trigger’s default note
 * Preset note overrides trigger note, [program note](#device-trigger-1-to-4--note) overrides both
 > [!TIP]
-> If a device doesn’t respond to the notes your assigned, try one ocatve lower or one ocatve higher. There is no official MIDI standard for octave numbers. Cybo-Drummer follows the Scientific Pitch Notiation standard, which defines the middle C as C4, so in Cybo-Drummer MIDI note 60 is C4, but some manufacturers define MIDI note as C3 and some as C5.
+> If a device doesn’t respond to the notes your assigned, try one octave lower or one octave higher. There is no official MIDI standard for octave numbers. Cybo-Drummer follows the Scientific Pitch Notation standard, which defines the middle C as C4, so in Cybo-Drummer MIDI note 60 is C4, but some manufacturers define MIDI note as C3 and some as C5.
 
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, note can be set by paying a note from a device connected to the set [MIDI learn port](#midi-learn-port).<br clear="right"/>
@@ -358,7 +356,7 @@ The program page is the first page that shows when powering up Cybo-Drummer. Use
   * *off:* disable sending note off messages (default)
   * *pulse:* send a note off message immediately after sending a note on message
   * *toggle:* send a note off message if triggered again (first trigger received sends a note on message, second trigger a note off message)
-  * *80 ms – 1000 ms:* send a note off message with a delay of 80 to 1000 miliseconds
+  * *80 ms – 1000 ms:* send a note off message with a delay of 80 to 1000 milliseconds
 > [!NOTE]
 > The MIDI specification prescribes to always send note off messages, however most drum computers ignore them, so it is more efficiently not to send them. Turn on if you experience problems or for example if you’re triggering a synth pad instead of a percussive sound.<br clear="right"/>
 
@@ -377,7 +375,7 @@ The program page is the first page that shows when powering up Cybo-Drummer. Use
 ##### PRG 5/5 – Program: Bank Select
 ###### p1 to p6 msb / lsb
 * Optionally set a bank select value (1 to 16,384) which will be sent to a device assigned to a particular port
-* Bank select uses two MIDI CC messages (MSB on CC 0 and LSB on CC 32, both allowing values 0 to 127) to allow more than 128 values: a ‘most significant byte’ (msb) or coarse select and a ‘least significant byte’ or fine select
+* Bank select uses two MIDI CC messages (MSB on CC 0 and LSB on CC 32, both allowing values 0 to 127) to allow more than 128 values: a ‘most significant byte’ (MSB) or coarse select and a ‘least significant byte’ (LSB) or fine select
 * Select ‘___’ to not send a bank select message – if LSB is set to a value and MSB is not, only LSB is sent (and vice versa)
 * Bank select messages are sent on router program change (before sending program change, if assigned)
 > [!NOTE]
@@ -394,7 +392,7 @@ Use the input page to review or edit input port assignments, input device settin
 ###### p1 to p6 device
 * Assign input devices to each of the 6 MIDI in ports
 > [!NOTE]
-> If you assign a device which is already assigned to a different port, that assignment will not be stored until you unassign it from the other port.
+> If you assign a device which is already assigned to a different port, that assignment will not be stored until you deassign it from the other port.
 
 > [!CAUTION]
 > Cybo-Drummer does require an input channel to be specified to work.
@@ -421,7 +419,7 @@ Use the input page to review or edit input port assignments, input device settin
 ###### note
 * Select the note to which the trigger responds
 > [!TIP]
-> If a device doesn’t respond to the notes your assigned, try one ocatve lower or one ocatve higher. There is no official MIDI standard for octave numbers. Cybo-Drummer follows the Scientific Pitch Notiation standard, which defines the middle C as C4, so in Cybo-Drummer MIDI note 60 is C4, but some manufacturers define MIDI note as C3 and some as C5.
+> If a device doesn’t respond to the notes your assigned, try one octave lower or one octave higher. There is no official MIDI standard for octave numbers. Cybo-Drummer follows the Scientific Pitch Notation standard, which defines the middle C as C4, so in Cybo-Drummer MIDI note 60 is C4, but some manufacturers define MIDI note as C3 and some as C5.
 ###### pedal cc
 * Optionally set a CC number (1 to 128) on which the trigger can be made dependent
 * Many electronic drum kits send the openness of the hi-hat foot pedal using CC 5, which needs to be used to distinguish between open and closed hi-hat triggers
@@ -469,7 +467,7 @@ Use the output page to review or edit output port assignments, output device set
 ###### p1 to p6 device 
 * Assign output devices to each of the 6 MIDI out ports<br clear="right"/><br/>
 > [!NOTE]
-> If you assign a device which is already assigned to a different port, that assignment will not be stored until you unassign it from the other port.
+> If you assign a device which is already assigned to a different port, that assignment will not be stored until you deassign it from the other port.
 
 <img src="/screenshots/out_2.png" align="right">
 
@@ -526,7 +524,7 @@ Use the output page to review or edit output port assignments, output device set
 * Set to ‘___’ to use the trigger-level default note
 * Preset note overrides trigger note, [program note](#device-trigger-1-to-4--note) overrides both
 > [!TIP]
-> If a device doesn’t respond to the notes your assigned, try one ocatve lower or one ocatve higher. There is no official MIDI standard for octave numbers. Cybo-Drummer follows the Scientific Pitch Notiation standard, which defines the middle C as C4, so in Cybo-Drummer MIDI note 60 is C4, but some manufacturers define MIDI note as C3 and some as C5.
+> If a device doesn’t respond to the notes your assigned, try one octave lower or one octave higher. There is no official MIDI standard for octave numbers. Cybo-Drummer follows the Scientific Pitch Notation standard, which defines the middle C as C4, so in Cybo-Drummer MIDI note 60 is C4, but some manufacturers define MIDI note as C3 and some as C5.
 
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, note can be set by paying a note from a device connected to the set [MIDI learn port](#midi-learn-port).
@@ -535,7 +533,7 @@ Use the output page to review or edit output port assignments, output device set
   * *off:* disable sending note off messages (default)
   * *pulse:* send a note off message immediately after sending a note on message
   * *toggle:* send a note off message if triggered again (first trigger received sends a note on message, second trigger a note off message)
-  * *80 ms – 1000 ms:* send a note off message with a delay of 80 to 1000 miliseconds
+  * *80 ms – 1000 ms:* send a note off message with a delay of 80 to 1000 milliseconds
 > [!NOTE]
 > The MIDI specification prescribes to always send note off messages, however most drum computers ignore them, so it is more efficiently not to send them. Turn on if you experience problems or for example if you’re triggering a synth pad instead of a percussive sound.<br clear="right"/>
 
@@ -599,7 +597,7 @@ Use the output page to review or edit output port assignments, output device set
 * Set to ‘___’ to use the preset-level default note
 * Preset note overrides trigger note, [program note](#device-trigger-1-to-4--note) overrides both
 > [!TIP]
-> If a device doesn’t respond to the notes your assigned, try one ocatve lower or one ocatve higher. There is no official MIDI standard for octave numbers. Cybo-Drummer follows the Scientific Pitch Notiation standard, which defines the middle C as C4, so in Cybo-Drummer MIDI note 60 is C4, but some manufacturers define MIDI note as C3 and some as C5.
+> If a device doesn’t respond to the notes your assigned, try one octave lower or one octave higher. There is no official MIDI standard for octave numbers. Cybo-Drummer follows the Scientific Pitch Notation standard, which defines the middle C as C4, so in Cybo-Drummer MIDI note 60 is C4, but some manufacturers define MIDI note as C3 and some as C5.
 
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on, note can be set by paying a note from a device connected to the set [MIDI learn port](#midi-learn-port).
@@ -696,7 +694,7 @@ Press the DEL button to remove the last character (backspace).
 
 Press the YES button to confirm the changes or the NO button to cancel renaming.<br clear="right"/>
 ## Example Presets
-Since Cybo-Drummer doesn’t make any sound on its own, but merely routes signals from one device to another, it isn’t possible to make meaningfull factory presets. The presets shared in the [example presets folder](example%20presets/) are based on my personal set-up, but can be usefull as examples. Currently they reflect a baseline for equipment I own, but that will probably evolve over time.
+Since Cybo-Drummer doesn’t make any sound on its own, but merely routes signals from one device to another, it isn’t possible to make meaningful factory presets. The presets shared in the [example presets folder](example%20presets/) are based on my personal set-up, but can be useful as examples. Currently they reflect a baseline for equipment I own, but that will probably evolve over time.
 
 > [!TIP]
 > To upload the example presets to Cybo-Drummer, follow the same instructions as given for restoring a back-up when [uploading firmware](#uploading-firmware):
@@ -709,7 +707,7 @@ Since Cybo-Drummer doesn’t make any sound on its own, but merely routes signal
 >   pip install pyserial
 >   pip instal importlib_metadata
 >   ```
-> * Copy the data_files filder from the [example presets folder](example%20presets/) to the micropython-1.24.0\tools\mpremote folder
+> * Copy the data_files folder from the [example presets folder](example%20presets/) to the micropython-1.24.0\tools\mpremote folder
 > * On your PC type `py mpremote.py fs cp -r data_files/ :` **without pressing ENTER** (so not executing it yet)
 > * While you keep Cybo-Drummer’s TRIGGER button pressed:
 >   * Press RESET button on Cybo-Drummer
@@ -727,23 +725,25 @@ This device is set up for the factory settings of the Arturia Drumbrute, but sin
 ### Output Device: Drumlogue
 This device is set up for the factory settings of the Korg Drumlogue, with only one adjustment: the MIDI mode is set to multi-channel 7-2 (on the Drumlogue: SHIFT + GLOBAL &rarr; 7 &rarr; set CH to 7-2), so the Multi Engine can be played tonally. There are 64 Drumlogue presets, linked to the Drumlogue’s 64 factory kits.
 > [!NOTE]
-> The Korg Drumlogue does not repond to MIDI bank select messages, only to program change, but with a twist: MIDI program change value 2 (counting from 1) is kit A1, 3 is kit A2, 18 is B1, etc.
+> The Korg Drumlogue does not respond to MIDI bank select messages, only to program change, but with a twist: MIDI program change value 2 (counting from 1) is kit A1, 3 is kit A2, 18 is B1, etc.
 
 > [!CAUTION]
 > The Korg Drumlogue has a bug in the latest version of the firmware (version 1.2.0 – I haven’t tested earlier versions): it doesn’t respond to MIDI program change values 16, 32, 48, 64, etc. (counting from 0), which should select the Drumlogue’s kits A16, B16, C16, D16, etc. (weirdly the Drumlogue starts program change values from 1, not 0). This means that the last position of each of the Drumlogue’s banks is not usable if it needs to be selectable by program change. Hopefully this gets fixed if Korg ever releases another update for the Drumlogue…
 ### Output Device: LXR-02
 This device is set up for the first factory project of the Sonic Portions × Erica Synths LXR-02 (HrtlKits). It assumes the global MIDI channel to be set to the default 1, which the LXR-02 calls 0 (on the LXR-02: SHIFT + CONFIG &rarr; set CH to 0) and the LXR-02 is set to receive program change, control change and note messages (on the LXR-02: SHIFT + CONFIG &rarr; turn DATA knob to scroll to second page &rarr; set MRX to ‘all’ or ‘PCN’).
 > [!NOTE]
-> The Sonic Portions × Erica Synths LXR-02 responds both to program change and bank select messages: program change messages change patterns, bank select messages (MSB only, not mentioned in the user manual) change kits. Kits are saved per project and it isn’t possible to change the project via MIDI.
+> The Sonic Portions × Erica Synths LXR-02 responds both to program change and bank select messages: program change messages change patterns, bank select messages (not mentioned in the user manual: MSB only) change kits. Kits are saved per project and it isn’t possible to change the project via MIDI.
+>
+> The LXR-02’s manual description of the MIDI implementation and what is saved where (kits, patterns, projects) is rather incomplete. It doesn’t indicate, for example, where output routing and FX settings are stored. Searching the internet provides some hints based on other people’s experience it’s stored with kits, but I haven’t yet tested it myself.  
 
 > [!CAUTION]
-> Make sure not to assign one of the LXR-02’s voices to same MIDI channel which is asssigned to the LXR-02’s global channel, because triggering that channel will trigger the selected voice on the LXR-02.
+> Make sure not to assign one of the LXR-02’s voices to same MIDI channel which is assigned to the LXR-02’s global channel, because triggering that channel will trigger the selected voice on the LXR-02.
 
 > [!TIP]
 > Best is to prepare a special project to use LXR-02 effectively with Cybo-Drummer:
 > * Initiate a new project: press LOAD + PROJECT &rarr; select an EMPTY project &rarr; press DATA knob
 > * Set kit change mode to ‘off’ to separate kits from patterns: press SHIFT + CONFIG &rarr; turn DATA knob to scroll to third page &rarr; set KCM to ‘off’
-> * In pattern 1 (the default pattern after initiating a new project), assign voices to MIDI channels 2 to 8 (channel 0 is used as global channel, so triggering that channel will trigger the selected voice on the LXR-02) and set each voice to respond any note (allowing to tune it from Cybo-Drummer or to play it tonalically):
+> * In pattern 1 (the default pattern after initiating a new project), assign voices to MIDI channels 2 to 8 (channel 0 is used as global channel, so triggering that channel will trigger the selected voice on the LXR-02) and set each voice to respond any note (allowing to tune it from Cybo-Drummer or to play it tonally):
 >   * Press VOICE &rarr; press MIX &rarr; turn DATA knob to scroll to second page
 >   * Press DRUM1 button (below sliders) &rarr; set CH to 2 and set NTE to ‘any’
 >   * Press DRUM2 button (below sliders) &rarr; set CH to 3 and set NTE to ‘any’
@@ -761,7 +761,7 @@ This device is set up for the first factory project of the Sonic Portions × Eri
 ### Output Device: Volca Drum
 This device is set up for a Korg Volca Drum in default split channel mode (in which parts 1 to 6 are assigned to MIDI channels 1 to 6 respectively). There are 16 Volca Drum programs, linked to program 1 to 16 of the Volca Drum.
 > [!NOTE]
-> The Volca drum does not repond to MIDI bank select messages, only to program change. Program changes messages 1 to 16 (counting from 1) select Volca Drum programs 1 to 16, each of which has a sequence and a kit assigned, so to make best use of the Volca Drum with Cybo-Drummer, assign each kit to a separate program.
+> The Volca drum does not respond to MIDI bank select messages, only to program change. Program changes messages 1 to 16 (counting from 1) select Volca Drum programs 1 to 16, each of which has a sequence and a kit assigned, so to make best use of the Volca Drum with Cybo-Drummer, assign each kit to a separate program.
 ## Why in MicroPython?
 A MIDI router/mapper is a time-sensitive application, so why not using the programming language which leads to the fastest possible code (that would be C++ on a Raspberry Pi Pico)? Well… I do am aware that MicroPython is much slower, but I decided to use it anyway, because besides solving my challenge to connect my electronic drum kit to my drum computers, I had a second goal: finally learning how to use Python. You see, I’ve used several programming languages over time (starting with BASIC when I was a child, then Turbo Pascal as a teenager in the 90s, later a bit or C/C++ at university, some JavaScript, a lot of VBA and more recently some Arduino code. But now, for my job, I’m managing analysts who are using Python as their go-to language, so I decided it was time to finally master that language as well. This project was a great learning journey!
 
@@ -804,5 +804,5 @@ The fonts used for the logo and the front panel are Soviet Regular and Soviet X-
 >
 > iconian@aol.com
 
-The font used in the graphic user interface is 6x10, from the X11 Linux Window System, copyright [X.Org Fundation](https://x.org), published with the following copyright statement:
+The font used in the graphic user interface is 6x10, from the X11 Linux Window System, copyright [X.Org Foundation](https://x.org), published with the following copyright statement:
 > Public domain terminal emulator font. Share and enjoy.

@@ -1,0 +1,8 @@
+{"program_change": {"LXR-02": 0},"bank_select": {"LXR-02": [55,-1]},"routing": [
+{"input_device": "2Box","input_preset": "Kick","output_device": "LXR-02","output_preset": "DRUM1","note":-1,"note_off":-1},
+{"input_device": "2Box","input_preset": "Tom 1","output_device": "LXR-02","output_preset": "DRUM2","note":-1,"note_off":-1},
+{"input_device": "2Box","input_preset": "Tom 3","output_device": "LXR-02","output_preset": "DRUM3","note":-1,"note_off":-1},
+{"input_device": "2Box","input_preset": "Snare","output_device": "LXR-02","output_preset": "SNARE","note":-1,"note_off":-1},
+{"input_device": "2Box","input_preset": "Crash 1","output_device": "LXR-02","output_preset": "CLP/CYM","note":-1,"note_off":-1},
+{"input_device": "2Box","input_preset": "Hihat C","output_device": "LXR-02","output_preset": "CL HH","note":-1,"note_off":-1},
+{"input_device": "2Box","input_preset": "Hihat O","output_device": "LXR-02","output_preset": "OP HH","note":-1,"note_off":-1}]}

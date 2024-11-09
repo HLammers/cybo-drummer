@@ -1,0 +1,12 @@
+{"program_change":{"Drumlogue":39},"bank_select":{},"routing":[
+    {"input_device":"2Box","input_preset":"Kick","output_device":"Drumlogue","output_preset":"BD","note":-1,"note_off":-1},
+    {"input_device":"2Box","input_preset":"Snare","output_device":"Drumlogue","output_preset":"SD","note":-1,"note_off":-1},
+    {"input_device":"2Box","input_preset":"Snare R","output_device":"Drumlogue","output_preset":"CP","note":-1,"note_off":-1},
+    {"input_device":"2Box","input_preset":"Tom 1","output_device":"Drumlogue","output_preset":"HT","note":-1,"note_off":-1},
+    {"input_device":"2Box","input_preset":"Tom 2","output_device":"Drumlogue","output_preset":"RS","note":-1,"note_off":-1},
+    {"input_device":"2Box","input_preset":"Tom 3","output_device":"Drumlogue","output_preset":"LT","note":-1,"note_off":-1},
+    {"input_device":"2Box","input_preset":"Hihat O","output_device":"Drumlogue","output_preset":"OH","note":-1,"note_off":-1},
+    {"input_device":"2Box","input_preset":"Hihat C","output_device":"Drumlogue","output_preset":"CH","note":-1,"note_off":-1},
+    {"input_device":"2Box","input_preset":"Crash 1","output_device":"Drumlogue","output_preset":"SP 2","note":-1,"note_off":-1},
+    {"input_device":"2Box","input_preset":"Ride","output_device":"Drumlogue","output_preset":"SP 1","note":-1,"note_off":-1},
+    {"input_device":"2Box","input_preset":"Crash 2","output_device":"Drumlogue","output_preset":"MULTI","note":-1,"note_off":1}]}

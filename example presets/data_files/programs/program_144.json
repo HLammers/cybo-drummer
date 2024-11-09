@@ -1,0 +1,7 @@
+{"program_change": {"Volca Drum": 15},"bank_select": {},"routing": [
+{"input_device": "2Box","input_preset": "Kick","output_device": "Volca Drum","output_preset": "Part 1","note":-1,"note_off":-1},
+{"input_device": "2Box","input_preset": "Snare","output_device": "Volca Drum","output_preset": "Part 2","note":-1,"note_off":-1},
+{"input_device": "2Box","input_preset": "Tom 1","output_device": "Volca Drum","output_preset": "Part 3","note":-1,"note_off":-1},
+{"input_device": "2Box","input_preset": "Tom 2","output_device": "Volca Drum","output_preset": "Part 4","note":-1,"note_off":-1},
+{"input_device": "2Box","input_preset": "Hihat C","output_device": "Volca Drum","output_preset": "Part 5","note":-1,"note_off":-1},
+{"input_device": "2Box","input_preset": "Hihat O","output_device": "Volca Drum","output_preset": "Part 6","note":-1,"note_off":-1}]}

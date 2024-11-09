@@ -117,7 +117,7 @@ Cybo-Drummer is a DIY project which is currently in a prototype stage. The hardw
   * Adding quick buttons for pages
   * Adding status LEDS
 
-***I have no intention to sell Cybo-Drummer as a fully assembled product, nor as DIY package*** – I might change my mind in the future, but for now that doesn’t seem like a realistic idea, next to a full-time job and a family.
+***I have no intention to sell Cybo-Drummer as a fully assembled product, nor as DIY package*** – I might change my mind in the future, but for now that doesn’t seem like a realistic idea, next to a full-time job and a family (especially because I expect it to be a very niche product – unless the a change in trend occurs and many more drummers become interested again in electronic drums as an instrument of its own – like in the 1980s – instead of a means to simulate acoustic drums). Nevertheless: if you think you can convince me to change my mind, feel free to try!
 ### Hardware
 Building the Cybo-Drummer hardware only requires basic soldering skills (only though-hole components). The PCBs can be ordered cheaply from Chinese PCB services like [JLCPCB](https://jlcpcb.com/) (no affiliate).
 > [!NOTE]
@@ -697,6 +697,23 @@ Press the DEL button to remove the last character (backspace).
 Press the YES button to confirm the changes or the NO button to cancel renaming.<br clear="right"/>
 ## Example Presets
 Since Cybo-Drummer doesn’t make any sound on its own, but merely routes signals from one device to another, it isn’t possible to make meaningfull factory presets. The presets shared in the [example presets folder](example%20presets/) are based on my personal set-up, but can be usefull as examples. Currently they reflect a baseline for equipment I own, but that will probably evolve over time.
+
+> [!TIP]
+> To upload the example presets to Cybo-Drummer, follow the same instructions as given for restoring a back-up when [uploading firmware](#uploading-firmware):
+> * If you haven’t before: Install [Python](https://www.python.org/downloads/) – follow the instructions provided [here](https://docs.python.org/3/using/windows.html#windows-full) and **make sure to select ‘Add Python 3.x to PATH’**
+> * If you haven’t before: Download the source code of [MicroPython release v1.24.0](https://github.com/micropython/micropython/releases). (typically the zip version) and unzip it somewhere on your PC
+> * In File Explorer go to the micropython-1.24.0\tools\mpremote folder (in the location where you unzipped MicroPython)
+> * Right click somewhere in the folder (not on a file) and from the context menu select ‘Open in Terminal’
+> * If you do it for the first time: type the following to install required Python modules:
+>   ```
+>   pip install pyserial
+>   pip instal importlib_metadata
+>   ```
+> * Copy the data_files filder from the [example presets folder](example%20presets/) to the micropython-1.24.0\tools\mpremote folder
+> * On your PC type `py mpremote.py fs cp -r data_files/ :` **without pressing ENTER** (so not executing it yet)
+> * While you keep Cybo-Drummer’s TRIGGER button pressed:
+>   * Press RESET button on Cybo-Drummer
+>   * Press ENTER on your PC to start downloading (backing up) or uploading (restoring)
 
 Below I share some details on the different devices in the example presets, including what I learned so far about setting them up for Cybo-Drummer.
 ### Input Device: 2Box

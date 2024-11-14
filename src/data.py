@@ -77,7 +77,7 @@ class Data:
 
     def save_data_json_file(self, file: str = 'data.json') -> None:
         '''save data set (self.data) to json file; called by self.save_back_up, router._save, router._save_program, Page*._save_*_settings
-        or Page*.process_user_input and Page*.midi_learn'''
+        and Page*.process_user_input'''
         data_file = open(f'/data_files/{file}', 'w')
         json.dump(self.data, data_file)
         data_file.close()
@@ -177,7 +177,7 @@ class Data:
             self.settings = self.data['settings']
             self.programs_tuple = tuple((program[0] for program in programs))
 
-###### this might not be necessary if the set-up is changed to ID-based data mapping
+    ###### this might not be necessary if the set-up is changed to ID-based data mapping
     def change_in_programs(self, field: str, old_value: str, new_value: str, condition_field: str = '', condition_value: str = '') -> None:
         '''change an old value into a new value for a given field in all program data files; called by router.rename_device and
         router.rename_preset'''

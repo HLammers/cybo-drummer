@@ -235,51 +235,31 @@ class PageProgram(Page):
             if block == _NAME:
                 if program == _NONE or _router.active_program_number == program:
                     return
-                _router.update(False, False, False, False, False, False, program)
+                value = program
             elif block == _INPUT_DEVICE:
                 if route_number == _NONE:
                     return
-                from_device = _router.input_devices_tuple_assigned.index(_router.routing[route_number]['input_device'])
-                if from_device == _router.input_device_value:
-                    return
-                ui.ui.set_trigger(from_device)
+                value = _router.input_devices_tuple_assigned.index(_router.routing[route_number]['input_device'])
             elif block == _INPUT_PRESET:
                 if route_number == _NONE:
                     return
-                from_preset = _router.input_presets_tuple.index(_router.routing[route_number]['input_preset'])
-                if from_preset == _router.input_preset_value:
-                    return
-                ui.ui.set_trigger(preset=from_preset)
+                value = _router.input_presets_tuple.index(_router.routing[route_number]['input_preset'])
             elif sub_page == _SUB_PAGE_NOTE:
                 if note == _NONE:
                     return
-                row = block - _FIRST_NOTE
-                settings = self.mapping_settings
-                if row >= len(settings) or settings[row][_MAPPING_PRESET_COL] == '':
-                    return
-                settings[row][_MAPPING_NOTE_COL] = note
-                if self._save_mapping_settings():
-                    self._set_note_options()
+                value = note
         elif sub_page == _SUB_PAGE_PROGRAM:
-            for i in range(_NR_OUT_PORTS):
-                if block == _FIRST_PROGRAM + i:
-                    self.program_settings[port][1] = program
-                    if self._save_program_settings():
-                        self._set_program_options()
-                    return
-        else: # sub_page == _SUB_PAGE_BANKS
-            if cc == _CC_BANK_MSB:
-                col = 0
-            elif cc == _CC_BANK_LSB:
-                col = 1
-            else:
+            if program == _NONE:
                 return
-            for i in range(_NR_OUT_PORTS):
-                if col == 0 and block == _FIRST_BANK_MSB + 2 * i or col == 1 and block == _FIRST_BANK_LSB + 2 * i:
-                    self.bank_settings[port][1][col] = cc_value
-                    if self._save_bank_settings():
-                        self._set_bank_options()
-                    return
+            value = program
+        else: # sub_page == _SUB_PAGE_BANKS
+            if cc_value == _NONE:
+                return
+            col = (block - _FIRST_BANK_MSB) % 2
+            if not (col == 0 and cc == _CC_BANK_MSB or col == 1 and cc == _CC_BANK_LSB):
+                return
+            value = cc_value
+        self.blocks[block].set_selection(value)
 
     def _build_page(self) -> None:
         '''build page (without drawing it); called by self.__init__ and self._build_sub_page'''
@@ -354,13 +334,13 @@ class PageProgram(Page):
         and PageProgram.set_trigger'''
         if ui.ui.active_pop_up is not None:
             redraw = False
-        self._set_mapping_options(False)
-        self._set_program_options(False)
-        self._set_bank_options(False)
+        self._set_mapping_options()
+        self._set_program_options()
+        self._set_bank_options()
         if redraw:
             self._draw()
 
-    def _set_mapping_options(self, redraw: bool = True) -> None:
+    def _set_mapping_options(self) -> None:
         '''load and set options and values to input blocks on mapping sub-page; called by self._load'''
         sub_page = self.sub_page
         if not (sub_page == _SUB_PAGE_MAPPING or sub_page == _SUB_PAGE_NOTE or sub_page == _SUB_PAGE_NOTE_OFF):
@@ -372,9 +352,9 @@ class PageProgram(Page):
         input_presets = _router.input_presets_tuple
         input_device_value = _router.input_device_value
         input_preset_value = _router.input_preset_value
-        blocks[_NAME].set_options(ChainMapTuple(ui.data.programs_tuple, (_ADD_NEW_LABEL,)), _router.active_program_number, redraw)
-        blocks[_INPUT_DEVICE].set_options(input_devices, input_device_value, redraw)
-        blocks[_INPUT_PRESET].set_options(input_presets, input_preset_value, redraw)
+        blocks[_NAME].set_options(ChainMapTuple(ui.data.programs_tuple, (_ADD_NEW_LABEL,)), _router.active_program_number, False)
+        blocks[_INPUT_DEVICE].set_options(input_devices, input_device_value, False)
+        blocks[_INPUT_PRESET].set_options(input_presets, input_preset_value, False)
         routing = _router.routing
         if len(routing) > 0:
             input_device = input_devices[input_device_value]
@@ -384,11 +364,11 @@ class PageProgram(Page):
                 if route['input_device'] == input_device and route['input_preset'] == input_preset:
                     settings.append([route['output_device'], route['output_preset'], route['note'], route['note_off']])
         if sub_page == _SUB_PAGE_MAPPING:
-            self._set_trigger_options(redraw)
+            self._set_trigger_options(False)
         elif sub_page == _SUB_PAGE_NOTE:
-            self._set_note_options(redraw)
+            self._set_note_options(False)
         else: # sub_page == _SUB_PAGE_NOTE_OFF
-            self._set_note_off_options(redraw)
+            self._set_note_off_options(False)
 
     def _set_trigger_options(self, redraw: bool = True) -> None:
         '''load and set options and values to trigger selection blocks on mapping sub-page; called by self.process_user_input and
@@ -415,8 +395,7 @@ class PageProgram(Page):
                 blocks[_FIRST_OUTPUT_PRESET + 2 * i].set_options(_EMPTY_OPTIONS_LONG, 0, redraw)
 
     def _set_note_options(self, redraw: bool = True) -> None:
-        '''load and set options and values to note blocks on mapping note sub-page; called by self.process_user_input, self.midi_learn
-        and self._load'''
+        '''load and set options and values to note blocks on mapping note sub-page; called by self.process_user_input and self._load'''
         settings = self.mapping_settings
         blocks = self.blocks
         for i, (output_device, output_preset, note, _) in enumerate(settings):
@@ -451,8 +430,8 @@ class PageProgram(Page):
                 block.set_label('n/a: n/a - note off', False)
                 block.set_options(_EMPTY_OPTIONS_LONG, 0, redraw)
 
-    def _set_program_options(self, redraw: bool = True) -> None:
-        '''load and set options and values to input blocks on program change sub-page; called by self.midi_learn and self._load'''
+    def _set_program_options(self) -> None:
+        '''load and set options and values to input blocks on program change sub-page; called by self._load'''
         if self.sub_page != _SUB_PAGE_PROGRAM:
             return
         _router = ui.router
@@ -479,10 +458,10 @@ class PageProgram(Page):
                 options = _PROGRAM_CHANGE_OPTIONS
             block = blocks[_FIRST_PROGRAM + port]
             block.set_label(label, False)
-            block.set_options(options, program + 1, redraw) # _NONE becomes 0
+            block.set_options(options, program + 1, False) # _NONE becomes 0
 
-    def _set_bank_options(self, redraw: bool = True) -> None:
-        '''load and set options and values to input blocks on bank select sub-page; called by self.midi_learn and self._load'''
+    def _set_bank_options(self) -> None:
+        '''load and set options and values to input blocks on bank select sub-page; called by self._load'''
         if self.sub_page != _SUB_PAGE_BANK:
             return
         _router = ui.router
@@ -510,8 +489,8 @@ class PageProgram(Page):
                 options = _BANK_SELECT_OPTIONS
             block = blocks[_FIRST_BANK_MSB + 2 * port]
             block.set_label(label, False)
-            block.set_options(options, bank[0] + 1, redraw) # _NONE becomes 0
-            blocks[_FIRST_BANK_LSB + 2 * port].set_options(selection=bank[1] + 1, redraw=redraw) # _NONE becomes 0
+            block.set_options(options, bank[0] + 1, False) # _NONE becomes 0
+            blocks[_FIRST_BANK_LSB + 2 * port].set_options(selection=bank[1] + 1, redraw=False) # _NONE becomes 0
 
     def _save_mapping_settings(self) -> bool:
         '''save values from input blocks on mapping sub-pages; called by self.process_user_input'''
@@ -576,7 +555,7 @@ class PageProgram(Page):
         return changed
 
     def _save_program_settings(self) -> bool:
-        '''save values from input blocks on program change sub-page; called by self.process_user_input and self.midi_learn'''
+        '''save values from input blocks on program change sub-page; called by self.process_user_input'''
         _router = ui.router
         changed = False
         program_change = _router.program['program_change']
@@ -594,7 +573,7 @@ class PageProgram(Page):
         return changed
 
     def _save_bank_settings(self) -> bool:
-        '''save values from input blocks on bank select sub-page; called by self.process_user_input and self.midi_learn'''
+        '''save values from input blocks on bank select sub-page; called by self.process_user_input'''
         _router = ui.router
         changed = False
         bank_select = _router.program['bank_select']
@@ -678,7 +657,7 @@ class PageProgram(Page):
                     options = tuple(str(i) for i in range(len(ui.data.routing_programs)))
                     self._draw()
                     ui.ui.pop_ups[_POP_UP_SELECT].open(self, _SELECT_POSITION, 'move to:', options,
-                                                       _router.active_program_number, callback_func=self._callback_select)
+                                                       _router.active_program_number, self._callback_select)
 
     def _callback_select(self, caller_id: int, selection: int) -> None:
         '''callback for select pop-up; called (passed on) by self._callback_menu'''

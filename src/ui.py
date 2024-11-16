@@ -282,9 +282,10 @@ class UI():
                 continue
             # if button_number == _BUTTON_TRIGGER_CONFIRM
             if self.active_pop_up is None:
-                if value == _BUTTON_EVENT_PRESS: # short-press of trigger button
+                page_select_mode = self.page_select_mode
+                if value == _BUTTON_EVENT_PRESS and not page_select_mode: # short-press of trigger button and not in page select mode
                     _router.trigger() # type: ignore
-                elif value == _BUTTON_EVENT_LONG_PRESS: # long-press of trigger button
+                elif value == _BUTTON_EVENT_LONG_PRESS and not page_select_mode: # long-press of trigger button and not in page select mode
                     options = []
                     input_devices_tuple_assigned = _router.input_devices_tuple_assigned # type: ignore
                     input_presets_tuples = _router.input_presets_tuples # type: ignore

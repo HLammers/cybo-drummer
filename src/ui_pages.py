@@ -45,8 +45,8 @@ class Page():
         if visible:
             self.visible = visible
             blocks = self.blocks
-            if ui.ui.page_pressed:
-                self._sub_page_selector()
+            if ui.ui.page_select_mode:
+                self._sub_page_selector(False)
             elif len(blocks) > 0:
                 blocks[0].update(True, False)
             self._load()
@@ -65,11 +65,11 @@ class Page():
             blocks[self.selected_block].update(True, False)
         self._draw()
 
-    def set_page_encoders(self, page_pressed: bool) -> None:
+    def set_page_encoders(self, page_select_mode: bool) -> None:
         '''switches value encoder input to or from page selection and changes colour of title bar (when page button is pressed); called by
         ui.process_user_input'''
         blocks = self.blocks
-        if page_pressed:
+        if page_select_mode:
             if len(blocks) > 0:
                 blocks[self.selected_block].update(False)
             self._sub_page_selector()
@@ -106,11 +106,6 @@ class Page():
         '''process select button press at page level; called by ui.process_user_input'''
         self.blocks[self.selected_block].button_select()
 
-######
-    # def button_trigger(self) -> bool:
-    #     '''process trigger button press at page level; called by ui.process_user_input'''
-    #     return False
-
     def process_user_input(self, id: int, value: int  = _NONE, text: str = '',
                            button_encoder_0: bool = False, button_encoder_1: bool = False) -> None:
         '''process user input at page level (ui.ui.set_user_input_dict > global user_input_dict > ui.process_user_input >
@@ -137,22 +132,20 @@ class Page():
         _ui = ui.ui
         if not self.visible or _ui.active_pop_up is not None:
             return
-        page_pressed = _ui.page_pressed
+        page_select_mode = _ui.page_select_mode
         blocks = self.blocks
         selected_block = self.selected_block
         if len(blocks) > 0:
-            blocks[selected_block].update(not page_pressed, False)
+            blocks[selected_block].update(not page_select_mode, False)
         for block in self.empty_blocks:
             block.draw()
-        title_bar = self.title_bar
-        title_bar.draw()
         for block in blocks:
-            block.draw(_ui.page_pressed)
-        title_bar.update(page_pressed)
+            block.draw(page_select_mode)
+        self.title_bar.update(page_select_mode)
         _text_edit = _ui.pop_ups[_POP_UP_TEXT_EDIT]
         if _text_edit.visible:
             _text_edit.draw()
-        elif not page_pressed:
+        elif not page_select_mode:
             self._initiate_navigate_encoder(selected_block)
 
     def _load(self, redraw: bool = True) -> None:
@@ -160,12 +153,12 @@ class Page():
         PageProgram.set_trigger and PageMonitor.add_to_monitor'''
         pass
 
-    def _sub_page_selector(self) -> None:
+    def _sub_page_selector(self, redraw: bool = True) -> None:
         '''change title bar colour and set encoder range to select sub-page (when page button is pressed); called by self.set_visibility and
          self.set_page_encoders'''
         if len(self.sub_pages_title_bars) <= 1:
             return
-        self.title_bar.update(True)
+        self.title_bar.update(True, redraw)
         ui.encoder_0.set(self.sub_page, 0, len(self.sub_pages_blocks) - 1)
 
     def _set_sub_page(self, sub_page: int) -> None:

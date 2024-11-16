@@ -14,13 +14,13 @@
 >
 > Of course I’m open for collaboration. Just let me know how you think you can contribute!
 >
-> Please use the [issues tab](issues/) to report bug and other issues, or the [discussion tab](discussions/) to discuss anything else.
+> Please use the [issues tab]([hlammers/cybo-drummer/issues/](https://github.com/HLammers/cybo-drummer/issues) to report bug and other issues, or the [discussion tab](https://github.com/HLammers/cybo-drummer/discussions) to discuss anything else.
 ## Introduction
 I own an electronic drum kit and a bunch of drum computers and my dream was to use the former to play the latter, so I went searching for a way to do just that – allowing me to easily switch between different configurations combining the sounds of one or more drum computers. I looked for hardware solutions, but couldn’t find any. I looked for software solutions, but I could only find MIDI mappers or other complex solutions that would never give me the easy to use experience I had it mind. It turns out that (as usual) I go against the current fashion of trying to make an electronic drum kit sound (and look) as acoustic as possible. So I decided to develop my own solution – and publish it as open source DIY project, hoping it finds like-minded drummers!
 ## Overview
 Cybo-Drummer is a MIDI router/mapper with 6 input ports and 6 output ports, specially designed for mapping drum triggers (electronic drum kits’ brains) to drum computers. Since there is no standard for the MIDI messages sent by drum kits, nor the messages received by drum computers, Cybo-Drummer offers a flexible way of mapping the one to the other.
 
-The idea for the hardware was inspired by the work of [diyelectromusic (Kevin)](https://diyelectromusic.com/), in particular his [Raspberry Pi Pico Multi MIDI Router](https://diyelectromusic.com/2022/09/19/raspberry-pi-pico-multi-midi-router-part-5/). The first prototype is an additional PCB on top of the Multi Midi Router.
+The idea for the hardware was inspired by the work of [diyelectromusic (Kevin)](https://diyelectromusic.com), in particular his [Raspberry Pi Pico Multi MIDI Router](https://diyelectromusic.com/2022/09/19/raspberry-pi-pico-multi-midi-router-part-5). The first prototype is an additional PCB on top of the Multi Midi Router.
 ### Features
 #### Hardware
 * 6 times 5-pin DIN MIDI input port: connect up to 6 drum kits, drum pads, keyboards, etc.
@@ -107,7 +107,7 @@ graph LR
 * MIDI monitor with three views: Show mapping flow (input preset > output preset), MIDI data coming in and MIDI data sent out
 [^2]: Except SysEx
 ## Building Instructions
-Cybo-Drummer is a DIY project which is currently in a prototype stage. The hardware design is a pragmatic solution, building upon an existing design by [diyelectromusic (Kevin)](https://diyelectromusic.com/), who designed the bottom PCB with the MIDI ports. As a next step I want to design new hardware (including 3d printable enclosure) and now I have a working prototype I’m considering what to improve in the next iteration. These are a few of my considerations:
+Cybo-Drummer is a DIY project which is currently in a prototype stage. The hardware design is a pragmatic solution, building upon an existing design by [diyelectromusic (Kevin)](https://diyelectromusic.com), who designed the bottom PCB with the MIDI ports. As a next step I want to design new hardware (including 3d printable enclosure) and now I have a working prototype I’m considering what to improve in the next iteration. These are a few of my considerations:
 * Where to place the MIDI ports? The current prototype has input ports at the front and output ports at the back. The disadvantage is that the MIDI cables take a lot of space at two sides of the device. Perhaps MIDI ports at the top of the device is a better solution? In two rows above the display, buttons and knobs? Alternatively I could leave the ports at the top and the bottom (angled PCB-mounted 5-pin DIN ports are much easier available than straight ones) and design a drum rack mounted casing (or a casing with 70mm × 10mm spaced holes to connect a standard size mounting plate for drum modules and multi-pads).
 * Should I add more buttons? All GPIO pins of the Raspberry Pi Pico are in use, so that would require adding IO ports, for example using one ore more PCF8574 I2C IO expander ICs. Having more IO ports would allow improvements like:
   * Splitting the TRIGGER button into a TRIGGER and a TRIGGER SELECT button
@@ -117,11 +117,11 @@ Cybo-Drummer is a DIY project which is currently in a prototype stage. The hardw
 
 ***I have no intention to sell Cybo-Drummer as a fully assembled product, nor as DIY package*** – I might change my mind in the future, but for now that doesn’t seem like a realistic idea, next to a full-time job and a family (especially because I expect it to be a very niche product – unless the a change in trend occurs and many more drummers become interested again in electronic drums as an instrument of its own – like in the 1980s – instead of a means to simulate acoustic drums). Nevertheless: if you think you can convince me to change my mind, feel free to try!
 ### Hardware
-Building the Cybo-Drummer hardware only requires basic soldering skills (only though-hole components). The PCBs can be ordered cheaply from Chinese PCB services like [JLCPCB](https://jlcpcb.com/) (no affiliate).
+Building the Cybo-Drummer hardware only requires basic soldering skills (only though-hole components). The PCBs can be ordered cheaply from Chinese PCB services like [JLCPCB](https://jlcpcb.com) (no affiliate).
 > [!NOTE]
 > The initial hardware is a crude, though functional prototype, without casing. I’m planning to design improved hardware including front panel and 3d printable case.
 #### BOM (Bill of Materials)
-##### First Board: [Raspberry Pi Pico Multi MIDI Router](https://diyelectromusic.com/2022/09/19/raspberry-pi-pico-multi-midi-router-part-5/)
+##### First Board: [Raspberry Pi Pico Multi MIDI Router](https://diyelectromusic.com/2022/09/19/raspberry-pi-pico-multi-midi-router-part-5)
 * The [Raspberry Pi Pico Multi MIDI Router PCB](https://github.com/diyelectromusic/sdemp_pcbs/tree/main/PicoMIDIRouter)
 * 6× H11L1 optocouplers
 * 6× 470Ω resistors
@@ -146,10 +146,10 @@ Building the Cybo-Drummer hardware only requires basic soldering skills (only th
 * 7× 11mm spacers plus bolts/nuts
 [^3]: Use the Raspberry Pi Pico and solder headers onto it yourself or the Pico H, which comes with pre-soldered headers; the pre-compiled Cybo-Drummer firmware does not support the Pico W, Pico WH nor Pico 2 (I will add support for the Pico 2 at a later stage)
 > [!NOTE]
-> The schematics for the second board can be found in the [schematics folder](scematics/).
+> The schematics for the second board can be found in the [schematics folder](schematics/).
 #### Build Instructions
 ##### First Board: Raspberry Pi Pico Multi MIDI Router
-* For the 1st board, follow the excellent instructions by diyelectromusic (Kevin): [Raspberry Pi Pico Multi MIDI Router](https://diyelectromusic.com/2022/09/19/raspberry-pi-pico-multi-midi-router-part-5/)
+* For the 1st board, follow the excellent instructions by diyelectromusic (Kevin): [Raspberry Pi Pico Multi MIDI Router](https://diyelectromusic.com/2022/09/19/raspberry-pi-pico-multi-midi-router-part-5)
 <img src="/images/top pcb bottom.png" width="25%" height="25%" align="right">
 <img src="/images/top pcb top.png" width="25%" height="25%" align="right">
 
@@ -164,7 +164,7 @@ Building the Cybo-Drummer hardware only requires basic soldering skills (only th
 * Plug the second board to Pico header sockets of the first board and fix them together using four spacers
 * Plug the Raspberry Pi Pico into the 2x 20-pin header sockets on the second board
 ### Software
-The easiest way to install the software is by downloading the latest firmware as a single file and uploading it the Cybo-Drummer, but it can be run directly from source as well.
+The easiest way to install the software is by downloading the [latest firmware]([releases/](https://github.com/HLammers/cybo-drummer/releases) as a single file and uploading it the Cybo-Drummer, but it can be run directly from source as well.
 > [!NOTE]
 > Cybo-Drummer offers a couple of key combinations specifically for debugging and firmware upload purposes:\
 > **RESET**: resets Cybo-Drummer\
@@ -172,7 +172,7 @@ The easiest way to install the software is by downloading the latest firmware as
 > **RESET + TRIGGER + PAGE**: (alternative to BOOTSEL + RESET) start bootloader (show Cybo-Drummer as drive called RPI-RP2 on your PC for uploading firmware) – press the RESET while keeping the TRIGGER and PAGE buttons pressed until the RPI-RP2 drive appears on your PC (after the Raspberry Pi Pico’s LED flashed)
 #### Uploading Firmware
 * Back up your user settings (see warning box below)
-* Download the [latest firmware release](releases/) (.uf2 file)
+* Download the [latest firmware release]([releases/](https://github.com/HLammers/cybo-drummer/releases) (.uf2 file)
 * Connect Cybo-Drummer with a USB cable to your PC of choice (Windows/Linux/MacOS)
 * Do one of the following to make the Cybo-Drummer appear as a drive called RPI-RP2 on your PC:
   * Press the RESET button and wait for the LED on the Raspberry Pi Pico to turn on; in the 1 second the LED is on, press and keep the TRIGGER and PAGE buttons pressed until the RPI-RP2 drive appears on your PC
@@ -182,7 +182,7 @@ The easiest way to install the software is by downloading the latest firmware as
 > [!WARNING]
 > ***Uploading new firmware might delete your user settings (including user-defined programs) and reinstate default values!***
 > User settings are stored internally in a file folder called data_files. Currently the easiest way To back-up (download) or restore (upload) the file is by following these steps (assuming you’re using a Windows PC):
-> * If you haven’t before: Install [Python](https://www.python.org/downloads/) – follow the instructions provided [here](https://docs.python.org/3/using/windows.html#windows-full) and **make sure to select ‘Add Python 3.x to PATH’**
+> * If you haven’t before: Install [Python](https://www.python.org/downloads) – follow the instructions provided [here](https://docs.python.org/3/using/windows.html#windows-full) and **make sure to select ‘Add Python 3.x to PATH’**
 > * If you haven’t before: Download the source code of [MicroPython release v1.24.0](https://github.com/micropython/micropython/releases). (typically the zip version) and unzip it somewhere on your PC
 > * In File Explorer go to the micropython-1.24.0\tools\mpremote folder (in the location where you unzipped MicroPython)
 > * Right click somewhere in the folder (not on a file) and from the context menu select ‘Open in Terminal’
@@ -200,7 +200,7 @@ The easiest way to install the software is by downloading the latest firmware as
 >   * Press RESET button on Cybo-Drummer
 >   * Press ENTER on your PC to start downloading (backing up) or uploading (restoring)
 #### Running From Source
-It is possible to run Cybo-Drummer from source by uploading the content from the [src folder](src/) to the Raspberry Pi Pico running [stock MicroPython](https://micropython.org/download/RPI_PICO/).
+It is possible to run Cybo-Drummer from source by uploading the content from the [src folder](src/) to the Raspberry Pi Pico running [stock MicroPython](https://micropython.org/download/RPI_PICO).
 
 Keep in mind that when running from source (instead of frozen into firmware), Cybo-Drummer takes more time to start up and screen refreshing. To resolve this while playing around with the code it is also possible to freeze only part of the source code, following the instructions under [building firmware from source](#building-firmware-from-source).
 #### Building Firmware From Source
@@ -253,17 +253,20 @@ The user interface displayed on the 2.2 inch TFT screen is organized as follows:
   * **Blocks:** all sub-pages except those on the monitor page are structured in locks which can be selected to enter input; the active block is highlighted using a dark and light sea green colour
 
 To control Cybo-Drummer’s user interface it has two buttons and two rotary encoders, which usually behave as follows:
-* **PAGE/YES:** Keep pressed to select page or sub-page
+* **PAGE/YES:**
+  * *Short press:* Toggle page select mode on or off
+  * *Long press:* Show pop-up to select program
 * **TRIGGER/NO:**
   * *Short press:* Trigger last selected output trigger preset (for testing purposes)
-  * *Keep pressed:* Show pop-up to select trigger preset
+  * *Long press:* Show pop-up to select trigger preset
 * **NAV/↕ | DEL:**
   * *Turn:* Navigate / select active block
   * *Press (when a program, device, preset or trigger name block is selected):* Delete program, device, preset or trigger (a confirmation pop-up will show)
 * **VAL/↔ | SEL/OPT:**
   * *Turn:* Change value of active block or pop-up
   * *Press:*
-    * *When a program, device, preset or trigger name block is selected:* Rename or show options menu
+    * *When a value was changed but not confirmed yet:* Confirm value and process the change (not yet confirmed value is indicated by a purple square around the text)
+    * *When a program, device, preset or trigger name block is selected:* Rename or show options menu (press twice if the value was changed, but not yet confirmed: the first time will confirm it, the second time triggers rename or options menu)
     * *When a button block is selected:* Press/execute button
 ### Pages and sub-pages
 Cybo-Drummer’s user interface is organized in five pages:
@@ -273,9 +276,9 @@ Cybo-Drummer’s user interface is organized in five pages:
 * **MON (Monitor):** Show router and MIDI monitors
 * **SET (Settings):** Adjust global settings<img src="/images/hardware_pages.svg" align="right" width="300px" height="300px">
 
-To change the pages and sub-pages, keep the PAGE button pressed and turn the VAL/↔ knob (right knob) to change the page and the NAV/↕ know (left knob) to change the sub-page. While the PAGE button is pressed the page tabs and title bar are highlighted in dark and light sea green.
+To change the pages and sub-pages, short-press the PAGE button to enter page select mode. Now turn the VAL/↔ knob (right knob) to change the page and the NAV/↕ know (left knob) to change the sub-page. Short-press the PAGE button again to leave page select mode. While in page select mode the page tabs and title bar are highlighted in dark and light sea green.
 > [!CAUTION]
-> The PRG (program) page does not save automatically, all other pages do. If there are unsaved changes to a program an asterisk will show behind the active program number. To save changes, go to the first program page (program: mapping), select the [program block](#program), press the SEL/OPT button and choose ‘save’. This will show a pop-up to ask for confirmation and another pop-up to ask if you want to replace the active program – select ‘yes’ to save changes to the active program or select ‘no’ to save the changes to a new program directly after the active program.
+> The PRG (program) page does not save automatically, all other pages do (after confirming a changed value). If there are unsaved changes to a program an asterisk will show behind the active program number. To save changes, go to the first program page (program: mapping), select the [program block](#program), short-press the SEL/OPT button and choose ‘save’. This will show a pop-up to ask for confirmation and another pop-up to ask if you want to replace the active program – select ‘yes’ to save changes to the active program or select ‘no’ to save the changes to a new program directly after the active program.
 
 > [!TIP]
 > To duplicate the active program, make a change and save without replacing, this creates a new program directly after the active program.<br clear="right"/>
@@ -283,7 +286,9 @@ To change the pages and sub-pages, keep the PAGE button pressed and turn the VAL
 <img src="/images/hardware_trigger.svg" align="right" width="300px" height="300px">
 
 ### Trigger presets
-Short pressing the TRIGGER button triggers the last selected output trigger preset (for testing purposes). Long press the TRIGGER button to show a trigger preset selection pop-up. Keep the TRIGGER button pressed and turn the VAL/↔ knob to change the selected output trigger preset.<br clear="right"/>
+Short-press the TRIGGER button to trigger the last selected output trigger preset (for testing purposes). Long-press the TRIGGER button to show a trigger preset selection pop-up.
+
+While the trigger selection pop-up is shown: Turn the VAL/↔ knob to selected an output trigger preset and press the YES button (left button) to confirm and close the pop-up, or the NO button (right button) to close the pop-up without changing the selected trigger.<br clear="right"/>
 
 <img src="/images/hardware_confirmation.svg" align="right" width="300px" height="300px">
 
@@ -293,6 +298,8 @@ Cybo-Drummer doesn’t have an undo feature, so to avoid accidentally losing dat
 ### Description of All Pages and Sub-Pages
 #### PRG (Program)
 The program page is the first page that shows when powering up Cybo-Drummer. Use this page to select or edit the active program.<br clear="right"/>
+> [!TIP]
+> Programs can also be changed from any page/sub-page by long pressing the PAGE button. This will show the program selection pop-up. While the program selection pop-up is shown: Turn the VAL/↔ knob to selected a program and press the YES button (left button) to confirm and close the pop-up, or the NO button (right button) to close the pop-up without changing the active program.
 
 <img src="/screenshots/prg_1.png" align="right">
 
@@ -698,7 +705,7 @@ Since Cybo-Drummer doesn’t make any sound on its own, but merely routes signal
 
 > [!TIP]
 > To upload the example presets to Cybo-Drummer, follow the same instructions as given for restoring a back-up when [uploading firmware](#uploading-firmware):
-> * If you haven’t before: Install [Python](https://www.python.org/downloads/) – follow the instructions provided [here](https://docs.python.org/3/using/windows.html#windows-full) and **make sure to select ‘Add Python 3.x to PATH’**
+> * If you haven’t before: Install [Python](https://www.python.org/downloads) – follow the instructions provided [here](https://docs.python.org/3/using/windows.html#windows-full) and **make sure to select ‘Add Python 3.x to PATH’**
 > * If you haven’t before: Download the source code of [MicroPython release v1.24.0](https://github.com/micropython/micropython/releases). (typically the zip version) and unzip it somewhere on your PC
 > * In File Explorer go to the micropython-1.24.0\tools\mpremote folder (in the location where you unzipped MicroPython)
 > * Right click somewhere in the folder (not on a file) and from the context menu select ‘Open in Terminal’
@@ -776,8 +783,8 @@ To keep latency to a minimum the second core is dedicated to MIDI handling, whil
 - [ ] There is currently no easy way to download and upload user settings (including user-defined programs) when updating the firmware for users who are not accustomed to using Python
 - [ ] Program change and bank select assume the output device interprets value 0 as 1, but that’s not always the case (resulting in the value on Cybo-Drummer’s screen to be 1 off compared to what the output device shows – to solve this a device-level setting needs to be added to set the device’s behaviour
 ## Ideas for Features and Improvements to be Added
-- [ ] Change behaviour of the PAGE button from keeping pressed to toggle on/off, so it is easier to use with one hand – the keep pressed and turn knop event could be reused for program change, to make that available from everywhere
-- [ ] Change the value editing and storing behaviour from processing every change immediately to having to confirm a change with a click – that would make the user interface much more responsive, especially if many rotary encoder steps are involved (the way I imagine it: the moment you turn the VALUE knob the text colour changes to indicate the value has not changed yet; once you press the VALUE knob or you navigate away to another input field, the value gets saved and takes effect and the text colour changes back)
+- [x] ~~Change behaviour of the PAGE button from keeping pressed to toggle on/off, so it is easier to use with one hand – the keep pressed and turn knop event could be reused for program change, to make that available from everywhere~~
+- [x] ~~Change the value editing and storing behaviour from processing every change immediately to having to confirm a change with a click – that would make the user interface much more responsive, especially if many rotary encoder steps are involved (the way I imagine it: the moment you turn the VALUE knob the text colour changes to indicate the value has not changed yet; once you press the VALUE knob or you navigate away to another input field, the value gets saved and takes effect and the text colour changes back)~~
 - [ ] Improved hardware, including proper front panel and 3d printable case
 - [ ] Add USB MIDI input/output (USB MIDI support only became available in MicroPython 1.23, which was released at end of May 2024, which is after I developed the MIDI handling side of Cybo-Drummer)
 - [ ] Migrate to Raspberry Pi Pico 2, which has about twice as much memory, allowing larger display buffer and thus snappier GUI performance (also worth trying: using one of the additional PIO processors for SPI, which some people suggest to be faster due to hardware SPI adding a short delay between data bytes, which for most devices isn’t necessary)
@@ -788,6 +795,7 @@ To keep latency to a minimum the second core is dedicated to MIDI handling, whil
 - [ ] Add velocity mapping (triggering something different when hitting softly or hitting hard)
 - [ ] Add option to send MIDI start, stop or continue messages on trigger
 - [ ] Rethinking how to deal with choke events, which for some drum modules lead to MIDI note events (2Box, Alesis?) and for others to poly aftertouch/pressure MIDI CC messages (Roland, Yamaha)
+- [ ] Add choke groups which could combine different devices
 - [ ] Thinking through how the specific possibilities and needs when using Cybo-Drummer with a multi-pad controller (I recently bought and old Roland SPD-11 for that purpose)
 - [ ] Building an editor for program and device/trigger/preset definitions and settings files on a pc
 ## Licencing

@@ -10,8 +10,10 @@
 
     You should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses/.'''
 
-from machine import Pin, SPI, Timer
+from machine import Pin, SPI
 import time
+
+from data_types import ChainMapTuple
 
 from display import ILI9225, Font
 import font
@@ -47,9 +49,8 @@ _BUTTON_SELECT               = const(1) # encoder 1 button
 _BUTTON_PAGE_CANCEL          = const(2)
 # _BUTTON_TRIGGER_CONFIRM      = const(3)
 
-_BUTTON_EVENT_RELEASED       = const(0)
-_BUTTON_EVENT_PRESSED        = const(1)
-_BUTTON_EVENT_KEPT           = const(2)
+_BUTTON_EVENT_PRESS          = const(0)
+_BUTTON_EVENT_LONG_PRESS     = const(1)
 
 _DISPLAY_SPI                 = const(0)
 _DISPLAY_PIN_DC              = const(21)
@@ -72,7 +73,13 @@ _POP_UP_MENU                 = const(2)
 _POP_UP_CONFIRM              = const(3)
 _POP_UP_ABOUT                = const(4)
 
+_CONFIRM_SAVE                = const(128) # needs to be higher than block ids
+_CONFIRM_REPLACE             = const(129)
+
 _SELECT_TRIGGER              = const(0)
+_SELECT_PROGRAM              = const(1)
+
+_ADD_NEW_LABEL               = '[add new]'
 
 _MARGIN                      = const(3)
 _PAGES_W                     = const(16)
@@ -108,23 +115,23 @@ _SYS_STOP                    = const(0xFC)
 _SYS_ACTIVE_SENSING          = const(0xFE)
 _SYS_SYSTEM_RESET            = const(0xFF)
 
-_TEXT_NOTE_OFF               = 'NoteOff '
-_TEXT_NOTE_ON                = 'NoteOn  '
-_TEXT_POLYPHONIC_PRESSURE    = 'PolyPres'
-_TEXT_CC                     = 'ContCtrl'
-_TEXT_PROGRAM_CHANGE         = 'ProgChng'
-_TEXT_CHANNEL_PRESSURE       = 'ChanPres'
-_TEXT_PITCH_BEND             = 'PtchBend'
-_TEXT_QUARTER_FRAME          = 'SC Qrtr Frme'
-_TEXT_SONG_POSITION          = 'SC Song Pos '
-_TEXT_SONG_SELECT            = 'SC Song Slct'
-_TEXT_TUNE_REQUEST           = 'SC Tune Req '
-_TEXT_CLOCK                  = 'SR Clock    '
-_TEXT_START                  = 'SR Start    '
-_TEXT_CONTINUE               = 'SR Continue '
-_TEXT_STOP                   = 'SR Stop     '
-_TEXT_ACTIVE_SENSING         = 'SR Act Sens '
-_TEXT_SYSTEM_RESET           = 'SR Sys Reset'
+_TEXT_NOTE_OFF               = b'NoteOff '
+_TEXT_NOTE_ON                = b'NoteOn  '
+_TEXT_POLYPHONIC_PRESSURE    = b'PolyPres'
+_TEXT_CC                     = b'ContCtrl'
+_TEXT_PROGRAM_CHANGE         = b'ProgChng'
+_TEXT_CHANNEL_PRESSURE       = b'ChanPres'
+_TEXT_PITCH_BEND             = b'PtchBend'
+_TEXT_QUARTER_FRAME          = b'SC Qrtr Frme'
+_TEXT_SONG_POSITION          = b'SC Song Pos '
+_TEXT_SONG_SELECT            = b'SC Song Slct'
+_TEXT_TUNE_REQUEST           = b'SC Tune Req '
+_TEXT_CLOCK                  = b'SR Clock    '
+_TEXT_START                  = b'SR Start    '
+_TEXT_CONTINUE               = b'SR Continue '
+_TEXT_STOP                   = b'SR Stop     '
+_TEXT_ACTIVE_SENSING         = b'SR Act Sens '
+_TEXT_SYSTEM_RESET           = b'SR Sys Reset'
 
 ui = None
 display = None
@@ -147,9 +154,9 @@ class UI():
         encoder_0 = Rotary(_ENCODER_0_PIN_A_CLK, _ENCODER_0_PIN_B_DT)
         encoder_1 = Rotary(_ENCODER_1_PIN_A, _ENCODER_1_PIN_B)
         self.buttons = [Button(pin, True) for pin in _BUTTON_PINS]
-        self.buttons[-1].trigger_kept_pressed = True
-        self.buttons[-2].trigger_kept_pressed = True
-        self.page_pressed = False
+        self.buttons[-1].long_press = True # trigger/confirm
+        self.buttons[-2].long_press = True # page/cancel
+        self.page_select_mode = False
         self.trigger_timer = None
         self.frames = []
         self.pages = []
@@ -201,8 +208,8 @@ class UI():
             frame.program_change()
 
     def set_trigger(self, device: int = _NONE, preset: int = _NONE) -> None:
-        '''set active trigger (triggered by the trigger button), call router.set_trigger and page.set_trigger; called by self._callback_select,
-        PageProgram.process_user_input, PageProgram.midi_learn, PageInput.process_user_input and PageInput.midi_learn'''
+        '''set active trigger (triggered by the trigger button), call router.set_trigger and page.set_trigger; called by
+        self._callback_select, PageProgram.process_user_input and PageInput.process_user_input'''
         router.set_trigger(device, preset) # type: ignore
         for page in self.pages:
             page.set_trigger()
@@ -219,10 +226,10 @@ class UI():
             if encoder_values[i] == _NONE:
                 continue
             if self.active_pop_up is None:
-                if i == 1 and self.page_pressed:
+                if i == 1 and self.page_select_mode:
                     self.frames[_FRAME_PAGE_SELECT].set_page(encoder_values[1])
                 else:
-                    self.frames[self.active_page].encoder(i, encoder_values[i], self.page_pressed)
+                    self.frames[self.active_page].encoder(i, encoder_values[i], self.page_select_mode)
             else: # pop-up visible
                 self.active_pop_up.encoder(i, encoder_values[i])
 
@@ -260,21 +267,25 @@ class UI():
                 continue
             if button_number == _BUTTON_PAGE_CANCEL:
                 if self.active_pop_up is None:
-                    if value == _BUTTON_EVENT_PRESSED: # short-press of page button
-                        continue
-                    kept_pressed = value == _BUTTON_EVENT_KEPT # long-press/release of page button
-                    self.page_pressed = kept_pressed
-                    self.frames[self.active_page].set_page_encoders(kept_pressed)
-                    self.frames[_FRAME_PAGE_SELECT].set_page_encoders(kept_pressed)
-                elif value == _BUTTON_EVENT_PRESSED: # pop-up visible, short-press of page button
+                    if value == _BUTTON_EVENT_PRESS: # short-press of page button
+                        page_select_mode = not self.page_select_mode
+                        self.page_select_mode = page_select_mode
+                        self.frames[self.active_page].set_page_encoders(page_select_mode)
+                        self.frames[_FRAME_PAGE_SELECT].set_page_encoders(page_select_mode)
+                    elif not self.page_select_mode: # long-press of page button and not in page select mode
+                        options = ChainMapTuple(data.programs_tuple, (_ADD_NEW_LABEL,)) # type: ignore
+                        self.pop_ups[_POP_UP_SELECT].open(self.frames[self.active_page], _SELECT_PROGRAM, 'program', options,
+                                                          _router.active_program_number, self._callback_select) # type: ignore
+                elif value == _BUTTON_EVENT_PRESS: # pop-up visible, short-press of page button
                     if self.active_pop_up.button_cancel():
                         self.frames[self.active_page].restore()
                 continue
             # if button_number == _BUTTON_TRIGGER_CONFIRM
             if self.active_pop_up is None:
-                if value == _BUTTON_EVENT_PRESSED: # short-press of trigger button
+                page_select_mode = self.page_select_mode
+                if value == _BUTTON_EVENT_PRESS and not page_select_mode: # short-press of trigger button and not in page select mode
                     _router.trigger() # type: ignore
-                elif value == _BUTTON_EVENT_KEPT: # long-press of trigger button
+                elif value == _BUTTON_EVENT_LONG_PRESS and not page_select_mode: # long-press of trigger button and not in page select mode
                     options = []
                     input_devices_tuple_assigned = _router.input_devices_tuple_assigned # type: ignore
                     input_presets_tuples = _router.input_presets_tuples # type: ignore
@@ -292,34 +303,26 @@ class UI():
                         input_preset_name = input_presets_tuples[input_device_name][tmp >> 12]
                         options.append(f'{input_device_name}: {input_preset_name}')
                     self.pop_ups[_POP_UP_SELECT].open(self.frames[self.active_page], _SELECT_TRIGGER, 'input preset trigger:', options,
-                                                      _router.preset_trigger_option, True, self._callback_select) # type: ignore
+                                                      _router.preset_trigger_option, self._callback_select) # type: ignore
             else: # pop-up visible
-                if value == _BUTTON_EVENT_PRESSED: # short-press of trigger button
+                if value == _BUTTON_EVENT_PRESS: # short-press of trigger button
                     if self.active_pop_up.button_confirm():
                         self.frames[self.active_page].restore()
-                elif value == _BUTTON_EVENT_RELEASED: # long-press of trigger button
-                    _trigger_select = self.pop_ups[_POP_UP_SELECT]
-                    if self.active_pop_up == _trigger_select:
-                        _trigger_select.close()
-                        frame = self.frames[self.active_page]
-                        if len(frame.blocks) > 0:
-                            frame.blocks[frame.selected_block].update(True, False)
-                        self.frames[self.active_page].restore()
 
-    def process_midi_learn_data(self, data) -> None:
+    def process_midi_learn_data(self, midi_learn_data) -> None:
         '''process midi learn data (router.send_to_monitor > router.midi_learn_data > ui.process_midi_learn_data > Page.midi_learn); called by
         main_loops.py: main'''
-        port, channel, note, program, cc, cc_value, route_number = data
+        port, channel, note, program, cc, cc_value, route_number = midi_learn_data
         self.frames[self.active_page].midi_learn(port, channel, note, program, cc, cc_value, route_number)
 
     def process_monitor(self) -> None:
         '''process monitor data (router.send_to_monitor > router.monitor_data > ui.process_monitor > PageMonitor.add_to_monitor); called by
         main_loops.py: main'''
         _router = router
-        data = _router.read_monitor_data() # type: ignore
-        if data is None:
+        monitor_data = _router.read_monitor_data() # type: ignore
+        if monitor_data is None:
             return
-        mode, port, channel, command, data_1, data_2, route_number = data
+        mode, port, channel, command, data_1, data_2, route_number = monitor_data
         text_routing = ''
         text_midi_in = ''
         text_midi_out = ''
@@ -359,49 +362,49 @@ class UI():
         if command == _COMMAND_NOTE_OFF:
             data_1_str = '' if data_1 == _NONE else mt.number_to_note(data_1)
             data_2_str = '' if data_2 == _NONE else str(data_2)
-            descriptive_str = f'P{port} C{channel:>2} {_TEXT_NOTE_OFF} {data_1_str:>3} {data_2_str:>3}'
+            descriptive_str = f'P{port} C{channel:>2} {_TEXT_NOTE_OFF.decode()} {data_1_str:>3} {data_2_str:>3}'
         elif command == _COMMAND_NOTE_ON:
             data_1_str = '' if data_1 == _NONE else mt.number_to_note(data_1)
             data_2_str = '' if data_2 == _NONE else str(data_2)
-            descriptive_str = f'P{port} C{channel:>2} {_TEXT_NOTE_ON} {data_1_str:>3} {data_2_str:>3}'
+            descriptive_str = f'P{port} C{channel:>2} {_TEXT_NOTE_ON.decode()} {data_1_str:>3} {data_2_str:>3}'
         elif command == _COMMAND_POLYPHONIC_PRESSURE:
-            descriptive_str = f'P{port} C{channel:>2} {_TEXT_POLYPHONIC_PRESSURE} {data_1:>3} {data_2:>3}'
+            descriptive_str = f'P{port} C{channel:>2} {_TEXT_POLYPHONIC_PRESSURE.decode()} {data_1:>3} {data_2:>3}'
         elif command == _COMMAND_CC:
-            descriptive_str = f'P{port} C{channel:>2} {_TEXT_CC} {data_1:>3} {data_2:>3}'
+            descriptive_str = f'P{port} C{channel:>2} {_TEXT_CC.decode()} {data_1:>3} {data_2:>3}'
         elif command == _COMMAND_PROGRAM_CHANGE:
-            descriptive_str = f'P{port} C{channel:>2} {_TEXT_PROGRAM_CHANGE} {data_1:>3}    '
+            descriptive_str = f'P{port} C{channel:>2} {_TEXT_PROGRAM_CHANGE.decode()} {data_1:>3}    '
         elif command == _COMMAND_CHANNEL_PRESSURE:
-            descriptive_str = f'P{port} C{channel:>2} {_TEXT_CHANNEL_PRESSURE} {data_1:>3}    '
+            descriptive_str = f'P{port} C{channel:>2} {_TEXT_CHANNEL_PRESSURE.decode()} {data_1:>3}    '
         elif command == _COMMAND_PITCH_BEND:
             value = (data_2 << 7) + data_1 - 0x2000
             if value > 0:
                 value = f'+{value}'
-            descriptive_str = f'P{port} C{channel:>2} {_TEXT_PITCH_BEND} {value:>7}'
+            descriptive_str = f'P{port} C{channel:>2} {_TEXT_PITCH_BEND.decode()} {value:>7}'
         elif command == _SYS_SYSEX_START:
             descriptive_str = '' # ignore
         elif command == _SYS_QUARTER_FRAME:
-            descriptive_str = f'P{port} {_TEXT_QUARTER_FRAME} {data_1:>3}    '
+            descriptive_str = f'P{port} {_TEXT_QUARTER_FRAME.decode()} {data_1:>3}    '
         elif command == _SYS_SONG_POSITION:
             value = (data_2 << 7) + data_1
-            descriptive_str = f'P{port} {_TEXT_SONG_POSITION} {value:>7}'
+            descriptive_str = f'P{port} {_TEXT_SONG_POSITION.decode()} {value:>7}'
         elif command == _SYS_SONG_SELECT:
-            descriptive_str = f'P{port} {_TEXT_SONG_SELECT} {data_1:>3}    '
+            descriptive_str = f'P{port} {_TEXT_SONG_SELECT.decode()} {data_1:>3}    '
         elif command == _SYS_TUNE_REQUEST:
-            descriptive_str = f'P{port} {_TEXT_TUNE_REQUEST}        '
+            descriptive_str = f'P{port} {_TEXT_TUNE_REQUEST.decode()}        '
         elif command == _SYS_SYSEX_END:
             descriptive_str = '' # ignore
         elif command == _SYS_CLOCK:
-            descriptive_str = f'P{port} {_TEXT_CLOCK}        '
+            descriptive_str = f'P{port} {_TEXT_CLOCK.decode()}        '
         elif command == _SYS_START:
-            descriptive_str = f'P{port} {_TEXT_START}        '
+            descriptive_str = f'P{port} {_TEXT_START.decode()}        '
         elif command == _SYS_CONTINUE:
-            descriptive_str = f'P{port} {_TEXT_CONTINUE}        '
+            descriptive_str = f'P{port} {_TEXT_CONTINUE.decode()}        '
         elif command == _SYS_STOP:
-            descriptive_str = f'P{port} {_TEXT_STOP}        '
+            descriptive_str = f'P{port} {_TEXT_STOP.decode()}        '
         elif command == _SYS_ACTIVE_SENSING:
-            descriptive_str = f'P{port} {_TEXT_ACTIVE_SENSING}        '
+            descriptive_str = f'P{port} {_TEXT_ACTIVE_SENSING.decode()}        '
         elif command == _SYS_SYSTEM_RESET:
-            descriptive_str = f'P{port} {_TEXT_SYSTEM_RESET}        '
+            descriptive_str = f'P{port} {_TEXT_SYSTEM_RESET.decode()}        '
         else:
             descriptive_str = ''
         if descriptive_str != '':
@@ -436,11 +439,29 @@ class UI():
         self.sleep_time = time.ticks_ms()
         scr.set_display(True) # type: ignore
 
+    def _callback_confirm(self, caller_id: int, confirm: bool) -> None:
+        '''callback for confirm pop-up; called (passed on) by self._callback_confirm'''
+        _router = router
+        if caller_id == _CONFIRM_SAVE:
+            if confirm:
+                self.pop_ups[_POP_UP_CONFIRM].open(self, _CONFIRM_REPLACE,f'replace {_router.active_program_number + 1:0>3}?', # type: ignore
+                                                   self._callback_confirm)
+            else:
+                next_program = self.next_program
+                if next_program != _NONE:
+                    _router.update(False, False, False, False, False, False, next_program) # type: ignore
+        elif caller_id == _CONFIRM_REPLACE:
+            _router.save_active_program(confirm) # type: ignore
+            next_program = self.next_program
+            if next_program != _NONE:
+                if not confirm and next_program > _router.active_program_number: # type: ignore
+                    next_program += 1
+                _router.update(False, False, False, False, False, False, next_program) # type: ignore
 
     def _callback_select(self, caller_id: int, selection: int) -> None:
         '''callback for select pop-up; called (passed on) by self.process_user_input'''
+        _router = router
         if caller_id == _SELECT_TRIGGER:
-            _router = router
             if selection == _NONE or selection == _router.preset_trigger_option: # type: ignore
                 return
             #  (6)        12           12      2
@@ -454,6 +475,14 @@ class UI():
             input_device = tmp & 0xFFF
             input_preset = tmp >> 12
             self.set_trigger(input_device, input_preset)
+        elif caller_id == _SELECT_PROGRAM:
+            if selection == _NONE or selection == _router.active_program_number: # type: ignore
+                return
+            if _router.program_changed: # type: ignore
+                self.next_program = selection
+                self.pop_ups[_POP_UP_CONFIRM].open(self, _CONFIRM_SAVE, 'save changes?', self._callback_confirm)
+            else:
+                _router.update(False, False, False, False, False, False, selection) # type: ignore
 
 class _Display():
     '''display class; initiated once by ui.__init__'''

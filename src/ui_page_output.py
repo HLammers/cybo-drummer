@@ -21,8 +21,6 @@ _NONE                  = const(-1)
 _NR_OUT_PORTS          = const(6)
 _MAX_PRESETS           = const(5)
 
-_TRIGGER_OUT           = const(2)
-
 _ON_OFF_OPTIONS        = ('off', 'on')
 _CHANNEL_OPTIONS       = GenOptions(16, 1, ('__',), str)
 _NOTE_OPTIONS          = GenOptions(128, first_options=('___',), func=mt.number_to_note)
@@ -204,49 +202,40 @@ class PageOutput(Page):
             if block == _DEVICE_CHANNEL:
                 if channel == _NONE or self.device_new_device:
                     return
-                if self._save_device_settings(block, channel + 1):
-                    self._set_device_options()
+                value = channel + 1
+            else:
+                return
         elif sub_page == _SUB_PAGE_TRIGGERS:
             if block == _TRIGGER_CHANNEL:
                 if channel == _NONE or self.trigger_new_trigger:
                     return
-                if self._save_trigger_settings(block, channel + 1):
-                    self._set_trigger_options()
+                value = channel + 1
             elif block == _TRIGGER_NOTE:
                 if note == _NONE or self.trigger_new_trigger:
                     return
-                if self._save_trigger_settings(block, note):
-                    self._set_trigger_options()
+                value = note
+            else:
+                return
         elif sub_page == _SUB_PAGE_PRESETS:
             if block == _PRESET_DEVICE:
                 if route_number == _NONE:
                     return
                 _router = ui.router
-                to_device = _router.output_devices_tuple_assigned.index(_router.routing[route_number]['output_device'])
-                if to_device == self.preset_device:
-                    return
-                self.preset_device = to_device
-                self.preset_new_preset = False
-                ui.data.save_data_json_file()
-                _router.update(False, False, False, False, False, False)
-                self._load_preset_options()
+                value = _router.output_devices_tuple_assigned.index(_router.routing[route_number]['output_device'])
             elif block == _PRESET_PRESET:
                 if route_number == _NONE:
                     return
                 _router = ui.router
-                to_preset = _router.output_presets_tuples[self.device_device_name].index(_router.routing[route_number]['output_preset'])
-                if to_preset == self.preset_preset:
-                    return
-                self.preset_preset = to_preset
-                self.preset_new_preset = False
-                ui.data.save_data_json_file()
-                _router.update(False, False, False, False, False, False)
-                self._load_preset_options()
+                value = _router.output_presets_tuples[self.device_device_name].index(_router.routing[route_number]['output_preset'])
             elif _PRESET_FIRST_NOTE <= block <= _PRESET_FIRST_NOTE + 2 * _MAX_PRESETS:
                 if note == _NONE or (block - _PRESET_FIRST_MAP) % 2 == 0:
                     return
-                if self._save_preset_settings(block, note, ''):
-                    self._set_trigger_options()
+                value = note
+            else:
+                return
+        else:
+            return
+        self.blocks[block].set_selection(value)
 
     def _build_page(self) -> None:
         '''build page (without drawing it); called by self.__init__ and self._build_sub_page'''
@@ -351,8 +340,7 @@ class PageOutput(Page):
         self._set_port_options(False)
 
     def _load_preset_options(self, redraw: bool = True) -> None:
-        '''load and set values to options and values to input blocks on preset sub-page; called by self.process_user_input, self.midi_learn
-        and self._load'''
+        '''load and set values to options and values to input blocks on preset sub-page; called by self.process_user_input and self._load'''
         if self.preset_new_preset:
             self.preset_preset_name = _ADD_NEW_LABEL
             n = 0
@@ -399,8 +387,8 @@ class PageOutput(Page):
             blocks[_PORT_FIRST_DEVICE + port].set_options(devices_tuple, device_option, redraw)
 
     def _set_device_options(self, redraw: bool = True) -> None:
-        '''load and set options and values to input blocks on device sub-page; called by self.process_user_input, self.midi_learn, self._load
-        and self._callback_confirm'''
+        '''load and set options and values to input blocks on device sub-page; called by self.process_user_input, self._load and
+        self._callback_confirm'''
         if self.sub_page != _SUB_PAGE_DEVICES:
             return
         devices_tuple = ChainMapTuple(ui.router.output_devices_tuple_all, (_ADD_NEW_LABEL,))
@@ -425,8 +413,7 @@ class PageOutput(Page):
         blocks[_DEVICE_RUNNING_STATUS].set_options(selection=running_status, redraw=redraw)
 
     def _set_trigger_options(self, redraw: bool = True) -> None:
-        '''load and set options and values to input blocks on triggers sub-page; called by self.process_user_input, self.midi_learn and
-        self._load'''
+        '''load and set options and values to input blocks on triggers sub-page; called by self.process_user_input and self._load'''
         if self.sub_page != _SUB_PAGE_TRIGGERS:
             return
         _router = ui.router
@@ -534,7 +521,7 @@ class PageOutput(Page):
         ui.router.update(False, False, False, False, False, False)
 
     def _save_device_settings(self, id: int, value: int) -> bool:
-        '''save values from input blocks on device sub-page; called by self.process_user_input and self.midi_learn'''
+        '''save values from input blocks on device sub-page; called by self.process_user_input'''
         _data = ui.data
         changed = False
         device_key = self.device_device_name
@@ -561,7 +548,7 @@ class PageOutput(Page):
         return changed
 
     def _save_trigger_settings(self, id: int, value: int) -> bool:
-        '''save values from input blocks on triggers sub-page; called by self.process_user_input and self.midi_learn'''
+        '''save values from input blocks on triggers sub-page; called by self.process_user_input'''
         _data = ui.data
         changed = False
         device = _data.output_devices[self.trigger_device_name]

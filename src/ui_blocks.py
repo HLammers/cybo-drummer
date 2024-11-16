@@ -16,49 +16,50 @@ import time
 import ui
 if __debug__: import screen_log
 
-_VERSION               = '0.1.0'
-_YEAR                  = const(2024)
+_VERSION                = b'0.2.0'
+_YEAR                   = const(2024)
 
-_ALIGN_LEFT            = const(0)
-_ALIGN_CENTRE          = const(1)
-_ALIGN_RIGHT           = const(2)
+_ALIGN_LEFT             = const(0)
+_ALIGN_CENTRE           = const(1)
+_ALIGN_RIGHT            = const(2)
 
-_COLOR_TABS_DARK       = const(0xAA29) # 0x29AA dark purple blue
-_COLOR_TABS_LIGHT      = const(0xD095) # 0x95D0 green
-_COLOR_TITLE_BACK      = const(0x06ED) # 0xED06 orange
-_COLOR_TITLE_FORE      = const(0xAA29) # 0x29AA dark purple blue
-_COLOR_BLOCK_DARK      = const(0xAA29) # 0x29AA dark purple blue
-_COLOR_BLOCK_LIGHT     = const(0xD9CD) # 0xCDD9 light purple grey
-_COLOR_SELECTED_DARK   = const(0x8E33) # 0x338E dark sea green
-_COLOR_SELECTED_LIGHT  = const(0xFD97) # 0x97FD light sea green
-_COLOR_LINE            = const(0x06ED) # 0xED06 orange
-_COLOR_POP_UP_DARK     = const(0x8E33) # 0x338E dark sea green
-_COLOR_POP_UP_LIGHT    = const(0xFD97) # 0x97FD light sea green
+_COLOR_TABS_DARK        = const(0xAA29) # 0x29AA dark purple blue
+_COLOR_TABS_LIGHT       = const(0xD095) # 0x95D0 green
+_COLOR_TITLE_BACK       = const(0x06ED) # 0xED06 orange
+_COLOR_TITLE_FORE       = const(0xAA29) # 0x29AA dark purple blue
+_COLOR_BLOCK_DARK       = const(0xAA29) # 0x29AA dark purple blue
+_COLOR_BLOCK_LIGHT      = const(0xD9CD) # 0xCDD9 light purple grey
+_COLOR_SELECTED_DARK    = const(0x8E33) # 0x338E dark sea green
+_COLOR_SELECTED_LIGHT   = const(0xFD97) # 0x97FD light sea green
+_COLOR_SELECTED_CHANGED = const(0x6CA0) # 0xA06C purple
+_COLOR_LINE             = const(0x06ED) # 0xED06 orange
+_COLOR_POP_UP_DARK      = const(0x8E33) # 0x338E dark sea green
+_COLOR_POP_UP_LIGHT     = const(0xFD97) # 0x97FD light sea green
 
-_MARGIN                = const(3)
-_MARGIN_LARGE          = const(10)
-_TAB_H                 = const(36) # (h + len(_PAGE_LABELS)) // len(_PAGE_LABELS)
-_TITLE_BAR_W           = const(204)
-_TITLE_BAR_H           = const(14)
-_PROGRAM_NUMBER_W      = const(25)
-_BLOCK_H               = const(27)
-_BLOCK_W               = const(102)
-_LABEL_H               = const(10)
-_VALUE_H               = const(17)
-_BUTTON_MARGIN_X       = const(20)
-_BUTTON_MARGIN_Y       = const(4)
-_TEXT_H                = const(15)
-_CURSOR_H              = const(10)
-_CHAR_W                = const(13)
-_CHAR_H                = const(11)
-_CONTROL_H             = const(16)
-_SELECT_TRIGGER_W      = const(160)
-_MENU_W                = const(102)
-_CONFIRM_W             = const(102)
+_MARGIN                 = const(3)
+_MARGIN_LARGE           = const(10)
+_TAB_H                  = const(36) # (h + len(_PAGE_LABELS)) // len(_PAGE_LABELS)
+_TITLE_BAR_W            = const(204)
+_TITLE_BAR_H            = const(14)
+_PROGRAM_NUMBER_W       = const(25)
+_BLOCK_H                = const(27)
+_BLOCK_W                = const(102)
+_LABEL_H                = const(10)
+_VALUE_H                = const(17)
+_BUTTON_MARGIN_X        = const(20)
+_BUTTON_MARGIN_Y        = const(4)
+_TEXT_H                 = const(15)
+_CURSOR_H               = const(10)
+_CHAR_W                 = const(13)
+_CHAR_H                 = const(11)
+_CONTROL_H              = const(16)
+_SELECT_TRIGGER_W       = const(160)
+_MENU_W                 = const(102)
+_CONFIRM_W              = const(102)
 
-_TEXT_INPUT_CHARACTERS = '''ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#%^&*()_-+=[]\\{}|:;"',./<>?'''
-_CHARACTER_COLUMNS     = const(13)
-_TEXT_INPUT_SPACE_BAR  = 'space bar'
+_TEXT_INPUT_CHARACTERS  = b'''ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#%^&*()_-+=[]\\{}|:;"',./<>?'''
+_CHARACTER_COLUMNS      = const(13)
+_TEXT_INPUT_SPACE_BAR   = b'space bar'
 
 _bit_buffer = memoryview(bytearray(3048)) # large enough for text edit)
 
@@ -81,13 +82,13 @@ class Block():
 
     def update(self, selected: bool, redraw: bool = True, encoder_nr: int = 1) -> None:
         '''update block, set selection state and redraw if necessary; called by PopUp.open, PopUp.close, ui.process_user_input,
-        Page.set_visibility, Page.restore, Page.set_page_encoders, Page.encoder, Page._draw, Page._sub_page_selector
-        and Page*.program_change'''
+        Page.set_visibility, Page.restore, Page.set_page_encoders, Page.encoder, Page._draw, Page._sub_page_selector and
+        Page*.program_change'''
         pass
 
     def draw(self, suppress_selected: bool, only_value: bool, frame_buffer) -> None:
         '''draw whole block or only value part of block; called by PagesTabs.update, TitleBar.update, *Block.update, PagesTabs.encoder
-        ButtonBlock.button_select, SelectBlock.set_label, SelectBlock.set_options, Page._draw, _Monitor.draw, Page.restore, Page*._load,
+        ButtonBlock.button_select, SelectBlock.set_label, SelectBlock.set_options, Page._draw, _Monitor.draw, Page.restore, Page*._load
         and PageProgram._save_*_settings'''
         if __debug__: screen_log.add_marker(f'add block {self.row},{self.col}, selected: {self.selected and not suppress_selected}')
         if self.selected and not suppress_selected:
@@ -189,7 +190,7 @@ class TitleBar(Block):
         self.font = ui.display.font
 
     def update(self, selected, redraw: bool = True):
-        '''update block, set selection state and redraw if necessary; called by Page._draw and Page._sub_page_selector'''
+        '''update block, set selection state and redraw if necessary; called by Page.set_page_encoders, Page._draw and Page._sub_page_selector'''
         self.selected = selected
         if selected:
             ui.encoder_0.set(self.page_number - 1, 0, self.number_of_pages - 1)
@@ -306,15 +307,19 @@ class SelectBlock(Block):
         super().__init__(id, row, col, cols, selected, label, add_line)
         self.options = options
         self.selection = selection
+        self.new_selection = selection
         self.callback_func = callback_func
 
     def update(self, selected: bool, redraw: bool = True, encoder_nr: int = 1) -> None:
         '''update block, set selection state and redraw if necessary; called by PopUp.open, PopUp.close, ui.process_user_input,
         Page.set_visibility, Page.set_page_encoders, Page.encoder and Page*.program_change and Page._draw'''
         self.selected = selected
+        selection = self.selection
         if selected:
             encoder = ui.encoder_0 if encoder_nr == 0 else ui.encoder_1
-            encoder.set(self.selection, 0, len(self.options) - 1)
+            encoder.set(selection, 0, len(self.options) - 1)
+        elif selection != self.new_selection:
+            self.new_selection = selection
         if redraw:
             self.draw()
 
@@ -333,15 +338,22 @@ class SelectBlock(Block):
             _text(0, 0, w, _LABEL_H, self.label, 0, _ALIGN_CENTRE, _buffer)
             _buffer.rect(0, _LABEL_H, w, _VALUE_H, False, True)
             y = _LABEL_H + 1
-        if self.selection < len(self.options):
-            value = self.options[self.selection]
+        if self.new_selection < len(self.options):
+            value = self.options[self.new_selection]
         else:
             value = ''
         w = self.w
         _text(0, y, w, _VALUE_H - 2, value, 1, _ALIGN_CENTRE, _buffer)
         super().draw(suppress_selected, only_value, _buffer)
+        x = self.x
         if self.add_line:
-            ui.scr.fill_rect(self.x, self.y + _BLOCK_H - 2, w, 2, _COLOR_LINE)
+            ui.scr.fill_rect(x, self.y + _BLOCK_H - 2, w, 2, _COLOR_LINE)
+        if self.selection != self.new_selection:
+            y = self.y + _LABEL_H
+            ui.scr.fill_rect(x, y, w, 2, _COLOR_SELECTED_CHANGED)
+            ui.scr.fill_rect(x, y + _VALUE_H - 2, w, 2, _COLOR_SELECTED_CHANGED)
+            ui.scr.fill_rect(x, y + 2, 2, _VALUE_H - 4, _COLOR_SELECTED_CHANGED)
+            ui.scr.fill_rect(x + w - 2, y + 2, 2, _VALUE_H - 4, _COLOR_SELECTED_CHANGED)
 
     def set_label(self, label: str, redraw: bool = True):
         '''set text for label part of block; called by PagesProgram._set_program_options'''
@@ -349,37 +361,44 @@ class SelectBlock(Block):
         if redraw:
             self.draw()
 
-    def set_options(self, options = None, selection: int = 0, redraw: bool = True) -> int:
-        '''set list of options and current selection; called by self.encoder, Pages*._set_*_options and PageSettings.midi_learn'''
+    def set_options(self, options = None, selection: int = 0, redraw: bool = True) -> None:
+        '''set list of options and current selection; called Pages*._set_*_options'''
         if options is None:
             options = self.options
         else:
             if len(options) == 0:
                 options = ('',)
             self.options = options
-            if self.selected and not ui.ui.page_pressed:
+            if self.selected and not ui.ui.page_select_mode:
                 ui.encoder_1.set(selection, 0, len(options) - 1)
-        if selection >= len(options):
-            selection = len(options) - 1
         self.selection = selection
-        self.text = str(options[selection])
+        self.new_selection = selection
         if redraw:
             self.draw()
-        return selection
+
+    def set_selection(self, selection: int) -> None:
+        '''set list of options and current selection; called by self.encoder and Page*.midi_learn'''
+        self.new_selection = selection
+        self.draw(only_value=True)
 
     def encoder(self, value: int) -> None:
         '''process value encoder input at block level (ui._callback_encoder_0/_callback_encoder_1 > global encoder_input_0/encoder_input_1 >
         ui.process_encoder > Page/PopUp.encoder/PagesTab.set_page > Block: *.encoder); called by Pages.encoder'''
-        if not self.selected or self.callback_func is None:
+        if not self.selected:
             return
-        value = self.set_options(selection=value)
-        self.callback_func(self.id, value, self.options[value])
+        self.set_selection(value)
 
     def button_select(self) -> None:
-        '''process select button press at block level; called by Page.button_select'''
+        '''process select button press at block level storing changed selection if applicable, otherwise calling context menu/function;
+        called by Page.button_select'''
         if not self.selected or self.callback_func is None:
             return
-        self.callback_func(self.id, button_encoder_1=True)
+        new_selection = self.new_selection
+        if self.selection == new_selection:
+            self.callback_func(self.id, button_encoder_1=True)
+        else:
+            self.selection = new_selection
+            self.callback_func(self.id, new_selection, self.options[new_selection])
 
     def button_backspace(self) -> None:
         '''process backspace button press at block level; called by Page.button_backspace'''
@@ -505,9 +524,9 @@ class TextEdit(PopUp):
         for i, ch in enumerate(_TEXT_INPUT_CHARACTERS):
             x = self.characters_left + (i % _CHARACTER_COLUMNS) * _CHAR_W
             y = self.characters_top + (i // _CHARACTER_COLUMNS) * _CHAR_H
-            _text(x, y, _CHAR_W, _CHAR_H, ch, 1, _ALIGN_CENTRE, _buffer)
+            _text(x, y, _CHAR_W, _CHAR_H, chr(ch), 1, _ALIGN_CENTRE, _buffer)
         _text(self.characters_left, self.characters_top + self.character_rows * _CHAR_H, self.input_w, _CHAR_W,
-              _TEXT_INPUT_SPACE_BAR, 1, _ALIGN_CENTRE, _buffer)
+              _TEXT_INPUT_SPACE_BAR.decode(), 1, _ALIGN_CENTRE, _buffer)
         ui.scr.draw_frame_buffer(self.x, self.y, self.w, self.h, _COLOR_POP_UP_DARK, _COLOR_POP_UP_LIGHT, _buffer)
         self._draw_input_text()
 
@@ -525,7 +544,7 @@ class TextEdit(PopUp):
             return
         if self.selection_y < self.character_rows:
             pos = self.selection_y * _CHARACTER_COLUMNS + self.selection_x
-            self.text = self.text + _TEXT_INPUT_CHARACTERS[pos]
+            self.text = self.text + chr(_TEXT_INPUT_CHARACTERS[pos])
         else:
             self.text = self.text + ' '
         self._draw_input_text()
@@ -591,11 +610,11 @@ class TextEdit(PopUp):
         y = self.y + self.characters_top + selection_y * _CHAR_H
         if selection_y < self.character_rows:
             pos = selection_y * _CHARACTER_COLUMNS + selection_x
-            text = _TEXT_INPUT_CHARACTERS[pos]
+            text = chr(_TEXT_INPUT_CHARACTERS[pos])
             x = self.x + self.characters_left + selection_x * _CHAR_W
             w = _CHAR_W
         else:
-            text = _TEXT_INPUT_SPACE_BAR
+            text = _TEXT_INPUT_SPACE_BAR.decode()
             x = self.x + self.characters_left
             w = self.input_w
         _buffer = framebuf.FrameBuffer(_bit_buffer, w, _CHAR_H, framebuf.MONO_HMSB)
@@ -611,14 +630,13 @@ class SelectPopUp(PopUp):
         self.inside_w = _SELECT_TRIGGER_W
         self.inside_h = _LABEL_H + _VALUE_H
 
-    def open(self, frame, caller_id: int, label: str, options: list|tuple, selection: int, instant: bool = False, callback_func=None) -> None:
-        '''open and draw pop-up and deselect selected page block; called by ui.process_user_input, Page*.process_user_input and
-        PageProgram._callback_menu'''
+    def open(self, frame, caller_id: int, label: str, options: list|tuple, selection: int, callback_func=None) -> None:
+        '''open and draw pop-up and deselect selected page block; called by ui.process_user_input, ui._callback_confirm,
+        ui._callback_select, Page*.process_user_input and PageProgram._callback_menu'''
         self.caller_id = caller_id
         self.label = label
         self.options = options
         self.selection = selection
-        self.instant = instant
         self._callback_func = callback_func
         super().open(frame)
 
@@ -661,24 +679,9 @@ class SelectPopUp(PopUp):
             return
         self.selection = value
         self.draw(True)
-        if not self.instant:
-            return
-        try:
-            self._callback_func(self.caller_id, self.selection) # type: ignore
-        except:
-            pass
-
-    def button_cancel(self) -> bool:
-        '''process cancel button at pop-up level; called by ui.process_user_input'''
-        if self.instant:
-            return False
-        self.close()
-        return True
 
     def button_select(self) -> None:
         '''process select button press at pop-up level; called by SelectPopUp.button_confirm and ui.process_user_input'''
-        if self.instant:
-            return
         self.close()
         try:
             self._callback_func(self.caller_id, self.selection) # type: ignore
@@ -823,7 +826,7 @@ class AboutPopUp(PopUp):
         y = _MARGIN_LARGE
         self.font.text_box(_MARGIN_LARGE, y, self.inside_w, _CONTROL_H, 'Cybo-Drummer', 1, _ALIGN_CENTRE, _buffer)
         y += _CONTROL_H
-        self.font.text_box(_MARGIN_LARGE, y, self.inside_w, _CONTROL_H, f'version {_VERSION}', 1, _ALIGN_CENTRE, _buffer)
+        self.font.text_box(_MARGIN_LARGE, y, self.inside_w, _CONTROL_H, f'version {_VERSION.decode()}', 1, _ALIGN_CENTRE, _buffer)
         y += _CONTROL_H
         self.font.text_box(_MARGIN_LARGE, y, self.inside_w, _CONTROL_H, f'(c) {_YEAR}', 1, _ALIGN_CENTRE, _buffer)
         y += _CONTROL_H

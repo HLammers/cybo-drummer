@@ -100,7 +100,8 @@ class Router():
                reload_output_triggers: bool = True, reload_input_presets: bool = True, reload_output_presets: bool = True,
                program_number: int = _NONE, already_waiting: bool = False) -> None:
         '''reload data and call ui.program_change to triggers redraw; called by main_loops.py: init, self._save, self._save_program,
-        Page*.process_user_input, Page*.midi_learn, Page*._save_*_settings, Page*._callback_menu, Page*._callback_select'''
+        ui._callback_confirm, ui._callback_select, Page*.process_user_input, Page*._save_*_settings, Page*._callback_menu,
+        Page*._callback_select'''
         if not already_waiting:
             # request second thread to wait (handshake)
             with self.thread_lock:
@@ -416,7 +417,8 @@ class Router():
                 self.ui_trigger = key_int
 
     def save_active_program(self, replace: bool) -> None:
-        '''save active program changes, either replacing or as a new program after the original; called by PageProgram._callback_confirm'''
+        '''save active program changes, either replacing or as a new program after the original; called by ui._callback_confirm and
+        PageProgram._callback_confirm'''
         # request second thread to wait (handshake)
         with self.thread_lock:
             self.request_wait = True

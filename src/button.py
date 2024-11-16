@@ -26,30 +26,29 @@ _NONE                   = const(-1)
 _IRQ_RISING_FALLING     = Pin.IRQ_RISING | Pin.IRQ_FALLING
 
 _DEBOUNCE_DELAY         = const(50) # ms
-_KEPT_PRESSED_DELAY     = const(200) # ms
+_LONG_PRESS_DELAY       = const(200) # ms
 
 _IRQ_LAST_STATE         = const(0)
 _IRQ_IDLE_STATE         = const(1)
 _IRQ_LAST_TIME          = const(2)
-_IRQ_AVAILABLE          = const(3)
+_IRQ_ONE_BUT_LAST_TIME  = const(3)
+_IRQ_AVAILABLE          = const(4)
 
-_BUTTON_EVENT_RELEASED  = const(0)
-_BUTTON_EVENT_PRESSED   = const(1)
-_BUTTON_EVENT_KEPT      = const(2)
+_BUTTON_EVENT_PRESS      = const(0)
+_BUTTON_EVENT_LONG_PRESS = const(1)
 
 class Button():
     '''button handling class; initiated by ui.__init__'''
 
-    def __init__(self, pin_number: int, pull_up: bool = False, trigger_kept_pressed: bool = False) -> None:
+    def __init__(self, pin_number: int, pull_up: bool = False, long_press: bool = False) -> None:
         self.pin_number = pin_number
-        self.trigger_kept_pressed = trigger_kept_pressed
-        self.irq_data = array('l', [_NONE, _NONE, 0, 0])
+        self.long_press = long_press
+        self.irq_data = array('l', [_NONE, _NONE, 0, _NONE, 0])
         self.irq_data[_IRQ_IDLE_STATE] = int(pull_up)
         _pin = Pin
         pull_direction = _pin.PULL_UP if pull_up else _pin.PULL_DOWN
         _pin = _pin(pin_number, _pin.IN, pull_direction)
         self.pin = _pin
-        self.last_pressed_time = _NONE
         _pin.irq(self._callback, _IRQ_RISING_FALLING)
 
     def close(self) -> None:
@@ -57,9 +56,9 @@ class Button():
 
     @micropython.viper
     def value(self) -> int:
-        '''return 1 if triggered and trigger_kept_pressed == False, 1 if short pressed and trigger_kept_pressed == True, 2 if
-        kept pressed and trigger_kept_pressed == True, 0 if released and trigger_kept_ressed == True or _NONE if no new data is
-        available (yet); called by ui.process_user_input'''
+        '''if long_press == False: return _BUTTON_EVENT_PRESS if pressed; if long_press == True: return _BUTTON_EVENT_PRESS if pressed
+        shorter then _LONG_PRESS_DELAY milliseconds or return _BUTTON_EVENT_LONG_PRESS if pressed longer (if kept pressed the trigger
+        happens after _LONG_PRESS_DELAY milliseconds); called by ui.process_user_input'''
         irq_data = ptr32(self.irq_data) # type: ignore
         if not irq_data[_IRQ_AVAILABLE]:
             return _NONE
@@ -67,21 +66,18 @@ class Button():
         if int(time.ticks_diff(now, irq_data[_IRQ_LAST_TIME])) < _DEBOUNCE_DELAY:
             return _NONE
         pressed = irq_data[_IRQ_LAST_STATE] != irq_data[_IRQ_IDLE_STATE]
-        if bool(self.trigger_kept_pressed):
+        if bool(self.long_press):
             if pressed:
-                if int(self.last_pressed_time) == _NONE:
-                    self.last_pressed_time = irq_data[_IRQ_LAST_TIME]
-                difference = int(time.ticks_diff(now, int(self.last_pressed_time)))
-                if difference < _KEPT_PRESSED_DELAY:
+                difference = int(time.ticks_diff(now, irq_data[_IRQ_LAST_TIME]))
+                if difference < _LONG_PRESS_DELAY:
                     return _NONE
                 irq_data[_IRQ_AVAILABLE] = 0
-                return _BUTTON_EVENT_KEPT
-            difference = int(time.ticks_diff(irq_data[_IRQ_LAST_TIME], int(self.last_pressed_time)))
-            self.last_pressed_time = _NONE
+                return _BUTTON_EVENT_LONG_PRESS
+            difference = int(time.ticks_diff(irq_data[_IRQ_LAST_TIME], irq_data[_IRQ_ONE_BUT_LAST_TIME]))
             irq_data[_IRQ_AVAILABLE] = 0
-            return _BUTTON_EVENT_PRESSED if difference < _KEPT_PRESSED_DELAY else _BUTTON_EVENT_RELEASED
+            return _BUTTON_EVENT_PRESS if difference < _LONG_PRESS_DELAY else _NONE
         irq_data[_IRQ_AVAILABLE] = 0
-        return _BUTTON_EVENT_PRESSED if pressed else _NONE
+        return _BUTTON_EVENT_PRESS if pressed else _NONE
 
     @micropython.viper
     def _callback(self, pin):
@@ -92,4 +88,5 @@ class Button():
             return
         irq_data[_IRQ_LAST_STATE] = state
         irq_data[_IRQ_AVAILABLE] = 1
+        irq_data[_IRQ_ONE_BUT_LAST_TIME] = irq_data[_IRQ_LAST_TIME]
         irq_data[_IRQ_LAST_TIME] = int(time.ticks_ms())

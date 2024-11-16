@@ -179,60 +179,46 @@ class PageInput(Page):
         if sub_page == _SUB_PAGE_PORTS:
             if channel == _NONE and route_number == _NONE:
                 return
-            port = (block - _PORT_FIRST_DEVICE) // 2
-            col = (block - _PORT_FIRST_DEVICE) % 2
-            if col == 1: # device
+            if (block - _PORT_FIRST_DEVICE) % 2 == 1: # device
                 return
-            self.port_settings[port][col] = channel + 1
-            if self._save_port_settings():
-                self._set_port_options()
+            value = channel + 1
         elif sub_page == _SUB_PAGE_DEVICES:
             if block == _DEVICE_DEVICE:
                 if route_number == _NONE:
                     return
                 _router = ui.router
-                from_device = _router.input_devices_tuple_assigned.index(_router.routing[route_number]['input_device'])
-                if from_device == _router.input_device_value:
-                    return
-                self.device_device = from_device + 1
-                self.device_new_device = False
-                self.device_trigger = 0
-                self.device_new_trigger = False
-                self._set_device_options()
+                value = _router.input_devices_tuple_assigned.index(_router.routing[route_number]['input_device'])
             elif block == _DEVICE_TRIGGER_NOTE:
                 if note == _NONE or self.device_new_device or self.device_new_trigger:
                     return
-                if self._save_device_settings(block, note):
-                    self._set_device_options()
+                value = note
+                self.blocks[_DEVICE_TRIGGER_NOTE].set_selection(note)
             elif block == _DEVICE_TRIGGER_PEDAL_CC:
                 if note == _NONE or self.device_new_device or self.device_new_trigger:
                     return
-                if self._save_device_settings(_DEVICE_TRIGGER_PEDAL_CC, cc):
-                    self._set_device_options()
+                value = cc
+            else:
+                return
         elif sub_page == _SUB_PAGE_PRESETS:
             if block == _PRESET_DEVICE:
                 if route_number == _NONE:
                     return
                 _router = ui.router
-                from_device = _router.input_devices_tuple_assigned.index(_router.routing[route_number]['input_device'])
-                if from_device == self.preset_device:
-                    return
-                self.preset_device = from_device
-                ui.ui.set_trigger(from_device)
+                value = _router.input_devices_tuple_assigned.index(_router.routing[route_number]['input_device'])
             elif block == _PRESET_PRESET:
                 if route_number == _NONE:
                     return
                 _router = ui.router
-                from_preset = _router.input_presets_tuple.index(_router.routing[route_number]['input_preset'])
-                if from_preset == self.preset_preset:
-                    return
-                self.preset_preset = from_preset
-                ui.ui.set_trigger(preset=from_preset)
+                value = _router.input_presets_tuple.index(_router.routing[route_number]['input_preset'])
             elif block == _PRESET_CC_MIN or block == _PRESET_CC_MAX:
                 if cc_value == _NONE or self.preset_new_preset:
                     return
-                if self._save_preset_settings(block, cc_value, ''):
-                    self._set_preset_options()
+                value = cc_value
+            else:
+                return
+        else:
+            return
+        self.blocks[block].set_selection(value)
 
     def _build_page(self) -> None:
         '''build page (without drawing it); called by self.__init__ and self._build_sub_page'''
@@ -321,7 +307,7 @@ class PageInput(Page):
             port = map['port']
             if port != _NONE:
                 settings[port] = [map['channel'], device]
-        self._set_port_options(False)
+        self._set_port_options()
 
     def _load_preset_options(self, redraw: bool = True) -> None:
         '''load and set values to options and values to input blocks on preset sub-page; called by self.set_trigger and self._load'''
@@ -353,9 +339,8 @@ class PageInput(Page):
             preset_maps[i] = maps[i] if i < n else ''
         self._set_preset_options(redraw)
 
-    def _set_port_options(self, redraw: bool = True) -> None:
-        '''set options and values to input blocks on ports sub-page; called by self.process_user_input, self.midi_learn and
-        self._load_port_options'''
+    def _set_port_options(self) -> None:
+        '''set options and values to input blocks on ports sub-page; called by self._load_port_options'''
         if self.sub_page != _SUB_PAGE_PORTS:
             return
         devices_tuple = ChainMapTuple(('____',), ui.router.input_devices_tuple_assigned)
@@ -368,13 +353,13 @@ class PageInput(Page):
             if port == selected_port:
                 device = self.selected_port_device
             device_option = 0 if device == '' else devices_tuple.index(device)
-            blocks[_PORT_FIRST_DEVICE + 2 * port].set_options(devices_tuple, device_option, redraw)
+            blocks[_PORT_FIRST_DEVICE + 2 * port].set_options(devices_tuple, device_option, False)
             channel_option = channel + 1 # _NONE becomes 0
-            blocks[_PORT_FIRST_CHANNEL + 2 * port].set_options(selection=channel_option, redraw=redraw)
+            blocks[_PORT_FIRST_CHANNEL + 2 * port].set_options(selection=channel_option, redraw=False)
 
     def _set_device_options(self, redraw: bool = True) -> None:
-        '''load and set options and values to input blocks on device sub-page; called by self.process_user_input, self.midi_learn, self._load
-        and self._callback_confirm'''
+        '''load and set options and values to input blocks on device sub-page; called by self.process_user_input, self._load and
+        self._callback_confirm'''
         if self.sub_page != _SUB_PAGE_DEVICES:
             return
         _router = ui.router
@@ -409,8 +394,8 @@ class PageInput(Page):
         blocks[_DEVICE_TRIGGER_PEDAL_CC].set_options(selection=pedal_cc, redraw=redraw)
 
     def _set_preset_options(self, redraw: bool = True) -> None:
-        '''set options and values to input blocks on preset sub-page; called by self.process_user_input, self.midi_learn,
-        self._load_preset_option and self._callback_confirm'''
+        '''set options and values to input blocks on preset sub-page; called by self.process_user_input, self._load_preset_option and
+        self._callback_confirm'''
         if self.sub_page != _SUB_PAGE_PRESETS:
             return
         _router = ui.router
@@ -441,7 +426,7 @@ class PageInput(Page):
             blocks[_PRESET_FIRST_MAP + i].set_options(triggers_tuple, value, redraw)
 
     def _save_port_settings(self) -> None:
-        '''save values from input blocks on ports sub-page; called by self.process_user_input and self.midi_learn'''
+        '''save values from input blocks on ports sub-page; called by self.process_user_input'''
         _data = ui.data
         mapping = _data.input_device_mapping
         changed = False
@@ -509,7 +494,7 @@ class PageInput(Page):
         return changed
 
     def _save_preset_settings(self, id: int, value: int, text: str) -> bool:
-        '''save values from input blocks on preset sub-page; called by self.process_user_input and self.midi_learn'''
+        '''save values from input blocks on preset sub-page; called by self.process_user_input'''
         _data = ui.data
         changed = False
         device_key = self.preset_device_name

@@ -67,16 +67,12 @@ def main():
     monitor data'''
     _ticks_diff = time.ticks_diff
     _ticks_ms = time.ticks_ms
-######
-    # _get_encoder_input = ui._get_encoder_input
     _process_encoder_input = ui.process_encoder_input
     _read_midi_learn_data = router.read_midi_learn_data
     _process_midi_learn_data = ui.process_midi_learn_data
     _process_user_input = ui.process_user_input
     _process_monitor = ui.process_monitor
     _process_program_change_break = router.process_program_change_break
-######
-    # previous_encoder_input = (None, None)
     previous_midi_learn_data = None
     main_loop_time = time.ticks_ms()
     while True:
@@ -87,10 +83,6 @@ def main():
             # turn display off after prolonged inactivity
             ui.check_sleep_time_out()
             # process encoders
-######
-            # encoder_input = _get_encoder_input()
-            # if encoder_input != (None, None):
-            #     _process_encoder_input(encoder_input)
             _process_encoder_input()
             # process buttons and other input
             _process_user_input()

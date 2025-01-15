@@ -8,13 +8,15 @@
 <img src="/images/cybo-drummer_v0.1.jpg" width="100%">
 
 > [!NOTE]
+> IF YOU INTEND BUILDING CYBO-DRUMMER YOURSELF, I’D SUGGEST WEIGHTING FOR THE NEXT UPDATE, which will be a big one: I’ve redesigned the hardware and I’m redesigning and very much simplifying the workflow (less layers and an easier overview of all configured triggers), which leads to breaking changes to the data files which stores the set-up and program definitions.
+> 
 > Cybo-Drummer’s hardware design is currently in it’s first prototype stage and the firmware in it’s first public beta (version 0.1.0) stage. It is my very first [Python/MicroPython](#why-in-micropython) project, my first PCB design (learning still!) and generally the first microcontroller-based project I developed from scratch and I actually brought to the finish line. It has been a learning experience, but by no way I’d say it's perfect, so I'm happy to receive your feedback on the hardware, the software, the feature set, a bug you found or anything you’d like to share.
 >
 > Are you an experienced drummer (I’ve only been drumming for about 1.5 year – too much of which I’ve spent on this project instead of practising…) with a fascination for synthesized drum sounds? I’d love to hear how you experience using Cybo-Drummer. What would you change? What features are you missing?
 >
 > Of course I’m open for collaboration. Just let me know how you think you can contribute!
 >
-> Please use the [issues tab]([hlammers/cybo-drummer/issues/](https://github.com/HLammers/cybo-drummer/issues) to report bug and other issues, or the [discussion tab](https://github.com/HLammers/cybo-drummer/discussions) to discuss anything else.
+> Please use the [issues tab](https://github.com/HLammers/cybo-drummer/issues) to report bug and other issues, or the [discussion tab](https://github.com/HLammers/cybo-drummer/discussions) to discuss anything else.
 ## Introduction
 I own an electronic drum kit and a bunch of drum computers and my dream was to use the former to play the latter, so I went searching for a way to do just that – allowing me to easily switch between different configurations combining the sounds of one or more drum computers. I looked for hardware solutions, but couldn’t find any. I looked for software solutions, but I could only find MIDI mappers or other complex solutions that would never give me the easy to use experience I had it mind. It turns out that (as usual) I go against the current fashion of trying to make an electronic drum kit sound (and look) as acoustic as possible. So I decided to develop my own solution – and publish it as open source DIY project, hoping it finds like-minded drummers!
 ## Overview

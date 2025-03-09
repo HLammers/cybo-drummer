@@ -226,15 +226,15 @@ make -C mpy-cross
 * In the Raspberry Pi console type the following to pre-compile each .py file you just copied (except main.py, which needs to be frozen as a .py file), delete them afterwards (the `-O3` option, which stands for optimization level 3, makes sure `__debug__` is False and all debugging code is left out) and move results to the /home/pi/pico/micropython/ports/rp2/modules folder (to freeze them into the firmware):
 ```
 cd ~/pico/micropython/mpy-cross
-for f in *.py; do [ "$f" != "main.py" ] && python3 -m mpy_cross -march=armv6m -O3 $f; [ "$f" != "main.py" ] && rm $f; done
+for f in *.py; do [ "$f" != "main.py" ] && python3 -m mpy_cross -march=armv7emsp -O3 $f; [ "$f" != "main.py" ] && rm $f; done
 mv {*.mpy,*.py} ../ports/rp2/modules/
 ```
 * Now to build the firmware type in the Raspberry Pi console:
 ```
 cd ~/pico/micropython/ports/rp2
-make submodules
-make clean
-make
+make BOARD=RPI_PICO2 submodules
+make BOARD=RPI_PICO2 clean
+make BOARD=RPI_PICO2
 ```
 * The freshly built firmware is stored as /home/pi/pico/micropython/ports/rp2/build-RPI_PICO/firmware.uf2
 > [!TIP]

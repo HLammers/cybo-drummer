@@ -219,6 +219,7 @@ cd micropython
 git checkout v1.24.0
 sudo apt update
 sudo apt install cmake gcc-arm-none-eabi libnewlib-arm-none-eabi build-essential
+cd micropython
 make -C mpy-cross
 ```
 * Copy all files from the [src folder](src/) except screen_log.py and the data_files folder to the /home/pi/pico/micropython/mpy-cross/ folder

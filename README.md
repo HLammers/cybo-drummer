@@ -1,3 +1,20 @@
+
+<style>
+table, td {
+   border: none!important;
+}
+</style>
+
+> [!NOTE]
+> Cybo-Drummer offers a couple of key combinations specifically for debugging and firmware upload purposes:
+>
+> <table style="border: none!important;">
+> <tr><td><b>RESET</b>:</td><td>resets Cybo-Drummer</td></tr>
+> <tr><td><b>RESET + TRIGGER</b>:</td><td>avoids starting Cybo-Drummer&rsquo;s main loops (the user interface and the router) and allows a PC to interact over USB > &ndash; press the RESET button while keeping the TRIGGER button pressed until the PC made a connection (after the Raspberry Pi Pico&rsquo;s LED flashed)</td></tr>
+> <tr><td><b>RESET + TRIGGER + PAGE</b>:</td><td>start bootloader (show Cybo-Drummer as drive called RPI-RP2 on your PC for uploading firmware) &ndash; press the RESET while keeping the TRIGGER and PAGE buttons pressed until the RPI-RP2 drive appears on your PC (after the Raspberry Pi Pico&rsquo;s LED flashed) &ndash; this is an alternative to BOOTSEL + RESET for when the BOOTSEL button is hidden behind the front panel</td></tr>
+> </table>
+
+
 <img src="/logos/colour_logo.svg" width="100%">
 
 # Cybo-Drummer

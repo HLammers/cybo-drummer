@@ -35,15 +35,15 @@ Cybo-Drummer is a MIDI router/mapper with 6 input ports and 6 output ports, spec
 
 Cybo-Drummer operates at two distinct levels, each running on its own processor core, as shown by the dashed line in the diagram below:
 
-<!--<figure style="clear:right;margin:10 px auto 20px;max-width:100%;display:table;">  <figcaption style="display:table-caption;caption-side:bottom;">-->
-<figure>
-  <img src="images/workflow.svg" style="margin-bottom:10px;">
-  <figcaption style="caption-side:bottom;"><small><i>Diagram showing Cybo-Drummer&rsquo;s inner workings. The icons in the corners of the <span style="color:#94ba84;">green</span> and <span style="color:#efa231;">orange</span> shapes refer to the respective <a href="USER_MANUAL.md#pages-and-sub-pages">pages</a> in Cybo-Drummer&rsquo;s graphic user interface.</i></small></figcaption>
-</figure>
+<div align="center">
+<img src="images/workflow.svg">
+</div>
 
-The top level (with the <span style="color:#94ba84;">green</span> and <span style="color:#efa231;">orange</span> shapes in the diagram above) manages all definitions, user interaction (buttons and knobs) and the graphic user interface. Some of these definitions are global and the same for all programs (<span style="color:#94ba84;">green</span> shapes and arrows), while other definitions (<span style="color:#efa231;">orange</span> shapes and arrows) change when selecting one of the up to 2,600 programs (26 banks of 100 programs).
+<i>Diagram showing Cybo-Drummer&rsquo;s inner workings. The icons in the corners of the green and orange shapes refer to the respective <a href="USER_MANUAL.md#pages-and-sub-pages">pages</a> in Cybo-Drummer&rsquo;s graphic user interface.</i>
 
-The bottom level (with the <span style="color:#a50c63;">purple</span> shapes and arrows in the diagram above) does its work hidden to the user. Here sits the actual router that routes MIDI data from input ports to output ports &ndash; transformed if neccessary. It is optimized to do as little as possible, to minimize latency.
+The top level (with the green and orange shapes in the diagram above) manages all definitions, user interaction (buttons and knobs) and the graphic user interface. Some of these definitions are global and the same for all programs (green shapes and arrows), while other definitions (orange shapes and arrows) change when selecting one of the up to 2,600 programs (26 banks of 100 programs).
+
+The bottom level (with the purple shapes and arrows in the diagram above) does its work hidden to the user. Here sits the actual router that routes MIDI data from input ports to output ports &ndash; transformed if neccessary. It is optimized to do as little as possible, to minimize latency.
 
 No interaction takes place between the top and the bottom layer, except if a program is changed or a set-up definition is modified &ndash; this resets the router, rebuilding each route based on the definitions from the top layer.
 

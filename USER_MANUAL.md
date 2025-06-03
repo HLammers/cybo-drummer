@@ -144,14 +144,14 @@ The general workflow of using Cybo-Drummer follows its inner workings as shown i
 <img src="images/workflow.svg">
 </div>
 
-<small><i>Diagram showing Cybo-Drummer&rsquo;s inner workings. Green shapes and arrows represent the global definitions, which are the same no matter which program is selected; orange shapes and arrows represent programs, of which up to 2,600 (26 banks of 100 programs) can be stored and recalled; purple shapes and arrows represent the completely separate layer (running on its own processor core) which does the actual real time routing and transformation. The icons in the corners of the green and orange shapes refer to the respective <a href="#pages-and-sub-pages">pages</a> in Cybo-Drummer&rsquo;s graphic user interface.</i></small>
+<i>Diagram showing Cybo-Drummer&rsquo;s inner workings. Green shapes and arrows represent the global definitions, which are the same no matter which program is selected; orange shapes and arrows represent programs, of which up to 2,600 (26 banks of 100 programs) can be stored and recalled; purple shapes and arrows represent the completely separate layer (running on its own processor core) which does the actual real time routing and transformation. The icons in the corners of the green and orange shapes refer to the respective <a href="#pages-and-sub-pages">pages</a> in Cybo-Drummer&rsquo;s graphic user interface.</i>
 <br clear=right>
 
 <img src="screenshots/mtx_1.png" align="right">
 
 ### Organizing Input Triggers on the Trigger Matrix
 
-<small><i>The image on the right shows an example of a trigger matrix setup including a drum kit, a 2×8 multipad and a couple of additional trigger pads</i></small>
+<i>The image on the right shows an example of a trigger matrix setup including a drum kit, a 2×8 multipad and a couple of additional trigger pads</i>
 
 The very first step to set up Cybo-Drummer is setting up the [trigger matrix](#trigger-matrix) to (roughly) represent your drum setup. Each cell in the matrix can represent a trigger, which can have multiple [zones or layers](#triggers-and-zoneslayers) (for example ride cymbal with an edge, bow, bell and choke zone &ndash; not all of these need to be in use). Make sure to include all triggers you&rsquo;d like to use with Cybo-Drummer, because the same trigger matrix is used to [select a trigger](#selecting-a-trigger), so triggers which are not assigned to the trigger matrix cannot be selected for editing or assignment that way.
 
@@ -184,39 +184,39 @@ The very first step to set up Cybo-Drummer is setting up the [trigger matrix](#t
 <li>Long press the SEL/OPT knob &#9312; to show a multipad selection pop-up</li>
 <li>Turn the VAL/&harr; knob &#9313; to choose the mutlipad layout which best matches your multipad device:<table>
 <tr><td><b>Layout Name</b></td><td><b>Layout</b></td><td><b>Examples of Devices</b></td></tr>
-<tr><td>4 pads 2x2</td><td><table align="center"><small>
+<tr><td>4 pads 2x2</td><td><table align="center">
 <tr><td>3</td><td>4</td></tr>
 <tr><td>1</td><td>2</td></tr>
-</small></table></td><td><small>Alesis SamplePad 4, KAT KTMP1</small></td></tr>
+</table></td><td>Alesis SamplePad 4, KAT KTMP1</td></tr>
 <tr><td>6 pads 2x3</td><td><table align="center">
 <tr><td>4</td><td>5</td><td>6</td></tr>
 <tr><td>1</td><td>2</td><td>3</td></tr>
-</table></td><td style="font-size:smaller;">Hampback ST-5, Nord Drum 3P</td></tr>
+</table></td><td>Hampback ST-5, Nord Drum 3P</td></tr>
 <tr><td>8 pads 2x4</td><td><table align="center">
 <tr><td>5</td><td>6</td><td>7</td><td>8</td></tr>
 <tr><td>1</td><td>2</td><td>3</td><td>4</td></tr>
-</table></td><td style="font-size:smaller;">Alesis PerformancePad, Carlsbro OKTA-A, NUX DP-2000, Roland Octapad / SPD-8 / SPD-11 / SPD-20 / SPD-20 PRO / SPD-30</td></tr>
+</table></td><td>Alesis PerformancePad, Carlsbro OKTA-A, NUX DP-2000, Roland Octapad / SPD-8 / SPD-11 / SPD-20 / SPD-20 PRO / SPD-30</td></tr>
 <tr><td>8 pads 2x3+2</td><td><table align="center">
 <tr><td>7</td><td> </td><td>8</td></tr>
 <tr><td>4</td><td>5</td><td>6</td></tr>
 <tr><td>1</td><td>2</td><td>3</td></tr>
-</table></td><td style="font-size:smaller;">Alesis SamplePad Pro</td></tr>
+</table></td><td>Alesis SamplePad Pro</td></tr>
 <tr><td>9 pads 3x3</td><td><table align="center">
 <tr><td>7</td><td>8</td><td>9</td></tr>
 <tr><td>4</td><td>5</td><td>6</td></tr>
 <tr><td>1</td><td>2</td><td>3</td></tr>
-</table></td><td style="font-size:smaller;">Alesis Strike MultiPad, DDrum NIO, Millenium NonaPad, Roland SPD-S / SPD-SX / SPD-SX PRO</td></tr>
+</table></td><td>Alesis Strike MultiPad, DDrum NIO, Millenium NonaPad, Roland SPD-S / SPD-SX / SPD-SX PRO</td></tr>
 <tr><td>10 pads 2+2x4</td><td><table align="center">
 <tr><td>7</td><td>8</td><td>9</td><td>10</td></tr>
 <tr><td>3</td><td>4</td><td>5</td><td>6</td></tr>
 <tr><td>1</td><td> </td><td> </td><td>2</td></tr>
-</table></td><td style="font-size:smaller;">Korg MPS-10</td></tr>
+</table></td><td>Korg MPS-10</td></tr>
 <tr><td>12 pads 4x3</td><td><table align="center">
 <tr><td>10</td><td>11</td><td>12</td></tr>
 <tr><td>7</td><td>8</td><td>9</td></tr>
 <tr><td>4</td><td>5</td><td>6</td></tr>
 <tr><td>1</td><td>2</td><td>3</td></tr>
-</table></td><td style="font-size:smaller;">Yamaha DTX-MULTI 12</td></tr>
+</table></td><td>Yamaha DTX-MULTI 12</td></tr>
 </table></li>
 <li>Press the SEL/OPT knob &#9312; or the YES button  &#9314; to confirm (or press the NO button &#9315; to cancel without changes)</li>
 <li>A <a href="#confirmation-pop-ups">confirmation pop-up</a> will show if one of the cells to which you&rsquo;r assigning the multipad triggers is already assigned to another trigger &ndash; press the YES button  &#9314; to confirm or the NO button &#9315; to cancel</li>
@@ -479,7 +479,7 @@ The [program: mapping voices](#13--program-mapping-voices) (1/3) sub-page is the
 
 ##### port/device / voice A to D
 
-<small><i>Applies to the active [program](#program-1) and selected [input trigger](#input-trigger)</i></small>
+<i>Applies to the active [program](#program-1) and selected [input trigger](#input-trigger)</i>
 
 * Turn the VAL/&harr; knob to **map up to 4 output ports/devices and voice combinations** (program layers A, B, C and D) &ndash; these voices will be triggered when the router receives the selected input trigger
 * Press the DEL knob on a port/device block to **clear the port/device and voice assignment**
@@ -517,7 +517,7 @@ The [program: mapping voices](#13--program-mapping-voices) (1/3) sub-page is the
 
 ##### note A to D
 
-<small><i>Applies to the active [program](#program-2) and selected [input trigger](#input-trigger-1)</i></small>
+<i>Applies to the active [program](#program-2) and selected [input trigger](#input-trigger-1)</i>
 
 * *Optional*&ensp;Turn the VAL/&harr; knob to **set program layer&rsquo;s note** (C-1 to G9), overriding the device&rsquo;s [voice note setting](#note)
 * Press the DEL knob to **clear the note setting** (set to &lsquo;___&rsquo;)
@@ -534,7 +534,7 @@ The [program: mapping voices](#13--program-mapping-voices) (1/3) sub-page is the
 
 ##### note off A to D
 
-<small><i>Applies to the active [program](#program-2) and selected [input trigger](#input-trigger-1)</i></small>
+<i>Applies to the active [program](#program-2) and selected [input trigger](#input-trigger-1)</i>
 
 * *Optional*&ensp;Turn the VAL/&harr; knob to **set whether and when to send note off messages**, overriding the [voice-level note off setting](#note-off):
   * *____:*&ensp;use the [voice&rsquo;s default setting]([#note-off)
@@ -557,9 +557,9 @@ The [program: mapping voices](#13--program-mapping-voices) (1/3) sub-page is the
 <img src="images/transients.svg">
 </div>
 
-<small><i>Four different <a href="#trans-a-to-d">transient curve options</a> and what the relation between <a href="#lohi-a-to-d">the low velocity layer and the high velocity layer</a> looks like if both velocity layers are set to the same curve</i></small>
+<i>Four different <a href="#trans-a-to-d">transient curve options</a> and what the relation between <a href="#lohi-a-to-d">the low velocity layer and the high velocity layer</a> looks like if both velocity layers are set to the same curve</i>
 
-<small><i>Applies to the active [program](#program-2) and selected [input trigger](#input-trigger-1)</i></small>
+<i>Applies to the active [program](#program-2) and selected [input trigger](#input-trigger-1)</i>
 
 * *Optional*&ensp;Turn the VAL/&harr; knob to **set a transient curve** to make the [low or high end of the input trigger velocity](#lohi-a-to-d) trigger a program layer stronger:
   * *__:*&ensp;off &ndash; the full input velocity is mapped to the output velocity
@@ -574,7 +574,7 @@ The [program: mapping voices](#13--program-mapping-voices) (1/3) sub-page is the
 
 ##### lo/hi A to D
 
-<small><i>Applies to the active [program](#program-2) and selected [input trigger](#input-trigger-1)</i></small>
+<i>Applies to the active [program](#program-2) and selected [input trigger](#input-trigger-1)</i>
 
 * Turn the VAL/&harr; knob to **set to which end of the volocity range a program layer should repond**:
   * *low:*&ensp;respond to the lower end of the input trigger&rsquo;s velocity range (depending on the selected [transient curve](#trans-a-to-d))
@@ -587,9 +587,9 @@ The [program: mapping voices](#13--program-mapping-voices) (1/3) sub-page is the
 <img src="images/transients_scale.svg">
 </div>
 
-<small><i>Illustration of the impact of turning <a href="#scale-a-to-d">scale</a> on or off on the four different <a href="#trans-a-to-d">transient curve options</a> looks like if both <a href="#lohi-a-to-d">velocity layers</a> are set to the same curve (and the voice&rsquo;s <a href="#velocity-curve">velocity curves</a> are set to linear)</i></small>
+<i>Illustration of the impact of turning <a href="#scale-a-to-d">scale</a> on or off on the four different <a href="#trans-a-to-d">transient curve options</a> looks like if both <a href="#lohi-a-to-d">velocity layers</a> are set to the same curve (and the voice&rsquo;s <a href="#velocity-curve">velocity curves</a> are set to linear)</i>
 
-<small><i>Applies to the active [program](#program-2) and selected [input trigger](#input-trigger-1)</i></small>
+<i>Applies to the active [program](#program-2) and selected [input trigger](#input-trigger-1)</i>
 
 * Turn the VAL/&harr; knob or press the SEL/OPT knob to **switch between scaling (<img src="icons/icon_checked.png">) and not scalling (<img src="icons/icon_unchecked.png">) a program layer&rsquo;s output velocity to the full velocity range** (0 to 127)
 * Press the DEL knob to **enable scaling (<img src="icons/icon_checked.png">)** (default setting)
@@ -602,7 +602,7 @@ The [program: mapping voices](#13--program-mapping-voices) (1/3) sub-page is the
 
 ##### p1: pc to p6: pc
 
-<small><i>Applies to the active [program](#program-1)</i></small>
+<i>Applies to the active [program](#program-1)</i>
 
 * *Optional*&ensp;Turn the VAL/&harr; knob to **set a program change value** (0 to 127), which will be sent to the device assigned to a particular [output port](#p1-device-name-to-p6-device-name-1) on router program change (after sending [bank select](#p1-msb--lsb-to-p6-msb--lsb), if set)
 * Press the DEL knob to **clear the program change setting** (set to &lsquo;___&rsquo;)
@@ -613,7 +613,7 @@ The [program: mapping voices](#13--program-mapping-voices) (1/3) sub-page is the
 
 ##### p1: msb / lsb to p6: msb / lsb
 
-<small><i>Applies to the active [program](#program-1)</i></small>
+<i>Applies to the active [program](#program-1)</i>
 
 * *Optional*&ensp;Turn the VAL/&harr; knob to **set most significant byte (msb) bank select value** (0 to 127) and **least significant byte (msb) bank select value** (0 to 127), which will be sent to the device assigned to a particular [output port](#p1-device-name-to-p6-device-name-1) on router program change (before sending [program change](#p1-pc-to-p6-pc), if set)
 * Press the DEL knob to **clear bank select msb or lsb setting** (set to &lsquo;___&rsquo;)
@@ -696,7 +696,7 @@ Use the input page to name input ports to the connected devices and to adjust in
 
 ##### note 1 to *n*
 
-<small><i>Applies to the selected [input trigger/zone](#input-trigger-2) &ndash; the number of zones/layers [depends on the input trigger](#triggers-and-zoneslayers)</i></small>
+<i>Applies to the selected [input trigger/zone](#input-trigger-2) &ndash; the number of zones/layers [depends on the input trigger](#triggers-and-zoneslayers)</i>
 
 * Turn the VAL/&harr; knob to **select a zone/layer&rsquo;s note** (C-1 to G9)
 
@@ -707,7 +707,7 @@ Use the input page to name input ports to the connected devices and to adjust in
 
 ##### pedal cc 1 to *n*
 
-<small><i>Applies to the selected [input trigger/zone](#input-trigger-2) &ndash; the number of zones/layers [depends on the input trigger](#triggers-and-zoneslayers)</i></small>
+<i>Applies to the selected [input trigger/zone](#input-trigger-2) &ndash; the number of zones/layers [depends on the input trigger](#triggers-and-zoneslayers)</i>
 
 * *Optional*&ensp;Turn the VAL/&harr; knob to **set a zone/layer&rsquo;s CC** (continuous controller) **number** (1 to 128) **on which triggering should be [dependent](#pedal-cc-min-1-to-n--pedal-cc-max-1-to-n)**
 * Press the DEL knob to **clear pedal CC setting** (set to &lsquo;___&rsquo;)
@@ -719,7 +719,7 @@ Use the input page to name input ports to the connected devices and to adjust in
 
 ##### pedal cc min 1 to *n* / pedal cc max 1 to *n*
 
-<small><i>Applies to the selected [input trigger/zone](#input-trigger-2) &ndash; the number of zones/layers [depends on the input trigger](#triggers-and-zoneslayers)</i></small>
+<i>Applies to the selected [input trigger/zone](#input-trigger-2) &ndash; the number of zones/layers [depends on the input trigger](#triggers-and-zoneslayers)</i>
 
 * *Optional*&ensp;urn the VAL/&harr; knob to **set a minimum and maximum [pedal CC](#pedal-cc)** (continuous controller) **value** (0 to 127) between which to trigger a zone/layer
 * Some electronic drum kits use foot pedal CC &ndash; typically CC number 5 &ndash; to distinguish between open and closed hihat, which both send out the same note
@@ -759,7 +759,7 @@ Use the output page to name output ports to the connected devices, to adjust out
 
 ##### channel
 
-<small><i>Applies to the selected [output port/device](#portdevice-1)</i></small>
+<i>Applies to the selected [output port/device](#portdevice-1)</i>
 
 * *Optional*&ensp;Turn the VAL/&harr; knob to **set the input port/device&rsquo;s MIDI channel** (1 to 16)
 * Press the DEL knob to **clear channel setting** (set to &lsquo;__&rsquo;)
@@ -772,7 +772,7 @@ Use the output page to name output ports to the connected devices, to adjust out
 
 ##### 0 velocity as note off
 
-<small><i>Applies to the selected [output port/device](#portdevice-1)</i></small>
+<i>Applies to the selected [output port/device](#portdevice-1)</i>
 
 * Turn the VAL/&harr; knob or press the SEL/OPT knob to **switch between sending note on messages with velocity 0 (<img src="icons/icon_checked.png">)** instead of note off messages **and to force the use of note off messages (<img src="icons/icon_unchecked.png">)**
 * Press the DEL knob to **turn on velociy as note off (<img src="icons/icon_unchecked.png">)** (default setting)
@@ -782,7 +782,7 @@ Use the output page to name output ports to the connected devices, to adjust out
 
 ##### running status
 
-<small><i>Applies to the selected [output port/device](#portdevice-1)</i></small>
+<i>Applies to the selected [output port/device](#portdevice-1)</i>
 
 * Turn the VAL/&harr; knob or press the SEL/OPT knob to **switch between enabling running status (<img src="icons/icon_checked.png">) and disabling it (<img src="icons/icon_unchecked.png">)**
 * Press the DEL knob to **enable running status (<img src="icons/icon_checked.png">)** (default setting)
@@ -820,7 +820,7 @@ Use the output page to name output ports to the connected devices, to adjust out
 
 ##### channel
 
-<small><i>Applies to the selected [output port/device](#portdevice-2) and [voice](#voice)</i></small>
+<i>Applies to the selected [output port/device](#portdevice-2) and [voice](#voice)</i>
 
 * *Optional*&ensp;Turn the VAL/&harr; knob to **set the voice&rsquo;s MIDI channel** (1 to 16)
 * Press the DEL knob to **clear channel setting** (set to &lsquo;__&rsquo;)
@@ -835,7 +835,7 @@ Use the output page to name output ports to the connected devices, to adjust out
 
 ##### note
 
-<small><i>Applies to the selected [output port/device](#portdevice-2) and [voice](#voice)</i></small>
+<i>Applies to the selected [output port/device](#portdevice-2) and [voice](#voice)</i>
 
 * *Optional*&ensp;Turn the VAL/&harr; knob to **set a voice&rsquo;s note** (C-1 to G9)
 * Press the DEL knob to **clear the note setting** (set to &lsquo;___&rsquo;)
@@ -851,7 +851,7 @@ Use the output page to name output ports to the connected devices, to adjust out
 
 ##### note off
 
-<small><i>Applies to the selected [output port/device](#portdevice-2) and [voice](#voice)</i></small>
+<i>Applies to the selected [output port/device](#portdevice-2) and [voice](#voice)</i>
 
 * *Optional*&ensp;Turn the VAL/&harr; knob to **set whether and when to send note off messages**:
   * *off:*&ensp;disable sending note off messages (default)
@@ -872,9 +872,9 @@ Use the output page to name output ports to the connected devices, to adjust out
 <img src="images/velocity_curves_threshold.svg">
 </div>
 
-<small><i>Example of what the velocity curves look like if the threshold is set to 20</i></small>
+<i>Example of what the velocity curves look like if the threshold is set to 20</i>
 
-<small><i>Applies to the selected [output port/device](#portdevice-2) and [voice](#voice)</i></small>
+<i>Applies to the selected [output port/device](#portdevice-2) and [voice](#voice)</i>
 
 * Turn the VAL/&harr; knob to **set a velocity level** (0 to 127) **under which trigger input is ignored**
 * Press the DEL knob to **set the velocity threshold to 0**
@@ -892,9 +892,9 @@ Use the output page to name output ports to the connected devices, to adjust out
 <img src="images/velocity_curves.svg">
 </div>
 
-<small><i>Charts showing each velocity response curve option</i></small>
+<i>Charts showing each velocity response curve option</i>
 
-<small><i>Applies to the selected [output port/device](#portdevice-2) and [voice](#voice)</i></small>
+<i>Applies to the selected [output port/device](#portdevice-2) and [voice](#voice)</i>
 
 * Turn the VAL/&harr; knob to **adjust the velocity response dynamics** in three increasingly positive steps (&lsquo;positive 1&rsquo;, &lsquo;positive 2&rsquo;, &lsquo;positive 3&rsquo;), three increasingly negative steps (&lsquo;negative 1&rsquo;, &lsquo;negative 2&rsquo;, &lsquo;negative 3&rsquo;) or select &lsquo;linear&rsquo; (the default) not to change the velocity (velocity out level = velocity in level)
 * Press the DEL knob to **set the velocity curve to linear**
@@ -916,9 +916,9 @@ Use the output page to name output ports to the connected devices, to adjust out
 <img src="images/velocity_curves_min_max.svg">
 </div>
 
-<small><i>Example of what the velocity curves look like if min velocity is set to 32 and max velocity to 95</i></small>
+<i>Example of what the velocity curves look like if min velocity is set to 32 and max velocity to 95</i>
 
-<small><i>Applies to the selected [output port/device](#portdevice-2) and [voice](#voice)</i></small>
+<i>Applies to the selected [output port/device](#portdevice-2) and [voice](#voice)</i>
 
 * Turn the VAL/&harr; knob to **set a minimum or maximum of the output velocity range** [voice](#voice)
 * Turn the VAL/&harr; knob to **adjust the velocity response dynamics** in three increasingly positive steps (&lsquo;positive 1&rsquo;, &lsquo;positive 2&rsquo;, &lsquo;positive 3&rsquo;) and three increasingly negative steps (&lsquo;negative 1&rsquo;, &lsquo;negative 2&rsquo;, &lsquo;negative 3&rsquo;) or select &lsquo;linear&rsquo; (the default) not to change the velocity (velocity out level = velocity in level)
@@ -954,7 +954,7 @@ This page offers tools to quickly set up [toms](#14--assign-toms) or [multipad t
 
 ##### interval
 
-<small><i>Applies to the selected [zone](#centerrim) of the [selected toms](#tom-1-to-n)</i></small>
+<i>Applies to the selected [zone](#centerrim) of the [selected toms](#tom-1-to-n)</i>
 
 <ul>
 <li>Turn the VAL/&harr; knob to <b>select an interval series</b> to use:</br></br>
@@ -981,7 +981,7 @@ This page offers tools to quickly set up [toms](#14--assign-toms) or [multipad t
 
 ##### chord
 
-<small><i>Applies to the selected [zone](#centerrim) of the [selected toms](#tom-1-to-n)</i></small>
+<i>Applies to the selected [zone](#centerrim) of the [selected toms](#tom-1-to-n)</i>
 
 <ul>
 <li>Turn the VAL/&harr; knob to <b>select a chord-based series</b> to use:</br></br>
@@ -1018,40 +1018,40 @@ This page offers tools to quickly set up [toms](#14--assign-toms) or [multipad t
 
 ##### lowest note
 
-<small><i>Applies to the selected [zone](#centerrim) of the [selected toms](#tom-1-to-n)</i></small>
+<i>Applies to the selected [zone](#centerrim) of the [selected toms](#tom-1-to-n)</i>
 
 * Turn the VAL/&harr; knob to **select the lowest note** (C to B) to assign
 * Press the DEL knob to **clear the selected note** (set to &lsquo;__&rsquo;)
 
 ##### octave
 
-<small><i>Applies to the selected [zone](#centerrim) of the [selected toms](#tom-1-to-n)</i></small>
+<i>Applies to the selected [zone](#centerrim) of the [selected toms](#tom-1-to-n)</i>
 
 * Turn the VAL/&harr; knob to **select the octave for the [lowest note](#lowest-note)** (-1 to 9)
 * Press the DEL knob to **set the octave to 1** (default)
 
 ##### note &#x25B2; / note &#x25BC;
 
-<small><i>Applies to the selected [zone](#centerrim) of the [selected toms](#tom-1-to-n)</i></small>
+<i>Applies to the selected [zone](#centerrim) of the [selected toms](#tom-1-to-n)</i>
 
 * Press the SEL/OPT knob to **transpose all notes one semitone up or down**
 
 ##### oct &#x25B2; / oct &#x25BC;
 
-<small><i>Applies to the selected [zone](#centerrim) of the [selected toms](#tom-1-to-n)</i></small>
+<i>Applies to the selected [zone](#centerrim) of the [selected toms](#tom-1-to-n)</i>
 
 * Press the SEL/OPT knob to **transpose all notes one octave up or down** (12 semitones)
 
 ##### tom 1 to *n*
 
-<small><i>Applies to the selected [zone](#centerrim) of the [selected toms](#tom-1-to-n)</i></small>
+<i>Applies to the selected [zone](#centerrim) of the [selected toms](#tom-1-to-n)</i>
 
 * Turn the VAL/&harr; knob or press the SEL/OPT knob to **switch between including (<img src="icons/icon_checked.png">) or excluding (<img src="icons/icon_unchecked.png">)** a tom
 * Press the DEL knob to **exclude a tom (<img src="icons/icon_unchecked.png">)**
 
 ##### note 1 to *n*
 
-<small><i>Applies to the selected [zone](#centerrim) of the [selected toms](#tom-1-to-n)</i></small>
+<i>Applies to the selected [zone](#centerrim) of the [selected toms](#tom-1-to-n)</i>
 
 * Turn the VAL/&harr; knob to **assign a note** (C-1 to G9)
 * Press the DEL knob to **clear the selected note** (set to &lsquo;___&rsquo;)
@@ -1075,19 +1075,19 @@ This page offers tools to quickly set up [toms](#14--assign-toms) or [multipad t
 
 ##### all to note
 
-<small><i>Applies to the selected [multipad layer](#multipad-layer)</i></small>
+<i>Applies to the selected [multipad layer](#multipad-layer)</i>
 
 * Press the SEL/OPT knob to **set all [pads](#pad-1-to-n) to &lsquo;chord&rsquo;**
 
 ##### all to chord
 
-<small><i>Applies to the selected [multipad layer](#multipad-layer)</i></small>
+<i>Applies to the selected [multipad layer](#multipad-layer)</i>
 
 * Press the SEL/OPT knob to **set all [pads](#pad-1-to-n) to &lsquo;note&rsquo;**
 
 ##### pad 1 to *n*
 
-<small><i>Applies to the selected [multipad layer](#multipad-layer)</i></small>
+<i>Applies to the selected [multipad layer](#multipad-layer)</i>
 
 * Turn the VAL/&harr; knob to **select whether a pad is included in [note assignment](#34--multipad-assign-notes)** (&lsquo;note&rsquo;), **[chord assignment](#44--multipad-assign-chords)** (&lsquo;chord&rsquo;) **or disabled from assignment** (&lsquo;____&rsquo;)
 * Press the DEL knob to **exclude a pad** (set to &lsquo;____&rsquo;)
@@ -1101,7 +1101,7 @@ This page offers tools to quickly set up [toms](#14--assign-toms) or [multipad t
 
 ##### lo/hi
 
-<small><i>Applies to [pads set to &lsquo;note&rsquo;](#pad-1-to-n) for the selected [multipad layer](#multipad-layer)</i></small>
+<i>Applies to [pads set to &lsquo;note&rsquo;](#pad-1-to-n) for the selected [multipad layer](#multipad-layer)</i>
 
 * Turn the VAL/&harr; knob to **choose to which multipad [program layers](#portdevice--voice-a-to-d) to assign notes to based on [velocity layer(s)](#lohi-a-to-d)**:
   * *all:*&ensp;assign notes to all program layers, independently of their velocity layer settings
@@ -1111,7 +1111,7 @@ This page offers tools to quickly set up [toms](#14--assign-toms) or [multipad t
 
 ##### scale/mode
 
-<small><i>Applies to [pads set to &lsquo;note&rsquo;](#pad-1-to-n) for the selected [multipad layer](#multipad-layer) and to selected [velocity layers](#lohi)</i></small>
+<i>Applies to [pads set to &lsquo;note&rsquo;](#pad-1-to-n) for the selected [multipad layer](#multipad-layer) and to selected [velocity layers](#lohi)</i>
 
 <ul>
 <li>Turn the VAL/&harr; knob to <b>select a scale or mode</b> to asign:</br></br>
@@ -1167,7 +1167,7 @@ This page offers tools to quickly set up [toms](#14--assign-toms) or [multipad t
 
 ##### pattern
 
-<small><i>Applies to [pads set to &lsquo;note&rsquo;](#pad-1-to-n) for the selected [multipad layer](#multipad-layer) and to selected [velocity layers](#lohi)</i></small>
+<i>Applies to [pads set to &lsquo;note&rsquo;](#pad-1-to-n) for the selected [multipad layer](#multipad-layer) and to selected [velocity layers](#lohi)</i>
 
 * Turn the VAL/&harr; knob to **set the direction in which notes are assigned**:
   * *__:*&ensp;off &ndash; no assignment pattern selected or detected
@@ -1176,21 +1176,21 @@ This page offers tools to quickly set up [toms](#14--assign-toms) or [multipad t
 
 ##### key
 
-<small><i>Applies to [pads set to &lsquo;note&rsquo;](#pad-1-to-n) for the selected [multipad layer](#multipad-layer) and to selected [velocity layers](#lohi)</i></small>
+<i>Applies to [pads set to &lsquo;note&rsquo;](#pad-1-to-n) for the selected [multipad layer](#multipad-layer) and to selected [velocity layers](#lohi)</i>
 
 * Turn the VAL/&harr; knob to **select the key** (C to B) for the [scale or mode](#scalemode)
 * Press the DEL knob to **clear the selected note** (set to &lsquo;__&rsquo;)
 
 ##### octave
 
-<small><i>Applies to [pads set to &lsquo;note&rsquo;](#pad-1-to-n) for the selected [multipad layer](#multipad-layer) and to selected [velocity layers](#lohi)</i></small>
+<i>Applies to [pads set to &lsquo;note&rsquo;](#pad-1-to-n) for the selected [multipad layer](#multipad-layer) and to selected [velocity layers](#lohi)</i>
 
 * Turn the VAL/&harr; knob to **select the octave for the [key](#key)** (-1 to 9)
 * Press the DEL knob to **set the octave to 1** (default)
 
 ##### shift
 
-<small><i>Applies to [pads set to &lsquo;note&rsquo;](#pad-1-to-n) for the selected [multipad layer](#multipad-layer) and to selected [velocity layers](#lohi)</i></small>
+<i>Applies to [pads set to &lsquo;note&rsquo;](#pad-1-to-n) for the selected [multipad layer](#multipad-layer) and to selected [velocity layers](#lohi)</i>
 
 * Turn the VAL/&harr; knob to **shift the root note (tonic) position left/down** (negative number) **or right/up** (positive number)
 * Press the DEL knob to **set shift to 0** (no shift &ndash; the root note (tonic) is the first included pad counting from the bottom left following the selected [pattern](#pattern))
@@ -1198,7 +1198,7 @@ This page offers tools to quickly set up [toms](#14--assign-toms) or [multipad t
 
 ##### pad 1 to *n*
 
-<small><i>Applies to [pads set to &lsquo;note&rsquo;](#pad-1-to-n) for the selected [multipad layer](#multipad-layer) and to selected [velocity layers](#lohi)</i></small>
+<i>Applies to [pads set to &lsquo;note&rsquo;](#pad-1-to-n) for the selected [multipad layer](#multipad-layer) and to selected [velocity layers](#lohi)</i>
 
 * Turn the VAL/&harr; knob to **assign a note** (C-1 to G9)
 * Press the DEL knob to **clear the selected note** (set to &lsquo;___&rsquo;)
@@ -1217,13 +1217,13 @@ This page offers tools to quickly set up [toms](#14--assign-toms) or [multipad t
 
 ##### note &#x25B2; / note &#x25BC;
 
-<small><i>Applies to [pads set to &lsquo;chord&rsquo;](#pad-1-to-n) for the selected [multipad layer](#multipad-layer)</i></small>
+<i>Applies to [pads set to &lsquo;chord&rsquo;](#pad-1-to-n) for the selected [multipad layer](#multipad-layer)</i>
 
 * Press the SEL/OPT knob to **transpose all chords one semitone up or down** for the selected [layer]("#multipad-layer") of the [selected multipad triggers](#pad-1-to-n)
 
 ##### octave &#x25B2; / octave &#x25BC;
 
-<small><i>Applies to [pads set to &lsquo;chord&rsquo;](#pad-1-to-n) for the selected [multipad layer](#multipad-layer)</i></small>
+<i>Applies to [pads set to &lsquo;chord&rsquo;](#pad-1-to-n) for the selected [multipad layer](#multipad-layer)</i>
 
 * Press the SEL/OPT knob to **transpose all chords one octave up or down** (12 semitones) for the selected [layer]("#multipad-layer") of the [selected multipad triggers](#pad-1-to-n)
 <br clear=right>
@@ -1232,7 +1232,7 @@ This page offers tools to quickly set up [toms](#14--assign-toms) or [multipad t
 
 ##### pad 1 to *n*
 
-<small><i>Applies to [pads set to &lsquo;chord&rsquo;](#pad-1-to-n) for the selected [multipad layer](#multipad-layer)</i></small>
+<i>Applies to [pads set to &lsquo;chord&rsquo;](#pad-1-to-n) for the selected [multipad layer](#multipad-layer)</i>
 
 <ul>
 <li>Press the SEL/OPT knob &#9312; to <b>open a chord selection pop-up</b></li>

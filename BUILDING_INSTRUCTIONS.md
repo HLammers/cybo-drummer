@@ -94,7 +94,7 @@ Building the Cybo-Drummer hardware only requires basic soldering skills (it uses
 
 ### Building Instructions
 
-<img src="images/bottom_pcb.png" style="float:right;margin:10px 0px 10px 20px;">
+<img src="images/bottom_pcb.png" align="right">
 
 #### Bottom PCB
 
@@ -108,9 +108,9 @@ Assemble the top PCB by following the following steps:
   6. Solder the **1×5 and 1×18 female pin header sockets** (J2 and J3)
   7. Solder all the **DIN MIDI sockets** (J4 to J15)
 
-<br clear="right"/><img src="images/top_pcb.png" style="float:right;margin:10px 0px 10px 20px;">
-<img src="images/display.png" style="float:right;margin:10px 0px 10px 20px;">
-<img src="images/display_assembled.png" style="float:right;margin:10px 0px 10px 20px;">
+<br clear="right"/><img src="images/top_pcb.png" align="right">
+<img src="images/display.png" align="right">
+<img src="images/display_assembled.png" align="right">
 
 #### Top PCB
 
@@ -142,8 +142,8 @@ The result should look like on the photo on the right.
 * Insert the brass inserts into the four holes in the bottom of the case which do not go through all the way (see for example [this website](https://www.cnckitchen.com/blog/tipps-amp-tricks-fr-gewindeeinstze-im-3d-druck-3awey) for instructions on how to insert brass heat-set inserts) &ndash; this step might be skipped if you have intention to use a mounting plate
 <br clear="right"/>
 
-<img src="images/bottom_pcb_in_case.png" style="float:right;margin:10px 0px 10px 20px;">
-<img src="images/all_but_front_panel.png" style="float:right;margin:10px 0px 10px 20px;">
+<img src="images/bottom_pcb_in_case.png" align="right">
+<img src="images/all_but_front_panel.png" align="right" vspace=10>
 
 #### Assembly
 
@@ -184,7 +184,7 @@ The easiest way to install the software is by downloading the [latest firmware](
 
 <!--update version number in the three references to MicroPython below when necessary, as well as in the EXAMPLE_PRESETS.md file!-->
 
-> [!WARNING]
+> [!CAUTION]
 > ***Uploading new firmware might delete your user settings (including user-defined programs) and reinstate default values!***
 >
 > User settings are stored internally in a file folder called data_files. Currently the easiest way To back-up (download) or restore (upload) the file is by following these steps (assuming you&rsquo;re using a Windows PC):

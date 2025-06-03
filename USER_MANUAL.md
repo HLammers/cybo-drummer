@@ -111,13 +111,13 @@ The user interface displayed on the 2.2-inch TFT screen is organized as follows:
 
 Cybo-Drummer&rsquo;s user interface is organized in six pages:
 
-* <img align="middle" src="icons/icon_program.png">&emsp;**program & trigger matrix:**&ensp;Select and edit routing programs
-* <img align="middle" src="icons/icon_matrix.png">&emsp;**trigger matrix:**&ensp;Assign output triggers to a visual matrix representation
-* <img align="middle" src="icons/icon_input.png">&emsp;**input:**&ensp;Edit input port assignments, input device setting, input trigger settings and input preset settings
-* <img align="middle" src="icons/icon_output.png">&emsp;**output:**&ensp;Edit output port assignments, output device setting, output trigger settings and output preset settings
-* <img align="middle" src="icons/icon_tools.png">&emsp;**tools:**&ensp;Quickly assign toms and multipad triggers based on scales, intervals, chords, etc.
-* <img align="middle" src="icons/icon_monitor.png">&emsp;**monitor:**&ensp;Show router and MIDI monitors
-* <img align="middle" src="icons/icon_settings.png">&emsp;**settings:**&ensp;Adjust global settings
+* <img src="icons/icon_program.png">&emsp;**program & trigger matrix:**&ensp;Select and edit routing programs
+* <img src="icons/icon_matrix.png">&emsp;**trigger matrix:**&ensp;Assign output triggers to a visual matrix representation
+* <img src="icons/icon_input.png">&emsp;**input:**&ensp;Edit input port assignments, input device setting, input trigger settings and input preset settings
+* <img src="icons/icon_output.png">&emsp;**output:**&ensp;Edit output port assignments, output device setting, output trigger settings and output preset settings
+* <img src="icons/icon_tools.png">&emsp;**tools:**&ensp;Quickly assign toms and multipad triggers based on scales, intervals, chords, etc.
+* <img src="icons/icon_monitor.png">&emsp;**monitor:**&ensp;Show router and MIDI monitors
+* <img src="icons/icon_settings.png">&emsp;**settings:**&ensp;Adjust global settings
 <img src="images/hardware_pages.svg" width="300px" height="300px" align="right">
 
 To change pages and sub-pages:
@@ -128,7 +128,7 @@ To change pages and sub-pages:
 While in page select mode the page tabs and title bar are highlighted in dark and light sea green.
 
 > [!IMPORTANT]
-> The [program](#program) page (<img align="middle" src="icons/icon_program.png">) and the [tools](#tools) page (<img align="middle" src="icons/icon_tools.png">) do not save automatically, all other pages do (after confirming a changed value). An asterisk will show behind the active program number if there are unsaved changes. Press the PROGRAM button when there are unsaved changes to [save a program](#saving-a-program).
+> The [program](#program) page (<img src="icons/icon_program.png">) and the [tools](#tools) page (<img src="icons/icon_tools.png">) do not save automatically, all other pages do (after confirming a changed value). An asterisk will show behind the active program number if there are unsaved changes. Press the PROGRAM button when there are unsaved changes to [save a program](#saving-a-program).
 
 ## Getting Started
 
@@ -144,7 +144,7 @@ The general workflow of using Cybo-Drummer follows its inner workings as shown i
 <img src="images/workflow.svg">
 </div>
 
-<small><i>Diagram showing Cybo-Drummer&rsquo;s inner workings. <span style="color:#94ba84;">Green</span> shapes and arrows represent the global definitions, which are the same no matter which program is selected; <span style="color:#efa231;">orange</span> shapes and arrows represent programs, of which up to 2,600 (26 banks of 100 programs) can be stored and recalled; <span style="color:#a50c63;">purple</span> shapes and arrows represent the completely separate layer (running on its own processor core) which does the actual real time routing and transformation. The icons in the corners of the <span style="color:#94ba84;">green</span> and <span style="color:#efa231;">orange</span> shapes refer to the respective <a href="#pages-and-sub-pages">pages</a> in Cybo-Drummer&rsquo;s graphic user interface.</i></small>
+<small><i>Diagram showing Cybo-Drummer&rsquo;s inner workings. Green shapes and arrows represent the global definitions, which are the same no matter which program is selected; orange shapes and arrows represent programs, of which up to 2,600 (26 banks of 100 programs) can be stored and recalled; purple shapes and arrows represent the completely separate layer (running on its own processor core) which does the actual real time routing and transformation. The icons in the corners of the green and orange shapes refer to the respective <a href="#pages-and-sub-pages">pages</a> in Cybo-Drummer&rsquo;s graphic user interface.</i></small>
 <br clear=right>
 
 <img src="screenshots/mtx_1.png" align="right">
@@ -163,7 +163,7 @@ The very first step to set up Cybo-Drummer is setting up the [trigger matrix](#t
 
 #### Adding a Single Trigger
 
-1. Go to the [trigger matrix](#trigger-matrix) page (<img align="middle" src="icons/icon_matrix.png">)
+1. Go to the [trigger matrix](#trigger-matrix) page (<img src="icons/icon_matrix.png">)
 2. Select the [trigger matrix cell](#matrix-cell-1-to-64) to which you&rsquo;d like to assign a trigger
 3. Short press the SEL/OPT knob &#9312; to show a trigger selection pop-up
 4. **Assign trigger** is selected by default &ndash; turn the VAL/&harr; knob &#9313; to choose the trigger to assign
@@ -179,39 +179,39 @@ The very first step to set up Cybo-Drummer is setting up the [trigger matrix](#t
 #### Adding All Triggers of a Multipad Device at Once
 
 <ol>
-<li>Go to the <a href="#trigger-matrix">trigger matrix</a> page (<img align="middle" src="icons/icon_matrix.png">)</li>
+<li>Go to the <a href="#trigger-matrix">trigger matrix</a> page (<img src="icons/icon_matrix.png">)</li>
 <li>Select the <a href="#matrix-cell-1-to-64">trigger matrix cell</a> to which you&rsquo;d like to assign the top-left corner of the multipad</li>
 <li>Long press the SEL/OPT knob &#9312; to show a multipad selection pop-up</li>
 <li>Turn the VAL/&harr; knob &#9313; to choose the mutlipad layout which best matches your multipad device:<table>
 <tr><td><b>Layout Name</b></td><td><b>Layout</b></td><td><b>Examples of Devices</b></td></tr>
-<tr><td>4 pads 2x2</td><td><table style="font-size:0.7em;text-align:center;">
+<tr><td>4 pads 2x2</td><td><table align="center"><small>
 <tr><td>3</td><td>4</td></tr>
 <tr><td>1</td><td>2</td></tr>
-</table></td><td style="font-size:smaller;">Alesis SamplePad 4, KAT KTMP1</td></tr>
-<tr><td>6 pads 2x3</td><td><table style="font-size:0.7em;text-align:center;">
+</small></table></td><td><small>Alesis SamplePad 4, KAT KTMP1</small></td></tr>
+<tr><td>6 pads 2x3</td><td><table align="center">
 <tr><td>4</td><td>5</td><td>6</td></tr>
 <tr><td>1</td><td>2</td><td>3</td></tr>
 </table></td><td style="font-size:smaller;">Hampback ST-5, Nord Drum 3P</td></tr>
-<tr><td>8 pads 2x4</td><td><table style="font-size:0.7em;text-align:center;">
+<tr><td>8 pads 2x4</td><td><table align="center">
 <tr><td>5</td><td>6</td><td>7</td><td>8</td></tr>
 <tr><td>1</td><td>2</td><td>3</td><td>4</td></tr>
 </table></td><td style="font-size:smaller;">Alesis PerformancePad, Carlsbro OKTA-A, NUX DP-2000, Roland Octapad / SPD-8 / SPD-11 / SPD-20 / SPD-20 PRO / SPD-30</td></tr>
-<tr><td>8 pads 2x3+2</td><td><table style="font-size:0.7em;text-align:center;">
+<tr><td>8 pads 2x3+2</td><td><table align="center">
 <tr><td>7</td><td> </td><td>8</td></tr>
 <tr><td>4</td><td>5</td><td>6</td></tr>
 <tr><td>1</td><td>2</td><td>3</td></tr>
 </table></td><td style="font-size:smaller;">Alesis SamplePad Pro</td></tr>
-<tr><td>9 pads 3x3</td><td><table style="font-size:0.7em;text-align:center;">
+<tr><td>9 pads 3x3</td><td><table align="center">
 <tr><td>7</td><td>8</td><td>9</td></tr>
 <tr><td>4</td><td>5</td><td>6</td></tr>
 <tr><td>1</td><td>2</td><td>3</td></tr>
 </table></td><td style="font-size:smaller;">Alesis Strike MultiPad, DDrum NIO, Millenium NonaPad, Roland SPD-S / SPD-SX / SPD-SX PRO</td></tr>
-<tr><td>10 pads 2+2x4</td><td><table style="font-size:0.7em;text-align:center;">
+<tr><td>10 pads 2+2x4</td><td><table align="center">
 <tr><td>7</td><td>8</td><td>9</td><td>10</td></tr>
 <tr><td>3</td><td>4</td><td>5</td><td>6</td></tr>
 <tr><td>1</td><td> </td><td> </td><td>2</td></tr>
 </table></td><td style="font-size:smaller;">Korg MPS-10</td></tr>
-<tr><td>12 pads 4x3</td><td><table style="font-size:0.7em;text-align:center;">
+<tr><td>12 pads 4x3</td><td><table align="center">
 <tr><td>10</td><td>11</td><td>12</td></tr>
 <tr><td>7</td><td>8</td><td>9</td></tr>
 <tr><td>4</td><td>5</td><td>6</td></tr>
@@ -231,7 +231,7 @@ The very first step to set up Cybo-Drummer is setting up the [trigger matrix](#t
 ### Setting Up an Input Device
 
 1. Connect the input device to one of the MIDI input ports
-2. Go to the [input ports](#12--input-ports) sub-page (1/2) of the [input](#input) page (<img align="middle" src="icons/icon_input.png">)
+2. Go to the [input ports](#12--input-ports) sub-page (1/2) of the [input](#input) page (<img src="icons/icon_input.png">)
 3. [Give the port a recognizable name](#p1-device-name-to-p6-device-name)
 4. Set the [MIDI channel](#channel) on which the input device sends note messages (most commonly channel 10 for drums)
 
@@ -241,7 +241,7 @@ The very first step to set up Cybo-Drummer is setting up the [trigger matrix](#t
 
 ### Assigning Triggers to an Input Device
 
-1. Go to the [input notes/pedal cc](#22--input-notespedal-cc) sub-page (2/2) of the [input](#input) page (<img align="middle" src="icons/icon_input.png">)
+1. Go to the [input notes/pedal cc](#22--input-notespedal-cc) sub-page (2/2) of the [input](#input) page (<img src="icons/icon_input.png">)
 2. Select the [input trigger](#input-trigger) you&rsquo;d like to assign
 3. Select the [port/device](#portdevice) you&rsquo;d like to assign it to
 4. For each zone/layer you&rsquo;d like to assign:
@@ -259,9 +259,9 @@ The very first step to set up Cybo-Drummer is setting up the [trigger matrix](#t
 ### Setting Up an Output Device
 
 1. Connect the output device to one of the MIDI input ports
-2. Go to the [output ports](#13--output-ports) sub-page (1/3) of the [output](#output) page (<img align="middle" src="icons/icon_output.png">)
+2. Go to the [output ports](#13--output-ports) sub-page (1/3) of the [output](#output) page (<img src="icons/icon_output.png">)
 3. [Give the port a recognizable name](#p1-device-name-to-p6-device-name-1)
-4. Go to the [output device](#23--output-device) sub-page (2/3) of the [output](#output) page (<img align="middle" src="icons/icon_output.png">)
+4. Go to the [output device](#23--output-device) sub-page (2/3) of the [output](#output) page (<img src="icons/icon_output.png">)
 5. *If all the device&rsquo;s voices respond to the same MIDI channel (different note values):* Set the [MIDI channel](#channel) to which the device&rsquo;s voices respond (often channel 10 for drums)
 6. *If you&rsquo;re encountering hanging notes:* Try turning off [0 velocity as note off](#0-velocity-as-note-off)
 7. *If you&rsquo;re encountering missing notes:* Try disableing [running status](#running-status)
@@ -269,7 +269,7 @@ The very first step to set up Cybo-Drummer is setting up the [trigger matrix](#t
 
 ### Setting Up an Output Device&rsquo;s Voices
 
-1. Go to the [output voice](#33--output-voice) sub-page (3/3) of the [output](#output) page (<img align="middle" src="icons/icon_output.png">)
+1. Go to the [output voice](#33--output-voice) sub-page (3/3) of the [output](#output) page (<img src="icons/icon_output.png">)
 2. Go to the [voice](#voice) block and either:
    1. *To edit an existing voice:*
       1. Select the voice you would like to edit
@@ -297,10 +297,10 @@ The very first step to set up Cybo-Drummer is setting up the [trigger matrix](#t
 
 ### Setting Up a Program
 
-1. Press the PROGRAM button &ndash; or go to program block on the [program: mapping voices](#program-1) (1/3) or [program: mapping note](#program-2) (2/3) sub-page of the [program](#program) page (<img align="middle" src="icons/icon_program.png">) &ndash; and either:
+1. Press the PROGRAM button &ndash; or go to program block on the [program: mapping voices](#program-1) (1/3) or [program: mapping note](#program-2) (2/3) sub-page of the [program](#program) page (<img src="icons/icon_program.png">) &ndash; and either:
    1. *To edit an existing program:* Select the program you would like to edit
    2. *To set up a new program:* Select an empty program (named &lsquo;[empty]&rsquo;)
-2. Go to the [program: mapping voices](#13--program-mapping-voices) (1/3) sub-page of the [program](#program) page (<img align="middle" src="icons/icon_program.png">) and assign output devices and voices to input triggers:
+2. Go to the [program: mapping voices](#13--program-mapping-voices) (1/3) sub-page of the [program](#program) page (<img src="icons/icon_program.png">) and assign output devices and voices to input triggers:
    1. Select the [input trigger](#input-trigger) to which you want to assign an output device and voice
    2. Select the [output port/device](#portdevice--voice-a-to-d) to assign to the trigger
    3. Select a [voice](#portdevice--voice-a-to-d) to assign to the trigger
@@ -314,10 +314,10 @@ The very first step to set up Cybo-Drummer is setting up the [trigger matrix](#t
 
 #### Assigning Notes to Toms
 
-If you need to assign the same voice to each tom, but tuned differently, the [assign toms](#14--assign-toms) (1/4) sub-page of the [tools](#tools) page (<img align="middle" src="icons/icon_tools.png">) offers a way to quickly do so.
+If you need to assign the same voice to each tom, but tuned differently, the [assign toms](#14--assign-toms) (1/4) sub-page of the [tools](#tools) page (<img src="icons/icon_tools.png">) offers a way to quickly do so.
 
 1. Set up at least one tom following the instructions to [set up a program](#setting-up-a-program) (setting a note is not needed)
-2. Go to the [assign toms](#14--assign-toms) (1/4) sub-page of the [tools](#tools) page (<img align="middle" src="icons/icon_tools.png">)
+2. Go to the [assign toms](#14--assign-toms) (1/4) sub-page of the [tools](#tools) page (<img src="icons/icon_tools.png">)
 3. Select whether to assign notes to [center or rim](#centerrim)
 4. Select [which toms to be included](#tom-1-to-n)
 5. Either:
@@ -339,15 +339,15 @@ If you need to assign the same voice to each tom, but tuned differently, the [as
 
 #### Assigning Single Notes to Multipad Triggers
 
-If you need to assign the same voice to multiple pads of a multipad trigger device, the [multipad: select mode](#24--multipad-select-mode) (2/4) and [multipad: assign notes](#34--multipad-assign-notes) (3/4) sub-pages of the [tools](#tools) page (<img align="middle" src="icons/icon_tools.png">) offer a way to quickly do so. This can be used to easily set up multipad devices for pitched percussion or melodic instruments, playing single notes (as described here) or [chords](#assigning-chords-to-multipad-triggers).
+If you need to assign the same voice to multiple pads of a multipad trigger device, the [multipad: select mode](#24--multipad-select-mode) (2/4) and [multipad: assign notes](#34--multipad-assign-notes) (3/4) sub-pages of the [tools](#tools) page (<img src="icons/icon_tools.png">) offer a way to quickly do so. This can be used to easily set up multipad devices for pitched percussion or melodic instruments, playing single notes (as described here) or [chords](#assigning-chords-to-multipad-triggers).
 
 1. Set up the trigger layer you want to assign for at least one pad of the multipad following the instructions to [set up a program](#setting-up-a-program) (setting a note is not needed) &ndash; if you want to assign the notes only to one velocity layer, you should set up that velocity layer in the program definition
-2. Go to the [multipad: select mode](#24--multipad-select-mode) (2/4) sub-page of the [tools](#tools) page (<img align="middle" src="icons/icon_tools.png">)
+2. Go to the [multipad: select mode](#24--multipad-select-mode) (2/4) sub-page of the [tools](#tools) page (<img src="icons/icon_tools.png">)
 3. Select the [multipad trigger layer](#multipad-layer) (layer A, layer B, layer C or layer D) to the one you would like to assign
 4. Either:
    1. *To assign all pads:* Press the [all to note](#all-to-note) button to set all pads to notes
    2. *To assign some of the pads:* For each pad to be included [set its mode](#pad-1-to-n) to &lsquo;note&rsquo;
-5. Go to the [multipad: assign notes](#34--multipad-assign-notes) (3/4) sub-page of the [tools](#tools) page (<img align="middle" src="icons/icon_tools.png">)
+5. Go to the [multipad: assign notes](#34--multipad-assign-notes) (3/4) sub-page of the [tools](#tools) page (<img src="icons/icon_tools.png">)
 6. Select which [velocity layer](#lohi) you&rsquo;d like to assign (select &lsquo;all&rsquo; to not ignore velocity layers)
 7. Either:
    1. *To assign based on scale or mode:*
@@ -368,15 +368,15 @@ If you need to assign the same voice to multiple pads of a multipad trigger devi
 
 #### Assigning Chords to Multipad Triggers
 
-If you need to assign the same voice to multiple pads of a multipad trigger device, the [multipad: select mode](#24--multipad-select-mode) (2/4) and [multipad: assign chords](#44--multipad-assign-chords) (4/4) sub-pages of the [tools](#tools) page (<img align="middle" src="icons/icon_tools.png">) offer a way to quickly do so. This can be used to easily set up multipad devices for pitched percussion or melodic instruments, playing single [notes](#assigning-single-notes-to-multipad-triggers) or chords (as described here).
+If you need to assign the same voice to multiple pads of a multipad trigger device, the [multipad: select mode](#24--multipad-select-mode) (2/4) and [multipad: assign chords](#44--multipad-assign-chords) (4/4) sub-pages of the [tools](#tools) page (<img src="icons/icon_tools.png">) offer a way to quickly do so. This can be used to easily set up multipad devices for pitched percussion or melodic instruments, playing single [notes](#assigning-single-notes-to-multipad-triggers) or chords (as described here).
 
 1. Set up the trigger layer you want to assign for at least one pad of the multipad following the instructions to [set up a program](#setting-up-a-program) (setting a note is not needed, but if you need to distinguish between pads assigned to single notes and pads assigned to chords, set at least two identical layers with different notes to make Cybo-Drummer recognize it as a chord)
-2. Go to the [multipad: select mode](#24--multipad-select-mode) (2/4) sub-page of the [tools](#tools) page (<img align="middle" src="icons/icon_tools.png">)
+2. Go to the [multipad: select mode](#24--multipad-select-mode) (2/4) sub-page of the [tools](#tools) page (<img src="icons/icon_tools.png">)
 3. Select the [multipad trigger layer](#multipad-layer) (layer A, layer B, layer C or layer D) to the one you would like to assign
 4. Either:
    1. *To assign all pads:* Press the [all to chord](#all-to-chord) button to set all pads to notes
    2. *To assign some of the pads:* For each pad to be included [set its mode](#pad-1-to-n) to &lsquo;chord&rsquo;
-5. Go to the [multipad: assign chords](#34--multipad-assign-chords) (3/4) sub-page of the [tools](#tools) page (<img align="middle" src="icons/icon_tools.png">)
+5. Go to the [multipad: assign chords](#34--multipad-assign-chords) (3/4) sub-page of the [tools](#tools) page (<img src="icons/icon_tools.png">)
 6. One by one [assign chords to each pad](#pad-1-to-n-2)
 7. *Optionally* shift the assigned chords one semitone at a time using the [note up or note down](#note---note--1) button, or a full octave using the [octave up or octave down](#octave---octave-) button
 
@@ -441,7 +441,7 @@ When renaming a program, device, trigger or setting a text edit pop-up is shown.
 
 ## Description of All Pages and Sub-Pages
 
-### <img align="middle" src="icons/icon_program.png">&emsp;Program
+### <img src="icons/icon_program.png">&emsp;Program
 
 Use the program page to [edit programs](#setting-up-a-program), which are the part of the mapping routes which change with the [selected program](#selecting-a-bank-and-a-program).
 
@@ -450,7 +450,7 @@ The [program: mapping voices](#13--program-mapping-voices) (1/3) sub-page is the
 
 <img src="screenshots/prg_1.png" align="right">
 
-#### <img align="middle" src="icons/icon_program.png">&ensp;1/3 &ndash; program: mapping voices
+#### <img src="icons/icon_program.png">&ensp;1/3 &ndash; program: mapping voices
 
 ##### program
 
@@ -495,7 +495,7 @@ The [program: mapping voices](#13--program-mapping-voices) (1/3) sub-page is the
 
 <img src="screenshots/prg_2.png" align="right">
 
-#### <img align="middle" src="icons/icon_program.png">&ensp;2/3 &ndash; program: mapping note
+#### <img src="icons/icon_program.png">&ensp;2/3 &ndash; program: mapping note
 
 ##### program
 
@@ -526,7 +526,7 @@ The [program: mapping voices](#13--program-mapping-voices) (1/3) sub-page is the
 > [!TIP]
 > Output notes can be set here in the program or [in the voice settings](#note). Use the voice note setting to set the default note for that voice (or the only one it responds to, if that&rsquo;s the case). Use the program note settings to override the default and tune the voice to a specific note (if the device&rsquo;s voice supports that) &ndash; different triggers can be assigned to the same voice with a different note.
 >
-> The [tools](#tools) page (<img align="middle" src="icons/icon_tools.png">) offers a quick way to assign the same voice tuned differently to [toms](#assigning-notes-to-toms) or multipad triggers ([single notes](#assigning-single-notes-to-multipad-triggers), for example to play pitched percussion, or [chords](#assigning-chords-to-multipad-triggers)). C4 (middle C) is used if neither the voice setting, nor the program setting specifies a note.
+> The [tools](#tools) page (<img src="icons/icon_tools.png">) offers a quick way to assign the same voice tuned differently to [toms](#assigning-notes-to-toms) or multipad triggers ([single notes](#assigning-single-notes-to-multipad-triggers), for example to play pitched percussion, or [chords](#assigning-chords-to-multipad-triggers)). C4 (middle C) is used if neither the voice setting, nor the program setting specifies a note.
 >
 > If a device doesn&rsquo;t respond to the notes your assigned as expected, try one octave lower or one octave higher. There is no official MIDI standard for octave numbers. Cybo-Drummer follows the Scientific Pitch Notation standard, which defines the middle C as C4, so in Cybo-Drummer MIDI note 60 is C4, but some manufacturers define MIDI note as C3 and some as C5.
 >
@@ -563,10 +563,10 @@ The [program: mapping voices](#13--program-mapping-voices) (1/3) sub-page is the
 
 * *Optional*&ensp;Turn the VAL/&harr; knob to **set a transient curve** to make the [low or high end of the input trigger velocity](#lohi-a-to-d) trigger a program layer stronger:
   * *__:*&ensp;off &ndash; the full input velocity is mapped to the output velocity
-  * *<img align="middle" src="icons/icon_hard_transient.png"> (hard):*&ensp;hard split the input velocity into two halves and only trigger the selected [velocity layer](#lohi-a-to-d) for half of the input velocity 
-  * *<img align="middle" src="icons/icon_smooth_1_transient.png"> (smooth 1):*&ensp;split the input velocity into two halves, but smoothly decrease the amount of triggering the selected [velocity layer](#lohi-a-to-d) in a narrow range in the middle
-  * *<img align="middle" src="icons/icon_smooth_2_transient.png"> (smooth 2):*&ensp;split the input velocity into two halves, but smoothly decrease the amount of triggering the selected [velocity layer](#lohi-a-to-d) in a wide range in the middle
-  * *<img align="middle" src="icons/icon_linear_transient.png"> (linear):*&ensp;gradually decrease the triggering of the selected [velocity layer](#lohi-a-to-d) over the full trigger velocity range
+  * *<img src="icons/icon_hard_transient.png"> (hard):*&ensp;hard split the input velocity into two halves and only trigger the selected [velocity layer](#lohi-a-to-d) for half of the input velocity 
+  * *<img src="icons/icon_smooth_1_transient.png"> (smooth 1):*&ensp;split the input velocity into two halves, but smoothly decrease the amount of triggering the selected [velocity layer](#lohi-a-to-d) in a narrow range in the middle
+  * *<img src="icons/icon_smooth_2_transient.png"> (smooth 2):*&ensp;split the input velocity into two halves, but smoothly decrease the amount of triggering the selected [velocity layer](#lohi-a-to-d) in a wide range in the middle
+  * *<img src="icons/icon_linear_transient.png"> (linear):*&ensp;gradually decrease the triggering of the selected [velocity layer](#lohi-a-to-d) over the full trigger velocity range
 * Press the DEL knob to **disable the layer&rsquo;s transient curve** (set to &lsquo;__&rsquo;)
 
 > [!TIP]
@@ -591,14 +591,14 @@ The [program: mapping voices](#13--program-mapping-voices) (1/3) sub-page is the
 
 <small><i>Applies to the active [program](#program-2) and selected [input trigger](#input-trigger-1)</i></small>
 
-* Turn the VAL/&harr; knob or press the SEL/OPT knob to **switch between scaling (<img align="middle" src="icons/icon_checked.png">) and not scalling (<img align="middle" src="icons/icon_unchecked.png">) a program layer&rsquo;s output velocity to the full velocity range** (0 to 127)
-* Press the DEL knob to **enable scaling (<img align="middle" src="icons/icon_checked.png">)** (default setting)
+* Turn the VAL/&harr; knob or press the SEL/OPT knob to **switch between scaling (<img src="icons/icon_checked.png">) and not scalling (<img src="icons/icon_unchecked.png">) a program layer&rsquo;s output velocity to the full velocity range** (0 to 127)
+* Press the DEL knob to **enable scaling (<img src="icons/icon_checked.png">)** (default setting)
 * This option is not available if a program layer&rsquo;s [transient curve](#trans-a-to-d) is set to &lsquo;__&rsquo; (off)
 <br clear=right>
 
 <img src="screenshots/prg_3.png" align="right">
 
-#### <img align="middle" src="icons/icon_program.png">&ensp;3/3 &ndash; pc/bank select
+#### <img src="icons/icon_program.png">&ensp;3/3 &ndash; pc/bank select
 
 ##### p1: pc to p6: pc
 
@@ -623,14 +623,14 @@ The [program: mapping voices](#13--program-mapping-voices) (1/3) sub-page is the
 > Cybo-Drummer uses raw 0 to 127 MSB and LSB values for bank select, because MIDI devices implement bank select in many different ways, including in cases using only one of the two MIDI CC (continuous controller) messages. Refer to your device&rsquo;s manual and MIDI specifications for details on how to set bank select (and if it is used). If bank select is used to set a single number in the range 0 to 16,383 or 1 to 16,384, that number would typically be calculated as MSB × 128 + LSB or MSB × 128 + LSB + 1.
 <br clear=right>
 
-### <img align="middle" src="icons/icon_matrix.png">&emsp;Trigger Matrix
+### <img src="icons/icon_matrix.png">&emsp;Trigger Matrix
 
 Use the trigger matrix page to [organize input triggers on the trigger matrix](#organizing-input-triggers-on-the-trigger-matrix).
 <br clear=right>
 
 <img src="screenshots/mtx_1.png" align="right">
 
-#### <img align="middle" src="icons/icon_program.png">&ensp;1/4 &ndash; program & trigger matrix
+#### <img src="icons/icon_program.png">&ensp;1/4 &ndash; program & trigger matrix
 
 This sub-page shows the active program and allows you to edit the trigger matrix visualizing the [saved input trigger setup](#setting-up-an-input-device) on an 8×8 grid.
 
@@ -650,14 +650,14 @@ This sub-page shows the active program and allows you to edit the trigger matrix
 
 <br clear=right>
 
-### <img align="middle" src="icons/icon_input.png">&emsp;Input
+### <img src="icons/icon_input.png">&emsp;Input
 
 Use the input page to name input ports to the connected devices and to adjust input device settings.
 <br clear=right>
 
 <img src="screenshots/in_1.png" align="right">
 
-#### <img align="middle" src="icons/icon_input.png">&ensp;1/2 &ndash; input ports
+#### <img src="icons/icon_input.png">&ensp;1/2 &ndash; input ports
 
 ##### p1: device name to p6: device name
 
@@ -680,7 +680,7 @@ Use the input page to name input ports to the connected devices and to adjust in
 
 <img src="screenshots/in_2.png" align="right">
 
-#### <img align="middle" src="icons/icon_input.png">&ensp;2/2 &ndash; input notes/pedal cc
+#### <img src="icons/icon_input.png">&ensp;2/2 &ndash; input notes/pedal cc
 
 ##### input trigger
 
@@ -729,14 +729,14 @@ Use the input page to name input ports to the connected devices and to adjust in
 > Pedal CC minimum or maximum can also be set by sending CC messages (which CC number doesn&rsquo;t matter) from your input device (this is an exception where MIDI learn is not listening to the set MIDI learn port).
 <br clear=right>
 
-### <img align="middle" src="icons/icon_output.png">&emsp;Output
+### <img src="icons/icon_output.png">&emsp;Output
 
 Use the output page to name output ports to the connected devices, to adjust output device settings and to define output device&rsquo;s voices.
 <br clear=right>
 
 <img src="screenshots/out_1.png" align="right">
 
-#### <img align="middle" src="icons/icon_output.png">&ensp;1/3 &ndash; output ports
+#### <img src="icons/icon_output.png">&ensp;1/3 &ndash; output ports
 
 ##### p1: device name to p6: device name
 
@@ -746,7 +746,7 @@ Use the output page to name output ports to the connected devices, to adjust out
 
 <img src="screenshots/out_2.png" align="right">
 
-#### <img align="middle" src="icons/icon_output.png">&ensp;2/3 &ndash; output device
+#### <img src="icons/icon_output.png">&ensp;2/3 &ndash; output device
 
 ##### port/device
 
@@ -774,8 +774,8 @@ Use the output page to name output ports to the connected devices, to adjust out
 
 <small><i>Applies to the selected [output port/device](#portdevice-1)</i></small>
 
-* Turn the VAL/&harr; knob or press the SEL/OPT knob to **switch between sending note on messages with velocity 0 (<img align="middle" src="icons/icon_checked.png">)** instead of note off messages **and to force the use of note off messages (<img align="middle" src="icons/icon_unchecked.png">)**
-* Press the DEL knob to **turn on velociy as note off (<img align="middle" src="icons/icon_unchecked.png">)** (default setting)
+* Turn the VAL/&harr; knob or press the SEL/OPT knob to **switch between sending note on messages with velocity 0 (<img src="icons/icon_checked.png">)** instead of note off messages **and to force the use of note off messages (<img src="icons/icon_unchecked.png">)**
+* Press the DEL knob to **turn on velociy as note off (<img src="icons/icon_unchecked.png">)** (default setting)
 
 >[!NOTE]
 > 0 velocity as note off requires less MIDI data if combined with [running status](#running-status). To be fully compliant to the MIDI specification a device should recognize note on messages with 0 velocity as note off, so by far most devices do support this &ndash; only turn it off if you experience problems.
@@ -784,8 +784,8 @@ Use the output page to name output ports to the connected devices, to adjust out
 
 <small><i>Applies to the selected [output port/device](#portdevice-1)</i></small>
 
-* Turn the VAL/&harr; knob or press the SEL/OPT knob to **switch between enabling running status (<img align="middle" src="icons/icon_checked.png">) and disabling it (<img align="middle" src="icons/icon_unchecked.png">)**
-* Press the DEL knob to **enable running status (<img align="middle" src="icons/icon_checked.png">)** (default setting)
+* Turn the VAL/&harr; knob or press the SEL/OPT knob to **switch between enabling running status (<img src="icons/icon_checked.png">) and disabling it (<img src="icons/icon_unchecked.png">)**
+* Press the DEL knob to **enable running status (<img src="icons/icon_checked.png">)** (default setting)
 
 >[!NOTE]
 > Running status is a way to maximize MIDI data efficiency by leaving out the status byte if consecutive MIDI messages share the same status byte. This leads to even more efficiency if combined with sending [note on messages with 0 velocity instead of note off messages](#0-velocity-as-note-off). To be fully compliant to the MIDI specification a device should recognize running status, so by far most devices do support this &ndash; only turn it off if you experience problems.
@@ -793,7 +793,7 @@ Use the output page to name output ports to the connected devices, to adjust out
 
 <img src="screenshots/out_3.png" align="right">
 
-#### <img align="middle" src="icons/icon_output.png">&ensp;3/3 &ndash; output voice
+#### <img src="icons/icon_output.png">&ensp;3/3 &ndash; output voice
 
 ##### port/device
 
@@ -843,7 +843,7 @@ Use the output page to name output ports to the connected devices, to adjust out
 > [!TIP]
 > Output notes can be set [in the program](#note-a-to-d) or here in the voice settings. Use the voice note setting to set the default note for that voice (or the only one it responds to, if that&rsquo;s the case). Use the program note settings to override the default and tune the voice to a specific note (if the device&rsquo;s voice supports that) &ndash; different triggers can be assigned to the same voice with a different note.
 >
-> The [tools](#tools) page (<img align="middle" src="icons/icon_tools.png">) offers tools to quickly assign the same voice tuned differently to [toms](#assigning-notes-to-toms) or multipad triggers ([single notes](#assigning-single-notes-to-multipad-triggers), for example to play pitched percussion, or [chords](#assigning-chords-to-multipad-triggers)). C4 (middle C) is used if neither the voice setting, nor the program setting specifies a note.
+> The [tools](#tools) page (<img src="icons/icon_tools.png">) offers tools to quickly assign the same voice tuned differently to [toms](#assigning-notes-to-toms) or multipad triggers ([single notes](#assigning-single-notes-to-multipad-triggers), for example to play pitched percussion, or [chords](#assigning-chords-to-multipad-triggers)). C4 (middle C) is used if neither the voice setting, nor the program setting specifies a note.
 >
 > If a device doesn&rsquo;t respond to the notes your assigned as expected, try one octave lower or one octave higher. There is no official MIDI standard for octave numbers. Cybo-Drummer follows the Scientific Pitch Notation standard, which defines the middle C as C4, so in Cybo-Drummer MIDI note 60 is C4, but some manufacturers define MIDI note as C3 and some as C5.
 >
@@ -933,7 +933,7 @@ Use the output page to name output ports to the connected devices, to adjust out
 > MIDI velocity only has a resolution of 127 steps (1 to 127 &ndash; 0 is note off). Adjusting the velocity curve significantly reduces that resolution and adjusting minimum and/or maximum velocity reduces it even further.
 <br clear=right>
 
-### <img align="middle" src="icons/icon_tools.png">&emsp;Tools
+### <img src="icons/icon_tools.png">&emsp;Tools
 
 This page offers tools to quickly set up [toms](#14--assign-toms) or [multipad triggers](#24--multipad-select-mode) to the same output device/voice with different notes or chords (the latter only for multipad).
 
@@ -943,7 +943,7 @@ This page offers tools to quickly set up [toms](#14--assign-toms) or [multipad t
 
 <img src="screenshots/tls_1.png" align="right">
 
-#### <img align="middle" src="icons/icon_tools.png">&ensp;1/4 &ndash; assign toms
+#### <img src="icons/icon_tools.png">&ensp;1/4 &ndash; assign toms
 
 *See [assigning notes to toms](#assigning-notes-to-toms) for more instructions on how to use this tool.*
 
@@ -1046,8 +1046,8 @@ This page offers tools to quickly set up [toms](#14--assign-toms) or [multipad t
 
 <small><i>Applies to the selected [zone](#centerrim) of the [selected toms](#tom-1-to-n)</i></small>
 
-* Turn the VAL/&harr; knob or press the SEL/OPT knob to **switch between including (<img align="middle" src="icons/icon_checked.png">) or excluding (<img align="middle" src="icons/icon_unchecked.png">)** a tom
-* Press the DEL knob to **exclude a tom (<img align="middle" src="icons/icon_unchecked.png">)**
+* Turn the VAL/&harr; knob or press the SEL/OPT knob to **switch between including (<img src="icons/icon_checked.png">) or excluding (<img src="icons/icon_unchecked.png">)** a tom
+* Press the DEL knob to **exclude a tom (<img src="icons/icon_unchecked.png">)**
 
 ##### note 1 to *n*
 
@@ -1064,7 +1064,7 @@ This page offers tools to quickly set up [toms](#14--assign-toms) or [multipad t
 
 <img src="screenshots/tls_2.png" align="right">
 
-#### <img align="middle" src="icons/icon_tools.png">&ensp;2/4 &ndash; multipad: select mode
+#### <img src="icons/icon_tools.png">&ensp;2/4 &ndash; multipad: select mode
 
 *See [assigning single notes to multipad triggers](#assigning-single-notes-to-multipad-triggers) and [assigning chords to multipad triggers](#assigning-chords-to-multipad-triggers) for more instructions on how to use this tool.*
 
@@ -1095,7 +1095,7 @@ This page offers tools to quickly set up [toms](#14--assign-toms) or [multipad t
 
 <img src="screenshots/tls_3.png" align="right">
 
-#### <img align="middle" src="icons/icon_tools.png">&ensp;3/4 &ndash; multipad: assign notes
+#### <img src="icons/icon_tools.png">&ensp;3/4 &ndash; multipad: assign notes
 
 *See [assigning single notes to multipad triggers](#assigning-single-notes-to-multipad-triggers) for more instructions on how to use this tool.*
 
@@ -1171,8 +1171,8 @@ This page offers tools to quickly set up [toms](#14--assign-toms) or [multipad t
 
 * Turn the VAL/&harr; knob to **set the direction in which notes are assigned**:
   * *__:*&ensp;off &ndash; no assignment pattern selected or detected
-  * *<img align="middle" src="icons/icon_up_right.png">:*&ensp;assign notes first up and then right 
-  * *<img align="middle" src="icons/icon_right_up.png">:*&ensp;assign notes first right and then up
+  * *<img src="icons/icon_up_right.png">:*&ensp;assign notes first up and then right 
+  * *<img src="icons/icon_right_up.png">:*&ensp;assign notes first right and then up
 
 ##### key
 
@@ -1211,7 +1211,7 @@ This page offers tools to quickly set up [toms](#14--assign-toms) or [multipad t
 
 <img src="screenshots/tls_4.png" align="right">
 
-#### <img align="middle" src="icons/icon_tools.png">&ensp;4/4 &ndash; multipad: assign chords
+#### <img src="icons/icon_tools.png">&ensp;4/4 &ndash; multipad: assign chords
 
 *See [assigning chords to multipad triggers](#assigning-chords-to-multipad-triggers) for more instructions on how to use this tool.*
 
@@ -1282,14 +1282,14 @@ This page offers tools to quickly set up [toms](#14--assign-toms) or [multipad t
 </ul>
 <br clear=right>
 
-### <img align="middle" src="icons/icon_monitor.png">&emsp;Monitor
+### <img src="icons/icon_monitor.png">&emsp;Monitor
 
 Use the monitor page to monitor the router, MIDI data coming in or MIDI data going out.
 <br clear=right>
 
 <img src="screenshots/mon_1.png" align="right">
 
-#### <img align="middle" src="icons/icon_monitor.png">&ensp;1/3 &ndash; monitor routing
+#### <img src="icons/icon_monitor.png">&ensp;1/3 &ndash; monitor routing
 
 * Shows what is going on in the router
 * Display format: &lsquo;Input Device Trigger/Zone > Output Device Voice&rsquo; (for example: `2Box BD > Drumbrute Kick 1`)
@@ -1300,7 +1300,7 @@ Use the monitor page to monitor the router, MIDI data coming in or MIDI data goi
 
 <img src="screenshots/mon_2.png" align="right">
 
-#### <img align="middle" src="icons/icon_monitor.png">&ensp;2/3 &ndash; monitor MIDI in
+#### <img src="icons/icon_monitor.png">&ensp;2/3 &ndash; monitor MIDI in
 
 * Shows the MIDI data coming in from any of the MIDI input ports
 * Display format: &lsquo;P0 C00 MessageName data [HH HH HH]&rsquo;, where
@@ -1316,7 +1316,7 @@ Use the monitor page to monitor the router, MIDI data coming in or MIDI data goi
 
 <img src="screenshots/mon_3.png" align="right">
 
-#### <img align="middle" src="icons/icon_monitor.png">&ensp;3/3 &ndash; monitor MIDI out
+#### <img src="icons/icon_monitor.png">&ensp;3/3 &ndash; monitor MIDI out
 
 * Shows the MIDI data sent out to any of the MIDI input ports
 * Display format: &lsquo;P0 C00 MessageName data [HH HH HH]&rsquo;, where
@@ -1330,19 +1330,19 @@ Use the monitor page to monitor the router, MIDI data coming in or MIDI data goi
 > MIDI clock data and active sensing are filtered out by the monitor and won&rsquo;t show.
 <br clear=right>
 
-### <img align="middle" src="icons/icon_settings.png">&emsp;Settings
+### <img src="icons/icon_settings.png">&emsp;Settings
 
 Use the settings page to adjust global settings, to back up or recover data or to find the firmware version number.
 <br clear=right>
 
 <img src="screenshots/set_1.png" align="right">
 
-#### <img align="middle" src="icons/icon_settings.png">&ensp;1/1 &ndash; settings
+#### <img src="icons/icon_settings.png">&ensp;1/1 &ndash; settings
 
 ##### midi thru
 
-* Turn the VAL/&harr; knob or press the SEL/OPT knob to **switch between MIDI thru on (<img align="middle" src="icons/icon_checked.png">)** to enable MIDI thru from the set input port/channel to the set output port/channel, **and off (<img align="middle" src="icons/icon_unchecked.png">)** to disable MIDI thru
-* Press the DEL knob to **turn MIDI thru off (<img align="middle" src="icons/icon_unchecked.png">)**
+* Turn the VAL/&harr; knob or press the SEL/OPT knob to **switch between MIDI thru on (<img src="icons/icon_checked.png">)** to enable MIDI thru from the set input port/channel to the set output port/channel, **and off (<img src="icons/icon_unchecked.png">)** to disable MIDI thru
+* Press the DEL knob to **turn MIDI thru off (<img src="icons/icon_unchecked.png">)**
 
 > [!NOTE]
 > MIDI thru needs input port, input channel, output port and output channel to be specified to work.
@@ -1367,8 +1367,8 @@ Use the settings page to adjust global settings, to back up or recover data or t
 
 ##### midi learn
 
-* Turn the VAL/&harr; knob or press the SEL/OPT knob to **switch between MIDI learn on (<img align="middle" src="icons/icon_checked.png">) and off (<img align="middle" src="icons/icon_unchecked.png">)**
-* Press the DEL knob to **turn MIDI learn off (<img align="middle" src="icons/icon_unchecked.png">)**
+* Turn the VAL/&harr; knob or press the SEL/OPT knob to **switch between MIDI learn on (<img src="icons/icon_checked.png">) and off (<img src="icons/icon_unchecked.png">)**
+* Press the DEL knob to **turn MIDI learn off (<img src="icons/icon_unchecked.png">)**
 
 > [!NOTE]
 > MIDI learn needs midi learn port to be specified to work.
@@ -1415,8 +1415,8 @@ Use the settings page to adjust global settings, to back up or recover data or t
 <tr><td><b>Symbol</b></td><td><b>Name</b></td><td colspan=2><b>Name (Symbol)</b></td></tr>
 <tr><td>BD</td><td>base drum</td><td rowspan=2>n/a</td></tr>
 <tr><td>B2</td><td>base drum 2</td></tr>
-<tr><td>SD</td><td>snare drum</td><td>center (<img align="middle" src="icons/icon_center.png">), rim (<img align="middle" src="icons/icon_rim.png">)</td></tr>
-<tr><td>T1</td><td>tom 1</td><td rowspan=9>center (<img align="middle" src="icons/icon_center.png">), rim (<img align="middle" src="icons/icon_rim.png">)</td></tr>
+<tr><td>SD</td><td>snare drum</td><td>center (<img src="icons/icon_center.png">), rim (<img src="icons/icon_rim.png">)</td></tr>
+<tr><td>T1</td><td>tom 1</td><td rowspan=9>center (<img src="icons/icon_center.png">), rim (<img src="icons/icon_rim.png">)</td></tr>
 <tr><td>T2</td><td>tom 2</td></tr>
 <tr><td>T3</td><td>tom 3</td></tr>
 <tr><td>T4</td><td>tom 4</td></tr>
@@ -1425,7 +1425,7 @@ Use the settings page to adjust global settings, to back up or recover data or t
 <tr><td>T7</td><td>tom 7</td></tr>
 <tr><td>T8</td><td>tom 8</td></tr>
 <tr><td>T9</td><td>tom 9</td></tr>
-<tr><td>P1</td><td>percussion 1</td><td rowspan=9>center (<img align="middle" src="icons/icon_center.png">), rim (<img align="middle" src="icons/icon_rim.png">)</td></tr>
+<tr><td>P1</td><td>percussion 1</td><td rowspan=9>center (<img src="icons/icon_center.png">), rim (<img src="icons/icon_rim.png">)</td></tr>
 <tr><td>P2</td><td>percussion 2</td></tr>
 <tr><td>P3</td><td>percussion 3</td></tr>
 <tr><td>P4</td><td>percussion 4</td></tr>
@@ -1434,11 +1434,11 @@ Use the settings page to adjust global settings, to back up or recover data or t
 <tr><td>P7</td><td>percussion 7</td></tr>
 <tr><td>P8</td><td>percussion 8</td></tr>
 <tr><td>P9</td><td>percussion 9</td></tr>
-<tr><td>HO</td><td>open hihat</td><td rowspan=3>edge (<img align="middle" src="icons/icon_rim.png">), bow (<img align="middle" src="icons/icon_center.png">), foot (<img align="middle" src="icons/icon_foot.png">)</td></tr>
+<tr><td>HO</td><td>open hihat</td><td rowspan=3>edge (<img src="icons/icon_rim.png">), bow (<img src="icons/icon_center.png">), foot (<img src="icons/icon_foot.png">)</td></tr>
 <tr><td>HH</td><td>half-open hihat</td></tr>
 <tr><td>HC</td><td>closed hihat</td></tr>
-<tr><td>RD</td><td>ride cymbal</td><td>edge (<img align="middle" src="icons/icon_rim.png">), bow (<img align="middle" src="icons/icon_bow.png">), bell (<img align="middle" src="icons/icon_bell.png">), choke (<img align="middle" src="icons/icon_choke.png">)</td></tr>
-<tr><td>C1</td><td>crash/cymbal 1</td><td rowspan=9>edge (<img align="middle" src="icons/icon_rim.png">), bow (<img align="middle" src="icons/icon_bow.png">), bell (<img align="middle" src="icons/icon_bell.png">), choke (<img align="middle" src="icons/icon_choke.png">)</td></tr>
+<tr><td>RD</td><td>ride cymbal</td><td>edge (<img src="icons/icon_rim.png">), bow (<img src="icons/icon_bow.png">), bell (<img src="icons/icon_bell.png">), choke (<img src="icons/icon_choke.png">)</td></tr>
+<tr><td>C1</td><td>crash/cymbal 1</td><td rowspan=9>edge (<img src="icons/icon_rim.png">), bow (<img src="icons/icon_bow.png">), bell (<img src="icons/icon_bell.png">), choke (<img src="icons/icon_choke.png">)</td></tr>
 <tr><td>C2</td><td>crash/cymbal 2</td></tr>
 <tr><td>C3</td><td>crash/cymbal 3</td></tr>
 <tr><td>C4</td><td>crash/cymbal 4</td></tr>
@@ -1447,7 +1447,7 @@ Use the settings page to adjust global settings, to back up or recover data or t
 <tr><td>C7</td><td>crash/cymbal 7</td></tr>
 <tr><td>C8</td><td>crash/cymbal 8</td></tr>
 <tr><td>C9</td><td>crash/cymbal 9</td></tr>
-<tr><td>M1</td><td>multipad 1</td><td rowspan=12>layer A (<img align="middle" src="icons/icon_layer_A.png">), layer B (<img align="middle" src="icons/icon_layer_B.png">), layer C (<img align="middle" src="icons/icon_layer_C.png">), layer D (<img align="middle" src="icons/icon_layer_D.png">)</td></tr>
+<tr><td>M1</td><td>multipad 1</td><td rowspan=12>layer A (<img src="icons/icon_layer_A.png">), layer B (<img src="icons/icon_layer_B.png">), layer C (<img src="icons/icon_layer_C.png">), layer D (<img src="icons/icon_layer_D.png">)</td></tr>
 <tr><td>M2</td><td>multipad 2</td></tr>
 <tr><td>M3</td><td>multipad 3</td></tr>
 <tr><td>M4</td><td>multipad 4</td></tr>
@@ -1459,7 +1459,7 @@ Use the settings page to adjust global settings, to back up or recover data or t
 <tr><td>MA</td><td>multipad 10</td></tr>
 <tr><td>MB</td><td>multipad 11</td></tr>
 <tr><td>MC</td><td>multipad 12</td></tr>
-<tr><td>A1</td><td>additional trig. 1</td><td rowspan=9>center (<img align="middle" src="icons/icon_center.png">), rim (<img align="middle" src="icons/icon_rim.png">)</td></tr>
+<tr><td>A1</td><td>additional trig. 1</td><td rowspan=9>center (<img src="icons/icon_center.png">), rim (<img src="icons/icon_rim.png">)</td></tr>
 <tr><td>A2</td><td>additional trig. 2</td></tr>
 <tr><td>A3</td><td>additional trig. 3</td></tr>
 <tr><td>A4</td><td>additional trig. 4</td></tr>

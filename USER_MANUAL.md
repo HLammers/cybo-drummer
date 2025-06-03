@@ -34,7 +34,7 @@ This file is part of a series of documentation files on Cybo-Drummer:
 
 ## Overview
 
-<img src="images/hardware_overview.svg" style="float:right;margin:10px 0 10px 20px;">
+<img src="images/hardware_overview.svg" align="right">
 
 ### Connections
 
@@ -118,7 +118,7 @@ Cybo-Drummer&rsquo;s user interface is organized in six pages:
 * <img style="vertical-align:middle;" src="icons/icon_tools.png">&emsp;**tools:**&ensp;Quickly assign toms and multipad triggers based on scales, intervals, chords, etc.
 * <img style="vertical-align:middle;" src="icons/icon_monitor.png">&emsp;**monitor:**&ensp;Show router and MIDI monitors
 * <img style="vertical-align:middle;" src="icons/icon_settings.png">&emsp;**settings:**&ensp;Adjust global settings
-<img src="images/hardware_pages.svg" width="300px" height="300px" style="float:right;margin:10px 0 10px 20px;">
+<img src="images/hardware_pages.svg" width="300px" height="300px" align="right">
 
 To change pages and sub-pages:
 1. press the PAGE button &#9312; to enter page select mode
@@ -140,15 +140,15 @@ The general workflow of using Cybo-Drummer follows its inner workings as shown i
 * Now the global setup is finished it is time to [set up programs](#setting-up-a-program).
 * Once programs are defined it is time to use Cybo-Drummer for your drumming sessions by [recalling your desired programs](#selecting-a-bank-and-a-program.)
 
-<figure>
-  <img src="images/workflow.svg" style="margin-bottom:10px;">
-  <figcaption style="caption-side:bottom;"><small><i>Diagram showing Cybo-Drummer&rsquo;s inner workings. <span style="color:#94ba84;">Green</span> shapes and arrows represent the global definitions, which are the same no matter which program is selected; <span style="color:#efa231;">orange</span> shapes and arrows represent programs, of which up to 2,600 (26 banks of 100 programs) can be stored and recalled; <span style="color:#a50c63;">purple</span> shapes and arrows represent the completely separate layer (running on its own processor core) which does the actual real time routing and transformation. The icons in the corners of the <span style="color:#94ba84;">green</span> and <span style="color:#efa231;">orange</span> shapes refer to the respective <a href="#pages-and-sub-pages">pages</a> in Cybo-Drummer&rsquo;s graphic user interface.</i></small></figcaption>
+<figure align="center">
+  <img src="images/workflow.svg">
+  <figcaption><small><i>Diagram showing Cybo-Drummer&rsquo;s inner workings. <span style="color:#94ba84;">Green</span> shapes and arrows represent the global definitions, which are the same no matter which program is selected; <span style="color:#efa231;">orange</span> shapes and arrows represent programs, of which up to 2,600 (26 banks of 100 programs) can be stored and recalled; <span style="color:#a50c63;">purple</span> shapes and arrows represent the completely separate layer (running on its own processor core) which does the actual real time routing and transformation. The icons in the corners of the <span style="color:#94ba84;">green</span> and <span style="color:#efa231;">orange</span> shapes refer to the respective <a href="#pages-and-sub-pages">pages</a> in Cybo-Drummer&rsquo;s graphic user interface.</i></small></figcaption>
 </figure>
 <br clear=right>
 
-<figure style="clear:right;float:right;margin:10 px 0 px 10px 20px;display:table;">
-  <img src="screenshots/mtx_1.png" style="float:right;">
-  <figcaption style="display:table-caption;caption-side:bottom;"><small><i>Example of a trigger matrix setup including a drum kit, a 2×8 multipad and a couple of additional trigger pads</i></small></figcaption>
+<figure align="right">
+  <img src="screenshots/mtx_1.png">
+  <figcaption><small><i>Example of a trigger matrix setup including a drum kit, a 2×8 multipad and a couple of additional trigger pads</i></small></figcaption>
 </figure>
 
 ### Organizing Input Triggers on the Trigger Matrix
@@ -159,7 +159,7 @@ The very first step to set up Cybo-Drummer is setting up the [trigger matrix](#t
 > Number your toms from high to low for the [toms assignment tool](#assigning-notes-to-toms) to work properly (so T1 is your highest tom, which is the leftmost tom on a typical right-handed setup).
 <br clear=right>
 
-<img src="images/hardware_matrix_assign.svg" width="300px" height="300px" style="clear:right;float:right;margin:10px 0 10px 20px;">
+<img src="images/hardware_matrix_assign.svg" width="300px" height="300px" align="right" style="clear:right;margin:10px 0 10px 20px;">
 
 #### Adding a Single Trigger
 
@@ -174,7 +174,7 @@ The very first step to set up Cybo-Drummer is setting up the [trigger matrix](#t
 > If you assign a trigger which is already assigned to a different cell, it will be removed from its old position on the trigger matrix, so you&rsquo;re essentially moving it to a new location.
 <br clear=right>
 
-<img src="images/hardware_multipad.svg" width="300px" height="300px" style="clear:right;float:right;margin:10px 0 10px 20px;">
+<img src="images/hardware_multipad.svg" width="300px" height="300px" align="right" style="clear:right;margin:10px 0 10px 20px;">
 
 #### Adding All Triggers of a Multipad Device at Once
 
@@ -284,7 +284,7 @@ The very first step to set up Cybo-Drummer is setting up the [trigger matrix](#t
 5. Repeat from step 2 until all voices are ready
 <br clear=right>
 
-<img src="images/hardware_program.svg" width="300px" height="300px" style="clear:right;float:right;margin:10px 0 10px 20px;">
+<img src="images/hardware_program.svg" width="300px" height="300px" align="right" style="clear:right;margin:10px 0 10px 20px;">
 
 ### Selecting a Bank and a Program
 
@@ -386,7 +386,7 @@ If you need to assign the same voice to multiple pads of a multipad trigger devi
 > If more than one pad has output device(s) and voice(s) assigned, Cybo-Drummer will look for the group of pads with more than program layer which are identical except for the assigned note, starting from the first pad (bottom left), and assume that those are the included pads. The chord assignment tool takes program layer A of that pad as source.
 <br clear=right>
 
-<img src="images/hardware_save.svg" width="300px" height="300px" style="clear:right;float:right;margin:10px 0 10px 20px;">
+<img src="images/hardware_save.svg" width="300px" height="300px" align="right" style="clear:right;margin:10px 0 10px 20px;">
 
 ### Saving a Program
 
@@ -404,7 +404,7 @@ If you need to assign the same voice to multiple pads of a multipad trigger devi
 > If you change the program (via the program block on [program: mapping voices](#13--program-mapping-voices), [program: mapping note](#23--program-mapping-note) or [program: pc/bank select](#33--pcbank-select) or via MIDI) when the active program has unsaved changes, you will be asked if you want to save changes, and if you [confirm](#confirmation-pop-ups) you start the same procedure as described above.
 <br clear=right>
 
-<img src="images/hardware_trigger.svg" width="300px" height="300px" style="clear:right;float:right;margin:10px 0 10px 20px;">
+<img src="images/hardware_trigger.svg" width="300px" height="300px" align="right" style="clear:right;margin:10px 0 10px 20px;">
 
 ### Selecting a Trigger
 
@@ -416,7 +416,7 @@ If you need to assign the same voice to multiple pads of a multipad trigger devi
 > Short-press the TRIGGER button to trigger the last selected output trigger preset (for testing purposes).
 <br clear=right>
 
-<img src="images/hardware_confirmation.svg" width="300px" height="300px" style="clear:right;float:right;margin:10px 0 10px 20px;">
+<img src="images/hardware_confirmation.svg" width="300px" height="300px" align="right" style="clear:right;margin:10px 0 10px 20px;">
 
 ### Confirmation Pop-Ups
 
@@ -426,7 +426,7 @@ Cybo-Drummer doesn&rsquo;t have an undo feature, so to avoid accidentally losing
 * Press the NO button &#9313; to cancel
 <br clear=right>
 
-<img src="images/hardware_text_edit.svg" width="300px" height="300px" style="clear:right;float:right;margin:10px 0 10px 20px;">
+<img src="images/hardware_text_edit.svg" width="300px" height="300px" align="right" style="clear:right;margin:10px 0 10px 20px;">
 
 ### Text edit pop-up
 
@@ -446,11 +446,11 @@ Use the program page to [edit programs](#setting-up-a-program), which are the pa
 
 The [program: mapping voices](#13--program-mapping-voices) (1/3) sub-page is the default view when powering up Cybo-Drummer.
 
-<br clear=right><img src="screenshots/prg_1.png" style="clear:right;float:right;margin:10px 0 10px 20px;padding:16px 0 0">
+<br clear=right><img src="screenshots/prg_1.png" align="right" style="clear:right;margin:10px 0 10px 20px;padding:16px 0 0">
 
 #### <img style="vertical-align:middle;" src="icons/icon_program.png">&ensp;1/3 &ndash; program: mapping voices
 
-<img src="images/hardware_prg_menu.svg" width="300px" height="300px" style="clear:right;float:right;margin:10px 0 10px 20px;">
+<img src="images/hardware_prg_menu.svg" width="300px" height="300px" align="right" style="clear:right;margin:10px 0 10px 20px;">
 
 ##### program
 
@@ -490,7 +490,7 @@ The [program: mapping voices](#13--program-mapping-voices) (1/3) sub-page is the
 > [!TIP]
 > Multiple output devices can be combined such that one input trigger triggers multiple output devices&rsquo; voices &ndash; either at the same time, or [dependent on the input trigger velocity](#trans-a-to-d).
 
-<br clear=right><img src="screenshots/prg_2.png" style="clear:right;float:right;margin:10px 0 10px 20px;padding:16px 0 0">
+<br clear=right><img src="screenshots/prg_2.png" align="right" style="clear:right;margin:10px 0 10px 20px;padding:16px 0 0">
 
 #### <img style="vertical-align:middle;" src="icons/icon_program.png">&ensp;2/3 &ndash; program: mapping note
 
@@ -550,8 +550,8 @@ The [program: mapping voices](#13--program-mapping-voices) (1/3) sub-page is the
 
 ##### trans A to D
 
-<figure style="clear:right;float:right;margin:10 px 0 px 10px 20px;max-width:100%;display:table;">
-  <img src="images/transients.svg" style="float:right;">
+<figure align="right" style="clear:right;margin:10 px 0 px 10px 20px;max-width:100%;display:table;">
+  <img src="images/transients.svg" align="right">
   <figcaption style="display:table-caption;caption-side:bottom;"><small><i>Four different <a href="#trans-a-to-d">transient curve options</a> and what the relation between <a href="#lohi-a-to-d">the low velocity layer and the high velocity layer</a> looks like if both velocity layers are set to the same curve</i></small></figcaption>
 </figure>
 
@@ -579,8 +579,8 @@ The [program: mapping voices](#13--program-mapping-voices) (1/3) sub-page is the
 
 ##### scale A to D
 
-<figure style="clear:right;float:right;margin:10 px 0 px 10px 20px;max-width:100%;display:table;">
-  <img src="images/transients_scale.svg" style="float:right;">
+<figure align="right" style="clear:right;margin:10 px 0 px 10px 20px;max-width:100%;display:table;">
+  <img src="images/transients_scale.svg" align="right">
   <figcaption style="display:table-caption;caption-side:bottom;"><small><i>Illustration of the impact of turning <a href="#scale-a-to-d">scale</a> on or off on the four different <a href="#trans-a-to-d">transient curve options</a> looks like if both <a href="#lohi-a-to-d">velocity layers</a> are set to the same curve (and the voice&rsquo;s <a href="#velocity-curve">velocity curves</a> are set to linear)</i></small></figcaption>
 </figure>
 
@@ -590,7 +590,7 @@ The [program: mapping voices](#13--program-mapping-voices) (1/3) sub-page is the
 * Press the DEL knob to **enable scaling (<img style="vertical-align:middle;" src="icons/icon_checked.png">)** (default setting)
 * This option is not available if a program layer&rsquo;s [transient curve](#trans-a-to-d) is set to &lsquo;__&rsquo; (off)
 
-<br clear=right><img src="screenshots/prg_3.png" style="clear:right;float:right;margin:10px 0 10px 20px;padding:16px 0 0">
+<br clear=right><img src="screenshots/prg_3.png" align="right" style="clear:right;margin:10px 0 10px 20px;padding:16px 0 0">
 
 #### <img style="vertical-align:middle;" src="icons/icon_program.png">&ensp;3/3 &ndash; pc/bank select
 
@@ -621,7 +621,7 @@ The [program: mapping voices](#13--program-mapping-voices) (1/3) sub-page is the
 
 Use the trigger matrix page to [organize input triggers on the trigger matrix](#organizing-input-triggers-on-the-trigger-matrix).
 
-<br clear=right><img src="screenshots/mtx_1.png" style="clear:right;float:right;margin:10px 0 10px 20px;padding:16px 0 0">
+<br clear=right><img src="screenshots/mtx_1.png" align="right" style="clear:right;margin:10px 0 10px 20px;padding:16px 0 0">
 
 #### <img style="vertical-align:middle;" src="icons/icon_program.png">&ensp;1/4 &ndash; program & trigger matrix
 
@@ -647,7 +647,7 @@ This sub-page shows the active program and allows you to edit the trigger matrix
 
 Use the input page to name input ports to the connected devices and to adjust input device settings.
 
-<br clear=right><img src="screenshots/in_1.png" style="clear:right;float:right;margin:10px 0 10px 20px;padding:16px 0 0">
+<br clear=right><img src="screenshots/in_1.png" align="right" style="clear:right;margin:10px 0 10px 20px;padding:16px 0 0">
 
 #### <img style="vertical-align:middle;" src="icons/icon_input.png">&ensp;1/2 &ndash; input ports
 
@@ -669,7 +669,7 @@ Use the input page to name input ports to the connected devices and to adjust in
 > [!TIP]
 > If [MIDI learn](#midi-learn) is turned on channel can also be set by sending anything from that channel from a device connected to the set [MIDI learn port](#midi-learn-port).
 
-<br clear=right><img src="screenshots/in_2.png" style="clear:right;float:right;margin:10px 0 10px 20px;padding:16px 0 0">
+<br clear=right><img src="screenshots/in_2.png" align="right" style="clear:right;margin:10px 0 10px 20px;padding:16px 0 0">
 
 #### <img style="vertical-align:middle;" src="icons/icon_input.png">&ensp;2/2 &ndash; input notes/pedal cc
 
@@ -724,7 +724,7 @@ Use the input page to name input ports to the connected devices and to adjust in
 
 Use the output page to name output ports to the connected devices, to adjust output device settings and to define output device&rsquo;s voices.
 
-<br clear=right><img src="screenshots/out_1.png" style="clear:right;float:right;margin:10px 0 10px 20px;padding:16px 0 0">
+<br clear=right><img src="screenshots/out_1.png" align="right" style="clear:right;margin:10px 0 10px 20px;padding:16px 0 0">
 
 #### <img style="vertical-align:middle;" src="icons/icon_output.png">&ensp;1/3 &ndash; output ports
 
@@ -733,7 +733,7 @@ Use the output page to name output ports to the connected devices, to adjust out
 * Press the SEL/OPT knob to open a [text edit pop-up](#text-edit-pop-up) to **name the output MIDI port** such that it represents the connected device
 * Press the DEL knob to clear the port/device name (a [confirmation pop-up](#confirmation-pop-ups) will show)
 
-<br clear=right><img src="screenshots/out_2.png" style="clear:right;float:right;margin:10px 0 10px 20px;padding:16px 0 0">
+<br clear=right><img src="screenshots/out_2.png" align="right" style="clear:right;margin:10px 0 10px 20px;padding:16px 0 0">
 
 #### <img style="vertical-align:middle;" src="icons/icon_output.png">&ensp;2/3 &ndash; output device
 
@@ -779,7 +779,7 @@ Use the output page to name output ports to the connected devices, to adjust out
 >[!NOTE]
 > Running status is a way to maximize MIDI data efficiency by leaving out the status byte if consecutive MIDI messages share the same status byte. This leads to even more efficiency if combined with sending [note on messages with 0 velocity instead of note off messages](#0-velocity-as-note-off). To be fully compliant to the MIDI specification a device should recognize running status, so by far most devices do support this &ndash; only turn it off if you experience problems.
 
-<br clear=right><img src="screenshots/out_3.png" style="clear:right;float:right;margin:10px 0 10px 20px;padding:16px 0 0">
+<br clear=right><img src="screenshots/out_3.png" align="right" style="clear:right;margin:10px 0 10px 20px;padding:16px 0 0">
 
 #### <img style="vertical-align:middle;" src="icons/icon_output.png">&ensp;3/3 &ndash; output voice
 
@@ -792,7 +792,7 @@ Use the output page to name output ports to the connected devices, to adjust out
 <!--TO DO: double check MIDI learn-->
 <br clear=right>
 
-<img src="images/hardware_out_menu.svg" width="300px" height="300px" style="clear:right;float:right;margin:10px 0 10px 20px;">
+<img src="images/hardware_out_menu.svg" width="300px" height="300px" align="right" style="clear:right;margin:10px 0 10px 20px;">
 
 ##### voice
 
@@ -856,8 +856,8 @@ Use the output page to name output ports to the connected devices, to adjust out
 
 ##### vel threshold
 
-<figure style="float:right;margin:10 px 0 px 10px 20px;max-width:100%;display:table;">
-  <img src="images/velocity_curves_threshold.svg" style="float:right;">
+<figure align="right" style="margin:10 px 0 px 10px 20px;max-width:100%;display:table;">
+  <img src="images/velocity_curves_threshold.svg" align="right">
   <figcaption style="display:table-caption;caption-side:bottom;"><small><i>Example of what the velocity curves look like if the threshold is set to 20</i></small></figcaption>
 </figure>
 
@@ -875,8 +875,8 @@ Use the output page to name output ports to the connected devices, to adjust out
 
 ##### velocity curve
 
-<figure style="float:right;margin:10 px 0 px 10px 20px;max-width:100%;display:table;">
-  <img src="images/velocity_curves.svg" style="float:right;">
+<figure align="right" style="margin:10 px 0 px 10px 20px;max-width:100%;display:table;">
+  <img src="images/velocity_curves.svg" align="right">
   <figcaption style="display:table-caption;caption-side:bottom;"><small><i>Charts showing each velocity response curve option</i></small></figcaption>
 </figure>
 
@@ -898,8 +898,8 @@ Use the output page to name output ports to the connected devices, to adjust out
 
 ##### min velocity / max velocity
 
-<figure style="float:right;margin:10 px 0 px 10px 20px;max-width:100%;display:table;">
-  <img src="images/velocity_curves_min_max.svg" style="float:right;">
+<figure align="right" style="margin:10 px 0 px 10px 20px;max-width:100%;display:table;">
+  <img src="images/velocity_curves_min_max.svg" align="right">
   <figcaption style="display:table-caption;caption-side:bottom;"><small><i>Example of what the velocity curves look like if min velocity is set to 32 and max velocity to 95</i></small></figcaption>
 </figure>
 
@@ -925,7 +925,7 @@ This page offers tools to quickly set up [toms](#14--assign-toms) or [multipad t
 > [!NOTE]
 > These assignment tools only work for voices which support different notes as input (pitched percussion or non-percussive voices).
 
-<br clear=right><img src="screenshots/tls_1.png" style="clear:right;float:right;margin:10px 0 10px 20px;padding:16px 0 0">
+<br clear=right><img src="screenshots/tls_1.png" align="right" style="clear:right;margin:10px 0 10px 20px;padding:16px 0 0">
 
 #### <img style="vertical-align:middle;" src="icons/icon_tools.png">&ensp;1/4 &ndash; assign toms
 
@@ -1045,7 +1045,7 @@ This page offers tools to quickly set up [toms](#14--assign-toms) or [multipad t
 >
 > If [MIDI learn](#midi-learn) is turned on the note can also be set by playing a trigger/note from a device connected to the set [MIDI learn port](#midi-learn-port).
 
-<br clear=right><img src="screenshots/tls_2.png" style="clear:right;float:right;margin:10px 0 10px 20px;padding:16px 0 0">
+<br clear=right><img src="screenshots/tls_2.png" align="right" style="clear:right;margin:10px 0 10px 20px;padding:16px 0 0">
 
 #### <img style="vertical-align:middle;" src="icons/icon_tools.png">&ensp;2/4 &ndash; multipad: select mode
 
@@ -1075,7 +1075,7 @@ This page offers tools to quickly set up [toms](#14--assign-toms) or [multipad t
 * Turn the VAL/&harr; knob to **select whether a pad is included in [note assignment](#34--multipad-assign-notes)** (&lsquo;note&rsquo;), **[chord assignment](#44--multipad-assign-chords)** (&lsquo;chord&rsquo;) **or disabled from assignment** (&lsquo;____&rsquo;)
 * Press the DEL knob to **exclude a pad** (set to &lsquo;____&rsquo;)
 
-<br clear=right><img src="screenshots/tls_3.png" style="clear:right;float:right;margin:10px 0 10px 20px;padding:16px 0 0">
+<br clear=right><img src="screenshots/tls_3.png" align="right" style="clear:right;margin:10px 0 10px 20px;padding:16px 0 0">
 
 #### <img style="vertical-align:middle;" src="icons/icon_tools.png">&ensp;3/4 &ndash; multipad: assign notes
 
@@ -1190,7 +1190,7 @@ This page offers tools to quickly set up [toms](#14--assign-toms) or [multipad t
 >
 > If [MIDI learn](#midi-learn) is turned on the note can also be set by playing a trigger/note from a device connected to the set [MIDI learn port](#midi-learn-port).
 
-<br clear=right><img src="screenshots/tls_4.png" style="clear:right;float:right;margin:10px 0 10px 20px;padding:16px 0 0">
+<br clear=right><img src="screenshots/tls_4.png" align="right" style="clear:right;margin:10px 0 10px 20px;padding:16px 0 0">
 
 #### <img style="vertical-align:middle;" src="icons/icon_tools.png">&ensp;4/4 &ndash; multipad: assign chords
 
@@ -1209,7 +1209,7 @@ This page offers tools to quickly set up [toms](#14--assign-toms) or [multipad t
 * Press the SEL/OPT knob to **transpose all chords one octave up or down** (12 semitones) for the selected [layer]("#multipad-layer") of the [selected multipad triggers](#pad-1-to-n)
 <br clear=right>
 
-<img src="images/hardware_chord.svg" width="300px" height="300px" style="clear:right;float:right;margin:10px 0 10px 20px;">
+<img src="images/hardware_chord.svg" width="300px" height="300px" align="right" style="clear:right;margin:10px 0 10px 20px;">
 
 ##### pad 1 to *n*
 
@@ -1267,7 +1267,7 @@ This page offers tools to quickly set up [toms](#14--assign-toms) or [multipad t
 
 Use the monitor page to monitor the router, MIDI data coming in or MIDI data going out.
 
-<br clear=right><img src="screenshots/mon_1.png" style="clear:right;float:right;margin:10px 0 10px 20px;padding:16px 0 0">
+<br clear=right><img src="screenshots/mon_1.png" align="right" style="clear:right;margin:10px 0 10px 20px;padding:16px 0 0">
 
 #### <img style="vertical-align:middle;" src="icons/icon_monitor.png">&ensp;1/3 &ndash; monitor routing
 
@@ -1277,7 +1277,7 @@ Use the monitor page to monitor the router, MIDI data coming in or MIDI data goi
 > [!NOTE]
 > If an input preset triggers more than one output presets the router will show as many lines as output presets are triggers.
 
-<br clear=right><img src="screenshots/mon_2.png" style="clear:right;float:right;margin:10px 0 10px 20px;padding:16px 0 0">
+<br clear=right><img src="screenshots/mon_2.png" align="right" style="clear:right;margin:10px 0 10px 20px;padding:16px 0 0">
 
 #### <img style="vertical-align:middle;" src="icons/icon_monitor.png">&ensp;2/3 &ndash; monitor MIDI in
 
@@ -1292,7 +1292,7 @@ Use the monitor page to monitor the router, MIDI data coming in or MIDI data goi
 > [!NOTE]
 > SysEx (system exclusive) data is filtered out by the router and won&rsquo;t show, MIDI clock data and active sensing are filtered out by the monitor and won&rsquo;t show either.
 
-<br clear=right><img src="screenshots/mon_3.png" style="clear:right;float:right;margin:10px 0 10px 20px;padding:16px 0 0">
+<br clear=right><img src="screenshots/mon_3.png" align="right" style="clear:right;margin:10px 0 10px 20px;padding:16px 0 0">
 
 #### <img style="vertical-align:middle;" src="icons/icon_monitor.png">&ensp;3/3 &ndash; monitor MIDI out
 
@@ -1312,7 +1312,7 @@ Use the monitor page to monitor the router, MIDI data coming in or MIDI data goi
 
 Use the settings page to adjust global settings, to back up or recover data or to find the firmware version number.
 
-<br clear=right><img src="screenshots/set_1.png" style="clear:right;float:right;margin:10px 0 10px 20px;padding:16px 0 0">
+<br clear=right><img src="screenshots/set_1.png" align="right" style="clear:right;margin:10px 0 10px 20px;padding:16px 0 0">
 
 #### <img style="vertical-align:middle;" src="icons/icon_settings.png">&ensp;1/1 &ndash; settings
 

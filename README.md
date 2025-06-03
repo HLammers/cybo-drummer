@@ -12,26 +12,22 @@
 
 # Introduction
 
-I own an electronic drum kit and a bunch of drum computers and my dream was to use the former to play the latter, so I went searching for a way to do just that &ndash; allowing me to easily switch between different configurations combining the sounds of one or more drum computers. I looked for hardware solutions, but couldn&rsquo;t find any. I looked for software solutions, but I could only find MIDI mappers or other complex solutions that would never give me the easy-to-use experience I had it mind. It turns out that (as usual) I go against the current fashion of trying to make an electronic drum kit sound (and look) as acoustic as possible. So I decided to develop my own solution &ndash; and publish it as open source DIY project, hoping it finds like-minded drummers!
+The situation was that I owned an electronic drum kit and a bunch of drum computers. My dream was to play those drum computers from my drum kit, so I went searching for a way to do just that. It turned out that I couldn&rsquo;t find any software or hardware solution that would give easy-to-use experience with the flexibility to change the mapping as you change a program on a drum module.
+
+That was April 2024, when Cybo-Drummer was born: I decided to develop my own solution. The first prototype on a breadboard took a couple of months build and showed that it could work, but I had a lot to learn: programming in MicroPython, designing PCBs, (re)writing display drivers and a lot more. Also, when Cybo-Drummer started to take shape, it turned out to be a much more complex project than I had anticipated&hellip;
+
+In November 2024 the second prototype was finally ready and I decided to publish it as an open source project. I received several enthausiast responses of people liking the idea, but no one else tried building their own Cybo-Drummer as far as I can tell &ndash; that is no surprise, because the project was still very rough around the edges, with its ad hoc hardware design, no case, a sluggy graphic user interface and an overly complex workflow.
+
+Now, in June 2025 it&rsquo;s time to launch the third prototype. This time everything as been redesigned: new hardware (now based on the more powerful Raspberry Pi Pico 2) in a 3D printed case, an almost completely redesigned user interface (now with icons and a font specially designed for Cybo-Drummer!) and a simplified, yet improved workflow, making it much more intuitive to use, yet virtually as powerful as the previous prototype. It also introduces some neat new features, like velocity layers and tools to easily assign note series to toms and scales/modes and chords to multipad triggers.
+
+With the thrid prototype Cybo-Drummer has reached a state where it does what it has to do. There are still [a few things to be done](#development-roadmap) before reaching version 1.0 (but all things that could be solved with firmware updates). MIDI learn, for example still needs to be refined, better tested and documented. A big inprovement still to come is adding USB MIDI support. Before version 1.23 (released on 31 May 2024) MicroPython didn&rsquo;t support MIDI over USB and even now no one figured out yet how (in MicroPython) to name multiple MIDI ports over one USB connection (see the [MicroPython GitHub discussion](https://github.com/orgs/micropython/discussions/16435) &ndash; if you know how this works, your input is appreciated!)
+
+Are you an experienced drummer with a fascination for synthesized drum sounds? (I&rsquo;ve only started my drumming journey in April 2023 and too much of my time has gone into developing Cybo-Drummer instead of practizing&hellip;) I&rsquo;d love to hear how you experience using Cybo-Drummer. Does it work for you? What would you change? What features are you missing?
 
 > [!NOTE]
-> Cybo-Drummer 0.3.0, launched in June 2025, is a total redesign:
->
-> * Newly designed hardware, including custom PCBs and a 3D printed case
-> * Completely redesigned and simplified workflow, making it much more intuitive to use, yet virtually as powerful
-> * Improved performance and in particular a much more responsive user interface (thanks to the Raspberry Pi Pico 2 offering about twice as much RAM as the original Pico)
-> * Improved graphic user interface, with a better layout, the introduction of icons and a new font specially designed for Cybo-Drummer
-> * One more push button and generally an improved use of the push buttons and encoders, making the interaction with Cybo-Drummer much faster and more intuitive
-> * New tools to easily assign note series to toms and scales/modes and chords to multipad triggers
-> * Many bug fixes and other improvements
->
-> Are you an experienced drummer (I&rsquo;ve only started my drumming journey in April 2023 and too much of my time has gone into developing Cybo-Drummer instead of practizing&hellip;) with a fascination for synthesized drum sounds? I&rsquo;d love to hear how you experience using Cybo-Drummer. What would you change? What features are you missing?
->
-> Are you a developer with indepth experience with USB MIDI? I haven&rsquo;t figured out yet how to name different MIDI interfaces combined in one USB connection, so please let me know if you understand how this works (or share your knowledge on the [MicroPython GitHub discussion](https://github.com/orgs/micropython/discussions/16435) on this topic). Your help would be appreciated!
+> Please use the [issues tab](https://github.com/HLammers/cybo-drummer/issues) to report bug and other issues, or the [discussion tab](https://github.com/HLammers/cybo-drummer/discussions) to discuss anything else.
 >
 > Of course I&rsquo;m open for collaboration. Just let me know how you think you can contribute!
->
-> Please use the [issues tab](https://github.com/HLammers/cybo-drummer/issues) to report bug and other issues, or the [discussion tab](https://github.com/HLammers/cybo-drummer/discussions) to discuss anything else.
 
 # Overview
 
@@ -107,13 +103,11 @@ I spent a lot of time optimizing the code (for speed and memory usage) and it tu
 
 To keep latency to a minimum the second core is dedicated to MIDI handling, while the primary core takes care of the graphic user interface and button and rotary encoder input. In that way the second core runs a light loop doing only time-sensitive MIDI routing, while the primary core does all the heavy stuff.
 
-# Ideas for Features and Improvements to be Added
+# Development Roadmap
 
-- [ ] Improved hardware, including proper front panel and 3d printable case
-- [ ] Add USB MIDI input/output (USB MIDI support only became available in MicroPython 1.23, which was released at end of May 2024, which is after I developed the MIDI handling side of Cybo-Drummer)
+- [ ] Add USB MIDI support
 - [ ] Add MIDI clock distribution
 - [ ] Add filter options to MIDI monitor
-- [ ] Add note off delay setting to trigger pads that need longer time between note on and note off than what is received from the input trigger
 - [ ] Add MIDI CC mapping (doing crazy things, for example with the hihat foot pedal or an express pedal)
 - [ ] Add velocity mapping (triggering something different when hitting softly or hitting hard)
 - [ ] Add option to send MIDI start, stop or continue messages on trigger

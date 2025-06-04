@@ -455,15 +455,14 @@ The [program: mapping voices](#13--program-mapping-voices) (1/3) sub-page is the
 ##### program
 
 * Turn the VAL/&harr; knob to **select the active program** (0 to 99) within the active bank ([use the TRIGGER button](#selecting-a-trigger) instead to change the bank), then press the knob to confirm
-* Press the SEL/OPT knob &#9312; to show an **options menu**, then turn the VAL/&harr; knob &#9313; to select an option and press the SEL/OPT knob &#9312; or the YES button &#9314; to confirm (or press the NO button &#9315; to cancel) &ndash; menu options:
-
-<img src="images/hardware_prg_menu.svg" width="300px" height="300px" align="right">
-
+* Press the SEL/OPT knob &#9312; to show an **options menu**, then turn the VAL/&harr; knob &#9313; to select an option and press the SEL/OPT knob &#9312; or the YES button &#9314; to confirm (or press the NO button &#9315; to cancel) &ndash; menu options:<img src="images/hardware_prg_menu.svg" width="300px" height="300px" align="right">
   * ***rename:*** show a [text edit pop-up](#text-edit-pop-up) to rename the active program
   * ***move backward:*** move the active program one place backward (if not the first program)
   * ***move forward:*** move the active program one place forward (if not the last program)
   * ***move to…:*** move the active program to a specific position &ndash; shows a pop-up to select the bank and program position (turn the NAV/&varr; knob to select bank or program, turn the VAL/&harr; knob to select a number and press the SEL/OPT knob or the YES button to confirm or the NO button to cancel) &ndash; if you select a non-blank program, that program and all subsequent programs until the first blank slot will be shifted one position up (moving will fail if no free spot is left in the selected bank)
-* Press the DEL knob to **delete the active program** &ndash; (a [confirmation pop-up](#confirmation-pop-ups) will show)
+* Press the DEL knob to:
+  * **delete the active program** if a non-empty program is selected (a [confirmation pop-up](#confirmation-pop-ups) will show)
+  * **remove an empty program position** if an empty program is selected, shifting all subsequent programs in the active bank one position down
  
 > [!TIP]
 > Programs can also be changed from any page/sub-page by [pressing the PROGRAM button](#selecting-a-bank-and-a-program). That is also the way to change the bank.

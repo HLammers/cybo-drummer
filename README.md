@@ -80,6 +80,7 @@ For indept documentation on Cybo-Drummer, see the following files:
 * [User Manual](USER_MANUAL.md)
 * [Building Instructions](BUILDING_INSTRUCTIONS.md)
 * [Example Presets](EXAMPLE_PRESETS.md)
+* [Development Roadmap](TO_DO.md)
 
 > [!NOTE]
 > **<ins>Cybo-Drummer Terminology</ins>**
@@ -102,19 +103,6 @@ A MIDI router/mapper is a time-sensitive application, so why not using the progr
 I spent a lot of time optimizing the code (for speed and memory usage) and it turns out MicroPython on a Raspberry Pi Pico is fast enough after all. Keep in mind MIDI is a 40+ year old protocol, so it is pretty slow by today&rsquo;s standards &ndash; enough time between two MIDI bytes to run a bit of Python code.
 
 To keep latency to a minimum the second core is dedicated to MIDI handling, while the primary core takes care of the graphic user interface and button and rotary encoder input. In that way the second core runs a light loop doing only time-sensitive MIDI routing, while the primary core does all the heavy stuff.
-
-# Development Roadmap
-
-- [ ] Add USB MIDI support
-- [ ] Add MIDI clock distribution
-- [ ] Add filter options to MIDI monitor
-- [ ] Add MIDI CC mapping (doing crazy things, for example with the hihat foot pedal or an express pedal)
-- [ ] Add velocity mapping (triggering something different when hitting softly or hitting hard)
-- [ ] Add option to send MIDI start, stop or continue messages on trigger
-- [ ] Rethinking how to deal with choke events, which for some drum modules lead to MIDI note events (2Box, Alesis?) and for others to poly aftertouch/pressure MIDI CC messages (Roland, Yamaha)
-- [ ] Add choke groups which could combine different devices
-- [ ] Thinking through how the specific possibilities and needs when using Cybo-Drummer with a multi-pad controller (I recently bought and old Roland SPD-11 for that purpose)
-- [ ] Building an editor for program and device/trigger/preset definitions and settings files on a pc
 
 # Licencing
 

@@ -17,6 +17,7 @@ This file is part of a series of documentation files on Cybo-Drummer:
 * User Manual (this file)
 * [Building Instructions](BUILDING_INSTRUCTIONS.md)
 * [Example Presets](EXAMPLE_PRESETS.md)
+* [Development Roadmap](TO_DO.md)
 
 > [!NOTE]
 > **<ins>Cybo-Drummer Terminology</ins>**
@@ -462,7 +463,7 @@ The [program: mapping voices](#13--program-mapping-voices) (1/3) sub-page is the
   * ***move to…:*** move the active program to a specific position &ndash; shows a pop-up to select the bank and program position (turn the NAV/&varr; knob to select bank or program, turn the VAL/&harr; knob to select a number and press the SEL/OPT knob or the YES button to confirm or the NO button to cancel) &ndash; if you select a non-blank program, that program and all subsequent programs until the first blank slot will be shifted one position up (moving will fail if no free spot is left in the selected bank)
 * Press the DEL knob to:
   * **delete the active program** if a non-empty program is selected (a [confirmation pop-up](#confirmation-pop-ups) will show)
-  * **remove an empty program position** if an empty program is selected, shifting all subsequent programs in the active bank one position down
+  * **remove an empty program position** if an empty program is selected, shifting all subsequent programs in the active bank one position down (a [confirmation pop-up](#confirmation-pop-ups) will show)
  
 > [!TIP]
 > Programs can also be changed from any page/sub-page by [pressing the PROGRAM button](#selecting-a-bank-and-a-program). That is also the way to change the bank.

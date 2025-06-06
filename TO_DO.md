@@ -19,11 +19,6 @@ This file is part of a series of documentation files on Cybo-Drummer:
 * [Example Presets](EXAMPLE_PRESETS.md)
 * Development Roadmap (this file)
 
-## Release 0.3.0
-
-- [ ] Test add new voice, rename voice and move voice
-- [ ] Prepare schematics files
-
 ## Release 0.3.1
 
 *More items from the backlog could get added to the 0.3.1 list if I find the time (or urge), inspiration and right solutions*
@@ -44,7 +39,7 @@ This file is part of a series of documentation files on Cybo-Drummer:
 ### MIDI Monitor Improvement
 
 - [ ] Adding MIDI monitor filter options
-- [ ] Trying to improve monitor screen refresh rate by using a separate FrameBuffer for the monitor sub-page, FrameBuffer.scroll when adding a new line and FrameBuffer.blit to merge it with the main FrameBuffer
+- [ ] Trying to improve monitor screen refresh rate by using a separate `FrameBuffer` for the monitor sub-page, `FrameBuffer.scroll` when adding a new line and `FrameBuffer.blit` to merge it with the main `FrameBuffer`
 
 ### MIDI Mapping
 

@@ -21,7 +21,7 @@ This file is part of a series of documentation files on Cybo-Drummer:
 
 ## Introduction
 
-Since Cybo-Drummer doesn&rsquo;t make any sound on its own, but merely routes signals from one device to another, it isn&rsquo;t possible to make meaningful factory presets. The presets shared in the [example presets folder](example_presets/) are based on my personal setup, but can be useful as examples. Currently they reflect a baseline for equipment I own, but that will probably evolve over time.
+Since Cybo-Drummer doesn&rsquo;t make any sound on its own, but merely routes signals from one device to another, it isn&rsquo;t possible to make meaningful factory presets. The presets shared in the [example presets folder](example_presets/) are based on my personal setup, but can be useful as examples. Currently they reflect a baseline for equipment I own, but that will probably evolve over time. I haven&rsquo;t updated them yet, for example, to make use of the old Roland SPD-11 I bought a while ago, and they do not make use yet of the most recently added features.
 
 <!--update version number in the two references to MicroPython below when necessary!-->
 

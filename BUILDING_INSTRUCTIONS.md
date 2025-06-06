@@ -78,7 +78,7 @@ Building the Cybo-Drummer hardware only requires basic soldering skills (it uses
 
 * Cybo-Drummer case bottom part v3.0 (in [STL files folder](stl_files/))
 * Cybo-Drummer case top part v3.0 (in [STL files folder](stl_files/))
-* Cybo-Drummer front panel PCB v0.3.1 in ([Gerber files folder](gerber_files/))
+* Cybo-Drummer front panel PCB v0.3.1 (in [Gerber files folder](gerber_files/))
 * 4× M4×6×6 brass heat-set inserts (not necessarily needed if you have no intention to use a mounting plate)
 
 #### Final Assembly
@@ -108,6 +108,11 @@ Assemble the top PCB by following the following steps:
   5. Solder the **reset button** (SW2) and the **DC power socket** (J1)
   6. Solder the **1×5 and 1×18 female pin header sockets** (J2 and J3)
   7. Solder all the **DIN MIDI sockets** (J4 to J15)
+
+> [!IMPORTANT]
+> Diodes need to be oriented correctly: they have a line marking their cathode (negative) side, which should match the similar marking printed on the PCB.
+>
+> The H11L1 octocouples need to be oriented correctly as well: [pin 1](https://en.wikipedia.org/wiki/Dual_in-line_package#Orientation_and_lead_numbering) is recognizable on the PCB as a square soldering pad. The print on the PCB also shows the identifying notch as can often been found on the octocoupler package (if the package doesn&rsquo;t have a notch, it would have a dot indicating pin 1).
 
 <br clear="right"/><img src="images/top_pcb.png" align="right">
 <img src="images/display.png" align="right">
@@ -169,7 +174,7 @@ The easiest way to install the software is by downloading the [latest firmware](
 > <table>
 > <tr><td><b>RESET</b></td><td>Resets Cybo-Drummer</td></tr>
 > <tr><td><b>RESET + TRIGGER</b></td><td>Avoids starting Cybo-Drummer&rsquo;s main loops <i>(the user interface and the router) and allows a PC to interact over USB &ndash; press the RESET button while keeping the TRIGGER button pressed until the PC made a connection (after the Raspberry Pi Pico&rsquo;s LED flashed)</i></td></tr>
-> <tr><td><b>RESET + TRIGGER + PAGE</b></td><td>Starts bootloader<i> (show Cybo-Drummer as drive called RPI-RP2 on your PC for uploading firmware) &ndash; press the RESET while keeping the TRIGGER and PAGE buttons pressed until the RPI-RP2 drive appears on your PC (after the Raspberry Pi Pico&rsquo;s LED flashed) &ndash; this is an alternative to BOOTSEL + RESET for when the BOOTSEL button is hidden behind the front panel</i></td></tr>
+> <tr><td><b>RESET + TRIGGER + PAGE</b></td><td>Starts bootloader<i> (show Cybo-Drummer as drive called RP2350 on your PC for uploading firmware) &ndash; press the RESET while keeping the TRIGGER and PAGE buttons pressed until the RP2350 drive appears on your PC (after the Raspberry Pi Pico&rsquo;s LED flashed) &ndash; this is an alternative to BOOTSEL + RESET for when the BOOTSEL button is hidden behind the front panel</i></td></tr>
 > </table>
 
 ### Uploading Firmware
@@ -177,9 +182,9 @@ The easiest way to install the software is by downloading the [latest firmware](
 * Back up your user settings (see warning below)
 * Download the [latest firmware release](https://github.com/HLammers/cybo-drummer/releases) (.uf2 file)
 * Connect Cybo-Drummer with a USB cable to your PC of choice (running Windows, Linux or MacOS)
-* Do one of the following to make the Cybo-Drummer appear as a drive called RPI-RP2 on your PC:
-  * Press the RESET button and wait for the LED on the Raspberry Pi Pico to turn on; in the 1 second the LED is on, press and keep the TRIGGER and PAGE buttons pressed until the RPI-RP2 drive appears on your PC
-  * Keep the Raspberry Pi Pico&rsquo;s BOOTSEL button pressed and keep the RESET button pressed until the RPI-RP2 drive appears on your PC
+* Do one of the following to make the Cybo-Drummer appear as a drive called RP2350 on your PC:
+  * Press the RESET button and wait for the LED on the Raspberry Pi Pico to turn on; in the 1 second the LED is on, press and keep the TRIGGER and PAGE buttons pressed until the RP2350 drive appears on your PC
+  * Keep the Raspberry Pi Pico&rsquo;s BOOTSEL button pressed and keep the RESET button pressed until the RP2350 drive appears on your PC
 * Copy the firmware file to the PRI-RP2 drive &ndash; Cybo-Drummer will automatically restart with the new firmware
 * Restore your user settings (see warning box below)
 

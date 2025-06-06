@@ -818,6 +818,9 @@ Use the output page to name output ports to the connected devices, to adjust out
 * Press the DEL knob to **delete the voice**
 * Select &lsquo;[add new]&rsquo; (the value after the last existing voice) to add a new voice
 
+> [!NOTE]
+> Renaming a voice can take some time to process, because it needs to make adjustments to each program, which are saved in sepparate files. Wait for the pop-up showing &lsquo;processing&hellip;&rsquo; to disappear.
+
 ##### channel
 
 <i>Applies to the selected [output port/device](#portdevice-2) and [voice](#voice)</i>

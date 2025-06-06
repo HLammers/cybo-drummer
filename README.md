@@ -20,7 +20,7 @@ In November 2024 the second prototype was finally ready and I decided to publish
 
 Now, in June 2025 it&rsquo;s time to launch the third prototype. This time everything as been redesigned: new hardware (now based on the more powerful Raspberry Pi Pico 2) in a 3D printed case, an almost completely redesigned user interface (now with icons and a font specially designed for Cybo-Drummer!) and a simplified, yet improved workflow, making it much more intuitive to use, yet virtually as powerful as the previous prototype. It also introduces some neat new features, like velocity layers and tools to easily assign note series to toms and scales/modes and chords to multipad triggers.
 
-With the thrid prototype Cybo-Drummer has reached a state where it does what it has to do. There are still [a few things to be done](#development-roadmap) before reaching version 1.0 (but all things that could be solved with firmware updates). MIDI learn, for example still needs to be refined, better tested and documented. A big inprovement still to come is adding USB MIDI support. Before version 1.23 (released on 31 May 2024) MicroPython didn&rsquo;t support MIDI over USB and even now no one figured out yet how (in MicroPython) to name multiple MIDI ports over one USB connection (see the [MicroPython GitHub discussion](https://github.com/orgs/micropython/discussions/16435) &ndash; if you know how this works, your input is appreciated!)
+With the thrid prototype Cybo-Drummer has reached a state where it does what it has to do. There are still [a few things to be done](#development-roadmap) before reaching version 1.0 (but all things that could be solved with firmware updates). MIDI learn, for example still needs to be refined, better tested and documented. A big inprovement still to come is adding USB MIDI support. Before version 1.23 (released on 31 May 2024) MicroPython didn&rsquo;t support MIDI over USB and even now no one figured out yet how (in MicroPython) to set up the USB MIDI descriptors, such that multiple MIDI ports (over the same USB connection) show up with different port names in the host (see the [MicroPython GitHub discussion](https://github.com/orgs/micropython/discussions/16435) &ndash; if you know how this works, your input is appreciated!)
 
 Are you an experienced drummer with a fascination for synthesized drum sounds? (I&rsquo;ve only started my drumming journey in April 2023 and too much of my time has gone into developing Cybo-Drummer instead of practizing&hellip;) I&rsquo;d love to hear how you experience using Cybo-Drummer. Does it work for you? What would you change? What features are you missing?
 
@@ -49,7 +49,7 @@ No interaction takes place between the top and the bottom layer, except if a pro
 
 # Features
 
-## Main Features
+## Key Features
 
 * Real-time (low latency) mapping of up to 6 MIDI input devices (drum kits, drum triggers, multipad devices, etc.) to up to 6 MIDI output devices (drum computers, samplers, synthesizers, etc.)
 * Combine multiple input devices in a single setup
@@ -61,7 +61,7 @@ No interaction takes place between the top and the bottom layer, except if a pro
 * Adjust how to send note off (off, pulse, fixed delay or a toggle on/off effect)
 * Send program change and/or bank select commands to output devices on program change
 * Quickly set up toms to the same output device/voice, but with different notes, based on intervals or chords
-* Quickly assign notes to the pads of a multipad trigger to differnt notes, based on scales/modes or to chords (or a combination of both)
+* Quickly assign notes to the pads of a multipad trigger to different notes, based on scales/modes or to chords (or a combination of both)
 * Basic MIDI monitor
 
 ## Hardware

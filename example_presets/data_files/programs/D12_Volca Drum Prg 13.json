@@ -1,0 +1,11 @@
+{"program_change":[0,12],"bank_select":[],"routing":[
+{"trigger":"BD","zone":0,"layers":{"A":{"output_port":0,"voice":"Part 1","note":-1,"note_off":-1,"transient":-1,"transient_layer":0,"scale":true}}},
+{"trigger":"SD","zone":0,"layers":{"A":{"output_port":0,"voice":"Part 2","note":-1,"note_off":-1,"transient":-1,"transient_layer":0,"scale":true}}},
+{"trigger":"T1","zone":0,"layers":{"A":{"output_port":0,"voice":"Part 3","note":-1,"note_off":-1,"transient":-1,"transient_layer":0,"scale":true}}},
+{"trigger":"T2","zone":0,"layers":{"A":{"output_port":0,"voice":"Part 4","note":-1,"note_off":-1,"transient":-1,"transient_layer":0,"scale":true}}},
+{"trigger":"HC","zone":0,"layers":{"A":{"output_port":0,"voice":"Part 5","note":-1,"note_off":-1,"transient":-1,"transient_layer":0,"scale":true}}},
+{"trigger":"HC","zone":1,"layers":{"A":{"output_port":0,"voice":"Part 5","note":-1,"note_off":-1,"transient":-1,"transient_layer":0,"scale":true}}},
+{"trigger":"HC","zone":2,"layers":{"A":{"output_port":0,"voice":"Part 5","note":-1,"note_off":-1,"transient":-1,"transient_layer":0,"scale":true}}},
+{"trigger":"HO","zone":0,"layers":{"A":{"output_port":0,"voice":"Part 6","note":-1,"note_off":-1,"transient":-1,"transient_layer":0,"scale":true}}},
+{"trigger":"HO","zone":1,"layers":{"A":{"output_port":0,"voice":"Part 6","note":-1,"note_off":-1,"transient":-1,"transient_layer":0,"scale":true}}},
+{"trigger":"HO","zone":2,"layers":{"A":{"output_port":0,"voice":"Part 6","note":-1,"note_off":-1,"transient":-1,"transient_layer":0,"scale":true}}}]}

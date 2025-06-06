@@ -1,6 +1,6 @@
 ''' Button library for Cybo-Drummer - Humanize Those Drum Computers!
     https://github.com/HLammers/cybo-drummer
-    Copyright (c) 2024 Harm Lammers
+    Copyright (c) 2024-2025 Harm Lammers
 
     MIT licence:
 
@@ -16,77 +16,55 @@
     CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
     SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.'''
 
-import micropython
 from machine import Pin
 import time
-from array import array
 
-_NONE                   = const(-1)
+_IRQ_RISING_FALLING      = const(12) # Pin.IRQ_RISING | Pin.IRQ_FALLING
 
-_IRQ_RISING_FALLING     = Pin.IRQ_RISING | Pin.IRQ_FALLING
+_IDLE_STATE              = const(1)
 
-_DEBOUNCE_DELAY         = const(50) # ms
-_LONG_PRESS_DELAY       = const(200) # ms
+_DEBOUNCE_DELAY          = const(50) # ms
+_LONG_PRESS_DELAY        = const(500) # ms
 
-_IRQ_LAST_STATE         = const(0)
-_IRQ_IDLE_STATE         = const(1)
-_IRQ_LAST_TIME          = const(2)
-_IRQ_ONE_BUT_LAST_TIME  = const(3)
-_IRQ_AVAILABLE          = const(4)
-
-_BUTTON_EVENT_PRESS      = const(0)
-_BUTTON_EVENT_LONG_PRESS = const(1)
+_BUTTON_EVENT_NONE       = const(0) # use 0 as NONE so button.value can be interpreted as bool
+_BUTTON_EVENT_PRESS      = const(1)
+_BUTTON_EVENT_LONG_PRESS = const(2)
 
 class Button():
     '''button handling class; initiated by ui.__init__'''
 
-    def __init__(self, pin_number: int, pull_up: bool = False, long_press: bool = False) -> None:
+    def __init__(self, pin_number: int, long_press: bool = False) -> None:
         self.pin_number = pin_number
         self.long_press = long_press
-        self.irq_data = array('l', [_NONE, _NONE, 0, _NONE, 0])
-        self.irq_data[_IRQ_IDLE_STATE] = int(pull_up)
-        _pin = Pin
-        pull_direction = _pin.PULL_UP if pull_up else _pin.PULL_DOWN
-        _pin = _pin(pin_number, _pin.IN, pull_direction)
-        self.pin = _pin
+        self.state = _IDLE_STATE
+        self.prev_state = _IDLE_STATE
+        self.last_time = _IDLE_STATE
+        self.prev_time = time.ticks_ms()
+        self.pin = (_pin := Pin(pin_number, Pin.IN, Pin.PULL_UP))
         _pin.irq(self._callback, _IRQ_RISING_FALLING)
 
     def close(self) -> None:
         self.pin.irq(handler=None)
 
-    @micropython.viper
     def value(self) -> int:
         '''if long_press == False: return _BUTTON_EVENT_PRESS if pressed; if long_press == True: return _BUTTON_EVENT_PRESS if pressed
         shorter then _LONG_PRESS_DELAY milliseconds or return _BUTTON_EVENT_LONG_PRESS if pressed longer (if kept pressed the trigger
         happens after _LONG_PRESS_DELAY milliseconds); called by ui.process_user_input'''
-        irq_data = ptr32(self.irq_data) # type: ignore
-        if not irq_data[_IRQ_AVAILABLE]:
-            return _NONE
-        now = int(time.ticks_ms())
-        if int(time.ticks_diff(now, irq_data[_IRQ_LAST_TIME])) < _DEBOUNCE_DELAY:
-            return _NONE
-        pressed = irq_data[_IRQ_LAST_STATE] != irq_data[_IRQ_IDLE_STATE]
-        if bool(self.long_press):
-            if pressed:
-                difference = int(time.ticks_diff(now, irq_data[_IRQ_LAST_TIME]))
-                if difference < _LONG_PRESS_DELAY:
-                    return _NONE
-                irq_data[_IRQ_AVAILABLE] = 0
-                return _BUTTON_EVENT_LONG_PRESS
-            difference = int(time.ticks_diff(irq_data[_IRQ_LAST_TIME], irq_data[_IRQ_ONE_BUT_LAST_TIME]))
-            irq_data[_IRQ_AVAILABLE] = 0
-            return _BUTTON_EVENT_PRESS if difference < _LONG_PRESS_DELAY else _NONE
-        irq_data[_IRQ_AVAILABLE] = 0
-        return _BUTTON_EVENT_PRESS if pressed else _NONE
+        if (state := self.state) == self.prev_state:
+            return _BUTTON_EVENT_NONE
+        self.prev_state = state
+        self.prev_time = (prev_time := self.last_time)
+        self.last_time = (current_time := time.ticks_ms())
+        if time.ticks_diff(current_time, prev_time) < _DEBOUNCE_DELAY:
+            return _BUTTON_EVENT_NONE
+        released = state == _IDLE_STATE
+        if self.long_press:
+            if released:
+                delta = time.ticks_diff(current_time, prev_time)
+                return _BUTTON_EVENT_LONG_PRESS if delta > _LONG_PRESS_DELAY else _BUTTON_EVENT_PRESS
+            return _BUTTON_EVENT_NONE
+        return _BUTTON_EVENT_NONE if released else _BUTTON_EVENT_PRESS
 
-    @micropython.viper
     def _callback(self, pin):
-        '''callback for pin irq: debounces intput and calls callback function if status changed'''
-        irq_data = ptr32(self.irq_data) # type: ignore        
-        state = int(pin())
-        if state == irq_data[_IRQ_LAST_STATE]:
-            return
-        irq_data[_IRQ_LAST_STATE] = state
-        irq_data[_IRQ_AVAILABLE] = 1
-        irq_data[_IRQ_ONE_BUT_LAST_TIME] = irq_data[_IRQ_LAST_TIME]
-        irq_data[_IRQ_LAST_TIME] = int(time.ticks_ms())
+        '''callback for pin irq: stores state'''
+        self.state = pin()

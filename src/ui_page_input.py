@@ -1,6 +1,6 @@
 ''' Library providing input pages class for Cybo-Drummer - Humanize Those Drum Computers!
     https://github.com/HLammers/cybo-drummer
-    Copyright (c) 2024 Harm Lammers
+    Copyright (c) 2024-2025 Harm Lammers
 
     This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -10,215 +10,178 @@
 
     You should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses/.'''
 
-from data_types import ChainMapTuple, GenOptions
-import midi_tools as mt
-import ui
+_INITIAL_SUB_PAGE = const(0)
+
+import main_loops as ml
+from data_types import GenOptions
 from ui_pages import Page
-from ui_blocks import TitleBar, EmptyRow, EmptyBlock, SelectBlock
+from ui_blocks import TitleBar, SelectBlock, TextBlock, TextRow
+from constants import CHANNEL_OPTIONS, NOTE_OPTIONS, CC_OPTIONS, CC_VALUE_OPTIONS, TRIGGERS, TRIGGERS_SHORT, TRIGGERS_LONG, TEXT_ROWS_INPUT
 
-_NONE                    = const(-1)
+_NONE               = const(-1)
 
-_NR_IN_PORTS             = const(6)
-_MAX_PRESETS             = const(6)
+_NR_IN_PORTS        = const(6)
+_MAX_ZONES          = const(4)
 
-_CHANNEL_OPTIONS         = GenOptions(16, 1, ('__',), str)
-_NOTE_OPTIONS            = GenOptions(128, first_options=('___',), func=mt.number_to_note)
-_ADD_NEW_LABEL           = '[add new]'
+_TEXT_ROW_Y         = const(163)
+_TEXT_ROW_H         = const(13)
 
-_SUB_PAGES               = const(3)
-_SUB_PAGE_PORTS          = const(0)
-_SUB_PAGE_DEVICES        = const(1)
-_SUB_PAGE_PRESETS        = const(2)
+_BACK_COLOR         = const(0xAA29) # 0x29AA dark purple blue
+_FORE_COLOR         = const(0xD9CD) # 0xCDD9 light purple grey
 
-_SELECT_SUB_PAGE         = const(-1)
-_PORT_FIRST_DEVICE       = const(0)
-_PORT_FIRST_CHANNEL      = const(1)
-_DEVICE_DEVICE           = const(0)
-_DEVICE_TRIGGER          = const(1)
-_DEVICE_TRIGGER_NOTE     = const(2)
-_DEVICE_TRIGGER_PEDAL_CC = const(3)
-_PRESET_DEVICE           = const(0)
-_PRESET_PRESET           = const(1)
-_PRESET_CC_MIN           = const(2)
-_PRESET_CC_MAX           = const(3)
-_PRESET_FIRST_MAP        = const(4)
+_ALIGN_CENTRE       = const(1)
 
-_POP_UP_TEXT_EDIT        = const(0)
-_POP_UP_CONFIRM          = const(3)
+_ENCODER_NAV        = const(0)
+
+_SUB_PAGES          = const(2)
+_SUB_PAGE_PORTS     = const(0)
+_SUB_PAGE_NOTES     = const(1)
+
+_SELECT_SUB_PAGE    = const(-1)
+_PORT_FIRST_DEVICE  = const(0)
+_PORT_FIRST_CHANNEL = const(1)
+_NOTE_INPUT_TRIGGER = const(0)
+_NOTE_DEVICE        = const(1)
+_NOTE_FIRST_NOTE    = const(2)
+_NOTE_FIRST_CC      = const(3)
+_NOTE_FIRST_CC_MIN  = const(4)
+_NOTE_FIRST_CC_MAX  = const(5)
+
+_POP_UP_TEXT_EDIT   = const(0)
+_POP_UP_CONFIRM     = const(3)
 
 class PageInput(Page):
     '''input page class; initiated once by ui.__init__'''
 
     def __init__(self, id: int, x: int, y: int, w: int, h: int, visible: bool) -> None:
-        super().__init__(id, x, y, w, h, visible)
-        ###### only for testing or screenshot
-        # self.sub_page = 2
-        self.port_settings = [[_NONE, '']] * _NR_IN_PORTS
-        self.device_device = 0
-        self.device_device_name = ''
-        self.device_new_device = False
-        self.device_trigger = 0
-        self.device_trigger_name = ''
-        self.device_new_trigger = False
-        self.preset_maps = [''] * _MAX_PRESETS
-        self.preset_device = 0
-        self.preset_device_name = ''
-        self.preset_preset = 0
-        self.preset_preset_name = ''
-        self.preset_new_preset = False
-        self.selected_port = _NONE
-        self.selected_port_device = ''
+        super().__init__(id, x, y, w, h, _SUB_PAGES, visible)
+        self.sub_page = _INITIAL_SUB_PAGE
+        self.port_settings = [['', _NONE] for _ in range(_NR_IN_PORTS)]
+        self.selected_port = 0
+        self.map_settings = [[_NONE, _NONE, 0 , 127] for _ in range(_MAX_ZONES)]
+        self.device_options = GenOptions(_NR_IN_PORTS, func=self._device_options)
         self.page_is_built = False
         self._build_page()
 
-    def program_change(self) -> None:
-        '''update page after program change (also needed to trigger draw); called by ui.program_change'''
+    def program_change(self, update_only: bool) -> None:
+        '''update page after program change; called by ui.program_change'''
         if self.visible:
             self._load()
         else:
-            selected_block = self.selected_block
             blocks = self.blocks
-            if selected_block != 0:
-                blocks[selected_block].update(False, redraw=False)
-                blocks[0].update(True, redraw=False)
-            self.selected_block = 0
+            if (selected_block := self.selected_block[self.sub_page]) != 0:
+                blocks[selected_block].update(False, False)
+                blocks[0].update(True, False)
 
-    def process_user_input(self, id: int, value: int = _NONE, text: str = '',
-                           button_encoder_0: bool = False, button_encoder_1: bool = False) -> None:
-        '''process user input at page level (ui.ui.set_user_input_dict > global user_input_dict > ui.process_user_input >
+    def encoder(self, encoder_id: int, value: int, page_select_mode: bool) -> bool:
+        '''process encoder input at page level (ui.process_encoder > Page.encoder/PopUp.encoder/PagesTab.set_page > Block: *.encoder);
+        called by ui.process_encoder_input'''
+        if super().encoder(encoder_id, value, page_select_mode):
+            self._set_text_row()
+            if encoder_id != _ENCODER_NAV:
+                return True
+            if self.sub_page == _SUB_PAGE_PORTS:
+                self.selected_port = (value - _PORT_FIRST_DEVICE) // 2
+            elif value >= _NOTE_FIRST_NOTE: # sub_page == _SUB_PAGE_NOTE
+                ml.router.set_trigger(zone=(value - _NOTE_FIRST_NOTE) // 4)
+            return True
+        return False
+
+    def process_user_input(self, id: int, value: int|str = _NONE, button_del: bool = False, button_sel_opt: bool = False) -> bool:
+        '''process user input at page level (ui.set_user_input_tuple > ui.user_input_tuple > ui.process_user_input >
         Page/PagesTab.process_user_input); called by ui.process_user_input'''
+        if type(value) is str:
+            value_str = value
+            value = _NONE
+            value_is_none = False
+        else:
+            value = int(value)
+            value_is_none = value == _NONE
         if id == _SELECT_SUB_PAGE:
-            if button_encoder_0 or button_encoder_1 or value is None or value == self.sub_page:
-                return
+            if button_del or button_sel_opt or value_is_none or value == self.sub_page:
+                return False
             self._set_sub_page(value)
             self._load()
-            return
-        sub_page = self.sub_page
-        if sub_page == _SUB_PAGE_PORTS:
-            if button_encoder_0 or button_encoder_1:
-                return
-            port = (id - _PORT_FIRST_DEVICE) // 2
-            col = (id - _PORT_FIRST_DEVICE) % 2
-            if col == 0: # channel
-                self.port_settings[port][col] = _NONE if value == _NONE else value - 1 # value == 0 becomes _NONE
-            else:        # device
-                self.port_settings[port][col] = '' if text == '____' else text
-            self.selected_port = port
-            self._save_port_settings()
-        elif sub_page == _SUB_PAGE_DEVICES:
-            if button_encoder_0:
-                if id == _DEVICE_DEVICE or id == _DEVICE_TRIGGER:
-                    ui.ui.pop_ups[_POP_UP_CONFIRM].open(self, id, 'delete?', self._callback_confirm)
-            elif button_encoder_1:
-                if id == _DEVICE_DEVICE:
-                    text = self.device_device_name
-                    if text == _ADD_NEW_LABEL:
-                        text = ''
-                    ui.ui.pop_ups[_POP_UP_TEXT_EDIT].open(self, _DEVICE_DEVICE, text, callback_func=self._callback_text_edit)
-                elif id == _DEVICE_TRIGGER:
-                    text = self.device_trigger_name
-                    if text == _ADD_NEW_LABEL:
-                        text = ''
-                    ui.ui.pop_ups[_POP_UP_TEXT_EDIT].open(self, _DEVICE_TRIGGER, text, callback_func=self._callback_text_edit)
-            elif id == _DEVICE_DEVICE:
-                if value == _NONE or value == self.device_device:
-                    return
-                self.device_device = value
-                self.device_new_device = text == _ADD_NEW_LABEL
-                self.device_trigger = 0
-                self.device_new_trigger = self.device_new_device
-                self._set_device_options()
-            elif id == _DEVICE_TRIGGER:
-                if value == _NONE or value == self.device_trigger:
-                    return
-                self.device_trigger = value
-                self.device_new_trigger = text == _ADD_NEW_LABEL
-                self._set_device_options()
-            else: # device settings
-                if value == _NONE or self.device_new_device or self.device_new_trigger:
-                    return
-                if self._save_device_settings(id, value):
-                    self._set_device_options()
-        else: #sub_page == _SUB_PAGE_PRESETS
-            if button_encoder_0:
-                if id == _PRESET_PRESET:
-                    ui.ui.pop_ups[_POP_UP_CONFIRM].open(self, _PRESET_PRESET, 'delete?', self._callback_confirm)
-            elif button_encoder_1:
-                if id == _PRESET_PRESET:
-                    text = self.preset_preset_name
-                    if text == _ADD_NEW_LABEL:
-                        text = ''
-                    ui.ui.pop_ups[_POP_UP_TEXT_EDIT].open(self, _PRESET_PRESET, text, callback_func=self._callback_text_edit)
-            elif id == _PRESET_DEVICE:
-                if value == _NONE or value == self.preset_device:
-                    return
-                self.preset_device = value
-                ui.ui.set_trigger(value)
-            elif id == _PRESET_PRESET:
-                if value == _NONE or value == self.preset_preset:
-                    return
-                self.preset_preset = value
-                ui.ui.set_trigger(preset=value)
-            else: # preset settings
-                if value == _NONE or self.preset_new_preset:
-                    return
-                if self._save_preset_settings(id, value, text):
-                    self._set_preset_options()
+            return True
+        if self.sub_page == _SUB_PAGE_PORTS:
+            if button_del:
+                ml.ui.pop_ups[_POP_UP_CONFIRM].open(self, id, 'clear name?', self._callback_confirm)
+                return True
+            elif button_sel_opt:
+                if (id - _PORT_FIRST_DEVICE) % 2 == 0: # name
+                    text = self.port_settings[(id - _PORT_FIRST_DEVICE) // 2][0]
+                    ml.ui.pop_ups[_POP_UP_TEXT_EDIT].open(self, id, text, callback_func=self.callback_input)
+                return True
+            elif value_is_none:
+                return False
+            row, col = divmod(id - _PORT_FIRST_DEVICE, 2)
+            if col == 0: # name
+                self.port_settings[row][col] = value_str
+            else:        # channel
+                self.port_settings[row][col] = _NONE if value == _NONE else value - 1 # value == 0 becomes _NONE
+            if self._save_port_settings():
+                self._set_port_options()
+        else: # sub_page == _SUB_PAGE_NOTES
+            if button_del or button_sel_opt or value_is_none:
+                return False
+            elif id == _NOTE_INPUT_TRIGGER:
+                ml.ui.set_trigger(value)
+            elif id == _NOTE_DEVICE:
+                self.selected_port = value
+                if self._save_map_settings():
+                    self._set_map_options()
+            else:
+                row, col = divmod(id - _NOTE_FIRST_NOTE, 4)
+                if col <= 1:
+                    value -= 1 # 0 becomes _NONE
+                self.map_settings[row][col] = value
+                if self._save_map_settings():
+                    self._set_map_options()
+        return True
 
     def set_trigger(self) -> None:
         '''set active trigger (triggered by trigger button) at page level; called by ui.set_trigger (also calling router.set_trigger)'''
-        if self.sub_page != _SUB_PAGE_PRESETS:
-            return
-        self.preset_new_preset = ui.router.input_preset_value != self.preset_preset
-        self._load_preset_options()
+        if self.sub_page != _SUB_PAGE_PORTS:
+            self._load()
 
-    def midi_learn(self, port: int, channel: int, note: int, program: int, cc: int, cc_value: int, route_number: int) -> None:
+###### TO BE DOCUMENTED: MIDI LEARN ALSO WORKS ON SELECTED PORT FOR INPUT PAGE, NOT ON MIDI LEARN PORT
+    def midi_learn(self, port: int, channel: int, trigger: int, zone: int, note: int, program: int, cc: int, cc_value: int) -> bool:
         '''process midi learn input, save settings and reload options; called by ui.process_midi_learn_data'''
-        sub_page = self.sub_page
-        block = self.selected_block
+        block = self.selected_block[(sub_page := self.sub_page)]
         if sub_page == _SUB_PAGE_PORTS:
-            if channel == _NONE and route_number == _NONE:
-                return
-            if (block - _PORT_FIRST_DEVICE) % 2 == 1: # device
-                return
-            value = channel + 1
-        elif sub_page == _SUB_PAGE_DEVICES:
-            if block == _DEVICE_DEVICE:
-                if route_number == _NONE:
-                    return
-                _router = ui.router
-                value = _router.input_devices_tuple_assigned.index(_router.routing[route_number]['input_device'])
-            elif block == _DEVICE_TRIGGER_NOTE:
-                if note == _NONE or self.device_new_device or self.device_new_trigger:
-                    return
-                value = note
-                self.blocks[_DEVICE_TRIGGER_NOTE].set_selection(note)
-            elif block == _DEVICE_TRIGGER_PEDAL_CC:
-                if note == _NONE or self.device_new_device or self.device_new_trigger:
-                    return
-                value = cc
+            if channel == _NONE:
+                return False
+            row, col = divmod(block - _PORT_FIRST_DEVICE, 2)
+            if col == 0 or row != port: # device or different input device
+                return False
+            value = channel + 1 # _NONE becomes 0
+        else: # sub_page == _SUB_PAGE_NOTES
+            if block == _NOTE_INPUT_TRIGGER:
+                if trigger == _NONE:
+                    return False
+                triggers_short = TRIGGERS_SHORT
+                trigger_short = triggers_short[trigger]
+                zone_name = TRIGGERS[trigger][2][0][zone]
+                self.blocks[_NOTE_INPUT_TRIGGER].set_value(f'{trigger_short}{zone_name}', False)
+                ml.ui.set_trigger(trigger, zone)
+                return True
+            elif block == _NOTE_DEVICE:
+                if port == _NONE:
+                    return False
+                value = port
             else:
-                return
-        elif sub_page == _SUB_PAGE_PRESETS:
-            if block == _PRESET_DEVICE:
-                if route_number == _NONE:
-                    return
-                _router = ui.router
-                value = _router.input_devices_tuple_assigned.index(_router.routing[route_number]['input_device'])
-            elif block == _PRESET_PRESET:
-                if route_number == _NONE:
-                    return
-                _router = ui.router
-                value = _router.input_presets_tuple.index(_router.routing[route_number]['input_preset'])
-            elif block == _PRESET_CC_MIN or block == _PRESET_CC_MAX:
-                if cc_value == _NONE or self.preset_new_preset:
-                    return
-                value = cc_value
-            else:
-                return
-        else:
-            return
-        self.blocks[block].set_selection(value)
+                row, col = divmod(block - _NOTE_FIRST_NOTE, 4)
+                if row != self.selected_port: # different input device
+                    return False
+                if col == 0:
+                    value = note + 1 # _NONE becomes 0
+                elif col == 1:
+                    value = cc + 1 # _NONE becomes 0
+                else:
+                    value = cc_value
+                if value == _NONE:
+                    return False
+        return self.blocks[block].set_selection(value)
 
     def _build_page(self) -> None:
         '''build page (without drawing it); called by self.__init__ and self._build_sub_page'''
@@ -229,11 +192,13 @@ class PageInput(Page):
         sub_pages_title_bars = self.sub_pages_title_bars
         sub_pages_blocks = self.sub_pages_blocks
         sub_pages_empty_blocks = self.sub_pages_empty_blocks
+        sub_pages_text_rows = self.sub_pages_text_rows
         for i in range(_SUB_PAGES):
-            title_bar, blocks, empty_blocks = _build_sub_page(i)
+            title_bar, blocks, empty_blocks, text_row = _build_sub_page(i)
             sub_pages_title_bars.append(title_bar)
             sub_pages_blocks.append(blocks)
             sub_pages_empty_blocks.append(empty_blocks)
+            sub_pages_text_rows.append(text_row)
         self._set_sub_page(self.sub_page)
 
     def _build_sub_page(self, sub_page: int) -> tuple:
@@ -243,352 +208,251 @@ class PageInput(Page):
             return None, [], []
         blocks = []
         empty_blocks = []
-        selected_block = self.selected_block
+        selected_block = self.selected_block[sub_page]
         _callback_input = self.callback_input
         if sub_page == _SUB_PAGE_PORTS:
             title_bar = TitleBar('input ports', 1, _SUB_PAGES)
             row = -1
             for i in range(_NR_IN_PORTS):
                 row += 1
-                blocks.append(SelectBlock(_PORT_FIRST_DEVICE + 2 * i, row, 0, 1, selected_block == _PORT_FIRST_DEVICE + 2 * i,
-                                          f'p{i + 1} device', callback_func=_callback_input))
-                blocks.append(SelectBlock(_PORT_FIRST_CHANNEL + 2 * i, row, 1, 1, selected_block == _PORT_FIRST_CHANNEL + 2 * i,
-                                          f'p{i + 1} channel', _CHANNEL_OPTIONS, callback_func=_callback_input))
-        elif sub_page == _SUB_PAGE_DEVICES:
-            title_bar = TitleBar('input devices/triggers', 2, _SUB_PAGES)
-            blocks.append(SelectBlock(_DEVICE_DEVICE, 0, 0, 1, selected_block == _DEVICE_DEVICE, 'input device', add_line=True,
+                blocks.append(TextBlock(_PORT_FIRST_DEVICE + 2 * i, row, 0, 3, 4, selected_block == _PORT_FIRST_DEVICE + 2 * i,
+                                          f'p{i + 1}: device name', callback_func=_callback_input))
+                blocks.append(SelectBlock(_PORT_FIRST_CHANNEL + 2 * i, row, 3, 1, 4, selected_block == _PORT_FIRST_CHANNEL + 2 * i,
+                                          'channel', CHANNEL_OPTIONS, default_selection=0, callback_func=_callback_input))
+        else: # sub_page == _SUB_PAGE_NOTES
+            title_bar = TitleBar('input notes/pedal cc', 2, _SUB_PAGES)
+            blocks.append(SelectBlock(_NOTE_INPUT_TRIGGER, 0, 0, 1, 1, selected_block == _NOTE_INPUT_TRIGGER, 'input trigger',
+                                      TRIGGERS_LONG, add_line=True, callback_func=_callback_input))
+            blocks.append(SelectBlock(_NOTE_DEVICE, 1, 0, 1, 1, selected_block == _NOTE_DEVICE, 'port/device',
                                       callback_func=_callback_input))
-            blocks.append(SelectBlock(_DEVICE_TRIGGER, 0, 1, 1, selected_block == _DEVICE_TRIGGER, 'input trigger', add_line=True,
-                                      callback_func=_callback_input))
-            empty_blocks.append(EmptyBlock(_NONE, 1, 0, 1))
-            blocks.append(SelectBlock(_DEVICE_TRIGGER_NOTE, 1, 1, 1, selected_block == _DEVICE_TRIGGER_NOTE, 'note', _NOTE_OPTIONS,
-                                      callback_func=_callback_input))
-            empty_blocks.append(EmptyBlock(_NONE, 2, 0, 1))
-            blocks.append(SelectBlock(_DEVICE_TRIGGER_PEDAL_CC, 2, 1, 1, selected_block == _DEVICE_TRIGGER_PEDAL_CC, 'pedal cc',
-                                      _CHANNEL_OPTIONS, callback_func=_callback_input))
-            empty_blocks.append(EmptyRow(_NONE, 3))
-            empty_blocks.append(EmptyRow(_NONE, 4))
-            empty_blocks.append(EmptyRow(_NONE, 5))
-        else: # sub_page == _SUB_PAGE_PRESETS:
-            title_bar = TitleBar('input presets', 3, _SUB_PAGES)
-            blocks.append(SelectBlock(_PRESET_DEVICE, 0, 0, 1, selected_block == _PRESET_DEVICE, 'input device', add_line=True,
-                                      callback_func=_callback_input))
-            blocks.append(SelectBlock(_PRESET_PRESET, 0, 1, 1, selected_block == _PRESET_PRESET, 'input preset', add_line=True,
-                                      callback_func=_callback_input))
-            blocks.append(SelectBlock(_PRESET_CC_MIN, 1, 0, 1, selected_block == _PRESET_CC_MIN, 'pedal cc min', _CHANNEL_OPTIONS,
-                                      callback_func=_callback_input))
-            blocks.append(SelectBlock(_PRESET_CC_MAX, 1, 1, 1, selected_block == _PRESET_CC_MAX, 'pedal cc max', _CHANNEL_OPTIONS,
-                                      callback_func=_callback_input))
-            row = 1.5
-            for i in range(_MAX_PRESETS):
-                row += 0.5
-                blocks.append(SelectBlock(_PRESET_FIRST_MAP + i, int(row), int(i & 1), 1, selected_block == _PRESET_FIRST_MAP + i,
-                                          f'trigger {i + 1}', callback_func=_callback_input))
-            empty_blocks.append(EmptyRow(_NONE, 5))
-        return title_bar, blocks, empty_blocks
+            for i in range(_MAX_ZONES):
+                blocks.append(SelectBlock(_NOTE_FIRST_NOTE + i, i + 2, 0, 1, 4, selected_block == _NOTE_FIRST_NOTE + i,
+                                          callback_func=_callback_input))
+                blocks.append(SelectBlock(_NOTE_FIRST_CC + i, i + 2, 1, 1, 4, selected_block == _NOTE_FIRST_CC + i, default_selection=0,
+                                          callback_func=_callback_input))
+                blocks.append(SelectBlock(_NOTE_FIRST_CC_MIN + i, i + 2, 2, 1, 4, selected_block == _NOTE_FIRST_CC_MIN + i,
+                                          default_selection=0, callback_func=_callback_input))
+                blocks.append(SelectBlock(_NOTE_FIRST_CC_MAX + i, i + 2, 3, 1, 4, selected_block == _NOTE_FIRST_CC_MAX + i,
+                                          default_selection=127, callback_func=_callback_input))
+        text_row = TextRow(_TEXT_ROW_Y, _TEXT_ROW_H, _BACK_COLOR, _FORE_COLOR, _ALIGN_CENTRE)
+        return title_bar, blocks, empty_blocks, text_row
 
     def _load(self, redraw: bool = True) -> None:
         '''load and set options and values to input blocks; called by self.set_visibility, Page*.program_change and Page*.process_user_input'''
-        if ui.ui.active_pop_up is not None:
-            redraw = False
+        redraw &= ml.ui.active_pop_up is None
         self._load_port_options()
-        self._set_device_options(False)
-        self._load_preset_options(False)
+        self._load_map_options(False)
         if redraw:
-            self._draw()
+            self._set_text_row(False)
+            self.draw()
+
+    def _set_text_row(self, redraw: bool = True) -> None:
+        '''draw text row with long description of currently selected block; called by self.encoder and self._load'''
+        selection = self.selected_block[(sub_page := self.sub_page)]
+        if sub_page == _SUB_PAGE_PORTS:
+            text = TEXT_ROWS_INPUT[_SUB_PAGE_PORTS][selection]
+        else: # sub_page == _SUB_PAGE_NOTES
+            if selection == _NOTE_INPUT_TRIGGER:
+                text = TEXT_ROWS_INPUT[_SUB_PAGE_NOTES][_NOTE_INPUT_TRIGGER]
+            elif selection == _NOTE_DEVICE:
+                text = TEXT_ROWS_INPUT[_SUB_PAGE_NOTES][_NOTE_DEVICE] + TRIGGERS_SHORT[ml.router.input_trigger]
+            else:
+                row, col = divmod(selection - _NOTE_FIRST_NOTE, 4)
+                _router = ml.router
+                trigger_short = TRIGGERS_SHORT[_router.input_trigger]
+                if row < len(zone_names := TRIGGERS[_router.input_trigger][2][1]):
+                    if col == 0:
+                        text = f'input note for {trigger_short} {zone_names[row]}'
+                    elif col == 1:
+                        text = f'pedal cc number for {trigger_short} {zone_names[row]}'
+                    elif col == 2:
+                        text = f'min pedal cc value for {trigger_short} {zone_names[row]}'
+                    else:
+                        text = f'max pedal cc value for {trigger_short} {zone_names[row]}'
+                else:
+                    text = ''
+        self.text_row.set_text(text, redraw) # type: ignore
 
     def _load_port_options(self) -> None:
         '''load and set values to input blocks on ports sub-page; called by self._load'''
         settings = self.port_settings
-        for i in range(_NR_IN_PORTS):
-            settings[i] = [_NONE, '']
-        for device, map in ui.data.input_device_mapping.items():
-            # settings[map['port']] = [map['channel'], device]
-            port = map['port']
-            if port != _NONE:
-                settings[port] = [map['channel'], device]
+        for port, (name, channel) in enumerate(ml.data.input_port_mapping):
+            map = settings[port]
+            map[0] = name
+            map[1] = channel
         self._set_port_options()
 
-    def _load_preset_options(self, redraw: bool = True) -> None:
-        '''load and set values to options and values to input blocks on preset sub-page; called by self.set_trigger and self._load'''
-        if self.preset_new_preset:
-            preset_preset_name = _ADD_NEW_LABEL
-            n = 0
+    def _load_map_options(self, redraw: bool = True) -> None:
+        '''load and set values to options and values to input blocks on mapping sub-pages; called by self.set_trigger and self._load'''
+        settings = self.map_settings
+        _ml = ml
+        if len(input_triggers := _ml.data.input_triggers) == 0:
+            zones_count = 0
         else:
-            _router = ui.router
-            input_devices = _router.input_devices_tuple_all
-            preset_device_name = '' if len(input_devices) == 0 else input_devices[self.preset_device]
-            self.preset_device_name = preset_device_name
-            preset_preset = self.preset_preset
-            presets_tuple = () if preset_device_name == '' else _router.input_presets_tuples[preset_device_name]
-            if preset_preset < len(presets_tuple):
-                preset_preset_name = presets_tuple[preset_preset]
-                presets = ui.data.input_presets[preset_device_name]
-                if preset_preset_name in presets:
-                    maps = presets[preset_preset_name]['maps']
-                    n = len(maps)
-                else:
-                    preset_preset_name = _ADD_NEW_LABEL
-                    n = 0
-            else:
-                preset_preset_name = _ADD_NEW_LABEL
-                n = 0
-        self.preset_preset_name = preset_preset_name
-        preset_maps = self.preset_maps
-        for i in range(_MAX_PRESETS):
-            preset_maps[i] = maps[i] if i < n else ''
-        self._set_preset_options(redraw)
+            triggers = input_triggers[(trigger_short := TRIGGERS_SHORT[_ml.router.input_trigger])]
+            self.selected_port = triggers['port']
+            zones_count = len(TRIGGERS[TRIGGERS_SHORT.index(trigger_short)][2][0])
+            for zone, trigger_map in enumerate(triggers['mapping']):
+                map = settings[zone]
+                if (cc_min := trigger_map['cc_min']) == -1:
+                    cc_min = 0
+                if (cc_max := trigger_map['cc_max']) == -1:
+                    cc_max = 127
+                map[0] = trigger_map['note']
+                map[1] = trigger_map['pedal_cc']
+                map[2] = cc_min
+                map[3] = cc_max
+        if (n := _MAX_ZONES - zones_count) > 0:
+            for i in range(n):
+                settings[(m := zones_count + i)][0] = _NONE
+                settings[m][1] = _NONE
+                settings[m][2] = 0
+                settings[m][3] = 127
+        self._set_map_options(redraw)
 
     def _set_port_options(self) -> None:
         '''set options and values to input blocks on ports sub-page; called by self._load_port_options'''
         if self.sub_page != _SUB_PAGE_PORTS:
             return
-        devices_tuple = ChainMapTuple(('____',), ui.router.input_devices_tuple_assigned)
         blocks = self.blocks
-        selected_port = self.selected_port
-        self.selected_port = _NONE
-        for port, (channel, device) in enumerate(self.port_settings):
-            if port == _NR_IN_PORTS:
-                break
-            if port == selected_port:
-                device = self.selected_port_device
-            device_option = 0 if device == '' else devices_tuple.index(device)
-            blocks[_PORT_FIRST_DEVICE + 2 * port].set_options(devices_tuple, device_option, False)
-            channel_option = channel + 1 # _NONE becomes 0
-            blocks[_PORT_FIRST_CHANNEL + 2 * port].set_options(selection=channel_option, redraw=False)
+        for port, (name, channel) in enumerate(self.port_settings):
+            if name == '':
+                name = f'[port {port + 1}]'
+            blocks[_PORT_FIRST_DEVICE + 2 * port].set_value(name, False)
+            channel += 1 # _NONE becomes 0
+            blocks[_PORT_FIRST_CHANNEL + 2 * port].set_options(selection=channel, redraw=False)
 
-    def _set_device_options(self, redraw: bool = True) -> None:
-        '''load and set options and values to input blocks on device sub-page; called by self.process_user_input, self._load and
-        self._callback_confirm'''
-        if self.sub_page != _SUB_PAGE_DEVICES:
+    def _set_map_options(self, redraw: bool = True) -> None:
+        '''load and set options and values to input blocks on mapping sub-pages; called by self.process_user_input and
+        self._load_map_options'''
+        if self.sub_page != _SUB_PAGE_NOTES:
             return
-        _router = ui.router
-        devices_tuple = ChainMapTuple(_router.input_devices_tuple_all, (_ADD_NEW_LABEL,))
-        if len(devices_tuple) == 1:
-            self.device_new_device = True
-        if self.device_new_device:
-            self.device_device_name = _ADD_NEW_LABEL
-            triggers_tuple = (_ADD_NEW_LABEL,)
-            self.device_trigger_name = _ADD_NEW_LABEL
-            note = 0
-            pedal_cc = 0
-        else:
-            device_device_name = str(devices_tuple[self.device_device])
-            self.device_device_name = device_device_name
-            if self.device_new_trigger:
-                triggers_tuple = (_ADD_NEW_LABEL,)
-                self.device_trigger_name = _ADD_NEW_LABEL
-                note = 0
-                pedal_cc = 0
+        _router = ml.router
+        blocks = self.blocks
+        blocks[_NOTE_INPUT_TRIGGER].set_options(selection=_router.input_trigger, redraw=False)
+        blocks[_NOTE_DEVICE].set_options(self.device_options, self.selected_port, 0, redraw)
+        zones_count = len(zone_icons := TRIGGERS[_router.input_trigger][2][0])
+        for row, (note, cc, cc_min, cc_max) in enumerate(self.map_settings):
+            block = blocks[_NOTE_FIRST_NOTE + 4 * row]
+            if row < zones_count:
+                block.enable(True, redraw=False)
+                if (icon := zone_icons[row]) != '':
+                    icon += ' '
+                note += 1 # _NONE becomes 0
+                block.set_label(f'{icon}note', False)
+                block.set_options(NOTE_OPTIONS, note, 0, redraw)
             else:
-                triggers_tuple = ChainMapTuple(_router.input_triggers_tuples[device_device_name], (_ADD_NEW_LABEL,))
-                device_trigger_name = str(triggers_tuple[self.device_trigger])
-                self.device_trigger_name = device_trigger_name
-                mapping = ui.data.input_devices[device_device_name]['mapping'][device_trigger_name]
-                note = mapping['note'] + 1 # _NONE becomes 0
-                pedal_cc = mapping['pedal_cc'] + 1 # _NONE becomes 0
-        blocks = self.blocks
-        blocks[_DEVICE_DEVICE].set_options(devices_tuple, self.device_device, redraw)
-        blocks[_DEVICE_TRIGGER].set_options(triggers_tuple, self.device_trigger, redraw)
-        blocks[_DEVICE_TRIGGER_NOTE].set_options(selection=note, redraw=redraw)
-        blocks[_DEVICE_TRIGGER_PEDAL_CC].set_options(selection=pedal_cc, redraw=redraw)
+                block.enable(False, False, redraw=redraw)
+            block = blocks[_NOTE_FIRST_CC + 4 * row]
+            if row < zones_count:
+                block.enable(True, redraw=False)
+                cc += 1 # _NONE becomes 0
+                block.set_label('pedal cc', False)
+                block.set_options(CC_OPTIONS, cc, 0, redraw)
+            else:
+                block.enable(False, False, redraw=redraw)
+            block = blocks[_NOTE_FIRST_CC_MIN + 4 * row]
+            if row < zones_count:
+                if cc == 0:
+                    block.enable(False, redraw=False)
+                    block.set_label('', False)
+                    block.set_options(redraw=redraw)
+                else:
+                    block.enable(True, redraw=False)
+                    block.set_label('cc min', False)
+                    block.set_options(CC_VALUE_OPTIONS, cc_min, 0, redraw)
+            else:
+                block.enable(False, False, redraw=redraw)
+            block = blocks[_NOTE_FIRST_CC_MAX + 4 * row]
+            if row < zones_count:
+                if cc == 0:
+                    block.enable(False, redraw=False)
+                    block.set_label('', False)
+                    block.set_options(redraw=redraw)
+                else:
+                    block.enable(True, redraw=redraw)
+                    block.set_label('cc max', False)
+                    block.set_options(CC_VALUE_OPTIONS, cc_max, 127, redraw)
+            else:
+                block.enable(False, False, redraw=redraw)
 
-    def _set_preset_options(self, redraw: bool = True) -> None:
-        '''set options and values to input blocks on preset sub-page; called by self.process_user_input, self._load_preset_option and
-        self._callback_confirm'''
-        if self.sub_page != _SUB_PAGE_PRESETS:
-            return
-        _router = ui.router
-        preset_device_name = self.preset_device_name
-        presets_tuples = _router.input_presets_tuples
-        if preset_device_name not in presets_tuples:
-            self.preset_preset = 0
-            presets_tuple = (_ADD_NEW_LABEL,)
-            cc_min = 0
-            cc_max = 0
-        else:
-            presets_tuple = ChainMapTuple(presets_tuples[preset_device_name], (_ADD_NEW_LABEL,))
-            settings = ui.data.input_presets[preset_device_name][self.preset_preset_name]
-            cc_min = settings['cc_min'] + 1 # _NONE becomes 0
-            cc_max = settings['cc_max'] + 1 # _NONE becomes 0
-        blocks = self.blocks
-        blocks[_PRESET_DEVICE].set_options(_router.input_devices_tuple_all, self.preset_device, redraw)
-        blocks[_PRESET_PRESET].set_options(presets_tuple, self.preset_preset, redraw)
-        blocks[_PRESET_CC_MIN].set_options(selection=cc_min, redraw=redraw)
-        blocks[_PRESET_CC_MAX].set_options(selection=cc_max, redraw=redraw)
-        triggers_tuple = ChainMapTuple(('____',), _router.input_triggers_tuple)
-        clear = self.preset_preset_name == _ADD_NEW_LABEL
-        preset_maps = self.preset_maps
-        for i in range(_MAX_PRESETS):
-            if clear:
-                preset_maps[i] = ''
-            value = 0 if preset_maps[i] == '' else triggers_tuple.index(preset_maps[i])
-            blocks[_PRESET_FIRST_MAP + i].set_options(triggers_tuple, value, redraw)
-
-    def _save_port_settings(self) -> None:
+    def _save_port_settings(self) -> bool:
         '''save values from input blocks on ports sub-page; called by self.process_user_input'''
-        _data = ui.data
-        mapping = _data.input_device_mapping
+        _ml = ml
+        _data = _ml.data
+        _router = _ml.router
+        _router.handshake() # request second thread to wait
+        mapping = _data.input_port_mapping
+        settings = self.port_settings
+        selected_device = settings[(selected_port := self.selected_port)][0]
+        if selected_device != '':
+            for port, (name, _) in enumerate(settings):
+                if port == selected_port:
+                    continue
+                if name == selected_device:
+                    settings[port][0] = ''
         changed = False
-        selected_port = self.selected_port
-        assigned_devices = []
-        for device, definition in mapping.items():
-            if definition['port'] != _NONE:
-                assigned_devices.append(device)
-        changed = False
-        for port, (channel, device) in enumerate(self.port_settings):
-            if port == selected_port:
-                selected_port_device = device
-                continue
-            if device == '':
-                continue
-            if device in mapping:
-                assigned_devices.remove(device)
-                if mapping[device]['port'] != port:
-                    mapping[device]['port'] = port
-                    changed = True
-            else:
-                mapping[device] = {'port': port, 'channel': _NONE}
+        for port, (name, channel) in enumerate(settings):
+            map = mapping[port]
+            if map[0] != name:
+                map[0] = name
                 changed = True
-            if mapping[device]['channel'] != channel:
-                mapping[device]['channel'] = channel
+            if map[1] != channel:
+                map[1] = channel
                 changed = True
-        for device in assigned_devices:
-            mapping[device]['port'] = _NONE
-            changed = True
-        # do not save if selected port is set to an already assigned device
-        if selected_port_device != '' and mapping[selected_port_device]['port'] == _NONE:
-            mapping[selected_port_device] = {'port': selected_port}
-            changed = True
-        self.selected_port_device = selected_port_device
-        if not changed:
-            return
-        _data.save_data_json_file()
-        ui.router.update(False, False, False, False, False, False)
-
-    def _save_device_settings(self, id: int, value: int) -> bool:
-        '''save values from input blocks on device sub-page; called by self.process_user_input and self.midi_learn'''
-        _data = ui.data
-        changed = False
-        device_key = self.device_device_name
-        trigger_key = self.device_trigger_name
-        devices = _data.input_devices
-        if not device_key in devices:
-            devices[device_key] = {'mapping': {}}
-            changed = True
-        mapping = devices[device_key]['mapping']
-        if not trigger_key in mapping:
-            mapping[trigger_key] = {'note': _NONE, 'pedal_cc': _NONE}
-            changed = True
-        trigger = mapping[trigger_key]
-        if id == _DEVICE_TRIGGER_NOTE:
-            key = 'note'
+        if changed:
+            _data.save_data_json_file()
+            _router.update(already_waiting=True)
         else:
-            key = 'pedal_cc'
-        if trigger[key] != value:
-            trigger[key] = value # 0 becomes _NONE
-            changed = True
-        if changed:
-            ui.router.update(False, False, False, False, False, False)
-            _data.save_data_json_file()
+            _router.resume() #resume second thread
         return changed
 
-    def _save_preset_settings(self, id: int, value: int, text: str) -> bool:
-        '''save values from input blocks on preset sub-page; called by self.process_user_input'''
-        _data = ui.data
+    def _save_map_settings(self, redraw: bool = True) -> bool:
+        '''save values from input blocks on mapping sub-pages; called by self.process_user_input and self.midi_learn'''
+        _ml = ml
+        _data = _ml.data
+        _router = _ml.router
+        _router.handshake() # request second thread to wait
+        input_triggers = _data.input_triggers
+        triggers = input_triggers[TRIGGERS_SHORT[_router.input_trigger]]
         changed = False
-        device_key = self.preset_device_name
-        preset_key = self.preset_preset_name
-        presets = _data.input_presets
-        if not device_key in presets:
-            presets[device_key] = {}
+        if self.selected_port != triggers['port']:
+            triggers['port'] = self.selected_port
             changed = True
-        if not preset_key in presets[device_key]:
-            presets[device_key][preset_key] = {'maps': [], 'cc_min': _NONE, 'cc_max': _NONE}
-            changed = True
-        device = presets[device_key][preset_key]
-        if id == _PRESET_CC_MIN or id == _PRESET_CC_MAX:
-            key = 'cc_min' if id == _PRESET_CC_MIN else 'cc_max'
-            if device[key] != value:
-                device[key] = value # 0 becomes _NONE
-                changed = True
-        else: # maps
-            preset_maps = self.preset_maps
-            map_nr = id - _PRESET_FIRST_MAP
-            store_text = '' if value == 0 else text
-            preset_maps[map_nr] = store_text
-            maps = []
-            for map in preset_maps:
-                if map != '' and map not in maps:
-                    maps.append(map)
-            device_maps = device['maps']
-            if len(maps) != len(device_maps):
-                changed = True
-            else:
-                for i, map in enumerate(device_maps):
-                    if map != maps[i]:
-                        changed = True
-                        break
-            if changed:
-                for i in range(min(len(device_maps), len(maps))):
-                    if device_maps[i] != maps[i]:
-                        device_maps[i] = maps[i]
-                while len(device_maps) > len(maps):
-                    del device_maps[-1]
-                while len(maps) > len(device_maps):
-                    device_maps.append(maps[len(device_maps)])
+        zones_count = len(TRIGGERS[_router.input_trigger][2][0])
+        for zone, (note, cc, cc_min, cc_max) in enumerate(self.map_settings):
+            if zone < zones_count:
+                trigger = triggers['mapping'][zone]
+                if trigger['note'] != note:
+                    trigger['note'] = note
+                    changed = True
+                if trigger['pedal_cc'] != cc:
+                    trigger['pedal_cc'] = cc
+                    changed = True
+                if cc == _NONE:
+                    cc_min = _NONE
+                    cc_max = _NONE
+                if trigger['cc_min'] != cc_min:
+                    trigger['cc_min'] = cc_min
+                    changed = True
+                if trigger['cc_max'] != cc_max:
+                    trigger['cc_max'] = cc_max
+                    changed = True
         if changed:
             _data.save_data_json_file()
-            ui.router.update(False, False, False, False, False, False)
+            _router.update(already_waiting=True)
+        else:
+            _router.resume() # resume second thread
         return changed
-
-    def _callback_text_edit(self, caller_id: int, text: str) -> None:
-        '''callback function for text edit pop-up; called (passed on) by self.process_user_input'''
-        if text == '':
-            return
-        sub_page = self.sub_page
-        if sub_page == _SUB_PAGE_DEVICES:
-            if caller_id == _DEVICE_DEVICE:
-                if self.device_device_name == text:
-                    return
-                if self.device_device_name == _ADD_NEW_LABEL:
-                    self.device_new_device = False
-                    ui.router.add_device(text, True)
-                else:
-                    ui.router.rename_device(self.device_device_name, text, True)
-            elif caller_id == _DEVICE_TRIGGER:
-                if self.device_trigger_name == text:
-                    return
-                if self.device_trigger_name == _ADD_NEW_LABEL:
-                    self.device_new_trigger = False
-                    ui.router.add_trigger(self.device_device_name, text, True)
-                else:
-                    ui.router.rename_trigger(self.device_device_name, self.device_trigger_name, text, True)
-        elif sub_page == _SUB_PAGE_PRESETS and caller_id == _PRESET_PRESET:
-            if self.preset_preset_name == text:
-                return
-            if self.preset_preset_name == _ADD_NEW_LABEL:
-                self.preset_new_preset = False
-                ui.router.add_preset(self.preset_device_name, text, True)
-            else:
-                ui.router.rename_preset(self.preset_device_name, self.preset_preset_name, text, True)
 
     def _callback_confirm(self, caller_id: int, confirm: bool) -> None:
         '''callback for confirm pop-up; called (passed on) by self.process_user_input'''
         if not confirm:
             return
-        if caller_id == _DEVICE_DEVICE:
-            ui.router.delete_device(self.device_device_name, True)
-            if self.device_device > 0:
-                self.device_device -= 1
-            self._set_device_options()
-        elif caller_id == _DEVICE_TRIGGER:
-            ui.router.delete_trigger(self.device_device_name, self. device_trigger_name, True)
-            if self.device_trigger > 0:
-                self.device_trigger -= 1
-            self._set_device_options()
-        elif id == _PRESET_PRESET:
-            ui.router.delete_preset(self.preset_device_name, self.preset_preset_name, True)
-            if self.preset_preset > 0:
-                self.preset_preset -= 1
-            self._set_preset_options()
+        self.port_settings[(caller_id - _PORT_FIRST_DEVICE) // 2][0] = ''
+        self._save_port_settings()
+
+    def _device_options(self, i: int) -> str:
+        '''function to pass on to device options generator'''
+        device = self.port_settings[i][0]
+        return f'p{i + 1}' if device == '' else f'p{i + 1}: {device}'

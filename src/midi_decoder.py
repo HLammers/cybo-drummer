@@ -1,6 +1,6 @@
 ''' MIDI decoder library for Cybo-Drummer - Humanize Those Drum Computers!
     https://github.com/HLammers/cybo-drummer
-    Copyright (c) 2024 Harm Lammers
+    Copyright (c) 2024-2025 Harm Lammers
 
     MIT licence:
 
@@ -21,7 +21,7 @@
 
 import micropython
 
-import ui
+import main_loops as ml
 
 _NONE                     = const(-1)
 
@@ -35,7 +35,6 @@ _SYS_QUARTER_FRAME        = const(0xF1)
 _SYS_SONG_POSITION        = const(0xF2)
 _SYS_SONG_SELECT          = const(0xF3)
 _SYS_TUNE_REQUEST         = const(0xF6)
-
 
 @micropython.viper
 class MIDIDecoder:
@@ -64,28 +63,24 @@ class MIDIDecoder:
         out_channel = _NONE
         out_data_1 = _NONE
         out_data_2 = _NONE
+        _router = ml.router
         if 0xF1 <= midi_byte <= 0xF6: # system common message
             self.command = midi_byte
             if midi_byte != _SYS_TUNE_REQUEST:
                 return
-            _router = ui.router
             out_command = midi_byte
         elif 0xF8 <= midi_byte <= 0xFF: # system real-time message
-            _router = ui.router
             out_command = midi_byte
         else: # midi data
-            command = int(self.command)
-            if command == 0: # missing running status
+            if (command := int(self.command)) == 0: # missing running status
                 return
             channel = int(self.channel)
             data_1 = int(self.data_1)
             if command == _SYS_QUARTER_FRAME or command == _SYS_SONG_SELECT:
-                _router = ui.router
                 out_command = command
                 out_data_1 = midi_byte
                 self.data_1 = 0
             elif command == _COMMAND_PROGRAM_CHANGE or command == _COMMAND_CHANNEL_PRESSURE:
-                _router = ui.router
                 out_channel = channel
                 out_command = command
                 out_data_1 = midi_byte
@@ -95,17 +90,14 @@ class MIDIDecoder:
                 return
             else: # second data byte: process
                 if command == _COMMAND_NOTE_OFF:
-                    ui.router.route_note_off(channel, data_1, midi_byte, id)
                     out_channel = channel
                     out_command = _COMMAND_NOTE_OFF
                     out_data_1 = data_1
                     out_data_2 = midi_byte
                     self.data_1 = 0
                 elif command == _COMMAND_NOTE_ON:
-                    if midi_byte == 0: # velocity == 0
-                        ui.router.route_note_off(channel, data_1, 64, id)
-                    else:
-                        ui.router.route_note_on(channel, data_1, midi_byte, id)
+                    if midi_byte != 0: # velocity != 0
+                        _router.route_note_on(channel, data_1, midi_byte, id)
                     out_channel = channel
                     out_command = _COMMAND_NOTE_ON
                     out_data_1 = data_1
@@ -124,8 +116,7 @@ class MIDIDecoder:
                     out_data_2 = midi_byte
                     self.data_1 = 0
                     self.data_2 = midi_byte
-        _router = ui.router
         _router.route_midi_thru(out_channel, out_command, out_data_1, out_data_2, id)
         if out_channel != _NONE:
             out_channel += 1
-        _router.send_to_monitor(_MONITOR_MODE_MIDI_IN, id, out_channel, out_command, out_data_1, out_data_2)
+        _router.send_to_monitor(_MONITOR_MODE_MIDI_IN, id, out_channel, command=out_command, data_1=out_data_1, data_2=out_data_2)

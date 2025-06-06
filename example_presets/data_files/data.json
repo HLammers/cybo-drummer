@@ -1,0 +1,151 @@
+{"settings":{
+    "midi_thru":false,
+    "midi_thru_input_port":-1,
+    "midi_thru_input_channel":-1,
+    "midi_thru_output_port":-1,
+    "midi_thru_output_channel":-1,
+    "midi_learn":true,
+    "midi_learn_port":5,
+    "default_output_velocity":64},
+"trigger_matrix":[
+    [-1,-1,-1,-1,-1,-1,-1,-1],
+    [-1,-1,-1,-1,46,-1,-1,-1],
+    [-1,-1,23,25,12,-1,26,-1],
+    [-1,-1,21, 3, 4,-1,24,-1],
+    [-1,-1,-1, 2, 0, 5,13,47],
+    [-1,-1,-1,-1,-1, 6,14,48],
+    [38,39,40,41,-1,-1,-1,-1],
+    [34,35,36,37,-1,-1,-1,-1]],
+"input_port_mapping":[["2Box",9],["SPD-11",9],["",-1],["",-1],["",-1],["",-1]],
+"input_triggers":{
+    "BD":{"port":0,"mapping":[
+        {"note":36,"pedal_cc":-1,"cc_min":-1,"cc_max":-1}]},
+    "SD":{"port":0,"mapping":[
+        {"note":41,"pedal_cc":-1,"cc_min":-1,"cc_max":-1},
+        {"note":42,"pedal_cc":-1,"cc_min":-1,"cc_max":-1}]},
+    "HO":{"port":0,"mapping":[
+        {"note":46,"pedal_cc":4,"cc_min":0,"cc_max":126},
+        {"note":45,"pedal_cc":4,"cc_min":0,"cc_max":126},
+        {"note":47,"pedal_cc":4,"cc_min":0,"cc_max":126}]},
+    "HC":{"port":0,"mapping":[
+        {"note":46,"pedal_cc":4,"cc_min":127,"cc_max":127},
+        {"note":45,"pedal_cc":4,"cc_min":127,"cc_max":127},
+        {"note":47,"pedal_cc":4,"cc_min":127,"cc_max":127}]},
+    "T1":{"port":0,"mapping":[
+        {"note":50,"pedal_cc":-1,"cc_min":-1,"cc_max":-1},
+        {"note":51,"pedal_cc":-1,"cc_min":-1,"cc_max":-1}]},
+    "T2":{"port":0,"mapping":[
+        {"note":53,"pedal_cc":-1,"cc_min":-1,"cc_max":-1},
+        {"note":54,"pedal_cc":-1,"cc_min":-1,"cc_max":-1}]},
+    "T3":{"port":0,"mapping":[
+        {"note":57,"pedal_cc":-1,"cc_min":-1,"cc_max":-1},
+        {"note":58,"pedal_cc":-1,"cc_min":-1,"cc_max":-1}]},
+    "T4":{"port":0,"mapping":[
+        {"note":60,"pedal_cc":-1,"cc_min":-1,"cc_max":-1},
+        {"note":61,"pedal_cc":-1,"cc_min":-1,"cc_max":-1}]},
+    "RD":{"port":0,"mapping":[
+        {"note":67,"pedal_cc":-1,"cc_min":-1,"cc_max":-1},
+        {"note":66,"pedal_cc":-1,"cc_min":-1,"cc_max":-1},
+        {"note":65,"pedal_cc":-1,"cc_min":-1,"cc_max":-1},
+        {"note":64,"pedal_cc":-1,"cc_min":-1,"cc_max":-1}]},
+    "C1":{"port":0,"mapping":[
+        {"note":74,"pedal_cc":-1,"cc_min":-1,"cc_max":-1},
+        {"note":73,"pedal_cc":-1,"cc_min":-1,"cc_max":-1},
+        {"note":72,"pedal_cc":-1,"cc_min":-1,"cc_max":-1},
+        {"note":71,"pedal_cc":-1,"cc_min":-1,"cc_max":-1}]},
+    "C2":{"port":0,"mapping":[
+        {"note":79,"pedal_cc":-1,"cc_min":-1,"cc_max":-1},
+        {"note":78,"pedal_cc":-1,"cc_min":-1,"cc_max":-1},
+        {"note":77,"pedal_cc":-1,"cc_min":-1,"cc_max":-1},
+        {"note":76,"pedal_cc":-1,"cc_min":-1,"cc_max":-1}]},
+    "M1":{"port":1,"mapping":[
+        {"note":49,"pedal_cc":-1,"cc_min":-1,"cc_max":-1},
+        {"note":127,"pedal_cc":-1,"cc_min":-1,"cc_max":-1}]},
+    "M2":{"port":1,"mapping":[
+        {"note":48,"pedal_cc":-1,"cc_min":-1,"cc_max":-1},
+        {"note":126,"pedal_cc":-1,"cc_min":-1,"cc_max":-1}]},
+    "M3":{"port":1,"mapping":[
+        {"note":45,"pedal_cc":-1,"cc_min":-1,"cc_max":-1},
+        {"note":125,"pedal_cc":-1,"cc_min":-1,"cc_max":-1}]},
+    "M4":{"port":1,"mapping":[
+        {"note":41,"pedal_cc":-1,"cc_min":-1,"cc_max":-1},
+        {"note":124,"pedal_cc":-1,"cc_min":-1,"cc_max":-1}]},
+    "M5":{"port":1,"mapping":[
+        {"note":36,"pedal_cc":-1,"cc_min":-1,"cc_max":-1},
+        {"note":123,"pedal_cc":-1,"cc_min":-1,"cc_max":-1}]},
+    "M6":{"port":1,"mapping":[
+        {"note":38,"pedal_cc":-1,"cc_min":-1,"cc_max":-1},
+        {"note":122,"pedal_cc":-1,"cc_min":-1,"cc_max":-1}]},
+    "M7":{"port":1,"mapping":[
+        {"note":26,"pedal_cc":-1,"cc_min":-1,"cc_max":-1},
+        {"note":121,"pedal_cc":-1,"cc_min":-1,"cc_max":-1}]},
+    "M8":{"port":1,"mapping":[
+        {"note":46,"pedal_cc":-1,"cc_min":-1,"cc_max":-1},
+        {"note":120,"pedal_cc":-1,"cc_min":-1,"cc_max":-1}]},
+    "P1":{"port":1,"mapping":[
+        {"note":119,"pedal_cc":-1,"cc_min":-1,"cc_max":-1},
+        {"note":118,"pedal_cc":-1,"cc_min":-1,"cc_max":-1}]},
+    "P2":{"port":1,"mapping":[
+        {"note":117,"pedal_cc":-1,"cc_min":-1,"cc_max":-1},
+        {"note":116,"pedal_cc":-1,"cc_min":-1,"cc_max":-1}]},
+    "P3":{"port":1,"mapping":[
+        {"note":115,"pedal_cc":-1,"cc_min":-1,"cc_max":-1},
+        {"note":114,"pedal_cc":-1,"cc_min":-1,"cc_max":-1}]},
+    "A1":{"port":1,"mapping":[
+        {"note":113,"pedal_cc":-1,"cc_min":-1,"cc_max":-1},
+        {"note":112,"pedal_cc":-1,"cc_min":-1,"cc_max":-1}]},
+    "A2":{"port":1,"mapping":[
+        {"note":111,"pedal_cc":-1,"cc_min":-1,"cc_max":-1},
+        {"note":110,"pedal_cc":-1,"cc_min":-1,"cc_max":-1}]},
+    "A3":{"port":1,"mapping":[
+        {"note":109,"pedal_cc":-1,"cc_min":-1,"cc_max":-1},
+        {"note":108,"pedal_cc":-1,"cc_min":-1,"cc_max":-1}]}},
+"output_mapping":[
+    "Volca Drum",{"channel":-1,"vel_0_note_off":true,"running_status":true,"mapping":[
+        "Part 1",{"channel":0,"note":-1,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "Part 2",{"channel":1,"note":-1,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "Part 3",{"channel":2,"note":-1,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "Part 4",{"channel":3,"note":-1,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "Part 5",{"channel":4,"note":-1,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "Part 6",{"channel":5,"note":-1,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127}]},
+    "Drumbrute",{"channel":9,"vel_0_note_off":true,"running_status":true,"mapping":[
+        "Kick 1",{"channel":-1,"note":36,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "Kick 2",{"channel":-1,"note":37,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "Snare",{"channel":-1,"note":38,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "Clap",{"channel":-1,"note":39,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "Rim",{"channel":-1,"note":40,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "Claves",{"channel":-1,"note":41,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "Closed Hat",{"channel":-1,"note":42,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "Open Hat",{"channel":-1,"note":43,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "Conga Hi",{"channel":-1,"note":44,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "Tom Hi",{"channel":-1,"note":45,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "Conga Low",{"channel":-1,"note":46,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "Tom Low",{"channel":-1,"note":47,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "Cymbal",{"channel":-1,"note":48,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "Rev Cymbal",{"channel":-1,"note":49,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "Maracas",{"channel":-1,"note":50,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "Tamb",{"channel":-1,"note":51,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "Zap",{"channel":-1,"note":52,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127}]},
+    "Drumlogue",{"channel":-1,"vel_0_note_off":true,"running_status":true,"mapping":[
+        "BD",{"channel":6,"note":-1,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "SD",{"channel":7,"note":-1,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "LT",{"channel":8,"note":-1,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "HT",{"channel":9,"note":-1,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "CH",{"channel":10,"note":42,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "OH",{"channel":11,"note":46,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "RS",{"channel":12,"note":37,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "CP",{"channel":13,"note":39,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "SP 1",{"channel":14,"note":52,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "SP 2",{"channel":15,"note":53,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "MULTI",{"channel":0,"note":55,"note_off":0,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127}]},
+    "LXR-02",{"channel":0,"vel_0_note_off":true,"running_status":true,"mapping":[
+        "DRUM1",{"channel":1,"note":60,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "DRUM2",{"channel":2,"note":60,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "DRUM3",{"channel":3,"note":60,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "SNARE",{"channel":4,"note":60,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "CLP/CYM",{"channel":5,"note":60,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "CL HH",{"channel":6,"note":60,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127},
+        "OP HH",{"channel":7,"note":60,"note_off":-1,"threshold":0,"curve":0,"min_velocity":0,"max_velocity":127}]},
+    "",{"channel":9,"vel_0_note_off":true,"running_status":true,"mapping":[]},
+    "",{"channel":9,"vel_0_note_off":true,"running_status":true,"mapping":[]}]
+}

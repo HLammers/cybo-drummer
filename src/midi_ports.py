@@ -1,6 +1,6 @@
 ''' MIDI ports library for Cybo-Drummer - Humanize Those Drum Computers!
     https://github.com/HLammers/cybo-drummer
-    Copyright (c) 2024 Harm Lammers
+    Copyright (c) 2024-2025 Harm Lammers
 
     MIT licence:
 
@@ -67,21 +67,16 @@ class MIDIPorts:
         if not self.thread_lock.locked:
             self.thread_lock.acquire()
         self.hardware_uarts.clear()
-        ports = []
-        for port in _INPUT_PORTS:
-            if not port[_PORT_IS_PIO]:
-                ports.append(port[_PORT_ID])
+        ports = [port[_PORT_ID] for port in _INPUT_PORTS if not port[_PORT_IS_PIO]]
         for port in _OUTPUT_PORTS:
             if not port[_PORT_IS_PIO]:
                 ports.append(port[_PORT_ID])
         for port in set(ports):
-            self.hardware_uarts[port] = machine.UART(port, _UART_BAUD)
+            self.hardware_uarts[port] = machine.UART(port, _UART_BAUD) # type: ignore (temporary)
         for i, port in enumerate(_INPUT_PORTS):
-            port = _InputPort(i, port[_PORT_IS_PIO], port[_PORT_ID], port[_PORT_PIN], self.hardware_uarts) # type: ignore
-            self.input_ports.append(port)
+            self.input_ports.append(_InputPort(i, port[_PORT_IS_PIO], port[_PORT_ID], port[_PORT_PIN], self.hardware_uarts)) # type: ignore
         for i, port in enumerate(_OUTPUT_PORTS):
-            port = _OutputPort(i, port[_PORT_IS_PIO], port[_PORT_ID], port[_PORT_PIN], self.hardware_uarts) # type: ignore
-            self.output_ports.append(port)
+            self.output_ports.append(_OutputPort(i, port[_PORT_IS_PIO], port[_PORT_ID], port[_PORT_PIN], self.hardware_uarts)) # type: ignore
 
     def delete(self) -> None:
         for port in self.input_ports:
@@ -98,26 +93,29 @@ class _InputPort:
     def __init__(self, id: int, is_pio: bool, uart_id: int, pin: int, hardware_uarts) -> None:
         self.is_pio = is_pio
         if is_pio:
-            _pin = machine.Pin(pin)
-            self.pio_uart = rp2.StateMachine(uart_id, uart_rx, freq=8 * _UART_BAUD, in_base=_pin, jmp_pin=_pin)
+            _Pin = machine.Pin
+            _pio_pin = _Pin(pin, _Pin.IN)
+            self.pio_uart = rp2.StateMachine(uart_id, uart_rx, freq=8 * _UART_BAUD, in_base=_pio_pin, jmp_pin=_pio_pin) # type: ignore (temporary)
             self.pio_uart.active(1)
+            self.process = self._process_pio
         else:
             self.hardware_uart = hardware_uarts[uart_id]
+            self.process = self._process_uart
         self.midi_decoder = MIDIDecoder(id)
 
     @micropython.viper
-    def process(self):
-        '''read data and send it to midi decoder if new data is available; called by main.py: second_thread'''
-        if bool(self.is_pio):
-            _uart = self.pio_uart
-            if bool(_uart.rx_fifo()):
-                midi_byte = uint(_uart.get()) >> 24 # type: ignore
-                self.midi_decoder.read(midi_byte)
-        else:
-            _uart = self.hardware_uart
-            if _uart.any():
-                midi_byte = uint(_uart.read(1)[0]) # type: ignore
-                self.midi_decoder.read(midi_byte)
+    def _process_pio(self):
+        '''read data and send it to midi decoder if new data is available (for pio port); called by main.py: second_thread'''
+        _uart = self.pio_uart
+        if bool(_uart.rx_fifo()):
+            self.midi_decoder.read(uint(_uart.get()) >> 24) # type: ignore
+
+    @micropython.viper
+    def _process_uart(self):
+        '''read data and send it to midi decoder if new data is available (for uart port); called by main.py: second_thread'''
+        _uart = self.hardware_uart
+        if _uart.any():
+            self.midi_decoder.read(uint(_uart.read(1)[0])) # type: ignore
 
     def delete(self):
         if self.is_pio:
@@ -132,7 +130,7 @@ class _OutputPort:
         self.is_pio = is_pio
         if is_pio:
             _pin = machine.Pin(pin)
-            self.pio_uart = rp2.StateMachine(uart_id, uart_tx, freq=8 * _UART_BAUD, sideset_base=_pin, out_base=_pin)
+            self.pio_uart = rp2.StateMachine(uart_id, uart_tx, freq=8 * _UART_BAUD, sideset_base=_pin, out_base=_pin) # type: ignore (temporary)
             self.pio_uart.active(1)
             self.midi_encoder = MIDIEncoder(id, self.pio_midi_send)
         else:

@@ -1,0 +1,13 @@
+{"program_change":[3,0],"bank_select":[3,[25,-1]],"routing":[
+{"trigger":"BD","zone":0,"layers":{"A":{"output_port":3,"voice":"DRUM1","note":-1,"note_off":-1,"transient":-1,"transient_layer":0,"scale":true}}},
+{"trigger":"T1","zone":0,"layers":{"A":{"output_port":3,"voice":"DRUM2","note":-1,"note_off":-1,"transient":-1,"transient_layer":0,"scale":true}}},
+{"trigger":"T3","zone":0,"layers":{"A":{"output_port":3,"voice":"DRUM3","note":-1,"note_off":-1,"transient":-1,"transient_layer":0,"scale":true}}},
+{"trigger":"SD","zone":0,"layers":{"A":{"output_port":3,"voice":"SNARE","note":-1,"note_off":-1,"transient":-1,"transient_layer":0,"scale":true}}},
+{"trigger":"C1","zone":0,"layers":{"A":{"output_port":3,"voice":"CLP/CYM","note":-1,"note_off":-1,"transient":-1,"transient_layer":0,"scale":true}}},
+{"trigger":"C1","zone":1,"layers":{"A":{"output_port":3,"voice":"CLP/CYM","note":-1,"note_off":-1,"transient":-1,"transient_layer":0,"scale":true}}},
+{"trigger":"HC","zone":0,"layers":{"A":{"output_port":3,"voice":"CL HH","note":-1,"note_off":-1,"transient":-1,"transient_layer":0,"scale":true}}},
+{"trigger":"HC","zone":1,"layers":{"A":{"output_port":3,"voice":"CL HH","note":-1,"note_off":-1,"transient":-1,"transient_layer":0,"scale":true}}},
+{"trigger":"HC","zone":2,"layers":{"A":{"output_port":3,"voice":"CL HH","note":-1,"note_off":-1,"transient":-1,"transient_layer":0,"scale":true}}},
+{"trigger":"HO","zone":0,"layers":{"A":{"output_port":3,"voice":"OP HH","note":-1,"note_off":-1,"transient":-1,"transient_layer":0,"scale":true}}},
+{"trigger":"HO","zone":1,"layers":{"A":{"output_port":3,"voice":"OP HH","note":-1,"note_off":-1,"transient":-1,"transient_layer":0,"scale":true}}},
+{"trigger":"HO","zone":2,"layers":{"A":{"output_port":3,"voice":"OP HH","note":-1,"note_off":-1,"transient":-1,"transient_layer":0,"scale":true}}}]}

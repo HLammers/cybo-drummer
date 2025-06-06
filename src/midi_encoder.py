@@ -1,6 +1,6 @@
 ''' MIDI encoder library for Cybo-Drummer - Humanize Those Drum Computers!
     https://github.com/HLammers/cybo-drummer
-    Copyright (c) 2024 Harm Lammers
+    Copyright (c) 2024-2025 Harm Lammers
 
     MIT licence:
 
@@ -18,7 +18,7 @@
 
 import micropython
 
-import ui
+import main_loops as ml
 
 _NONE                  = const(-1)
 
@@ -48,17 +48,18 @@ class MIDIEncoder:
     def note_on(self, channel: int, note: int, velocity: int):
         '''generate note on message and send it to midi and monitor; called by router.route_note_on'''
         self.midi_send(_COMMAND_NOTE_ON, channel, note, velocity)
-        ui.router.send_to_monitor(_MONITOR_MODE_MIDI_OUT, self.id, channel, _COMMAND_NOTE_ON, note, velocity, _NONE)
+        ml.router.send_to_monitor(_MONITOR_MODE_MIDI_OUT, self.id, channel, command=_COMMAND_NOTE_ON, data_1=note, data_2=velocity)
 
     def note_off(self, channel: int, note: int):
         '''generate note off message and send it to midi and monitor; called by router.route_note_on, router.route_note_off and
         router._all_notes_off'''
         if bool(self.vel_0_note_off):
             self.midi_send(_COMMAND_NOTE_ON, channel, note, 0)
-            ui.router.send_to_monitor(_MONITOR_MODE_MIDI_OUT, self.id, channel, _COMMAND_NOTE_ON, note, 0, _NONE)
+            ml.router.send_to_monitor(_MONITOR_MODE_MIDI_OUT, self.id, channel, command=_COMMAND_NOTE_ON, data_1=note, data_2=0)
         else:
             self.midi_send(_COMMAND_NOTE_OFF, channel, note, _NOTE_OFF_VELOCITY)
-            ui.router.send_to_monitor(_MONITOR_MODE_MIDI_OUT, self.id, channel, _COMMAND_NOTE_OFF, note, _NOTE_OFF_VELOCITY, _NONE)
+            ml.router.send_to_monitor(_MONITOR_MODE_MIDI_OUT, self.id, channel,
+                                      command=_COMMAND_NOTE_OFF, data_1=note, data_2=_NOTE_OFF_VELOCITY)
 
     def midi_send(self, command: int, channel: int, data_1: int, data_2: int):
         '''send midi message, applying running status (unless disabled); called by note_on, note_off, router.update and

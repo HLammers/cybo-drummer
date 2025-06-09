@@ -31,7 +31,7 @@ from data import Data
 
 _NONE                = const(-1)
 
-_MAIN_LOOP_DELAY     = const(100) # ms
+_MAIN_LOOP_DELAY     = const(1) # ms
 _SECOND_THREAD_DELAY = const(1000) # ms
 _PULSE_DELAY         = const(5000) # ms
 

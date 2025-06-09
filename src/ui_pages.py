@@ -85,7 +85,6 @@ class Page():
 
     def restore(self):
         '''redraw blocks on page; called by ui.process_user_input'''
-        self.title_bar.draw()
         if len(blocks := self.blocks) > 0:
             blocks[self.selected_block[self.sub_page]].update(True, False)
         self.draw()

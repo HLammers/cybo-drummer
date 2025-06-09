@@ -23,6 +23,8 @@ This file is part of a series of documentation files on Cybo-Drummer:
 
 *More items from the backlog could get added to the 0.3.1 list if I find the time (or urge), inspiration and right solutions*
 
+- [x] Massively improve monitor screen refresh rate
+- [x] Small fixes and improvements
 - [ ] Double check, test and document reception of bank select / program change messages
 - [ ] Double check, test and document MIDI learn
 - [ ] Test batch assign multipad notes velocity layer filter
@@ -39,7 +41,6 @@ This file is part of a series of documentation files on Cybo-Drummer:
 ### MIDI Monitor Improvement
 
 - [ ] Adding MIDI monitor filter options
-- [ ] Trying to improve monitor screen refresh rate by using a separate `FrameBuffer` for the monitor sub-page, `FrameBuffer.scroll` when adding a new line and `FrameBuffer.blit` to merge it with the main `FrameBuffer`
 
 ### MIDI Mapping
 

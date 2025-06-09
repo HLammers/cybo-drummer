@@ -730,8 +730,7 @@ class TextBlock(Block):
         return True
 
 class TextRow():
-    '''class providing text row block for monitor page and to for text row at bottom of matrix page; initiated by _Monitor.draw and
-    PageMatrix._build_page'''
+    '''class providing text row block for text row at bottom of matrix page; initiated PageMatrix._build_page'''
 
     def __init__(self, y: int, h: int, back_color: int, fore_color: int, align: int = _ALIGN_LEFT) -> None:
         self.y = y

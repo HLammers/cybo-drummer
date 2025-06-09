@@ -91,7 +91,7 @@ class Display(framebuf.FrameBuffer):
         self.dc = dc_pin
         self.rst = rst_pin
         self.backlight = backlight_pin
-        self._font = font
+        self.font = font
         backlight_pin.off()
         rst_pin.init(rst_pin.OUT, value=0)
         dc_pin.init(dc_pin.OUT, value=0)
@@ -100,8 +100,7 @@ class Display(framebuf.FrameBuffer):
         self._reset()
         self._setup()
         self._clear()
-        self._palette_buffer = (buffer := bytearray(4))
-        self._palette = framebuf.FrameBuffer(buffer, 2, 1, RGB565)
+        self._palette = framebuf.FrameBuffer(bytearray(4), 2, 1, RGB565)
         backlight_pin.on()
 
     @micropython.viper
@@ -140,7 +139,7 @@ class Display(framebuf.FrameBuffer):
         _palette.pixel(0, 0, back_color)
         _palette.pixel(1, 0, fore_color)
         _FrameBuffer = framebuf.FrameBuffer
-        _get_ch = self._font.get_ch
+        _get_ch = self.font.get_ch
         MONO_HLSB = framebuf.MONO_HLSB
         _blit = self.blit
         for char in text:

@@ -12,23 +12,31 @@
 
 _INITIAL_SUB_PAGE = const(0)
 
-from collections import deque
+import micropython
+import framebuf
 
 import main_loops as ml
 from ui_pages import Page
-from ui_blocks import TitleBar, TextRow
+from ui_blocks import TitleBar
 
 _NONE              = const(-1)
+
+_ASCII_DOT         = const(46)
 
 _COLOR_DARK        = const(0xAA29) # 0x29AA dark purple blue
 _COLOR_LIGHT       = const(0xD9CD) # 0xCDD9 light purple grey
 
+_DISPLAY_WIDTH     = const(220)
 _PAGE_W            = const(204) # _DISPLAY_W - _PAGES_W
 _PAGE_H            = const(163) # _DISPLAY_H - _TITLE_BAR_H
+_NET_PAGE_H        = const(160) # _PAGE_H - _TOP_MARGIN
 _TITLE_BAR_H       = const(13)
-_ROW_H             = const(13)
-_MAX_ROWS          = const(12) # int(_PAGE_H / _ROW_H)
-_TOP_MARGIN        = const(3) # int((_PAGE_H - _MAX_ROWS * _ROW_H) / 2)
+_ROW_H             = const(12)
+_MAX_ROWS          = const(12) # _PAGE_H // _ROW_H - 1
+_TOP_MARGIN        = const(3) # (_PAGE_H - (_MAX_ROWS + 1) * _ROW_H) // 2
+_FONT_WIDTH        = const(6)
+_FONT_HEIGHT       = const(8)
+# _GROSS_ROW_H       = const(15) # _ROW_H + (_ROW_H - _FONT_HEIGHT) // 2
 
 _SUB_PAGES         = const(3)
 _SUB_PAGE_ROUTING  = const(0)
@@ -44,15 +52,28 @@ class PageMonitor(Page):
         super().__init__(id, x, y, w, h, _SUB_PAGES, visible)
         self.sub_page = _INITIAL_SUB_PAGE
         self.block_active = True
-        self.font_type = None
-        self.text_deques = [deque((), _MAX_ROWS - 1), deque((), _MAX_ROWS - 1), deque((), _MAX_ROWS - 1)]
+        self.row = 0
+        self.row_length = 0
+        self.frame_buffer = None
         self.page_is_built = False
         self._build_page()
 
     def program_change(self, update_only: bool) -> None:
         '''update page after program change; called by ui.program_change'''
+        if self.frame_buffer is None:
+            _FrameBuffer = framebuf.FrameBuffer
+            print(_TITLE_BAR_H * _DISPLAY_WIDTH * 2, (_TITLE_BAR_H + _TOP_MARGIN) * _DISPLAY_WIDTH * 2, _TOP_MARGIN)
+            self.frame_buffer = _FrameBuffer(ml.ui.display.byte_buffer[(_TITLE_BAR_H + _TOP_MARGIN) * _DISPLAY_WIDTH * 2:], _PAGE_W,
+                                             _NET_PAGE_H, (RGB565 := framebuf.RGB565), _DISPLAY_WIDTH)
+            self._palette = (_palette := _FrameBuffer(bytearray(4), 2, 1, RGB565))
+            _palette.pixel(0, 0, _COLOR_DARK)
+            _palette.pixel(1, 0, _COLOR_LIGHT)
         if self.visible:
-            self._load()
+            self._reset_monitor()
+
+    def restore(self):
+        '''redraw blocks on page; called by ui.process_user_input'''
+        self._reset_monitor()
 
     def process_user_input(self, id: int, value: int|str = _NONE, button_del: bool = False, button_sel_opt: bool = False) -> bool:
         '''process user input at page level (ui.set_user_input_tuple > ui.user_input_tuple > ui.process_user_input >
@@ -63,17 +84,42 @@ class PageMonitor(Page):
                 return False
             self._set_sub_page(value)
             self._reset_monitor()
-            self._load()
             return True
         return False
 
-    def add_to_monitor(self, type: int, text: str) -> bool:
+    @micropython.viper
+    def add_to_monitor(self, type: int, text) -> bool:
         '''add event to monitor deque (router.send_to_monitor > router.monitor_data > ui.process_monitor > PageMonitor.add_to_monitor); called
         by ui.process_monitor'''
-        if not self.visible or self.sub_page != type:
+        if not bool(self.visible) or int(self.sub_page) != type:
             return False
-        self.text_deques[type].append(text)
-        self._load()
+        _frame_buffer = self.frame_buffer
+        if (row := int(self.row)) == _MAX_ROWS:
+            _frame_buffer.scroll(0, -_ROW_H) # type: ignore
+            _frame_buffer.rect(0, (y := _MAX_ROWS * _ROW_H), int(self.row_length) * _FONT_WIDTH + 1, _ROW_H, _COLOR_DARK, True) # type: ignore (temporary)
+            y -= _ROW_H
+        else:
+            _frame_buffer.rect(0, (y := row * _ROW_H), 3 * _FONT_WIDTH, _ROW_H, _COLOR_DARK, True) # type: ignore (temporary)
+            self.row = row + 1
+        self.row_length = len(text)
+        _display = ml.ui.display
+        _get_ch = _display.font.get_ch
+        _FrameBuffer = framebuf.FrameBuffer
+        MONO_HLSB = framebuf.MONO_HLSB
+        frame_buffer = self.frame_buffer
+        _blit = frame_buffer.blit # type: ignore
+        _palette = self._palette
+        x = 1
+        for char in text:
+            ch_buffer = _FrameBuffer(bytearray(_get_ch(ord(char))), _FONT_WIDTH, _FONT_HEIGHT, MONO_HLSB)
+            _blit(ch_buffer, x, y, _COLOR_DARK, _palette)
+            x += _FONT_WIDTH
+        ch_buffer = _FrameBuffer(bytearray(_get_ch(_ASCII_DOT)), _FONT_WIDTH, _FONT_HEIGHT, MONO_HLSB)
+        x = 1
+        y += _ROW_H
+        for _ in range(3):
+            _blit(ch_buffer, x, y, _COLOR_DARK, _palette)
+            x += _FONT_WIDTH
         return True
 
     def _build_page(self) -> None:
@@ -82,8 +128,6 @@ class PageMonitor(Page):
             return
         self.page_is_built = True
         sub_pages_title_bars = self.sub_pages_title_bars
-        sub_pages_empty_blocks = self.sub_pages_empty_blocks
-        text_deques = self.text_deques
         for i in range(_SUB_PAGES):
             if i == _SUB_PAGE_ROUTING:
                 sub_pages_title_bars.append(TitleBar('monitor routing', 1, _SUB_PAGES))
@@ -91,39 +135,27 @@ class PageMonitor(Page):
                 sub_pages_title_bars.append(TitleBar('monitor midi in', 2, _SUB_PAGES))
             else: # i == _SUB_PAGE_MIDI_OUT
                 sub_pages_title_bars.append(TitleBar('monitor midi out', 3, _SUB_PAGES))
-            sub_pages_empty_blocks.append((_Monitor(i, text_deques[i]),))
         self.sub_pages_blocks = ((), (), ())
+        self.sub_pages_empty_blocks = ((), (), ())
         self._set_sub_page(self.sub_page)
 
     def _load(self, redraw: bool = True) -> None:
         '''load and set options and values to input blocks; called by self.set_visibility, Page*.program_change, Page*.process_user_input,
         PageMonitor.add_to_monitor'''
         if redraw:
-            self.draw()
+            self._reset_monitor()
 
     def _reset_monitor(self):
-        '''empty monitor deques; called by self.process_user_input'''
-        text_deques = self.text_deques
-        for i in range(3):
-            while len(text_deques[i]) > 0:
-                text_deques[i].pop()
-
-class _Monitor():
-    '''class providing the monitor part of a monitor sup-page; initiated by PageMonitor._build_page'''
-
-    def __init__(self, id: int, text_deque: deque) -> None:
-        self.id = id
-        self.text_deque = text_deque
-        self.text_rows = [TextRow(_TITLE_BAR_H + _TOP_MARGIN + i * _ROW_H, _ROW_H, _COLOR_DARK, _COLOR_LIGHT) for i in range(_MAX_ROWS)]
-
-    def draw(self) -> None:
-        '''draw monitor part of monitor sub-page; called by PageMonitor._draw'''
-        _rect = ml.ui.display.rect
-        _rect(0, _TITLE_BAR_H, _PAGE_W, _TOP_MARGIN, _COLOR_DARK, True) # type: ignore (temporary)
-        i = -1
-        for i, text in enumerate(self.text_deque): # type: ignore (temporary)
-            self.text_rows[i].set_text(text, True)
-        self.text_rows[i + 1].set_text('...', True)
-        h = _PAGE_H - (y := _TITLE_BAR_H + _TOP_MARGIN + (i + 2) * _ROW_H) + _TITLE_BAR_H
-        if h > 0:
-            _rect(0, y, _PAGE_W, h, _COLOR_DARK, True) # type: ignore (temporary)
+        '''empty monitor deques; called by self.program_change, self.restore, self.process_user_input, self._load'''
+        self.row = 0
+        _display = ml.ui.display
+        _display.rect(0, _TITLE_BAR_H, _PAGE_W, _PAGE_H, _COLOR_DARK, True) # type: ignore (temporary)
+        frame_buffer = self.frame_buffer
+        _blit = frame_buffer.blit # type: ignore
+        _get_ch = _display.font.get_ch
+        ch_buffer = framebuf.FrameBuffer(bytearray(_get_ch(_ASCII_DOT)), _FONT_WIDTH, _FONT_HEIGHT, framebuf.MONO_HLSB)
+        _palette = self._palette
+        x = 1
+        for _ in range(3):
+            _blit(ch_buffer, x, 0, _COLOR_DARK, _palette)
+            x += _FONT_WIDTH
